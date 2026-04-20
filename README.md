@@ -21,3 +21,4 @@ Pushes to `main` automatically deploy to GitHub Pages via GitHub Actions.
 - MDX for content
 - Tailwind CSS for styling
 - GitHub Pages for hosting
+
