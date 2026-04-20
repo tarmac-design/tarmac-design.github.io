@@ -1,0 +1,85 @@
+import { CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+# Typography
+
+TARMAC's type system is built on **Noto Sans** with a **Minor Third (1.2) scale**, providing a clear visual hierarchy that balances readability with information density across Delhivery's product interfaces.
+
+## Typeface: Noto Sans
+
+Noto Sans is a clean, highly legible sans-serif typeface with excellent multi-script support. It performs well at small sizes — critical for data-dense logistics interfaces — while maintaining personality at display sizes.
+
+<Info>
+  Noto Sans is loaded via Google Fonts. Ensure `font-display: swap` is set to prevent layout shift during font loading.
+</Info>
+
+## Font Weights
+
+| Weight | Value | Usage |
+|--------|-------|-------|
+| Light | `300` | Large display text, decorative headings |
+| Regular | `400` | Body text, descriptions, default weight |
+| Medium | `500` | Subtitles, emphasized body text, labels |
+| Semi Bold | `600` | Section headings, card titles, buttons |
+| Bold | `700` | Page headings, high-emphasis elements |
+
+## Type Scale
+
+The scale uses a 1.2 (Minor Third) ratio with a 16px base size:
+
+| Size | Token | Style | Line Height | Usage |
+|------|-------|-------|-------------|-------|
+| 10px | `text.caption-c2` | Caption C2 | 14px | Fine print, timestamps |
+| 12px | `text.caption-c1` | Caption C1 | 16px | Captions, helper text, badges |
+| 14px | `text.body-b2` | Body B2 | 20px | Secondary body text, table cells |
+| 16px | `text.body-b1` | Body B1 (base) | 24px | Primary body text, inputs |
+| 20px | `text.h5` | Heading H5 | 28px | Card titles, sub-section headings |
+| 24px | `text.h4` | Heading H4 | 32px | Section headings |
+| 28px | `text.h3` | Heading H3 | 36px | Major section headings |
+| 34px | `text.h2` | Heading H2 | 42px | Page sub-titles |
+| 40px | `text.h1` | Heading H1 | 48px | Page titles |
+| 48px | `text.display` | Display | 56px | Hero text, marketing headings |
+
+## Code Example
+
+```css
+/* TARMAC typography tokens as CSS custom properties */
+:root {
+  --font-family: 'Noto Sans', sans-serif;
+
+  /* Font sizes */
+  --text-caption-c2: 0.625rem;   /* 10px */
+  --text-caption-c1: 0.75rem;    /* 12px */
+  --text-body-b2: 0.875rem;      /* 14px */
+  --text-body-b1: 1rem;          /* 16px */
+  --text-h5: 1.25rem;            /* 20px */
+  --text-h4: 1.5rem;             /* 24px */
+  --text-h3: 1.75rem;            /* 28px */
+  --text-h2: 2.125rem;           /* 34px */
+  --text-h1: 2.5rem;             /* 40px */
+  --text-display: 3rem;          /* 48px */
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+```
+
+## Usage Guidelines
+
+<Info>
+  **Do:** Use the type scale tokens consistently. Pair heading sizes with appropriate weights — H1 with Bold, Body with Regular. Maintain a clear hierarchy with no more than 3–4 type sizes per view.
+</Info>
+
+<Warning>
+  **Don't:** Use font sizes outside the defined scale. Don't set line-height manually — use the token pairings. Avoid using Light weight (300) for body text below 20px as it reduces readability.
+</Warning>
+
+## Accessibility
+
+- Minimum body text size is 14px (`text.body-b2`)
+- Line height is always at least 1.4× the font size for body text
+- Ensure sufficient color contrast between text and background (4.5:1 minimum)
+- Avoid justified text alignment — use left-aligned for readability

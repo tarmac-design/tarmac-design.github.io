@@ -5,9 +5,18 @@ import { usePathname } from 'next/navigation';
 
 const nav = [
   {
-    title: 'Getting Started',
+    title: 'About',
     items: [
-      { label: 'Overview', href: '/' },
+      { label: 'Overview', href: '/about/overview' },
+    ],
+  },
+  {
+    title: 'Foundations',
+    items: [
+      { label: 'Colors', href: '/foundations/colors' },
+      { label: 'Typography', href: '/foundations/typography' },
+      { label: 'Spacing', href: '/foundations/spacing' },
+      { label: 'Iconography', href: '/foundations/iconography' },
     ],
   },
   {

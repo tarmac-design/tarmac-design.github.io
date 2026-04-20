@@ -1,0 +1,101 @@
+import { CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+# Iconography
+
+TARMAC uses **Material Icons** as its core icon set, providing a comprehensive and consistent visual language across all Delhivery products. Icons reinforce meaning, aid navigation, and improve scannability in data-dense interfaces.
+
+## Principles
+
+- **Clarity** — Icons should be immediately recognizable and unambiguous
+- **Consistency** — Use the same icon for the same concept across all products
+- **Complementary** — Icons support text labels; they don't replace them for critical actions
+
+<Info>
+  Always pair icons with text labels for primary actions and navigation items. Icon-only usage is acceptable for well-established conventions (close, search, menu) and space-constrained contexts like toolbars.
+</Info>
+
+## Icon Sizes
+
+| Size | Token | Usage |
+|------|-------|-------|
+| 12px | `icon.xs` | Inline indicators, status dots |
+| 16px | `icon.sm` | Inline with body text, badges, compact UI |
+| 20px | `icon.md` | Default — buttons, inputs, list items |
+| 24px | `icon.lg` | Navigation items, card headers |
+| 28px | `icon.xl` | Section headers, empty states |
+| 32px | `icon.2xl` | Feature highlights, onboarding illustrations |
+
+## Icon Styles
+
+TARMAC supports two Material Icon styles:
+
+| Style | Description | When to Use |
+|-------|-------------|-------------|
+| **Filled** | Solid, high-emphasis icons | Active/selected states, primary navigation, emphasis |
+| **Outlined** | Stroke-based, lighter visual weight | Default/inactive states, secondary actions, dense layouts |
+
+<Tabs>
+  <Tab title="Filled">
+    Filled icons have more visual weight and draw attention. Use them for:
+    - Active navigation items
+    - Selected states (e.g., active tab, checked item)
+    - Primary action buttons
+    - High-emphasis indicators
+  </Tab>
+  <Tab title="Outlined">
+    Outlined icons are lighter and less dominant. Use them for:
+    - Default/inactive navigation items
+    - Secondary or tertiary actions
+    - Dense data tables and lists
+    - Decorative or supportive contexts
+  </Tab>
+</Tabs>
+
+## Usage Guidelines
+
+<Info>
+  **Do:** Use outlined icons as the default style. Switch to filled for active/selected states to create a clear visual distinction. Maintain consistent sizing within a component — don't mix 16px and 20px icons in the same row.
+</Info>
+
+<Warning>
+  **Don't:** Use icons without accessible labels. Don't create custom icons when a Material Icon exists for the concept. Don't use filled and outlined versions of the same icon side-by-side (except for active/inactive state pairs). Avoid using icons smaller than 16px for interactive elements.
+</Warning>
+
+## Color
+
+Icons inherit their color from the parent text color by default. Use semantic color tokens for specific states:
+
+| State | Token | Example |
+|-------|-------|---------|
+| Default | `color.icon.primary` | Navigation icons |
+| Secondary | `color.icon.secondary` | Supporting icons |
+| Disabled | `color.icon.disabled` | Inactive controls |
+| Success | `color.icon.success` | Confirmation indicators |
+| Error | `color.icon.error` | Error indicators |
+| Brand | `color.icon.brand` | Brand-specific icons |
+
+## Accessibility
+
+Icons must meet the following accessibility requirements:
+
+- **Decorative icons** — Use `aria-hidden="true"` to hide from screen readers when paired with visible text
+- **Informational icons** — Provide `aria-label` or `aria-labelledby` when the icon conveys meaning not available in surrounding text
+- **Interactive icons** — Icon-only buttons must have an accessible name via `aria-label`
+- **Color contrast** — Icons must meet 3:1 contrast ratio against their background (WCAG 2.1 AA for non-text elements)
+- **Touch targets** — Icon-only interactive elements must have a minimum 44×44px touch target area
+
+```tsx
+{/* Decorative — hidden from screen readers */}
+<Button>
+  <Icon name="send" aria-hidden="true" />
+  Send Message
+</Button>
+
+{/* Informational — provides accessible label */}
+<Icon name="error" aria-label="Error" className="text-error" />
+
+{/* Interactive — icon-only button with accessible name */}
+<IconButton aria-label="Close dialog">
+  <Icon name="close" />
+</IconButton>
+```
