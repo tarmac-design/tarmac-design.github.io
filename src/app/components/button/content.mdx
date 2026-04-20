@@ -1,0 +1,226 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="6 Color Variants" icon="🎨">
+    Black, White, Blue, Success, Error, Warning
+  </Card>
+  <Card title="5 Sizes" icon="📐">
+    XLarge (48px) to XSmall (24px)
+  </Card>
+  <Card title="3 Styles" icon="🧩">
+    Primary, Secondary, Tertiary
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={500}
+  title="Button — TARMAC Storybook"
+/>
+
+<Info>
+  The live demo above loads the full TARMAC Storybook. You can interact with all button variants, adjust props, and explore the API directly within this page.
+</Info>
+
+---
+
+## Playground
+
+<Tabs>
+  <Tab title="By Variant">
+    <div style={{background:'#F5F5F5', borderRadius:'12px', padding:'24px'}}>
+      <div style={{fontSize:'11px', fontWeight:600, marginBottom:'10px', opacity:0.4, letterSpacing:'0.5px'}}>PRIMARY</div>
+      <div style={{display:'flex', gap:'10px', flexWrap:'wrap', alignItems:'center', marginBottom:'20px'}}>
+        <button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Black</button>
+        <button style={{background:'#fff', color:'#000', border:'1px solid #ddd', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>White</button>
+        <button style={{background:'#2396FB', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Blue</button>
+        <button style={{background:'#1BA86E', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Success</button>
+        <button style={{background:'#DC143C', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Error</button>
+        <button style={{background:'#CF9F02', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Warning</button>
+      </div>
+      <div style={{fontSize:'11px', fontWeight:600, marginBottom:'10px', opacity:0.4, letterSpacing:'0.5px'}}>SECONDARY</div>
+      <div style={{display:'flex', gap:'10px', flexWrap:'wrap', alignItems:'center', marginBottom:'20px'}}>
+        <button style={{background:'transparent', color:'#000', border:'1.5px solid #000', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Black</button>
+        <button style={{background:'transparent', color:'#2396FB', border:'1.5px solid #2396FB', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Blue</button>
+        <button style={{background:'transparent', color:'#1BA86E', border:'1.5px solid #1BA86E', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Success</button>
+        <button style={{background:'transparent', color:'#DC143C', border:'1.5px solid #DC143C', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', cursor:'pointer'}}>Error</button>
+      </div>
+      <div style={{fontSize:'11px', fontWeight:600, marginBottom:'10px', opacity:0.4, letterSpacing:'0.5px'}}>TERTIARY</div>
+      <div style={{display:'flex', gap:'10px', flexWrap:'wrap', alignItems:'center'}}>
+        <button style={{background:'transparent', color:'#000', border:'none', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', textDecoration:'underline', cursor:'pointer'}}>Black</button>
+        <button style={{background:'transparent', color:'#2396FB', border:'none', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px', textDecoration:'underline', cursor:'pointer'}}>Blue</button>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="By Size">
+    <div style={{background:'#F5F5F5', borderRadius:'12px', padding:'24px', display:'flex', gap:'16px', flexWrap:'wrap', alignItems:'flex-end'}}>
+      <div style={{textAlign:'center'}}><button style={{background:'#000', color:'#fff', border:'none', borderRadius:'8px', padding:'0 24px', fontSize:'16px', fontWeight:500, height:'48px'}}>XLarge</button><div style={{fontSize:'10px', opacity:0.5, marginTop:'4px'}}>48px</div></div>
+      <div style={{textAlign:'center'}}><button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Large</button><div style={{fontSize:'10px', opacity:0.5, marginTop:'4px'}}>44px</div></div>
+      <div style={{textAlign:'center'}}><button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 16px', fontSize:'14px', fontWeight:500, height:'36px'}}>Regular</button><div style={{fontSize:'10px', opacity:0.5, marginTop:'4px'}}>36px</div></div>
+      <div style={{textAlign:'center'}}><button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 12px', fontSize:'13px', fontWeight:500, height:'28px'}}>Small</button><div style={{fontSize:'10px', opacity:0.5, marginTop:'4px'}}>28px</div></div>
+      <div style={{textAlign:'center'}}><button style={{background:'#000', color:'#fff', border:'none', borderRadius:'4px', padding:'0 10px', fontSize:'12px', fontWeight:500, height:'24px'}}>XSmall</button><div style={{fontSize:'10px', opacity:0.5, marginTop:'4px'}}>24px</div></div>
+    </div>
+  </Tab>
+</Tabs>
+
+---
+
+## Variants
+
+| Variant | Style | Use Case |
+|---------|-------|----------|
+| Black | Primary | Main page action — "Save Changes" |
+| Black | Secondary | Supporting action — "Cancel" |
+| Black | Tertiary | Subtle action — "Learn More" |
+| Blue | Primary | System action — "Submit", "Continue" |
+| Success | Primary | Positive confirmation — "Approve" |
+| Error | Primary | Destructive action — "Delete" |
+| Warning | Primary | Caution action — "Override" |
+| White | Primary | Dark background — "Get Started" |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Clickable area with background, border, border-radius: 6px |
+| 2 | Loading Left | Optional spinner before label |
+| 3 | Leading Icon | Optional icon before label |
+| 4 | Label | Action text — concise, verb-first |
+| 5 | Trailing Icon | Optional icon after label |
+| 6 | Loading Right | Optional spinner after label |
+
+---
+
+## Sizes
+
+| Size | Height | Use Case |
+|------|--------|----------|
+| XLarge | 48px | Hero sections, prominent CTAs |
+| Large | 44px | Default for most interfaces |
+| Regular | 36px | Compact layouts, toolbars |
+| Small | 28px | Dense interfaces, inline actions |
+| XSmall | 24px | Minimal footprint, tags |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Resting state, ready for interaction |
+| Hover | Pointer over button, slightly lighter background |
+| Pressed | Active click/tap, darker background |
+| Focused | Keyboard focus, 2px blue outline |
+| Disabled | Non-interactive, 40% opacity |
+| Ghost | Minimal background, used for low-emphasis actions |
+
+---
+
+## Usage Guidelines
+
+<div style={{display:'flex', gap:'24px', marginBottom:'32px', flexWrap:'wrap'}}>
+  <div style={{flex:'1', minWidth:'280px', borderRadius:'12px', overflow:'hidden', border:'1px solid #E5E7EB'}}>
+    <div style={{background:'#F8F8F8', padding:'32px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:'140px'}}>
+      <div style={{display:'flex', gap:'12px', alignItems:'center'}}>
+        <button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Save Changes</button>
+        <button style={{background:'transparent', color:'#000', border:'1.5px solid #000', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Cancel</button>
+      </div>
+    </div>
+    <div style={{borderTop:'4px solid #4A7A3D', padding:'16px 20px'}}>
+      <div style={{display:'flex', alignItems:'center', gap:'8px', marginBottom:'6px'}}>
+        <span style={{fontSize:'16px'}}>✅</span>
+        <span style={{fontSize:'16px', fontWeight:700, color:'#166534'}}>Do</span>
+      </div>
+      <span style={{fontSize:'13px', color:'#555'}}>Use one primary button per section with clear, action-oriented labels.</span>
+    </div>
+  </div>
+  <div style={{flex:'1', minWidth:'280px', borderRadius:'12px', overflow:'hidden', border:'1px solid #E5E7EB'}}>
+    <div style={{background:'#F8F8F8', padding:'32px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:'140px'}}>
+      <div style={{display:'flex', gap:'12px', alignItems:'center'}}>
+        <button style={{background:'#000', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Submit</button>
+        <button style={{background:'#2396FB', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Continue</button>
+        <button style={{background:'#1BA86E', color:'#fff', border:'none', borderRadius:'6px', padding:'0 20px', fontSize:'14px', fontWeight:500, height:'44px'}}>Approve</button>
+      </div>
+    </div>
+    <div style={{borderTop:'4px solid #DC2626', padding:'16px 20px'}}>
+      <div style={{display:'flex', alignItems:'center', gap:'8px', marginBottom:'6px'}}>
+        <span style={{fontSize:'16px'}}>❌</span>
+        <span style={{fontSize:'16px', fontWeight:700, color:'#DC2626'}}>Don't</span>
+      </div>
+      <span style={{fontSize:'13px', color:'#555'}}>Don't use multiple primary buttons in the same context. It confuses the visual hierarchy.</span>
+    </div>
+  </div>
+</div>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Always use native `<button>` element |
+| Keyboard | Tab to focus, Enter/Space to activate |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Text contrast | ≥ 4.5:1 against background (WCAG AA) |
+| Touch target | Minimum 44×44px on mobile |
+| Icon-only | Must have `aria-label` |
+| Loading | Use `aria-busy="true"` |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `button-height-xl` | 48px |
+    | `button-height-lg` | 44px |
+    | `button-height-md` | 36px |
+    | `button-height-sm` | 28px |
+    | `button-height-xs` | 24px |
+    | `button-border-radius` | 6px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `button-black-bg` | #000000 |
+    | `button-blue-bg` | #2396FB |
+    | `button-success-bg` | #1BA86E |
+    | `button-error-bg` | #DC143C |
+    | `button-warning-bg` | #CF9F02 |
+    | `button-white-bg` | #FFFFFF |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface ButtonProps {
+  variant?: 'black' | 'white' | 'blue' | 'success' | 'error' | 'warning';
+  style?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: ReactNode;
+  iconPosition?: 'left' | 'right';
+  children: ReactNode;
+}
+```
+
+```tsx
+// Usage
+<Button variant="black" style="primary" size="lg">Save</Button>
+<Button variant="error" style="primary">Delete</Button>
+<Button variant="blue" loading>Saving...</Button>
+```
