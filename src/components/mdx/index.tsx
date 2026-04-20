@@ -107,7 +107,14 @@ export function StorybookEmbed({ url, height = 400, title = 'Component Demo' }: 
       <div className="flex items-center justify-between px-4 py-3 bg-neutral-50 border-t border-neutral-200">
         <span className="text-xs text-neutral-500">Interactive preview from TARMAC Storybook</span>
         <a
-          href={url.replace('/iframe.html', '').replace('&viewMode=story', '').replace('embed=true&', '')}
+          href={(() => {
+            const idMatch = url.match(/[?&]id=([^&]+)/);
+            if (idMatch) {
+              const baseUrl = url.split('/sb/iframe.html')[0] || url.split('/iframe.html')[0];
+              return `${baseUrl}/?path=/story/${idMatch[1]}`;
+            }
+            return url;
+          })()}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs text-tarmac-blue hover:underline font-medium"
