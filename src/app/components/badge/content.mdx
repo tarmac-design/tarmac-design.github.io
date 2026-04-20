@@ -1,0 +1,138 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="5 Variants" icon="🏷️">
+    Solid, Subtle, Outline, Dot, Counter
+  </Card>
+  <Card title="Semantic Colors" icon="🎨">
+    Default, Success, Warning, Error, Info
+  </Card>
+  <Card title="Dismissible" icon="✕">
+    Optional close button for removable tags
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Badge — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Solid | Filled background with white text |
+| Subtle | Light tinted background with colored text |
+| Outline | Border only with colored text |
+| Dot | Small dot indicator with label |
+| Counter | Numeric count badge (e.g., notifications) |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Pill-shaped wrapper with padding |
+| 2 | Dot | Optional leading status dot (6px) |
+| 3 | Icon | Optional leading icon |
+| 4 | Label | Text content of the badge |
+| 5 | Close Button | Optional dismiss action (×) |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Static display state |
+| Hover | Slight darkening if interactive |
+| Dismissible Hover | Close icon highlighted |
+| Disabled | 40% opacity, non-interactive |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use badges to communicate status, category, or count. Keep label text short — ideally 1-2 words.
+</Info>
+
+<Warning>
+  Don't rely on color alone to convey meaning. Always pair color with text or an icon for accessibility.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use `<span>` with appropriate role |
+| Color contrast | Minimum 4.5:1 for text on background |
+| Dismiss | Close button needs `aria-label="Remove"` |
+| Status | Use `aria-label` to describe status meaning |
+| Counter | Use `aria-label` like "3 notifications" |
+| Motion | No animations required |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `badge-height-sm` | 20px |
+    | `badge-height-md` | 24px |
+    | `badge-padding-x` | 8px |
+    | `badge-border-radius` | 999px |
+    | `badge-font-size-sm` | 11px |
+    | `badge-font-size-md` | 12px |
+    | `badge-dot-size` | 6px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `badge-default-bg` | #000000 |
+    | `badge-success-bg` | #1BA86E |
+    | `badge-warning-bg` | #CF9F02 |
+    | `badge-error-bg` | #DC143C |
+    | `badge-info-bg` | #2396FB |
+    | `badge-subtle-opacity` | 0.12 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface BadgeProps {
+  variant?: 'solid' | 'subtle' | 'outline' | 'dot' | 'counter';
+  color?: 'default' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'sm' | 'md';
+  icon?: React.ReactNode;
+  dismissible?: boolean;
+  count?: number;
+  maxCount?: number;
+  onDismiss?: () => void;
+  children: React.ReactNode;
+}
+```
+
+```tsx
+<Badge color="success">Delivered</Badge>
+<Badge variant="subtle" color="warning">In Transit</Badge>
+<Badge variant="dot" color="error">Failed</Badge>
+<Badge variant="counter" count={12} maxCount={99} />
+```

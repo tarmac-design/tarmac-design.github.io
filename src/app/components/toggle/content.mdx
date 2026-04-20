@@ -1,0 +1,132 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Instant Action" icon="🔀">
+    Immediate on/off without form submission
+  </Card>
+  <Card title="2 Sizes" icon="📐">
+    Regular (36×20px) and Small (28×16px)
+  </Card>
+  <Card title="Label Support" icon="🏷️">
+    Optional label with description text
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Toggle — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard toggle switch |
+| With Label | Toggle with adjacent label text |
+| With Description | Toggle with label and helper text |
+| Disabled | Non-interactive state |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Track | Rounded pill-shaped background |
+| 2 | Thumb | Circular knob that slides left/right |
+| 3 | Label | Primary text describing the setting |
+| 4 | Description | Optional secondary text below label |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Off | Track is neutral, thumb positioned left |
+| On | Track is filled, thumb positioned right |
+| Hover | Slight shadow on thumb |
+| Focused | 2px blue outline around track |
+| Disabled | 40% opacity, non-interactive |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use toggles for settings that take effect immediately, like enabling notifications or dark mode.
+</Info>
+
+<Warning>
+  Don't use toggles inside forms that require a submit action — use Checkboxes instead.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use `<button>` with `role="switch"` |
+| Keyboard | Tab to focus, Space/Enter to toggle |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `aria-label` or visible label |
+| State | Use `aria-checked="true/false"` |
+| Motion | Respect `prefers-reduced-motion` for animations |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `toggle-track-width-md` | 36px |
+    | `toggle-track-height-md` | 20px |
+    | `toggle-track-width-sm` | 28px |
+    | `toggle-track-height-sm` | 16px |
+    | `toggle-thumb-size-md` | 16px |
+    | `toggle-thumb-size-sm` | 12px |
+    | `toggle-border-radius` | 999px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `toggle-on-bg` | #000000 |
+    | `toggle-off-bg` | #D4D4D4 |
+    | `toggle-thumb-color` | #FFFFFF |
+    | `toggle-disabled-bg` | #F5F5F5 |
+    | `toggle-focus-ring` | #2396FB |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface ToggleProps {
+  checked?: boolean;
+  disabled?: boolean;
+  size?: 'md' | 'sm';
+  label?: string;
+  description?: string;
+  onChange?: (checked: boolean) => void;
+}
+```
+
+```tsx
+<Toggle label="Enable notifications" />
+<Toggle checked label="Dark mode" size="sm" />
+<Toggle label="Auto-sync" description="Sync data every 5 minutes" />
+```

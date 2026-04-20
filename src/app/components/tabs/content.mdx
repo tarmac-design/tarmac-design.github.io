@@ -1,0 +1,155 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="3 Variants" icon="📑">
+    Line, Enclosed, Pill styles
+  </Card>
+  <Card title="Flexible Content" icon="🧩">
+    Icons, badges, and custom labels
+  </Card>
+  <Card title="Responsive" icon="📱">
+    Scrollable overflow on small screens
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Tabs — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Line | Underline indicator below active tab |
+| Enclosed | Bordered container around active tab |
+| Pill | Rounded filled background on active tab |
+| With Icons | Tabs with leading icons |
+| With Badge | Tabs with count badges |
+| Vertical | Tabs stacked vertically on the left |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Tab List | Horizontal container for all tab triggers |
+| 2 | Tab Trigger | Clickable label for each panel |
+| 3 | Indicator | Active state visual (line, bg, or border) |
+| 4 | Icon | Optional leading icon in trigger |
+| 5 | Badge | Optional count badge in trigger |
+| 6 | Tab Panel | Content area for the active tab |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Inactive tab, muted text |
+| Hover | Text darkens, subtle background |
+| Active | Bold text with indicator visible |
+| Focused | 2px blue outline on tab trigger |
+| Disabled | 40% opacity, non-interactive |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use tabs to organize related content into panels. Keep tab labels short (1-2 words) and ensure content is logically grouped.
+</Info>
+
+<Warning>
+  Avoid using tabs for sequential steps or workflows — use a Stepper component instead. Tabs should allow random access.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Role | Use `role="tablist"`, `role="tab"`, `role="tabpanel"` |
+| Keyboard | Arrow keys to navigate tabs, Tab to enter panel |
+| ARIA | `aria-selected`, `aria-controls`, `aria-labelledby` |
+| Focus | Only active tab is in tab order |
+| Panel | Panel linked via `aria-labelledby` to its tab |
+| Orientation | Set `aria-orientation` for vertical tabs |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `tabs-height` | 44px |
+    | `tabs-padding-x` | 16px |
+    | `tabs-gap` | 0px |
+    | `tabs-indicator-height` | 2px |
+    | `tabs-border-radius-pill` | 999px |
+    | `tabs-font-size` | 14px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `tabs-text-active` | #000000 |
+    | `tabs-text-inactive` | #737373 |
+    | `tabs-indicator-color` | #000000 |
+    | `tabs-pill-active-bg` | #000000 |
+    | `tabs-pill-active-text` | #FFFFFF |
+    | `tabs-border-color` | #E5E5E5 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface TabsProps {
+  value?: string;
+  defaultValue?: string;
+  variant?: 'line' | 'enclosed' | 'pill';
+  orientation?: 'horizontal' | 'vertical';
+  onChange?: (value: string) => void;
+  children: React.ReactNode;
+}
+
+interface TabProps {
+  value: string;
+  label: string;
+  icon?: React.ReactNode;
+  badge?: number;
+  disabled?: boolean;
+}
+
+interface TabPanelProps {
+  value: string;
+  children: React.ReactNode;
+}
+```
+
+```tsx
+<Tabs defaultValue="overview" variant="line">
+  <Tab value="overview" label="Overview" />
+  <Tab value="tracking" label="Tracking" badge={3} />
+  <Tab value="documents" label="Documents" icon={<FileIcon />} />
+
+  <TabPanel value="overview">Shipment details...</TabPanel>
+  <TabPanel value="tracking">Tracking history...</TabPanel>
+  <TabPanel value="documents">Attached files...</TabPanel>
+</Tabs>
+```

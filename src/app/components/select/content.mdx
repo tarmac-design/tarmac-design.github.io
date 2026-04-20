@@ -1,0 +1,152 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Searchable" icon="🔍">
+    Optional type-ahead filtering for long lists
+  </Card>
+  <Card title="3 Sizes" icon="📐">
+    Small (32px), Medium (40px), Large (48px)
+  </Card>
+  <Card title="Multi-Select" icon="☑️">
+    Single or multiple selection modes
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Select — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard single-select dropdown |
+| Searchable | Includes type-ahead filter input |
+| Multi-Select | Allows selecting multiple options |
+| With Groups | Options organized into labeled groups |
+| With Icons | Options with leading icons |
+| Disabled | Non-interactive state |
+| Error | Validation error state with message |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Trigger | Button-like element showing selected value |
+| 2 | Label | Text label above the trigger |
+| 3 | Chevron | Dropdown arrow icon on the right |
+| 4 | Dropdown | Floating panel with options list |
+| 5 | Option | Individual selectable item |
+| 6 | Group Label | Section header within dropdown |
+| 7 | Helper Text | Descriptive or error text below trigger |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Placeholder or selected value shown |
+| Hover | Border color darkens slightly |
+| Open | Dropdown visible, trigger has focus ring |
+| Option Hover | Background highlight on hovered option |
+| Selected | Checkmark shown next to active option |
+| Disabled | 40% opacity, non-interactive |
+| Error | Red border with error message below |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use Select for 5+ options. For fewer options, consider using Radio buttons for better visibility of all choices.
+</Info>
+
+<Warning>
+  Avoid nesting Selects inside other dropdowns or modals without proper z-index management to prevent clipping.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use `role="listbox"` with `role="option"` children |
+| Keyboard | Tab to focus, Arrow keys to navigate, Enter to select |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `aria-labelledby` |
+| State | Use `aria-expanded` and `aria-selected` |
+| Live region | Announce selection changes with `aria-live` |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `select-height-sm` | 32px |
+    | `select-height-md` | 40px |
+    | `select-height-lg` | 48px |
+    | `select-padding-x` | 12px |
+    | `select-border-radius` | 8px |
+    | `select-dropdown-max-height` | 240px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `select-border-default` | #D4D4D4 |
+    | `select-border-focus` | #2396FB |
+    | `select-border-error` | #DC143C |
+    | `select-bg-default` | #FFFFFF |
+    | `select-bg-disabled` | #F5F5F5 |
+    | `select-option-hover` | #F5F5F5 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface SelectProps {
+  options: { value: string; label: string; icon?: React.ReactNode }[];
+  value?: string | string[];
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+  placeholder?: string;
+  multiple?: boolean;
+  searchable?: boolean;
+  disabled?: boolean;
+  error?: string;
+  helperText?: string;
+  onChange?: (value: string | string[]) => void;
+}
+```
+
+```tsx
+<Select
+  label="Delivery Hub"
+  placeholder="Select a hub"
+  options={[
+    { value: 'blr', label: 'Bangalore' },
+    { value: 'del', label: 'Delhi' },
+    { value: 'mum', label: 'Mumbai' },
+  ]}
+/>
+<Select label="Zones" multiple searchable options={zones} />
+```

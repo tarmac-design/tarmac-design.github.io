@@ -1,0 +1,146 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Multiple Types" icon="⌨️">
+    Text, email, password, number, search
+  </Card>
+  <Card title="3 Sizes" icon="📐">
+    Small (32px), Medium (40px), Large (48px)
+  </Card>
+  <Card title="Addon Support" icon="🧩">
+    Prefix/suffix icons, text, or buttons
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Input — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard text input with border |
+| With Label | Input with floating or top-aligned label |
+| With Placeholder | Input with placeholder text |
+| With Prefix | Icon or text before input value |
+| With Suffix | Icon or text after input value |
+| With Helper Text | Descriptive text below input |
+| Disabled | Non-interactive state |
+| Error | Validation error state with message |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Bordered wrapper with border-radius |
+| 2 | Label | Text label above or floating inside |
+| 3 | Prefix | Optional leading icon or text |
+| 4 | Input | Native text input element |
+| 5 | Suffix | Optional trailing icon or action |
+| 6 | Helper Text | Descriptive or error text below |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Empty or filled, ready for interaction |
+| Hover | Border color darkens slightly |
+| Focused | 2px blue border, label floats up |
+| Filled | Contains user-entered value |
+| Disabled | 40% opacity, non-interactive |
+| Error | Red border with error message below |
+| Read-only | Visible but not editable |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Always pair inputs with a visible label. Placeholder text alone is not sufficient as it disappears on focus.
+</Info>
+
+<Warning>
+  Avoid using Input for multi-line content — use Textarea instead. For constrained choices, use Select.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use native `<input>` with appropriate `type` |
+| Keyboard | Tab to focus, standard text editing keys |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `<label>` or `aria-label` |
+| Error | Use `aria-invalid` and `aria-describedby` for errors |
+| Required | Use `aria-required="true"` for mandatory fields |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `input-height-sm` | 32px |
+    | `input-height-md` | 40px |
+    | `input-height-lg` | 48px |
+    | `input-padding-x` | 12px |
+    | `input-border-radius` | 8px |
+    | `input-border-width` | 1px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `input-border-default` | #D4D4D4 |
+    | `input-border-focus` | #2396FB |
+    | `input-border-error` | #DC143C |
+    | `input-bg-default` | #FFFFFF |
+    | `input-bg-disabled` | #F5F5F5 |
+    | `input-text-placeholder` | #A3A3A3 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface InputProps {
+  type?: 'text' | 'email' | 'password' | 'number' | 'search';
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+  placeholder?: string;
+  value?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  error?: string;
+  helperText?: string;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  onChange?: (value: string) => void;
+}
+```
+
+```tsx
+<Input label="Email" type="email" placeholder="you@example.com" />
+<Input label="Search" prefix={<SearchIcon />} size="sm" />
+<Input label="Amount" prefix="₹" suffix=".00" error="Amount is required" />
+```

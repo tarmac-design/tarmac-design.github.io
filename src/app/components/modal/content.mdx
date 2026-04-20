@@ -1,0 +1,152 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="3 Sizes" icon="📐">
+    Small (400px), Medium (560px), Large (720px)
+  </Card>
+  <Card title="Focus Trap" icon="🔒">
+    Keyboard focus stays within modal
+  </Card>
+  <Card title="Composable" icon="🧩">
+    Header, Body, Footer slot pattern
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={500}
+  title="Modal — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard dialog with header, body, footer |
+| Confirmation | Short prompt with confirm/cancel actions |
+| Destructive | Red-accented for dangerous actions |
+| Form | Contains form fields with submit action |
+| Scrollable | Body scrolls when content overflows |
+| Full-screen | Takes up entire viewport on mobile |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Backdrop | Semi-transparent overlay behind modal |
+| 2 | Container | Centered panel with shadow |
+| 3 | Header | Title and optional close button |
+| 4 | Body | Main content area, scrollable |
+| 5 | Footer | Action buttons (primary + secondary) |
+| 6 | Close Button | × icon in top-right corner |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Closed | Modal not rendered or hidden |
+| Opening | Fade-in + scale animation (200ms) |
+| Open | Fully visible, focus trapped inside |
+| Closing | Fade-out animation (150ms) |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use modals sparingly for critical interactions that require user attention. Provide a clear title and obvious dismiss action.
+</Info>
+
+<Warning>
+  Avoid stacking multiple modals. If you need layered content, consider using a step-based flow within a single modal.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Role | Use `role="dialog"` with `aria-modal="true"` |
+| Label | Set `aria-labelledby` pointing to title |
+| Focus trap | Tab cycles within modal only |
+| Focus restore | Return focus to trigger on close |
+| Dismiss | Escape key closes the modal |
+| Backdrop | Click outside closes (configurable) |
+| Scroll lock | Prevent body scroll when open |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `modal-width-sm` | 400px |
+    | `modal-width-md` | 560px |
+    | `modal-width-lg` | 720px |
+    | `modal-padding` | 24px |
+    | `modal-border-radius` | 12px |
+    | `modal-header-height` | 56px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `modal-bg` | #FFFFFF |
+    | `modal-backdrop` | rgba(0, 0, 0, 0.5) |
+    | `modal-border` | #E5E5E5 |
+    | `modal-shadow` | 0 16px 48px rgba(0,0,0,0.16) |
+    | `modal-header-border` | #F5F5F5 |
+    | `modal-footer-border` | #F5F5F5 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface ModalProps {
+  open: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  closeOnBackdrop?: boolean;
+  closeOnEscape?: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+interface ModalHeaderProps {
+  title: string;
+  showClose?: boolean;
+}
+
+interface ModalFooterProps {
+  children: React.ReactNode;
+}
+```
+
+```tsx
+<Modal open={isOpen} onClose={handleClose} size="md">
+  <Modal.Header title="Confirm Cancellation" />
+  <Modal.Body>
+    <p>Are you sure you want to cancel this shipment?</p>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleClose}>Go Back</Button>
+    <Button variant="primary" color="error" onClick={handleConfirm}>Cancel Shipment</Button>
+  </Modal.Footer>
+</Modal>
+```

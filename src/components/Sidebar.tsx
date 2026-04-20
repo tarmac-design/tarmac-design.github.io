@@ -13,7 +13,19 @@ const nav = [
   {
     title: 'Components',
     items: [
+      { label: 'Avatar', href: '/components/avatar' },
+      { label: 'Badge', href: '/components/badge' },
       { label: 'Button', href: '/components/button' },
+      { label: 'Checkbox', href: '/components/checkbox' },
+      { label: 'Input', href: '/components/input' },
+      { label: 'Modal', href: '/components/modal' },
+      { label: 'Radio', href: '/components/radio' },
+      { label: 'Select', href: '/components/select' },
+      { label: 'Tabs', href: '/components/tabs' },
+      { label: 'Textarea', href: '/components/textarea' },
+      { label: 'Toast', href: '/components/toast' },
+      { label: 'Toggle', href: '/components/toggle' },
+      { label: 'Tooltip', href: '/components/tooltip' },
     ],
   },
 ];

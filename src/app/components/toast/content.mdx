@@ -1,0 +1,142 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="4 Intents" icon="🎨">
+    Info, Success, Warning, Error
+  </Card>
+  <Card title="Auto-Dismiss" icon="⏱️">
+    Configurable duration with progress bar
+  </Card>
+  <Card title="Stackable" icon="📚">
+    Multiple toasts queue and stack
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Toast — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Info | Neutral informational message |
+| Success | Positive confirmation of action |
+| Warning | Caution or non-critical alert |
+| Error | Failure or critical issue |
+| With Action | Includes an actionable text button |
+| With Description | Title + multi-line description |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Floating card with shadow |
+| 2 | Icon | Intent-specific leading icon |
+| 3 | Title | Short summary message |
+| 4 | Description | Optional detailed text |
+| 5 | Action | Optional text button (e.g., "Undo") |
+| 6 | Close Button | × icon to dismiss manually |
+| 7 | Progress Bar | Visual countdown to auto-dismiss |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Entering | Slide-in animation from edge |
+| Visible | Fully shown, timer counting down |
+| Paused | Timer paused on hover |
+| Exiting | Slide-out or fade-out animation |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use toasts for non-blocking feedback after user actions. Keep messages concise — under 2 lines of text.
+</Info>
+
+<Warning>
+  Never use toasts for critical errors that require user action. Use a Modal or inline alert instead for blocking issues.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Role | Use `role="status"` for info, `role="alert"` for errors |
+| Live region | Use `aria-live="polite"` (or `assertive` for errors) |
+| Dismiss | Close button with `aria-label="Dismiss"` |
+| Timing | Minimum 5s display, pause on hover/focus |
+| Focus | Don't steal focus from current task |
+| Motion | Respect `prefers-reduced-motion` |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `toast-width` | 360px |
+    | `toast-padding` | 16px |
+    | `toast-border-radius` | 8px |
+    | `toast-gap` | 12px |
+    | `toast-icon-size` | 20px |
+    | `toast-stack-gap` | 8px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `toast-info-bg` | #FFFFFF |
+    | `toast-info-accent` | #2396FB |
+    | `toast-success-accent` | #1BA86E |
+    | `toast-warning-accent` | #CF9F02 |
+    | `toast-error-accent` | #DC143C |
+    | `toast-shadow` | 0 8px 24px rgba(0,0,0,0.12) |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface ToastProps {
+  intent: 'info' | 'success' | 'warning' | 'error';
+  title: string;
+  description?: string;
+  action?: { label: string; onClick: () => void };
+  duration?: number;
+  dismissible?: boolean;
+  onDismiss?: () => void;
+}
+
+// Imperative API
+function toast(props: ToastProps): string;
+function toast.dismiss(id: string): void;
+function toast.dismissAll(): void;
+```
+
+```tsx
+toast({ intent: 'success', title: 'Shipment created', description: 'AWB #12345 is ready' });
+toast({ intent: 'error', title: 'Upload failed', action: { label: 'Retry', onClick: retry } });
+toast({ intent: 'info', title: 'Syncing data...', duration: 0 }); // persistent
+```

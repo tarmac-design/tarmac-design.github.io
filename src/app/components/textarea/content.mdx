@@ -1,0 +1,146 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Auto-Resize" icon="↕️">
+    Optionally grows with content
+  </Card>
+  <Card title="Character Count" icon="🔢">
+    Built-in character limit display
+  </Card>
+  <Card title="Resizable" icon="↔️">
+    User-controlled resize handle
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Textarea — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard multi-line text area |
+| With Label | Textarea with top-aligned label |
+| With Character Count | Shows current/max character count |
+| Auto-Resize | Grows vertically with content |
+| Fixed Height | Set number of visible rows |
+| Disabled | Non-interactive state |
+| Error | Validation error state with message |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Bordered wrapper with border-radius |
+| 2 | Label | Text label above the textarea |
+| 3 | Textarea | Native multi-line input element |
+| 4 | Character Count | Current/max count in bottom-right |
+| 5 | Helper Text | Descriptive or error text below |
+| 6 | Resize Handle | Draggable corner for manual resize |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Empty or filled, ready for interaction |
+| Hover | Border color darkens slightly |
+| Focused | 2px blue border |
+| Filled | Contains user-entered content |
+| Disabled | 40% opacity, non-interactive |
+| Error | Red border with error message below |
+| Over Limit | Character count turns red |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use Textarea for multi-line content like comments, descriptions, or addresses. Set a reasonable `maxLength` to guide users.
+</Info>
+
+<Warning>
+  Avoid setting a very small fixed height — ensure at least 3 visible rows so users can see enough context while typing.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use native `<textarea>` element |
+| Keyboard | Tab to focus, standard text editing keys |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `<label>` or `aria-label` |
+| Error | Use `aria-invalid` and `aria-describedby` for errors |
+| Character count | Announce limit with `aria-live="polite"` |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `textarea-min-height` | 80px |
+    | `textarea-padding-x` | 12px |
+    | `textarea-padding-y` | 10px |
+    | `textarea-border-radius` | 8px |
+    | `textarea-border-width` | 1px |
+    | `textarea-line-height` | 1.5 |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `textarea-border-default` | #D4D4D4 |
+    | `textarea-border-focus` | #2396FB |
+    | `textarea-border-error` | #DC143C |
+    | `textarea-bg-default` | #FFFFFF |
+    | `textarea-bg-disabled` | #F5F5F5 |
+    | `textarea-text-placeholder` | #A3A3A3 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface TextareaProps {
+  label?: string;
+  placeholder?: string;
+  value?: string;
+  rows?: number;
+  maxLength?: number;
+  showCount?: boolean;
+  autoResize?: boolean;
+  resize?: 'none' | 'vertical' | 'both';
+  disabled?: boolean;
+  readOnly?: boolean;
+  error?: string;
+  helperText?: string;
+  onChange?: (value: string) => void;
+}
+```
+
+```tsx
+<Textarea label="Description" placeholder="Enter details..." rows={4} />
+<Textarea label="Notes" maxLength={500} showCount autoResize />
+<Textarea label="Address" error="Address is required" />
+```

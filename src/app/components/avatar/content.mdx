@@ -1,0 +1,147 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="3 Types" icon="👤">
+    Image, Initials, Icon fallback
+  </Card>
+  <Card title="5 Sizes" icon="📐">
+    XS (24px) to XL (64px)
+  </Card>
+  <Card title="Status Indicator" icon="🟢">
+    Online, offline, busy, away badges
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Avatar — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Image | User photo displayed in circle |
+| Initials | First letter(s) of name on colored background |
+| Icon | Generic person icon as fallback |
+| Group | Stacked avatars showing multiple users |
+| With Status | Online/offline indicator dot |
+| With Badge | Notification count overlay |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Circular wrapper with overflow hidden |
+| 2 | Image | User photo, fills container |
+| 3 | Initials | Centered text on colored background |
+| 4 | Fallback Icon | Generic user icon |
+| 5 | Status Dot | Positioned at bottom-right corner |
+| 6 | Badge | Count overlay at top-right corner |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Loaded | Image successfully displayed |
+| Loading | Placeholder shown while image loads |
+| Error | Falls back to initials or icon |
+| Hover | Slight scale or overlay if interactive |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Always provide a `name` prop for accessibility. The component uses it for `alt` text and initials fallback.
+</Info>
+
+<Warning>
+  Avoid using avatars smaller than 24px (XS) — initials become unreadable and status dots are too small to perceive.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Alt text | Always provide meaningful `alt` via `name` prop |
+| Decorative | Use `aria-hidden="true"` if purely decorative |
+| Status | Status dot needs `aria-label` (e.g., "Online") |
+| Group | Avatar group needs count announcement |
+| Contrast | Initials must have ≥ 4.5:1 contrast on background |
+| Focus | Interactive avatars need visible focus ring |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `avatar-size-xs` | 24px |
+    | `avatar-size-sm` | 32px |
+    | `avatar-size-md` | 40px |
+    | `avatar-size-lg` | 48px |
+    | `avatar-size-xl` | 64px |
+    | `avatar-status-dot-size` | 10px |
+    | `avatar-border-radius` | 50% |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `avatar-bg-fallback` | #E5E5E5 |
+    | `avatar-text-fallback` | #525252 |
+    | `avatar-status-online` | #1BA86E |
+    | `avatar-status-offline` | #A3A3A3 |
+    | `avatar-status-busy` | #DC143C |
+    | `avatar-status-away` | #CF9F02 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface AvatarProps {
+  src?: string;
+  name: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  status?: 'online' | 'offline' | 'busy' | 'away';
+  badge?: number;
+  onClick?: () => void;
+}
+
+interface AvatarGroupProps {
+  max?: number;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  children: React.ReactNode;
+}
+```
+
+```tsx
+<Avatar src="/photos/user.jpg" name="Rahul Sharma" size="lg" status="online" />
+<Avatar name="Priya Patel" size="md" />
+<AvatarGroup max={3}>
+  <Avatar name="User 1" src="/u1.jpg" />
+  <Avatar name="User 2" src="/u2.jpg" />
+  <Avatar name="User 3" src="/u3.jpg" />
+  <Avatar name="User 4" src="/u4.jpg" />
+</AvatarGroup>
+```

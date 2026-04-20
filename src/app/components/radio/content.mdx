@@ -1,0 +1,147 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Single Selection" icon="🔘">
+    Mutually exclusive choice from a group
+  </Card>
+  <Card title="2 Sizes" icon="📐">
+    Regular (20px) and Small (16px)
+  </Card>
+  <Card title="Label Support" icon="🏷️">
+    Optional label with description text
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Radio — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard radio button with label |
+| With Description | Radio with label and helper text |
+| Horizontal | Radio group laid out in a row |
+| Vertical | Radio group stacked vertically (default) |
+| Disabled | Non-interactive state |
+| Error | Validation error state with message |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Clickable area including radio and label |
+| 2 | Radio Circle | Circular input with border, fully rounded |
+| 3 | Inner Dot | Filled circle shown when selected |
+| 4 | Label | Primary text describing the option |
+| 5 | Description | Optional secondary text below label |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Unselected, ready for interaction |
+| Hover | Slight background highlight on container |
+| Selected | Filled inner dot indicating active choice |
+| Focused | 2px blue outline for keyboard navigation |
+| Disabled | 40% opacity, non-interactive |
+| Error | Red border with error message below |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use radio buttons when users must select exactly one option from a group. Always provide at least two options.
+</Info>
+
+<Warning>
+  Never use a single radio button alone — for binary choices, use a Checkbox or Toggle instead.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use native `<input type="radio">` with shared `name` |
+| Keyboard | Tab to group, Arrow keys to navigate options |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `<label>` or `aria-label` |
+| Group | Wrap in `<fieldset>` with `<legend>` |
+| ARIA | Use `role="radiogroup"` for custom implementations |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `radio-size-md` | 20px |
+    | `radio-size-sm` | 16px |
+    | `radio-dot-size-md` | 10px |
+    | `radio-dot-size-sm` | 8px |
+    | `radio-border-width` | 2px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `radio-selected-bg` | #000000 |
+    | `radio-selected-border` | #000000 |
+    | `radio-unselected-border` | #D4D4D4 |
+    | `radio-error-border` | #DC143C |
+    | `radio-disabled-bg` | #F5F5F5 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface RadioProps {
+  value: string;
+  checked?: boolean;
+  disabled?: boolean;
+  error?: boolean;
+  size?: 'md' | 'sm';
+  label?: string;
+  description?: string;
+  onChange?: (value: string) => void;
+}
+
+interface RadioGroupProps {
+  name: string;
+  value?: string;
+  direction?: 'horizontal' | 'vertical';
+  error?: string;
+  children: React.ReactNode;
+  onChange?: (value: string) => void;
+}
+```
+
+```tsx
+<RadioGroup name="shipping" value="express" onChange={setValue}>
+  <Radio value="standard" label="Standard" description="5-7 business days" />
+  <Radio value="express" label="Express" description="2-3 business days" />
+  <Radio value="overnight" label="Overnight" description="Next business day" />
+</RadioGroup>
+```

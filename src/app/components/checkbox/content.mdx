@@ -1,0 +1,135 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="3 States" icon="☑️">
+    Unchecked, Checked, Indeterminate
+  </Card>
+  <Card title="2 Sizes" icon="📐">
+    Regular (20px) and Small (16px)
+  </Card>
+  <Card title="Label Support" icon="🏷️">
+    Optional label with description text
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Checkbox — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Standard checkbox with label |
+| With Description | Checkbox with label and helper text |
+| Indeterminate | Partial selection state for parent checkboxes |
+| Disabled | Non-interactive state |
+| Error | Validation error state with message |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Container | Clickable area including checkbox and label |
+| 2 | Checkbox | Square input with border, 4px border-radius |
+| 3 | Checkmark | SVG icon shown when checked |
+| 4 | Label | Primary text describing the option |
+| 5 | Description | Optional secondary text below label |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Default | Unchecked, ready for interaction |
+| Hover | Slight background highlight on container |
+| Checked | Filled background with checkmark icon |
+| Indeterminate | Dash icon, used for "select all" patterns |
+| Focused | 2px blue outline for keyboard navigation |
+| Disabled | 40% opacity, non-interactive |
+| Error | Red border with error message below |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use checkboxes when users can select multiple options. For mutually exclusive choices, use Radio buttons instead.
+</Info>
+
+<Warning>
+  Avoid using a single checkbox for binary actions — use a Toggle/Switch instead for immediate on/off settings.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| Semantic HTML | Use native `<input type="checkbox">` |
+| Keyboard | Tab to focus, Space to toggle |
+| Focus ring | 2px visible outline, ≥ 3:1 contrast |
+| Label | Always associate with `<label>` or `aria-label` |
+| Indeterminate | Set via `aria-checked="mixed"` |
+| Group | Wrap related checkboxes in `<fieldset>` with `<legend>` |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `checkbox-size-md` | 20px |
+    | `checkbox-size-sm` | 16px |
+    | `checkbox-border-radius` | 4px |
+    | `checkbox-icon-size` | 12px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `checkbox-checked-bg` | #000000 |
+    | `checkbox-checked-border` | #000000 |
+    | `checkbox-unchecked-border` | #D4D4D4 |
+    | `checkbox-error-border` | #DC143C |
+    | `checkbox-disabled-bg` | #F5F5F5 |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface CheckboxProps {
+  checked?: boolean;
+  indeterminate?: boolean;
+  disabled?: boolean;
+  error?: boolean;
+  size?: 'md' | 'sm';
+  label?: string;
+  description?: string;
+  onChange?: (checked: boolean) => void;
+}
+```
+
+```tsx
+<Checkbox label="Accept terms" />
+<Checkbox label="Newsletter" description="Receive weekly updates" />
+<Checkbox checked indeterminate label="Select all" />
+```

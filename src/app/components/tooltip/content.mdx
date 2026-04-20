@@ -1,0 +1,135 @@
+import { StorybookEmbed, CardGroup, Card, Tabs, Tab, Info, Warning } from '@/components/mdx';
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="4 Placements" icon="📍">
+    Top, Bottom, Left, Right
+  </Card>
+  <Card title="Rich Content" icon="📝">
+    Text-only or custom rich content
+  </Card>
+  <Card title="Trigger Modes" icon="🖱️">
+    Hover, focus, or click to show
+  </Card>
+</CardGroup>
+
+---
+
+## Live Demo
+
+<StorybookEmbed
+  url="https://tarmac-storybook-dev.pntrzz.com/storybook/"
+  height={400}
+  title="Tooltip — TARMAC Storybook"
+/>
+
+---
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| Default | Dark background with white text |
+| Light | Light background with dark text |
+| Rich | Supports headings, links, or custom content |
+| With Arrow | Includes directional arrow pointing to trigger |
+
+---
+
+## Anatomy
+
+| # | Element | Description |
+|---|---------|-------------|
+| 1 | Trigger | Element that activates the tooltip |
+| 2 | Container | Floating panel with content |
+| 3 | Arrow | Triangular pointer toward trigger |
+| 4 | Content | Text or rich content inside |
+
+---
+
+## States
+
+| State | Description |
+|-------|-------------|
+| Hidden | Tooltip not visible |
+| Visible | Shown after hover/focus delay |
+| Entering | Fade-in animation (150ms) |
+| Exiting | Fade-out animation (100ms) |
+
+---
+
+## Usage Guidelines
+
+<Info>
+  Use tooltips for supplementary information that isn't essential. Critical information should always be visible on the page.
+</Info>
+
+<Warning>
+  Never put interactive elements (links, buttons) inside a tooltip — use a Popover instead for interactive content.
+</Warning>
+
+---
+
+## Accessibility
+
+| Requirement | Guideline |
+|-------------|-----------|
+| ARIA | Use `aria-describedby` linking trigger to tooltip |
+| Keyboard | Show on focus, dismiss on Escape |
+| Timing | Minimum 1.5s display time, no auto-dismiss |
+| Touch | Provide alternative for touch devices |
+| Motion | Respect `prefers-reduced-motion` |
+| Role | Use `role="tooltip"` on the container |
+
+---
+
+## Design Tokens
+
+<Tabs>
+  <Tab title="Sizing">
+    | Token | Value |
+    |-------|-------|
+    | `tooltip-padding-x` | 12px |
+    | `tooltip-padding-y` | 8px |
+    | `tooltip-border-radius` | 6px |
+    | `tooltip-max-width` | 240px |
+    | `tooltip-arrow-size` | 6px |
+    | `tooltip-offset` | 8px |
+  </Tab>
+  <Tab title="Colors">
+    | Token | Value |
+    |-------|-------|
+    | `tooltip-bg-dark` | #262626 |
+    | `tooltip-text-dark` | #FFFFFF |
+    | `tooltip-bg-light` | #FFFFFF |
+    | `tooltip-text-light` | #262626 |
+    | `tooltip-border-light` | #E5E5E5 |
+    | `tooltip-shadow` | 0 4px 12px rgba(0,0,0,0.12) |
+  </Tab>
+</Tabs>
+
+---
+
+## Developer Handoff
+
+```tsx
+interface TooltipProps {
+  content: React.ReactNode;
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+  variant?: 'dark' | 'light';
+  arrow?: boolean;
+  delay?: number;
+  trigger?: 'hover' | 'focus' | 'click';
+  children: React.ReactElement;
+}
+```
+
+```tsx
+<Tooltip content="Edit shipment details">
+  <IconButton icon={<EditIcon />} />
+</Tooltip>
+<Tooltip content="Last updated 2 hours ago" placement="bottom">
+  <span>Updated recently</span>
+</Tooltip>
+```
