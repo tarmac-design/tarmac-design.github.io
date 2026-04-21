@@ -3,8 +3,8 @@
 import { PageShell } from '@/components/PageShell';
 import { StorybookEmbed } from '@/components/mdx';
 
-// Map component slugs to their Storybook story paths
-const storybookPaths: Record<string, string> = {
+// Map component slugs to their exact Storybook story IDs
+const storybookIds: Record<string, string> = {
   avatar: 'tarmac-tds-avatar--playground',
   button: 'tarmac-tds-button--playground',
   checkbox: 'tarmac-tds-checkbox--playground',
@@ -50,6 +50,8 @@ const storybookPaths: Record<string, string> = {
   'otp-fields': 'tarmac-tds-otpfield--playground',
 };
 
+const STORYBOOK_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
+
 interface ComponentPageProps {
   name: string;
   description: string;
@@ -58,15 +60,52 @@ interface ComponentPageProps {
 }
 
 export function ComponentPage({ name, description, slug, children }: ComponentPageProps) {
-  const storyPath = slug ? storybookPaths[slug] : undefined;
-  const sbUrl = storyPath
-    ? `https://tarmac-storybook-dev.pntrzz.com/storybook/iframe.html?id=${storyPath}&viewMode=story`
-    : `https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/${storyPath || 'tarmac-tds-button--playground'}`;
+  const storyId = slug ? storybookIds[slug] : null;
+
+  // iframe.html with specific story ID — this renders ONLY that component
+  const iframeUrl = storyId
+    ? `${STORYBOOK_BASE}/iframe.html?args=&id=${storyId}&viewMode=story`
+    : `${STORYBOOK_BASE}/iframe.html?args=&id=tarmac-tds-button--playground&viewMode=story`;
+
+  // Full storybook link for "Open in Storybook"
+  const fullUrl = storyId
+    ? `${STORYBOOK_BASE}/?path=/story/${storyId}`
+    : STORYBOOK_BASE;
 
   return (
     <PageShell title={name} description={description}>
       <h2>Live Demo</h2>
-      <StorybookEmbed url={sbUrl} height={400} title={`${name} — TARMAC Storybook`} />
+      <div
+        className="rounded-xl overflow-hidden border mb-6"
+        style={{ borderColor: 'var(--color-outline)' }}
+      >
+        <iframe
+          src={iframeUrl}
+          style={{ width: '100%', height: '400px', border: 'none', background: '#fff' }}
+          title={`${name} — TARMAC Storybook`}
+          allow="clipboard-write"
+        />
+        <div
+          className="flex items-center justify-between px-4 py-3 border-t"
+          style={{
+            background: 'var(--color-surface-container)',
+            borderColor: 'var(--color-outline)',
+          }}
+        >
+          <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
+            Interactive preview — {name} component
+          </span>
+          <a
+            href={fullUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium hover:underline"
+            style={{ color: 'var(--color-secondary)' }}
+          >
+            Open in Storybook ↗
+          </a>
+        </div>
+      </div>
       {children}
     </PageShell>
   );
