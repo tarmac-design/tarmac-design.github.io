@@ -46,7 +46,7 @@ export function TableOfContents() {
 
   return (
     <aside
-      className="hidden xl:block fixed right-3 top-[calc(var(--topbar-offset)+4px)] w-48 max-h-[calc(100vh-var(--topbar-offset)-16px)] overflow-y-auto z-30 rounded-2xl border p-4"
+      className="hidden xl:block fixed right-4 top-[calc(var(--topbar-offset)+4px)] w-[200px] max-h-[calc(100vh-var(--topbar-offset)-16px)] overflow-y-auto z-30 rounded-2xl border p-4"
       style={{
         background: 'color-mix(in srgb, var(--color-surface) 75%, transparent)',
         backdropFilter: 'blur(16px) saturate(180%)',

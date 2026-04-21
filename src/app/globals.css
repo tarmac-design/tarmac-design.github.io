@@ -225,8 +225,14 @@ header nav a:hover {
 
 /* Content area centered between sidebar and TOC */
 .content-area {
-  --left-pane: calc(var(--sidebar-width) + 16px + 24px); /* sidebar + left offset + gap */
-  --right-pane: calc(192px + 12px + 24px); /* TOC width + right offset + gap */
-  margin-left: var(--left-pane);
-  margin-right: var(--right-pane);
+  /* sidebar: 260px + 16px offset + 16px gap = 292px */
+  /* TOC: 200px + 16px offset + 16px gap = 232px */
+  /* Average: 262px each side for true center */
+  margin-left: 292px;
+  margin-right: 232px;
+}
+.content-area > div {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
 }
