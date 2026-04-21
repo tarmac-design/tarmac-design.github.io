@@ -225,8 +225,8 @@ header nav a:hover {
 
 /* Content area centered between sidebar and TOC */
 .content-area {
-  margin-left: 190px;
-  margin-right: 220px;
+  margin-left: 176px;
+  margin-right: 216px;
 }
 .content-area > div {
   width: 100%;
