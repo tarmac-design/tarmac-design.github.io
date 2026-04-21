@@ -3,7 +3,7 @@ import { ComponentPage } from '@/components/ComponentPage';
 
 export default function AvatarPage() {
   return (
-    <ComponentPage name="Avatar" description="Avatars represent users or entities with images, initials, or icons." storybookPath="tarmac-tds-avatar--playground">
+    <ComponentPage name="Avatar" description="Avatars represent users or entities with images, initials, or icons." slug="avatar">
       <h2>Sizes</h2>
       <table>
         <thead><tr><th>Size</th><th>Pixels</th><th>Usage</th></tr></thead>

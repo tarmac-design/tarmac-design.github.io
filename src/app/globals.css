@@ -170,3 +170,42 @@ body {
 .mdx-content strong {
   color: var(--color-on-surface);
 }
+
+/* ===== Hover Glow Effects ===== */
+a.group:hover,
+.hover-glow:hover {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 15%, transparent),
+              0 0 40px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent) !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Sidebar link hover */
+aside nav a:hover {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent) !important;
+}
+
+/* Top nav link hover */
+header nav a:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent) !important;
+}
+
+/* Card hover glow */
+.mdx-content a[href]:not(p a):hover,
+footer a.group:hover {
+  box-shadow: 0 0 16px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+/* Button hover glow */
+a[style*="background:var(--color-primary)"]:hover,
+a[style*="background: var(--color-primary)"]:hover {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  filter: brightness(1.1);
+  transition: box-shadow 0.3s ease, filter 0.2s ease;
+}
+
+/* Prev/Next card hover */
+footer a.group:hover {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-secondary) 15%, transparent);
+  border-color: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important;
+}
