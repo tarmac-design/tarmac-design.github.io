@@ -14,7 +14,7 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   output: 'export',
   images: { unoptimized: true },
-  basePath: process.env.NODE_ENV === 'production' ? '/TDS' : '',
+  basePath: '',
 };
 
 export default withMDX(nextConfig);
