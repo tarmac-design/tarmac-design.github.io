@@ -5,6 +5,9 @@ import { Sidebar } from '@/components/Sidebar';
 export const metadata: Metadata = {
   title: 'TARMAC Design System',
   description: 'Design system documentation for Delhivery',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
