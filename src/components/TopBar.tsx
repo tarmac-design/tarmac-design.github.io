@@ -24,10 +24,12 @@ export function TopBar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 h-[var(--topbar-height)] flex items-center px-6 border-b backdrop-blur-sm"
+      className="fixed top-4 left-4 right-4 z-50 h-[var(--topbar-height)] flex items-center px-6 rounded-2xl border"
       style={{
-        background: 'color-mix(in srgb, var(--color-surface) 90%, transparent)',
-        borderColor: 'var(--color-outline)',
+        background: 'color-mix(in srgb, var(--color-surface) 70%, transparent)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
       }}
     >
       {/* Logo */}

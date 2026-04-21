@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <GeometricPattern />
           <TopBar />
-          <div className="relative z-10 flex pt-[var(--topbar-height)]">
+          <div className="relative z-10 flex pt-[var(--topbar-offset)]">
             <Sidebar />
             <main className="flex-1">{children}</main>
           </div>

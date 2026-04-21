@@ -6,7 +6,8 @@
 
 :root {
   --sidebar-width: 260px;
-  --topbar-height: 64px;
+  --topbar-height: 56px;
+  --topbar-offset: 80px; /* topbar height + top margin + gap */
   --color-surface: #FFFFFF;
   --color-surface-dim: #FAFAFA;
   --color-surface-container: #F5F5F5;
