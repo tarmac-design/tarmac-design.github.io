@@ -2,6 +2,7 @@
 
 import { MdxProvider } from '@/components/MdxProvider';
 import { TableOfContents } from '@/components/TableOfContents';
+import { PageFooter } from '@/components/PageFooter';
 
 export function PageShell({
   title,
@@ -35,6 +36,7 @@ export function PageShell({
           <MdxProvider>{children}</MdxProvider>
         </div>
       </div>
+      <PageFooter />
       <TableOfContents />
     </>
   );
