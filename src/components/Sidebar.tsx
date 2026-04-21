@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 const nav = [
   {
@@ -114,60 +113,34 @@ const nav = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
-  const toggle = (title: string) => {
-    setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
-  };
+  // Determine which sections to show based on current path
+  const currentSection = pathname.split('/')[1];
+  const relevantSections = nav.filter((section) =>
+    section.items.some((item) => item.href.startsWith(`/${currentSection}`))
+  );
+
+  // If on homepage, don't show sidebar
+  if (pathname === '/') return null;
 
   return (
-    <aside className="fixed top-0 left-0 w-[var(--sidebar-width)] h-screen border-r border-neutral-200 bg-neutral-50 overflow-y-auto z-40">
-      <div className="p-6 border-b border-neutral-200">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-tarmac-red rounded-md flex items-center justify-center">
-            <span className="text-white font-bold text-sm">T</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-sm leading-tight">TARMAC</span>
-            <span className="text-[10px] text-neutral-400 tracking-widest">Design System</span>
-          </div>
-        </Link>
-      </div>
-
-      <div className="flex items-center gap-2 px-4 pt-4 pb-2">
-        <a
-          href="https://tarmac-storybook-dev.pntrzz.com/storybook/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-neutral-500 hover:text-tarmac-blue transition-colors"
-        >
-          Storybook ↗
-        </a>
-        <span className="text-neutral-300">·</span>
-        <a
-          href="https://github.com/abhishekthakur3-sketch/TDS"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-neutral-500 hover:text-tarmac-blue transition-colors"
-        >
-          GitHub ↗
-        </a>
-      </div>
-
-      <nav className="p-4 pt-2">
-        {nav.map((section) => {
-          const isCollapsed = collapsed[section.title];
-          const hasActive = section.items.some((item) => pathname === item.href);
-          return (
-            <div key={section.title} className="mb-2">
-              <button
-                onClick={() => toggle(section.title)}
-                className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-neutral-400 uppercase tracking-wider hover:text-neutral-600 transition-colors"
-              >
-                <span>{section.title}</span>
-                <span className={`transition-transform text-[10px] ${isCollapsed ? '-rotate-90' : ''}`}>▾</span>
-              </button>
-              {!isCollapsed && (
+    <aside
+      className="fixed top-[var(--topbar-height)] left-0 w-[var(--sidebar-width)] h-[calc(100vh-var(--topbar-height))] overflow-y-auto z-30 border-r"
+      style={{
+        background: 'var(--color-surface)',
+        borderColor: 'var(--color-outline)',
+      }}
+    >
+      <nav className="py-4 px-3">
+        {relevantSections.length > 0
+          ? relevantSections.map((section) => (
+              <div key={section.title} className="mb-4">
+                <h3
+                  className="text-[11px] font-semibold uppercase tracking-wider px-3 mb-1.5"
+                  style={{ color: 'var(--color-on-surface-variant)' }}
+                >
+                  {section.title}
+                </h3>
                 <ul className="space-y-0.5">
                   {section.items.map((item) => {
                     const isActive = pathname === item.href;
@@ -175,11 +148,16 @@ export function Sidebar() {
                       <li key={item.href}>
                         <Link
                           href={item.href}
-                          className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                            isActive
-                              ? 'bg-neutral-200 text-neutral-900 font-medium'
-                              : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
-                          }`}
+                          className="block px-3 py-1.5 rounded-lg text-[13px] transition-all"
+                          style={{
+                            color: isActive
+                              ? 'var(--color-primary)'
+                              : 'var(--color-on-surface-variant)',
+                            background: isActive
+                              ? 'var(--color-primary-container)'
+                              : 'transparent',
+                            fontWeight: isActive ? 600 : 400,
+                          }}
                         >
                           {item.label}
                         </Link>
@@ -187,10 +165,42 @@ export function Sidebar() {
                     );
                   })}
                 </ul>
-              )}
-            </div>
-          );
-        })}
+              </div>
+            ))
+          : nav.map((section) => (
+              <div key={section.title} className="mb-4">
+                <h3
+                  className="text-[11px] font-semibold uppercase tracking-wider px-3 mb-1.5"
+                  style={{ color: 'var(--color-on-surface-variant)' }}
+                >
+                  {section.title}
+                </h3>
+                <ul className="space-y-0.5">
+                  {section.items.slice(0, 3).map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="block px-3 py-1.5 rounded-lg text-[13px] transition-all"
+                        style={{ color: 'var(--color-on-surface-variant)' }}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                  {section.items.length > 3 && (
+                    <li>
+                      <Link
+                        href={section.items[0].href}
+                        className="block px-3 py-1 text-[12px]"
+                        style={{ color: 'var(--color-secondary)' }}
+                      >
+                        View all {section.items.length} →
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            ))}
       </nav>
     </aside>
   );

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { TopBar } from '@/components/TopBar';
 import { Sidebar } from '@/components/Sidebar';
 
 export const metadata: Metadata = {
@@ -12,14 +14,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-neutral-900">
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 ml-[var(--sidebar-width)]">
-            {children}
-          </main>
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          <TopBar />
+          <div className="flex pt-[var(--topbar-height)]">
+            <Sidebar />
+            <main className="flex-1">{children}</main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

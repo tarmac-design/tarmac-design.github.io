@@ -12,11 +12,21 @@ export function PageShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="ml-[var(--sidebar-width)] max-w-4xl px-10 py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-3">{title}</h1>
+        <h1
+          className="text-3xl font-bold mb-3"
+          style={{ color: 'var(--color-on-surface)' }}
+        >
+          {title}
+        </h1>
         {description && (
-          <p className="text-lg text-neutral-600">{description}</p>
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: 'var(--color-on-surface-variant)' }}
+          >
+            {description}
+          </p>
         )}
       </div>
       <div className="mdx-content">
