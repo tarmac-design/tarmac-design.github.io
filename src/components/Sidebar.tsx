@@ -124,7 +124,7 @@ const sectionMap: Record<string, Section[]> = {
   ],
 };
 
-export function Sidebar() {
+export function Sidebar({ open, onClose }: { open?: boolean; onClose?: () => void }) {
   const pathname = usePathname();
   if (pathname === '/') return null;
 
@@ -132,49 +132,79 @@ export function Sidebar() {
   const sections = sectionMap[currentSection] || [];
   if (sections.length === 0) return null;
 
+  const sidebarContent = (
+    <nav className="py-1">
+      {sections.map((section) => (
+        <div key={section.title} className="mb-4">
+          <h3
+            className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest px-3 mb-1.5"
+            style={{ color: 'var(--color-on-surface-variant)' }}
+          >
+            <span className="text-xs">{section.icon}</span>
+            {section.title}
+          </h3>
+          <ul className="space-y-0.5">
+            {section.items.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="block px-3 py-1.5 rounded-lg text-[13px] transition-all"
+                    style={{
+                      color: isActive ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
+                      background: isActive ? 'var(--color-primary-container)' : 'transparent',
+                      fontWeight: isActive ? 600 : 400,
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  );
+
   return (
-    <aside
-      className="fixed left-4 top-[calc(var(--topbar-offset)+8px)] w-[var(--sidebar-width)] max-h-[calc(100vh-var(--topbar-offset)-24px)] overflow-y-auto z-30 rounded-2xl border p-3"
-      style={{
-        background: 'color-mix(in srgb, var(--color-surface) 70%, transparent)',
-        backdropFilter: 'blur(16px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-        borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
-      }}
-    >
-      <nav>
-        {sections.map((section) => (
-          <div key={section.title} className="mb-3">
-            <h3
-              className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest px-3 mb-1"
-              style={{ color: 'var(--color-on-surface-variant)' }}
-            >
-              <span className="text-xs">{section.icon}</span>
-              {section.title}
-            </h3>
-            <ul className="space-y-0.5">
-              {section.items.map((item) => {
-                const isActive = pathname === item.href;
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="block px-3 py-1.5 rounded-lg text-[13px] transition-all"
-                      style={{
-                        color: isActive ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
-                        background: isActive ? 'var(--color-primary-container)' : 'transparent',
-                        fontWeight: isActive ? 600 : 400,
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))}
-      </nav>
-    </aside>
+    <>
+      {/* Desktop sidebar */}
+      <aside
+        className="hidden lg:block fixed left-3 top-[calc(var(--topbar-offset)+4px)] w-[var(--sidebar-width)] max-h-[calc(100vh-var(--topbar-offset)-16px)] overflow-y-auto z-30 rounded-2xl border p-3"
+        style={{
+          background: 'color-mix(in srgb, var(--color-surface) 75%, transparent)',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+          borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
+        }}
+      >
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile overlay */}
+      {open && (
+        <>
+          <div
+            className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+            onClick={onClose}
+            aria-hidden="true"
+          />
+          <aside
+            className="lg:hidden fixed left-3 right-3 top-[calc(var(--topbar-offset)+4px)] max-h-[calc(100vh-var(--topbar-offset)-16px)] overflow-y-auto z-50 rounded-2xl border p-3"
+            style={{
+              background: 'color-mix(in srgb, var(--color-surface) 92%, transparent)',
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
+            }}
+          >
+            {sidebarContent}
+          </aside>
+        </>
+      )}
+    </>
   );
 }

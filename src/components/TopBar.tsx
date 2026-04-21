@@ -15,59 +15,78 @@ export function TopBar({ onMenuToggle, sidebarOpen }: { onMenuToggle: () => void
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl">
-      <div className="flex items-center justify-between h-full px-4 lg:px-6">
-        <div className="flex items-center gap-3">
+    <header
+      className="fixed top-3 left-3 right-3 h-14 z-50 rounded-2xl border"
+      style={{
+        background: 'color-mix(in srgb, var(--color-surface) 75%, transparent)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
+      }}
+    >
+      <div className="flex items-center justify-between h-full px-4 lg:px-5">
+        {/* Left: logo + mobile toggle */}
+        <div className="flex items-center gap-2.5">
           <button
             onClick={onMenuToggle}
-            className="lg:hidden p-2 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600 dark:text-neutral-400"
+            className="lg:hidden p-2 rounded-xl transition-colors"
+            style={{ color: 'var(--color-on-surface-variant)' }}
             aria-label="Toggle menu"
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-tarmac-red rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-              <span className="text-white font-bold text-base">T</span>
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 bg-tarmac-red rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+              <span className="text-white font-bold text-sm">T</span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-semibold text-sm leading-tight tracking-tight text-neutral-900 dark:text-neutral-100">TARMAC</span>
-              <span className="text-[10px] text-neutral-400 dark:text-neutral-500 tracking-[0.15em] font-medium">DESIGN SYSTEM</span>
+            <div className="hidden sm:flex flex-col">
+              <span className="font-semibold text-[13px] leading-tight tracking-tight" style={{ color: 'var(--color-on-surface)' }}>
+                TARMAC
+              </span>
+              <span className="text-[9px] tracking-[0.12em] font-medium" style={{ color: 'var(--color-on-surface-variant)' }}>
+                DESIGN SYSTEM
+              </span>
             </div>
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-1">
+        {/* Center: nav links */}
+        <nav className="hidden md:flex items-center gap-0.5">
           <NavLink href="/about/overview" active={isActive('/about')}>About</NavLink>
           <NavLink href="/foundations/colors" active={isActive('/foundations')}>Foundations</NavLink>
           <NavLink href="/components/button" active={isActive('/components')}>Components</NavLink>
           <NavLink href="/accessibility/overview" active={isActive('/accessibility')}>Accessibility</NavLink>
         </nav>
 
-        <div className="flex items-center gap-1">
+        {/* Right: actions */}
+        <div className="flex items-center gap-0.5">
           <a
             href="https://tarmac-storybook-dev.pntrzz.com/storybook/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-xl transition-colors"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+            style={{ color: 'var(--color-on-surface-variant)' }}
           >
             Storybook
-            <ExternalLink size={12} />
+            <ExternalLink size={11} />
           </a>
           <a
             href="https://github.com/abhishekthakur3-sketch/TDS"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600 dark:text-neutral-400"
+            className="p-2 rounded-lg transition-colors"
+            style={{ color: 'var(--color-on-surface-variant)' }}
             aria-label="GitHub"
           >
-            <Github size={18} />
+            <Github size={17} />
           </a>
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600 dark:text-neutral-400"
+            className="p-2 rounded-lg transition-colors"
+            style={{ color: 'var(--color-on-surface-variant)' }}
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
           </button>
         </div>
       </div>
@@ -79,11 +98,11 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
   return (
     <Link
       href={href}
-      className={`px-3 py-2 text-sm font-medium rounded-xl transition-colors ${
-        active
-          ? 'text-tarmac-red dark:text-red-400 bg-tarmac-red/5 dark:bg-red-500/10'
-          : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800'
-      }`}
+      className="px-3 py-1.5 text-[13px] font-medium rounded-lg transition-colors"
+      style={{
+        color: active ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
+        background: active ? 'var(--color-primary-container)' : 'transparent',
+      }}
     >
       {children}
     </Link>

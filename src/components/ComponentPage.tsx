@@ -66,22 +66,32 @@ export function ComponentPage({ name, description, slug, children }: ComponentPa
   return (
     <PageShell title={name} description={description}>
       <h2>Live Demo</h2>
-      <div className="rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-6">
+      <div
+        className="rounded-2xl overflow-hidden border mb-8"
+        style={{ borderColor: 'var(--color-outline)' }}
+      >
         <iframe
           src={embedUrl}
-          style={{ width: '100%', height: '500px', border: 'none' }}
+          style={{ width: '100%', height: '480px', border: 'none' }}
           title={`${name} — TARMAC Storybook`}
           allow="clipboard-write"
         />
-        <div className="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
-          <span className="text-xs text-neutral-500 dark:text-neutral-400">
-            Interactive preview — {name} component
+        <div
+          className="flex items-center justify-between px-4 py-2.5 border-t"
+          style={{
+            background: 'var(--color-surface-container-low)',
+            borderColor: 'var(--color-outline)',
+          }}
+        >
+          <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
+            Interactive preview — {name}
           </span>
           <a
             href={embedUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium text-tarmac-blue dark:text-blue-400 hover:underline"
+            className="text-xs font-medium hover:underline"
+            style={{ color: 'var(--color-secondary)' }}
           >
             Open in Storybook ↗
           </a>

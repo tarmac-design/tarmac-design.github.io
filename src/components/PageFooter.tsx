@@ -28,7 +28,6 @@ const allPages = [
   { label: 'Shadows', href: '/foundations/shadows' },
   { label: 'Dividers', href: '/foundations/dividers' },
   { label: 'Image Library', href: '/foundations/image-library' },
-  { label: 'Avatar', href: '/components/avatar' },
   { label: 'Button', href: '/components/button' },
   { label: 'Checkbox', href: '/components/checkbox' },
   { label: 'Radio', href: '/components/radio' },
@@ -43,6 +42,7 @@ const allPages = [
   { label: 'Date Time Picker', href: '/components/date-time-picker' },
   { label: 'Filter', href: '/components/filter' },
   { label: 'Rating', href: '/components/rating' },
+  { label: 'Avatar', href: '/components/avatar' },
   { label: 'Badge', href: '/components/badge' },
   { label: 'Tags', href: '/components/tags' },
   { label: 'Pills', href: '/components/pills' },
@@ -91,75 +91,104 @@ export function PageFooter() {
   const next = idx < allPages.length - 1 ? allPages[idx + 1] : null;
 
   return (
-    <footer className="max-w-4xl mx-auto px-6 sm:px-8 pb-16">
+    <footer className="max-w-3xl mx-auto px-6 sm:px-8 xl:mr-56 pb-16">
+      {/* Prev / Next navigation */}
       {(prev || next) && (
-        <div className="grid grid-cols-2 gap-4 mb-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+        <div
+          className="grid grid-cols-2 gap-4 mb-10 pt-8"
+          style={{ borderTop: '1px solid var(--color-outline)' }}
+        >
           {prev ? (
             <Link
               href={prev.href}
-              className="group p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-sm transition-all"
+              className="group p-4 rounded-2xl border transition-all"
+              style={{ borderColor: 'var(--color-outline)' }}
             >
-              <span className="flex items-center gap-1 text-xs text-neutral-400 dark:text-neutral-500 mb-1">
+              <span
+                className="flex items-center gap-1 text-xs mb-1"
+                style={{ color: 'var(--color-on-surface-variant)' }}
+              >
                 <ChevronLeft size={12} /> Previous
               </span>
-              <span className="block text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-tarmac-red dark:group-hover:text-red-400 transition-colors">
+              <span
+                className="block text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-on-surface)' }}
+              >
                 {prev.label}
               </span>
             </Link>
-          ) : (
-            <div />
-          )}
+          ) : <div />}
           {next ? (
             <Link
               href={next.href}
-              className="group p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 text-right hover:shadow-sm transition-all"
+              className="group p-4 rounded-2xl border text-right transition-all"
+              style={{ borderColor: 'var(--color-outline)' }}
             >
-              <span className="flex items-center justify-end gap-1 text-xs text-neutral-400 dark:text-neutral-500 mb-1">
+              <span
+                className="flex items-center justify-end gap-1 text-xs mb-1"
+                style={{ color: 'var(--color-on-surface-variant)' }}
+              >
                 Up next <ChevronRight size={12} />
               </span>
-              <span className="block text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-tarmac-red dark:group-hover:text-red-400 transition-colors">
+              <span
+                className="block text-sm font-semibold transition-colors"
+                style={{ color: 'var(--color-on-surface)' }}
+              >
                 {next.label}
               </span>
             </Link>
-          ) : (
-            <div />
-          )}
+          ) : <div />}
         </div>
       )}
 
-      <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 p-8">
+      {/* Delhivery footer */}
+      <div
+        className="rounded-2xl border p-8"
+        style={{
+          borderColor: 'var(--color-outline)',
+          background: 'var(--color-surface-container-low)',
+        }}
+      >
         <div className="flex items-start justify-between flex-wrap gap-8">
           <div className="max-w-sm">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-5 h-5 bg-tarmac-red rounded flex items-center justify-center">
                 <span className="text-white font-bold text-[10px]">T</span>
               </div>
-              <span className="font-bold text-sm text-neutral-900 dark:text-neutral-100">TARMAC Design System</span>
+              <span className="font-bold text-sm" style={{ color: 'var(--color-on-surface)' }}>
+                TARMAC Design System
+              </span>
             </div>
-            <p className="text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
-              Delhivery's unified design system — the single source of truth for design decisions, UI components, and interaction patterns.
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--color-on-surface-variant)' }}>
+              Delhivery&apos;s unified design system — the single source of truth for design decisions, UI components, and interaction patterns.
             </p>
           </div>
           <div className="flex gap-12 text-xs">
             <div>
-              <p className="font-semibold mb-2 text-neutral-900 dark:text-neutral-100">Delhivery</p>
-              <ul className="space-y-1.5 text-neutral-500 dark:text-neutral-400">
-                <li><a href="https://www.delhivery.com" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">delhivery.com</a></li>
-                <li><a href="https://www.delhivery.com/about-us" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">About Us</a></li>
-                <li><a href="https://www.delhivery.com/careers" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">Careers</a></li>
+              <p className="font-semibold mb-2" style={{ color: 'var(--color-on-surface)' }}>Delhivery</p>
+              <ul className="space-y-1.5" style={{ color: 'var(--color-on-surface-variant)' }}>
+                <li><a href="https://www.delhivery.com" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">delhivery.com</a></li>
+                <li><a href="https://www.delhivery.com/about-us" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">About Us</a></li>
+                <li><a href="https://www.delhivery.com/careers" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Careers</a></li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold mb-2 text-neutral-900 dark:text-neutral-100">Resources</p>
-              <ul className="space-y-1.5 text-neutral-500 dark:text-neutral-400">
-                <li><a href="https://tarmac-storybook-dev.pntrzz.com/storybook/" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">Storybook</a></li>
-                <li><a href="https://github.com/abhishekthakur3-sketch/TDS" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">GitHub</a></li>
-                <li><a href="https://www.figma.com/design/fPg3J4ckTHzyIQp8PrqDjT" target="_blank" rel="noopener noreferrer" className="hover:text-tarmac-red dark:hover:text-red-400 transition-colors">Figma</a></li>
+              <p className="font-semibold mb-2" style={{ color: 'var(--color-on-surface)' }}>Resources</p>
+              <ul className="space-y-1.5" style={{ color: 'var(--color-on-surface-variant)' }}>
+                <li><a href="https://tarmac-storybook-dev.pntrzz.com/storybook/" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Storybook</a></li>
+                <li><a href="https://github.com/abhishekthakur3-sketch/TDS" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">GitHub</a></li>
+                <li><a href="https://www.figma.com/design/fPg3J4ckTHzyIQp8PrqDjT" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Figma</a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-[11px] text-neutral-400 dark:text-neutral-500">
+        <div
+          className="mt-6 pt-4 text-[11px]"
+          style={{
+            borderTop: '1px solid var(--color-outline)',
+            color: 'var(--color-on-surface-variant)',
+          }}
+        >
           © {new Date().getFullYear()} Delhivery Ltd. All rights reserved.
         </div>
       </div>

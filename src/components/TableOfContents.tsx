@@ -35,7 +35,7 @@ export function TableOfContents() {
           }
         });
       },
-      { rootMargin: '-80px 0px -70% 0px' }
+      { rootMargin: '-100px 0px -70% 0px' }
     );
 
     els.forEach((el) => observer.observe(el));
@@ -45,11 +45,22 @@ export function TableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <aside className="hidden xl:block fixed right-6 top-24 w-52 max-h-[calc(100vh-120px)] overflow-y-auto rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl p-4">
-      <p className="text-[10px] font-semibold uppercase tracking-widest mb-3 text-neutral-400 dark:text-neutral-500">
+    <aside
+      className="hidden xl:block fixed right-3 top-[calc(var(--topbar-offset)+4px)] w-48 max-h-[calc(100vh-var(--topbar-offset)-16px)] overflow-y-auto z-30 rounded-2xl border p-4"
+      style={{
+        background: 'color-mix(in srgb, var(--color-surface) 75%, transparent)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        borderColor: 'color-mix(in srgb, var(--color-outline) 50%, transparent)',
+      }}
+    >
+      <p
+        className="text-[10px] font-semibold uppercase tracking-widest mb-3"
+        style={{ color: 'var(--color-on-surface-variant)' }}
+      >
         On this page
       </p>
-      <ul className="space-y-1">
+      <ul className="space-y-0.5">
         {headings.map((h) => (
           <li key={h.id}>
             <a
@@ -58,13 +69,11 @@ export function TableOfContents() {
                 e.preventDefault();
                 document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className={`block py-0.5 text-[12px] leading-relaxed transition-colors ${
-                h.level === 3 ? 'pl-3' : ''
-              } ${
-                activeId === h.id
-                  ? 'text-tarmac-red dark:text-red-400 font-semibold'
-                  : 'text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300'
-              }`}
+              className={`block py-1 text-[12px] leading-snug transition-colors ${h.level === 3 ? 'pl-3' : ''}`}
+              style={{
+                color: activeId === h.id ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
+                fontWeight: activeId === h.id ? 600 : 400,
+              }}
             >
               {h.text}
             </a>
