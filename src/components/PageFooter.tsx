@@ -91,9 +91,7 @@ export function PageFooter() {
   const next = idx < allPages.length - 1 ? allPages[idx + 1] : null;
 
   return (
-    <footer
-      className="content-area pb-16 px-8"
-    >
+    <footer className="content-area pb-16 px-8">
       <div className="max-w-3xl mx-auto">
       {/* Prev / Next navigation */}
       {(prev || next) && (
