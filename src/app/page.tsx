@@ -174,7 +174,7 @@ export default function Home() {
             <Link
               key={s.title}
               href={s.href}
-              className="group relative p-5 rounded-2xl border transition-all duration-200"
+              className="group relative p-5 rounded-2xl border transition-all duration-200 card-glow"
               style={{ borderColor: 'var(--color-outline)' }}
             >
               <div

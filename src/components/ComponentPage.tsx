@@ -1,8 +1,10 @@
 'use client';
 
 import { PageShell } from '@/components/PageShell';
+import { StorybookEmbed } from '@/components/mdx';
 
-const storybookIds: Record<string, string> = {
+// Map component slugs to their Storybook story paths
+const storybookPaths: Record<string, string> = {
   avatar: 'tarmac-tds-avatar--playground',
   button: 'tarmac-tds-button--playground',
   checkbox: 'tarmac-tds-checkbox--playground',
@@ -48,8 +50,6 @@ const storybookIds: Record<string, string> = {
   'otp-fields': 'tarmac-tds-otpfield--playground',
 };
 
-const STORYBOOK_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
-
 interface ComponentPageProps {
   name: string;
   description: string;
@@ -58,45 +58,20 @@ interface ComponentPageProps {
 }
 
 export function ComponentPage({ name, description, slug, children }: ComponentPageProps) {
-  const storyId = slug ? storybookIds[slug] : null;
-  const embedUrl = storyId
-    ? `${STORYBOOK_BASE}/?path=/story/${storyId}`
-    : STORYBOOK_BASE;
+  const storyPath = slug ? storybookPaths[slug] : undefined;
+  const sbBase = 'https://tarmac-storybook-dev.pntrzz.com/storybook/';
+  const sbUrl = storyPath
+    ? `${sbBase}iframe.html?id=${storyPath}&viewMode=story&embed=true`
+    : sbBase;
 
   return (
     <PageShell title={name} description={description}>
       <h2>Live Demo</h2>
-      <div
-        className="rounded-2xl overflow-hidden border mb-8"
-        style={{ borderColor: 'var(--color-outline)' }}
-      >
-        <iframe
-          src={embedUrl}
-          style={{ width: '100%', height: '480px', border: 'none' }}
-          title={`${name} — TARMAC Storybook`}
-          allow="clipboard-write"
-        />
-        <div
-          className="flex items-center justify-between px-4 py-2.5 border-t"
-          style={{
-            background: 'var(--color-surface-container-low)',
-            borderColor: 'var(--color-outline)',
-          }}
-        >
-          <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
-            Interactive preview — {name}
-          </span>
-          <a
-            href={embedUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-medium hover:underline"
-            style={{ color: 'var(--color-secondary)' }}
-          >
-            Open in Storybook ↗
-          </a>
-        </div>
-      </div>
+      <StorybookEmbed
+        url={sbUrl}
+        height={400}
+        title={`${name} — TARMAC Storybook`}
+      />
       {children}
     </PageShell>
   );

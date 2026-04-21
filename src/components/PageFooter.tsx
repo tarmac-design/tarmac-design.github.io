@@ -101,7 +101,7 @@ export function PageFooter() {
           {prev ? (
             <Link
               href={prev.href}
-              className="group p-4 rounded-2xl border transition-all"
+              className="group p-4 rounded-2xl border transition-all card-glow"
               style={{ borderColor: 'var(--color-outline)' }}
             >
               <span
