@@ -1,78 +1,52 @@
 import Link from 'next/link';
 
+const sections = [
+  { title: 'Introduction', desc: 'Overview, philosophy, and getting started', href: '/about/overview', count: 6 },
+  { title: 'Foundations', desc: 'Colors, typography, spacing, grid, and tokens', href: '/foundations/colors', count: 17 },
+  { title: 'Components', desc: 'UI building blocks with live Storybook demos', href: '/components/button', count: 43 },
+  { title: 'Patterns', desc: 'Layout and form composition patterns', href: '/patterns/layout', count: 2 },
+  { title: 'Accessibility', desc: 'Guidelines, keyboard nav, screen readers', href: '/accessibility/overview', count: 7 },
+];
+
 export default function Home() {
   return (
-    <div className="max-w-4xl mx-auto px-8 py-16">
+    <div className="max-w-2xl mx-auto px-8 py-16">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">TARMAC Design System</h1>
-        <p className="text-xl text-neutral-600 leading-relaxed">
-          A complete design system for building consistent, accessible, and scalable user experiences at Delhivery.
+        <p className="text-[13px] font-medium text-neutral-400 uppercase tracking-widest mb-3">Documentation</p>
+        <h1 className="text-3xl font-bold tracking-tight text-neutral-900 mb-3">TARMAC Design System</h1>
+        <p className="text-[15px] text-neutral-500 leading-7 max-w-lg">
+          The single source of truth for building consistent, accessible interfaces across Delhivery products.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-        <Link href="/about/overview" className="group block p-5 rounded-xl border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition-all">
-          <div className="text-2xl mb-3">📖</div>
-          <h3 className="text-base font-semibold mb-1 group-hover:text-tarmac-blue">About TARMAC</h3>
-          <p className="text-sm text-neutral-600">Introduction, principles, and why teams choose TARMAC.</p>
-        </Link>
-        <Link href="/foundations/colors" className="group block p-5 rounded-xl border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition-all">
-          <div className="text-2xl mb-3">📐</div>
-          <h3 className="text-base font-semibold mb-1 group-hover:text-tarmac-blue">Foundations</h3>
-          <p className="text-sm text-neutral-600">Colors, typography, spacing, and iconography tokens.</p>
-        </Link>
-        <Link href="/components/button" className="group block p-5 rounded-xl border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition-all">
-          <div className="text-2xl mb-3">🧩</div>
-          <h3 className="text-base font-semibold mb-1 group-hover:text-tarmac-blue">Components</h3>
-          <p className="text-sm text-neutral-600">13 documented components with live Storybook demos.</p>
-        </Link>
+      <div className="space-y-2 mb-12">
+        {sections.map((s) => (
+          <Link key={s.href} href={s.href}
+            className="flex items-center justify-between p-4 rounded-lg border border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50/50 transition-all group"
+          >
+            <div>
+              <h3 className="text-[14px] font-semibold text-neutral-900 group-hover:text-neutral-900">{s.title}</h3>
+              <p className="text-[13px] text-neutral-500 mt-0.5">{s.desc}</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] text-neutral-400 font-medium">{s.count} pages</span>
+              <svg className="w-4 h-4 text-neutral-300 group-hover:text-neutral-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
+        ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/" target="_blank" rel="noopener noreferrer" className="group block p-5 rounded-xl border border-neutral-200 hover:border-neutral-400 hover:shadow-md transition-all">
-          <div className="text-2xl mb-3">🔬</div>
-          <h3 className="text-base font-semibold mb-1 group-hover:text-tarmac-blue">Storybook</h3>
-          <p className="text-sm text-neutral-600">Interactive playground with live component demos and controls.</p>
-        </a>
-        <div className="block p-5 rounded-xl border border-neutral-200 bg-neutral-50">
-          <div className="text-2xl mb-3">🚀</div>
-          <h3 className="text-base font-semibold mb-1">Quick Start</h3>
-          <pre className="text-xs bg-neutral-900 text-neutral-100 rounded-lg p-3 mt-2 overflow-x-auto"><code>{`npm install @tarmac/design-system
+      <div className="rounded-lg border border-neutral-200 p-5">
+        <p className="text-[13px] font-semibold text-neutral-900 mb-3">Quick Start</p>
+        <pre className="bg-[#1e1e2e] text-neutral-300 text-[13px] p-4 rounded-lg overflow-x-auto font-mono leading-6">
+{`npm install @tarmac/design-system
 
-import { Button } from '@tarmac/design-system';`}</code></pre>
-        </div>
-      </div>
+import { Button } from '@tarmac/design-system';
 
-      <div className="rounded-xl border border-neutral-200 p-6">
-        <h2 className="text-lg font-semibold mb-4">Foundations at a Glance</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/foundations/colors" className="group text-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
-            <div className="flex gap-1 justify-center mb-2">
-              <div className="w-4 h-4 rounded-full bg-tarmac-red" />
-              <div className="w-4 h-4 rounded-full bg-tarmac-blue" />
-              <div className="w-4 h-4 rounded-full bg-tarmac-success" />
-              <div className="w-4 h-4 rounded-full bg-tarmac-black" />
-            </div>
-            <span className="text-sm font-medium text-neutral-700 group-hover:text-tarmac-blue">Colors</span>
-          </Link>
-          <Link href="/foundations/typography" className="group text-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
-            <div className="text-lg font-bold mb-1">Aa</div>
-            <span className="text-sm font-medium text-neutral-700 group-hover:text-tarmac-blue">Typography</span>
-          </Link>
-          <Link href="/foundations/spacing" className="group text-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
-            <div className="flex gap-1 justify-center items-end mb-2">
-              <div className="w-2 h-2 bg-neutral-300 rounded-sm" />
-              <div className="w-2 h-4 bg-neutral-400 rounded-sm" />
-              <div className="w-2 h-6 bg-neutral-500 rounded-sm" />
-              <div className="w-2 h-8 bg-neutral-600 rounded-sm" />
-            </div>
-            <span className="text-sm font-medium text-neutral-700 group-hover:text-tarmac-blue">Spacing</span>
-          </Link>
-          <Link href="/foundations/iconography" className="group text-center p-4 rounded-lg hover:bg-neutral-50 transition-colors">
-            <div className="text-lg mb-1">⬡ ◯ △</div>
-            <span className="text-sm font-medium text-neutral-700 group-hover:text-tarmac-blue">Iconography</span>
-          </Link>
-        </div>
+<Button variant="primary">Get Started</Button>`}
+        </pre>
       </div>
     </div>
   );
