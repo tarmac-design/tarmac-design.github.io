@@ -50,7 +50,7 @@ export default function Home() {
             color: 'var(--color-primary)',
           }}
         >
-          TARMAC Design System
+          Documentation
         </div>
         <h1
           className="text-5xl font-bold mb-5 leading-tight"
@@ -92,7 +92,7 @@ export default function Home() {
       </div>
 
       {/* Section cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sections.map((s) => (
           <Link
             key={s.title}
@@ -124,44 +124,6 @@ export default function Home() {
             </span>
           </Link>
         ))}
-      </div>
-
-      {/* Quick start */}
-      <div
-        className="rounded-2xl border p-8"
-        style={{
-          borderColor: 'var(--color-outline)',
-          background: 'var(--color-surface-container-low)',
-        }}
-      >
-        <h3
-          className="text-sm font-semibold mb-4"
-          style={{ color: 'var(--color-on-surface)' }}
-        >
-          Quick Start
-        </h3>
-        <pre
-          className="rounded-xl p-4 text-sm overflow-x-auto mb-3"
-          style={{
-            background: 'var(--color-surface-dim)',
-            border: '1px solid var(--color-outline)',
-            color: 'var(--color-on-surface)',
-          }}
-        >
-          <code>npm install @tarmac/design-system</code>
-        </pre>
-        <pre
-          className="rounded-xl p-4 text-sm overflow-x-auto"
-          style={{
-            background: 'var(--color-surface-dim)',
-            border: '1px solid var(--color-outline)',
-            color: 'var(--color-on-surface)',
-          }}
-        >
-          <code>{`import { Button } from '@tarmac/design-system';
-
-<Button variant="primary">Get Started</Button>`}</code>
-        </pre>
       </div>
     </div>
   );

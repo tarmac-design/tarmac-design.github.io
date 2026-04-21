@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
+import { TarmacLogoCompact } from './TarmacLogo';
 
 const topNav = [
   { label: 'Get started', href: '/about/overview' },
@@ -23,27 +24,25 @@ export function TopBar() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 h-[var(--topbar-height)] flex items-center px-6 border-b"
+      className="fixed top-0 left-0 right-0 z-50 h-[var(--topbar-height)] flex items-center px-6 border-b backdrop-blur-sm"
       style={{
-        background: 'var(--color-surface)',
+        background: 'color-mix(in srgb, var(--color-surface) 90%, transparent)',
         borderColor: 'var(--color-outline)',
       }}
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-2.5 mr-10 shrink-0">
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{ background: 'var(--color-primary)' }}
-        >
-          <span className="text-white font-bold text-sm">T</span>
-        </div>
+        <TarmacLogoCompact size={32} />
         <div className="flex flex-col leading-tight">
-          <span className="font-semibold text-sm" style={{ color: 'var(--color-on-surface)' }}>
-            TARMAC
+          <span
+            className="font-bold text-[13px] tracking-wide"
+            style={{ color: 'var(--color-on-surface)' }}
+          >
+            <span style={{ color: '#ED1B36' }}>T</span>ARMAC
           </span>
           <span
-            className="text-[10px] tracking-widest uppercase"
-            style={{ color: 'var(--color-on-surface-variant)' }}
+            className="text-[9px] tracking-[0.15em] uppercase font-medium"
+            style={{ color: 'var(--color-primary)' }}
           >
             Design System
           </span>
@@ -72,20 +71,6 @@ export function TopBar() {
 
       {/* Right side */}
       <div className="flex items-center gap-3 ml-auto">
-        {/* Storybook link */}
-        <a
-          href="https://tarmac-storybook-dev.pntrzz.com/storybook/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
-          style={{
-            color: 'var(--color-on-surface-variant)',
-            border: '1px solid var(--color-outline)',
-          }}
-        >
-          Storybook ↗
-        </a>
-
         {/* GitHub */}
         <a
           href="https://github.com/abhishekthakur3-sketch/TDS"

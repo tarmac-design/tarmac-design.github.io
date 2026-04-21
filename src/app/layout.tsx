@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { TopBar } from '@/components/TopBar';
 import { Sidebar } from '@/components/Sidebar';
+import { GeometricPattern } from '@/components/GeometricPattern';
 
 export const metadata: Metadata = {
   title: 'TARMAC Design System',
@@ -17,8 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
+          <GeometricPattern />
           <TopBar />
-          <div className="flex pt-[var(--topbar-height)]">
+          <div className="relative z-10 flex pt-[var(--topbar-height)]">
             <Sidebar />
             <main className="flex-1">{children}</main>
           </div>
