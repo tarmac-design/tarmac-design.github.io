@@ -91,7 +91,7 @@ export default function Home() {
           >
             Build consistent
             <br />
-            <span className="bg-gradient-to-r from-tarmac-red to-tarmac-blue bg-clip-text text-transparent">
+            <span style={{ color: '#ED1B36' }}>
               Delhivery experiences
             </span>
           </h1>

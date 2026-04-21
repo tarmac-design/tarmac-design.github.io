@@ -34,6 +34,44 @@ export default function TypographyPage() {
           <tr><td>Bold</td><td>700</td><td>Display, strong emphasis</td></tr>
         </tbody>
       </table>
+
+      <h2>Visual Styles</h2>
+      {[
+        { name: 'Display', size: '36px', weight: 700, lh: '44px' },
+        { name: 'Heading 1', size: '30px', weight: 700, lh: '38px' },
+        { name: 'Heading 2', size: '24px', weight: 600, lh: '32px' },
+        { name: 'Body', size: '14px', weight: 400, lh: '22px' },
+      ].map((s) => (
+        <div key={s.name} className="p-5 rounded-xl border mb-4" style={{ borderColor: 'var(--color-outline)' }}>
+          <p style={{ fontSize: s.size, fontWeight: s.weight, lineHeight: s.lh, color: 'var(--color-on-surface)' }}>
+            The quick brown fox jumps over the lazy dog
+          </p>
+          <p className="text-xs mt-2" style={{ color: 'var(--color-on-surface-variant)' }}>
+            {s.name} — {s.size} / {s.weight} / {s.lh} line-height
+          </p>
+        </div>
+      ))}
+
+      <h2>Implementation</h2>
+      <h3>CSS Custom Properties</h3>
+      <pre><code>{`:root {
+  --font-family-primary: 'Noto Sans', system-ui, sans-serif;
+  --font-size-display: 36px;
+  --font-size-h1: 30px;
+  --font-size-h2: 24px;
+  --font-size-h3: 20px;
+  --font-size-h4: 16px;
+  --font-size-body-lg: 16px;
+  --font-size-body: 14px;
+  --font-size-body-sm: 12px;
+}`}</code></pre>
+
+      <h3>React Usage</h3>
+      <pre><code>{`import { Text, Heading } from '@tarmac/design-system';
+
+<Heading level={1}>Page Title</Heading>
+<Text size="body">Body content here</Text>
+<Text size="sm" color="secondary">Helper text</Text>`}</code></pre>
     </PageShell>
   );
 }

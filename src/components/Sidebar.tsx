@@ -25,18 +25,12 @@ const sectionMap: Record<string, Section[]> = {
   foundations: [
     { title: 'Colors', icon: '🎨', items: [
       { label: 'Colors', href: '/foundations/colors' },
-      { label: 'Color Palette', href: '/foundations/colors-palette' },
-      { label: 'Colors Implementation', href: '/foundations/colors-implementation' },
     ]},
     { title: 'Typography', icon: '🔤', items: [
       { label: 'Typography', href: '/foundations/typography' },
-      { label: 'Typography Styles', href: '/foundations/typography-styles' },
-      { label: 'Typography Implementation', href: '/foundations/typography-implementation' },
     ]},
     { title: 'Grid', icon: '📐', items: [
       { label: 'Grid System', href: '/foundations/grid-system' },
-      { label: 'Grid Advanced', href: '/foundations/grid-advanced' },
-      { label: 'Grid Implementation', href: '/foundations/grid-implementation' },
     ]},
     { title: 'Tokens', icon: '🎯', items: [
       { label: 'Iconography', href: '/foundations/iconography' },
