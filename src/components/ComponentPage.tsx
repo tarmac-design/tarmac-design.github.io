@@ -59,19 +59,28 @@ interface ComponentPageProps {
 
 export function ComponentPage({ name, description, slug, children }: ComponentPageProps) {
   const storyPath = slug ? storybookPaths[slug] : undefined;
-  const sbBase = 'https://tarmac-storybook-dev.pntrzz.com/storybook/';
+  const sbBase = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
   const sbUrl = storyPath
-    ? `${sbBase}iframe.html?id=${storyPath}&viewMode=story&embed=true`
-    : sbBase;
+    ? `${sbBase}/sb/iframe.html?id=${storyPath}&viewMode=story`
+    : undefined;
+
+  const fullStorybookUrl = storyPath
+    ? `https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/${storyPath}`
+    : 'https://tarmac-storybook-dev.pntrzz.com/storybook/';
 
   return (
     <PageShell title={name} description={description}>
-      <h2>Live Demo</h2>
-      <StorybookEmbed
-        url={sbUrl}
-        height={400}
-        title={`${name} — TARMAC Storybook`}
-      />
+      {sbUrl && (
+        <>
+          <h2>Live Demo</h2>
+          <StorybookEmbed
+            url={sbUrl}
+            storybookUrl={fullStorybookUrl}
+            height={420}
+            title={`${name} — TARMAC Storybook`}
+          />
+        </>
+      )}
       {children}
     </PageShell>
   );
