@@ -75,16 +75,6 @@ export default function Home() {
           }}
         />
         <div className="relative max-w-4xl mx-auto px-6 sm:px-8 pt-14 pb-16">
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-6"
-            style={{
-              background: 'var(--color-primary-container)',
-              color: 'var(--color-primary)',
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-tarmac-red animate-pulse" />
-            v2.0 — Design System
-          </div>
           <h1
             className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight mb-5 leading-[1.1]"
             style={{ color: 'var(--color-on-surface)' }}
@@ -99,7 +89,7 @@ export default function Home() {
             className="text-base sm:text-lg max-w-2xl leading-relaxed mb-8"
             style={{ color: 'var(--color-on-surface-variant)' }}
           >
-            TARMAC is the single source of truth for design decisions, UI components, and interaction patterns across Delhivery products.
+            TARMAC Design System is the single source of truth for design decisions, UI components, and interaction patterns across Delhivery products.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link

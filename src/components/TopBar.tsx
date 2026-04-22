@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
-import { TarmacLogoCompact } from './TarmacLogo';
 
 const topNav = [
   { label: 'About', href: '/about/overview', section: 'about' },
@@ -33,16 +33,23 @@ export function TopBar() {
       }}
     >
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-2.5 mr-8 shrink-0">
-        <TarmacLogoCompact size={30} />
-        <div className="hidden sm:flex flex-col leading-tight">
-          <span className="font-bold text-[13px] tracking-wide" style={{ color: 'var(--color-on-surface)' }}>
-            <span style={{ color: '#ED1B36' }}>T</span>ARMAC
-          </span>
-          <span className="text-[9px] tracking-[0.12em] font-medium" style={{ color: 'var(--color-on-surface-variant)' }}>
-            DESIGN SYSTEM
-          </span>
-        </div>
+      <Link href="/" className="flex items-center mr-8 shrink-0">
+        <Image
+          src="/tarmac-logo-light.png"
+          alt="TARMAC Design System"
+          width={140}
+          height={36}
+          className={theme === 'light' ? 'block' : 'hidden'}
+          priority
+        />
+        <Image
+          src="/tarmac-logo-dark.png"
+          alt="TARMAC Design System"
+          width={140}
+          height={36}
+          className={theme === 'dark' ? 'block' : 'hidden'}
+          priority
+        />
       </Link>
 
       {/* Nav */}
