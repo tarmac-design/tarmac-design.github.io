@@ -202,49 +202,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick start */}
-      <section className="max-w-4xl mx-auto px-6 sm:px-8 pb-16">
-        <div
-          className="rounded-2xl border p-6 sm:p-8"
-          style={{
-            borderColor: 'var(--color-outline)',
-            background: 'var(--color-surface-container-low)',
-          }}
-        >
-          <h3 className="font-bold text-base mb-1" style={{ color: 'var(--color-on-surface)' }}>
-            Quick Start
-          </h3>
-          <p className="text-sm mb-5" style={{ color: 'var(--color-on-surface-variant)' }}>
-            Get up and running in under a minute.
-          </p>
-          <div className="space-y-2.5">
-            <div
-              className="rounded-xl border p-4 overflow-x-auto"
-              style={{
-                background: 'var(--color-surface-dim)',
-                borderColor: 'var(--color-outline)',
-              }}
-            >
-              <code className="text-sm font-mono" style={{ color: 'var(--color-on-surface)' }}>
-                npm install @tarmac/design-system
-              </code>
-            </div>
-            <div
-              className="rounded-xl border p-4 overflow-x-auto"
-              style={{
-                background: 'var(--color-surface-dim)',
-                borderColor: 'var(--color-outline)',
-              }}
-            >
-              <pre className="text-sm font-mono leading-relaxed" style={{ color: 'var(--color-on-surface)' }}>
-{`import { Button } from '@tarmac/design-system';
 
-<Button variant="primary">Get Started</Button>`}
-              </pre>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
