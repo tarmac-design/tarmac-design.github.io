@@ -1,7 +1,6 @@
 'use client';
 
 import { MdxProvider } from '@/components/MdxProvider';
-import { PageFooter } from '@/components/PageFooter';
 import { TableOfContents } from '@/components/TableOfContents';
 
 export function PageShell({
@@ -49,7 +48,7 @@ export function PageShell({
           </div>
         </div>
       </div>
-      <PageFooter />
+
     </>
   );
 }

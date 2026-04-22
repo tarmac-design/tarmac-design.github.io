@@ -84,7 +84,6 @@ const allPages = [
 
 export function PageFooter() {
   const pathname = usePathname();
-  if (pathname === '/') return null;
 
   const idx = allPages.findIndex((p) => p.href === pathname);
   const prev = idx > 0 ? allPages[idx - 1] : null;
