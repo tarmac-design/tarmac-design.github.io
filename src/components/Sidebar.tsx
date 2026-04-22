@@ -7,11 +7,11 @@ type Section = { title: string; icon: string; items: { label: string; href: stri
 
 const getStartedSections: Section[] = [
   { title: 'Get Started', icon: '🚀', items: [
-    { label: 'Overview', href: '/about/overview' },
+    { label: 'Introduction to TARMAC', href: '/about/overview' },
     { label: 'Philosophy', href: '/about/philosophy' },
     { label: 'Brand Language', href: '/about/brand-language' },
     { label: 'Movement Metaphors', href: '/about/movement-metaphors' },
-    { label: 'Logo', href: '/about/logo' },
+    { label: 'TARMAC Logo', href: '/about/logo' },
   ]},
   { title: 'Setup', icon: '⚙️', items: [
     { label: 'Installation', href: '/getting-started/installation' },
@@ -101,19 +101,19 @@ const sectionMap: Record<string, Section[]> = {
   ],
   patterns: [
     { title: 'Patterns', icon: '🔷', items: [
-      { label: 'Layout', href: '/patterns/layout' },
-      { label: 'Forms', href: '/patterns/forms' },
+      { label: 'Layout Patterns', href: '/patterns/layout' },
+      { label: 'Form Patterns', href: '/patterns/forms' },
     ]},
   ],
   accessibility: [
     { title: 'Accessibility', icon: '♿', items: [
-      { label: 'Overview', href: '/accessibility/overview' },
-      { label: 'Guidelines', href: '/accessibility/guidelines' },
+      { label: 'Accessibility', href: '/accessibility/overview' },
+      { label: 'Accessibility Guidelines', href: '/accessibility/guidelines' },
       { label: 'Keyboard Navigation', href: '/accessibility/keyboard-navigation' },
       { label: 'Screen Readers', href: '/accessibility/screen-readers' },
       { label: 'Color Contrast', href: '/accessibility/color-contrast' },
       { label: 'Focus Management', href: '/accessibility/focus-management' },
-      { label: 'Testing', href: '/accessibility/testing' },
+      { label: 'Accessibility Testing', href: '/accessibility/testing' },
     ]},
   ],
 };
