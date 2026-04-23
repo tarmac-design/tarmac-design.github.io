@@ -1,13 +1,13 @@
 {
   "enabled": true,
   "name": "Git Sync Check",
-  "description": "Before starting any task, check if the remote has new commits from collaborators and pull if needed",
+  "description": "Before starting any task, check if the remote has new commits from collaborators. If new commits exist, show the user WHO pushed WHAT and ask before rebasing.",
   "version": "1",
   "when": {
     "type": "promptSubmit"
   },
   "then": {
     "type": "askAgent",
-    "prompt": "Before doing anything else, run `git fetch origin main` and compare with `git log HEAD..origin/main --oneline`. If there are new commits from collaborators, inform the user and run `git pull --rebase origin main` to sync before proceeding. If already up to date, proceed silently."
+    "prompt": "Before doing anything else, run `git fetch origin main` and compare with `git log HEAD..origin/main --oneline`. If there are new commits from collaborators, ALWAYS inform the user with details: show the commit hashes, authors, and messages using `git log HEAD..origin/main --format='%h | %an | %ar | %s'`. Also show changed files with `git diff --stat HEAD..origin/main`. Ask the user if they want to pull/rebase before proceeding. If already up to date, proceed silently."
   }
 }

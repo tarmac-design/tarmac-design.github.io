@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
@@ -29,6 +29,8 @@ export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Array<{ x: number; y: number; vx: number; vy: number; life: number; size: number }>>([]);
   const animFrameRef = useRef<number>(0);
+  const youCursorRef = useRef<HTMLDivElement>(null);
+  const [showYou, setShowYou] = useState(false);
 
   // Particle trail animation
   const animateParticles = useCallback(() => {
@@ -77,6 +79,12 @@ export default function Home() {
     glowRef.current.style.webkitMaskImage = `radial-gradient(300px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
     glowRef.current.style.opacity = '1';
 
+    // Move "You" cursor
+    if (youCursorRef.current) {
+      youCursorRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    }
+    if (!showYou) setShowYou(true);
+
     // Spawn particles
     const canvas = canvasRef.current;
     if (canvas) {
@@ -105,6 +113,7 @@ export default function Home() {
 
   const handleMouseLeave = useCallback(() => {
     if (glowRef.current) glowRef.current.style.opacity = '0';
+    setShowYou(false);
   }, []);
 
   return (
@@ -115,7 +124,7 @@ export default function Home() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative overflow-hidden"
-        style={{ background: theme === 'dark' ? '#000000' : '#F0F0F0', minHeight: '100vh', display: 'flex', alignItems: 'center' }}
+        style={{ background: theme === 'dark' ? '#000000' : '#F0F0F0', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
       >
         {/* Subtle geometric pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -142,12 +151,50 @@ export default function Home() {
           ref={canvasRef}
           className="absolute inset-0 pointer-events-none z-10"
         />
+        {/* "You" cursor — follows user's mouse */}
+        <div
+          ref={youCursorRef}
+          className="absolute top-0 left-0 pointer-events-none z-30 hidden sm:flex flex-col items-start transition-opacity duration-150"
+          style={{ opacity: showYou ? 1 : 0, willChange: 'transform' }}
+        >
+          <svg width="22" height="26" viewBox="0 0 16 20" fill="none">
+            <path d="M0 0L16 12L8 12L4 20L0 0Z" fill="#CF9F02"/>
+          </svg>
+          <span
+            className="px-3 py-1.5 rounded-full text-[13px] font-bold whitespace-nowrap shadow-lg -mt-1 ml-3"
+            style={{ background: '#CF9F02', color: '#000', border: '2px solid rgba(255,255,255,0.25)' }}
+          >
+            You
+          </span>
+        </div>
         <div className="relative max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-28 w-full z-20">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.08]"
-            style={{ color: theme === 'dark' ? '#FFFFFF' : '#0D0D0D' }}>
-            Build great experiences<br />
-            with <span style={{ color: '#ED1B36' }}>TARMAC</span>
-          </h1>
+          <div className="relative">
+            {/* Animated multiplayer cursors — positioned in corners away from text */}
+            {[
+              { name: 'Abhishek', color: '#ED1B36', pos: { top: '-100px', left: '-10%' }, anim: 'cursorFloat1 16s ease-in-out infinite' },
+              { name: 'Rohan', color: '#2396FB', pos: { top: '-50px', right: '0%' }, anim: 'cursorFloat2 20s ease-in-out infinite' },
+              { name: 'Abhijeet', color: '#1BA86E', pos: { bottom: '-50px', right: '20%' }, anim: 'cursorFloat3 18s ease-in-out infinite' },
+              { name: 'Arpith', color: '#A855F7', pos: { top: '-90px', left: '22%' }, anim: 'cursorFloat4 22s ease-in-out infinite' },
+            ].map((c) => (
+              <div key={c.name} className="absolute pointer-events-none hidden sm:flex flex-col items-start" style={{ ...c.pos, animation: c.anim }}>
+                <svg width="20" height="24" viewBox="0 0 16 20" fill="none">
+                  <path d="M0 0L16 12L8 12L4 20L0 0Z" fill={c.color}/>
+                </svg>
+                <span
+                  className="px-3 py-1.5 rounded-full text-[13px] font-bold whitespace-nowrap shadow-lg -mt-1 ml-3"
+                  style={{ background: c.color, color: '#fff', border: '2px solid rgba(255,255,255,0.25)' }}
+                >
+                  {c.name}
+                </span>
+              </div>
+            ))}
+
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]"
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#0D0D0D' }}>
+              Build great experiences<br />
+              with <span style={{ color: '#ED1B36' }}>TARMAC</span>
+            </h1>
+          </div>
           <p className="text-lg sm:text-xl max-w-2xl leading-relaxed mb-10"
             style={{ color: theme === 'dark' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.55)' }}>
             Delhivery&apos;s unified design system — the single source of truth for design decisions, UI components, and interaction patterns.

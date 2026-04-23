@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Collaborator Change Report",
+  "description": "After every prompt, fetch remote and show a detailed report of any new collaborator commits — who pushed, what files changed, and commit messages. Gives the user full visibility before proceeding.",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "git fetch origin main 2>/dev/null; COMMITS=$(git log HEAD..origin/main --oneline 2>/dev/null); if [ -n \"$COMMITS\" ]; then echo \"🚨 NEW COLLABORATOR COMMITS DETECTED:\"; echo \"---\"; git log HEAD..origin/main --format='%h | %an | %ar | %s' 2>/dev/null; echo \"---\"; echo \"FILES CHANGED:\"; git diff --stat HEAD..origin/main 2>/dev/null; echo \"---\"; echo \"⚠️ Run: git pull --rebase origin main to sync\"; else echo \"✅ Up to date with origin/main — no new collaborator commits.\"; fi",
+    "timeout": 15
+  }
+}
