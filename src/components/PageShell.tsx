@@ -28,7 +28,7 @@ export function PageShell({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     glowRef.current.style.maskImage = `radial-gradient(250px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
-    glowRef.current.style.webkitMaskImage = `radial-gradient(250px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
+    (glowRef.current.style as unknown as Record<string, string>)['webkitMaskImage'] = `radial-gradient(250px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
     glowRef.current.style.opacity = '1';
   }, []);
 
