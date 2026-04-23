@@ -149,7 +149,7 @@ export function TopBar() {
           <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={(onHero || theme === 'dark') ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-0.5 ml-auto mr-1">
+        <nav className="hidden md:flex items-center gap-1 ml-auto mr-4">
           {topNav.map((item) => (
             <Link key={item.href} href={item.href}
               className="px-3 py-1.5 text-[13px] font-medium rounded-lg transition-colors"
@@ -163,7 +163,7 @@ export function TopBar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           <button onClick={() => setSearchOpen(true)} className="p-2 rounded-lg transition-colors" style={{ color: onHero ? 'rgba(255,255,255,0.85)' : 'var(--color-on-surface-variant)' }} aria-label="Search">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
