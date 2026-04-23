@@ -83,7 +83,7 @@ const searchablePages = [
   { label: 'Screen Readers', href: '/accessibility/screen-readers', section: 'Accessibility' },
 ];
 
-export function TopBar() {
+export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
@@ -153,6 +153,13 @@ export function TopBar() {
           {/* Dark BG logo = white text, for: dark theme always */}
           <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={theme === 'dark' ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
         </Link>
+
+        {/* Mobile hamburger */}
+        {onMenuClick && (
+          <button onClick={onMenuClick} className="lg:hidden p-2 rounded-lg mr-2" style={{ color: heroTextColor }} aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        )}
 
         <nav className="hidden md:flex items-center gap-1 ml-auto mr-4">
           {topNav.map((item) => (
