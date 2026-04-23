@@ -137,20 +137,20 @@ export function TopBar() {
         }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0 p-1">
+        <Link href="/" className="flex items-center shrink-0 p-2">
           <img
             src="/tarmac-logo-light.svg"
             alt="TARMAC Design System"
-            height={28}
+            height={24}
             className={theme === 'light' ? 'block' : 'hidden'}
-            style={{ height: '28px', width: 'auto' }}
+            style={{ height: '24px', width: 'auto' }}
           />
           <img
             src="/tarmac-logo-dark.svg"
             alt="TARMAC Design System"
-            height={28}
+            height={24}
             className={theme === 'dark' ? 'block' : 'hidden'}
-            style={{ height: '28px', width: 'auto' }}
+            style={{ height: '24px', width: 'auto' }}
           />
         </Link>
 

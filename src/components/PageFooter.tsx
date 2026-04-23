@@ -91,7 +91,6 @@ export function PageFooter() {
 
   return (
     <footer className="content-area pb-16 px-8">
-      <div className="max-w-3xl mx-auto">
       {/* Prev / Next navigation */}
       {(prev || next) && (
         <div
@@ -191,7 +190,6 @@ export function PageFooter() {
         >
           © {new Date().getFullYear()} Delhivery Ltd. All rights reserved.
         </div>
-      </div>
       </div>
     </footer>
   );
