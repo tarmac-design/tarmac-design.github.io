@@ -62,12 +62,11 @@ export function PageShell({
           }}
         />
 
-        {/* Title + tabs — constrained width, left-aligned */}
-        {/* Spacer — pushes title to 60% of section */}
-        <div className="flex-[6]" />
+        {/* Spacer — pushes title to vertical center */}
+        <div className="flex-1" />
         <div className="relative w-[75%] mx-auto px-6">
           <h1
-            className="text-[2rem] font-bold tracking-tight mb-2 leading-tight"
+            className="text-[2.5rem] font-bold tracking-tight mb-2 leading-tight"
             style={{ color: 'var(--color-on-surface)' }}
           >
             {title}
@@ -78,8 +77,8 @@ export function PageShell({
             </p>
           )}
         </div>
-        {/* Spacer below text */}
-        <div className="flex-[4]" />
+        {/* Equal spacer below */}
+        <div className="flex-1" />
 
         {/* Tabs — left aligned with title, pinned to bottom */}
         <div className="relative w-[75%] mx-auto px-6">
