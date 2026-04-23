@@ -149,7 +149,7 @@ export function TopBar() {
           <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={(onHero || theme === 'dark') ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
         </Link>
 
-        <nav className="hidden md:flex items-center justify-center gap-0.5 flex-1">
+        <nav className="hidden md:flex items-center gap-0.5 ml-auto mr-1">
           {topNav.map((item) => (
             <Link key={item.href} href={item.href}
               className="px-3 py-1.5 text-[13px] font-medium rounded-lg transition-colors"
