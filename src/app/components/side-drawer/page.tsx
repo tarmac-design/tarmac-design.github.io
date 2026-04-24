@@ -2,7 +2,7 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -206,6 +206,12 @@ function DrawerExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-side-drawer--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-side-drawer--playground"
+        height={420}
+        title="Side Drawer — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Side Drawers are slide-in panels that provide navigation or supplementary content. They appear from the left or right edge of the screen with an overlay backdrop.</p>
       <table>

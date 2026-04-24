@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -214,6 +214,12 @@ function SearchExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-search-dropdown--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-search-dropdown--playground"
+        height={420}
+        title="Search — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Search components provide text input with search affordances — magnifying glass icon, clear button, suggestion dropdowns, and command palette interfaces.</p>
       <table>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -164,6 +164,12 @@ function PopupExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-popup--playground"
+        height={420}
+        title="Popups — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Popups are overlay elements that appear near a trigger element. They include tooltips, popovers, context menus, and confirmation dialogs — all positioned with an arrow pointing to the trigger.</p>
       <table>

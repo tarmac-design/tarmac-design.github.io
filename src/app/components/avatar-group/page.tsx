@@ -9,6 +9,12 @@ const SB_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-avatar--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-avatar--playground"
+        height={420}
+        title="Avatar Group — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>
         Avatar Groups display multiple participants together in a compact, overlapping layout.
