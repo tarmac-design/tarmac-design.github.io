@@ -1,7 +1,66 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { MdxProvider } from '@/components/MdxProvider';
+
+/* ── Copy button injector for all <pre> code blocks ── */
+function CopyCodeButtons({ containerRef, deps }: { containerRef: React.RefObject<HTMLDivElement | null>; deps?: unknown }) {
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Small delay to let React render the tab content
+    const timer = setTimeout(() => {
+      // Remove any previously injected buttons (on tab switch)
+      container.querySelectorAll('.copy-code-btn').forEach(btn => btn.remove());
+
+      const pres = container.querySelectorAll('pre');
+      pres.forEach((pre) => {
+        pre.style.position = 'relative';
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-code-btn';
+        btn.setAttribute('aria-label', 'Copy code');
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+        Object.assign(btn.style, {
+          position: 'absolute', top: '8px', right: '8px', padding: '6px',
+          borderRadius: '6px', border: '1px solid var(--color-outline)',
+          background: 'var(--color-surface)', color: 'var(--color-on-surface-variant)',
+          cursor: 'pointer', opacity: '0', transition: 'opacity 0.15s ease',
+          zIndex: '5', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        });
+
+        pre.addEventListener('mouseenter', () => { btn.style.opacity = '1'; });
+        pre.addEventListener('mouseleave', () => { if (!btn.dataset.copied) btn.style.opacity = '0'; });
+
+        btn.addEventListener('click', async () => {
+          const code = pre.querySelector('code');
+          const text = code ? code.textContent || '' : pre.textContent || '';
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch {
+            const ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1BA86E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>`;
+          btn.dataset.copied = '1'; btn.style.opacity = '1';
+          setTimeout(() => {
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+            delete btn.dataset.copied; btn.style.opacity = '0';
+          }, 1500);
+        });
+
+        pre.appendChild(btn);
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [containerRef, deps]);
+
+  return null;
+}
 
 export function PageShell({
   title,
@@ -21,6 +80,7 @@ export function PageShell({
   const [activeTab, setActiveTab] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!bannerRef.current || !glowRef.current) return;
@@ -102,8 +162,9 @@ export function PageShell({
       </div>
 
       {/* Tab content — same constrained width */}
-      <div className="w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 py-6 sm:py-8 mdx-content">
+      <div className="w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 py-6 sm:py-8 mdx-content" ref={contentRef}>
         <MdxProvider>{allTabs[activeTab].content}</MdxProvider>
+        <CopyCodeButtons containerRef={contentRef} deps={activeTab} />
       </div>
     </div>
   );
