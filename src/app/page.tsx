@@ -5,6 +5,7 @@ import { useRef, useCallback, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
+import { GrainOverlay } from '@/components/GrainOverlay';
 
 const foundations = [
   { title: 'Colors', desc: 'A 3-layer color architecture — Core, Semantic, and Usage tokens.', href: '/foundations/colors' },
@@ -60,26 +61,43 @@ export default function Home() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative overflow-hidden"
-        style={{ background: theme === 'dark' ? '#000000' : '#F0F0F0', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
+        style={{ background: theme === 'dark' ? '#0A0A0A' : '#F0F0F0', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
       >
-        {/* Subtle geometric pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
+        {/* Road/tarmac texture background */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/images/road-texture.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0" style={{
+          background: theme === 'dark'
+            ? 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.4) 100%)'
+            : 'rgba(255,255,255,0.99)',
+        }} />
+        {/* Film grain overlay */}
+        <GrainOverlay opacity={0.15} blendMode="overlay" size={3} type="film" />
+        {/* Clean grid mesh pattern */}
+        <div className="absolute inset-0 opacity-[0.05]" style={{
           backgroundImage: theme === 'dark'
-            ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            ? `linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`
+            : `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
+          backgroundSize: '48px 48px',
         }} />
         <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 40%)`,
         }} />
-        {/* Mouse glow — 20% near cursor */}
+        {/* Mouse glow — reveals mesh lines near cursor */}
         <div
           ref={glowRef}
           className="absolute inset-0 pointer-events-none transition-opacity duration-300"
           style={{
             opacity: 0,
             backgroundImage: theme === 'dark'
-              ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-              : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              ? `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`
+              : `linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.12) 1px, transparent 1px)`,
+            backgroundSize: '48px 48px',
           }}
         />
         {/* "You" cursor — follows user's mouse */}

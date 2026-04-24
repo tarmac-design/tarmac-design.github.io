@@ -302,3 +302,11 @@ html, body { overflow-x: hidden; }
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* TopBar nav hover */
+[data-theme='light'] .hover\:bg-white\/10:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+[data-theme='dark'] .hover\:bg-white\/10:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}

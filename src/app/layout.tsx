@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { LayoutShell } from '@/components/LayoutShell';
-import { CursorGlow } from '@/components/CursorGlow';
 import { SmoothScroll } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         <ThemeProvider>
           <SmoothScroll />
-          <CursorGlow />
           <div id="smooth-wrapper">
             <LayoutShell>{children}</LayoutShell>
           </div>

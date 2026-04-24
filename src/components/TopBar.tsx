@@ -135,18 +135,10 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       <header
         className="fixed top-0 left-0 right-0 h-16 z-50 flex items-center px-5 transition-colors duration-300 overflow-hidden"
         style={{
-          background: onHero ? (theme === 'dark' ? '#000000' : '#F0F0F0') : 'var(--color-surface)',
+          background: onHero ? 'transparent' : 'var(--color-surface)',
           borderBottom: onHero ? 'none' : '1px solid var(--color-outline)',
         }}
       >
-        {/* + pattern on header when on hero */}
-        {onHero && (
-          <div className="absolute inset-0 opacity-[0.07] pointer-events-none" style={{
-            backgroundImage: theme === 'dark'
-              ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-              : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        )}
         <Link href="/" className="flex items-center shrink-0 mr-6 py-2">
           {/* Light BG logo = dark text, for: light theme always */}
           <img src="/tarmac-logo-light.svg" alt="TARMAC Design System" className={theme === 'light' ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
@@ -162,17 +154,24 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         )}
 
         <nav className="hidden md:flex items-center gap-1 ml-auto mr-4">
-          {topNav.map((item) => (
-            <Link key={item.href} href={item.href}
-              className="px-3 py-1.5 text-[13px] font-medium rounded-lg transition-colors"
-              style={{
-                color: onHero
-                  ? heroTextColor
-                  : isActive(item.section) ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
-                background: !onHero && isActive(item.section) ? 'var(--color-primary-container)' : 'transparent',
-              }}
-            >{item.label}</Link>
-          ))}
+          {topNav.map((item) => {
+            const active = isActive(item.section);
+            return (
+              <Link key={item.href} href={item.href}
+                className="relative px-3 py-1.5 text-[13px] font-medium rounded-lg transition-all duration-200 hover:bg-white/10"
+                style={{
+                  color: onHero
+                    ? heroTextColor
+                    : active ? 'var(--color-on-surface)' : 'var(--color-on-surface-variant)',
+                }}
+              >
+                {item.label}
+                {active && !onHero && (
+                  <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full" style={{ background: 'var(--color-primary)' }} />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2 shrink-0">
