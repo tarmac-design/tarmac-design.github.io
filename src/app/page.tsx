@@ -26,47 +26,8 @@ export default function Home() {
   const { theme } = useTheme();
   const heroRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Array<{ x: number; y: number; vx: number; vy: number; life: number; size: number }>>([]);
-  const animFrameRef = useRef<number>(0);
   const youCursorRef = useRef<HTMLDivElement>(null);
   const [showYou, setShowYou] = useState(false);
-
-  // Particle trail animation
-  const animateParticles = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const particles = particlesRef.current;
-
-    for (let i = particles.length - 1; i >= 0; i--) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.life -= 0.02;
-      p.size *= 0.98;
-
-      if (p.life <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
-
-      const isDark = theme === 'dark';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = isDark
-        ? `rgba(237, 27, 54, ${p.life * 0.4})`
-        : `rgba(237, 27, 54, ${p.life * 0.25})`;
-      ctx.fill();
-    }
-
-    if (particles.length > 0) {
-      animFrameRef.current = requestAnimationFrame(animateParticles);
-    }
-  }, [theme]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!heroRef.current || !glowRef.current) return;
@@ -84,32 +45,7 @@ export default function Home() {
       youCursorRef.current.style.transform = `translate(${x}px, ${y}px)`;
     }
     if (!showYou) setShowYou(true);
-
-    // Spawn particles
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      for (let i = 0; i < 3; i++) {
-        particlesRef.current.push({
-          x,
-          y,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          life: 1,
-          size: Math.random() * 3 + 1,
-        });
-      }
-      if (particlesRef.current.length <= 3) {
-        animFrameRef.current = requestAnimationFrame(animateParticles);
-      }
-    }
-
-    // Keep particles capped
-    if (particlesRef.current.length > 80) {
-      particlesRef.current.splice(0, particlesRef.current.length - 80);
-    }
-  }, [animateParticles]);
+  }, [showYou]);
 
   const handleMouseLeave = useCallback(() => {
     if (glowRef.current) glowRef.current.style.opacity = '0';
@@ -145,11 +81,6 @@ export default function Home() {
               ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
               : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
-        />
-        {/* Particle canvas */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 pointer-events-none z-10"
         />
         {/* "You" cursor — follows user's mouse */}
         <div
