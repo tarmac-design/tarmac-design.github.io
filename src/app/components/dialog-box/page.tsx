@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -222,6 +222,12 @@ function DialogExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-dialog-box--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-dialog-box--playground"
+        height={420}
+        title="Dialog Box — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>
         Dialog boxes are modal overlays that require user attention and action.

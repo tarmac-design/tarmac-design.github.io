@@ -23,6 +23,12 @@ const avatarStories = [
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-avatar--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-avatar--playground"
+        height={420}
+        title="Avatar — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>
         Avatars represent people, entities, or ownership within the interface. They provide quick visual identification,

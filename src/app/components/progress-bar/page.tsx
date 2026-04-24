@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -164,6 +164,12 @@ function ExamplesTab() {
 
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-progressbar--playground-with-text&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-progressbar--playground-with-text"
+        height={420}
+        title="Progress Bar — TARMAC Storybook"
+      />
       <style>{indeterminateKeyframes}</style>
 
       <h2>Overview</h2>

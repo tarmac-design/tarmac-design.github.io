@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection, type PreviewSize, type PreviewTheme } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -96,6 +96,12 @@ function LinkDemo({
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-link--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-link--playground"
+        height={420}
+        title="Links — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Links are text-based hyperlinks used for navigation. They guide users to other pages, sections, or external resources using styled anchor-like text elements.</p>
       <table>

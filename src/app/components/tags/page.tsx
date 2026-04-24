@@ -2,7 +2,7 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -224,6 +224,12 @@ function ExamplesTab() {
 
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-chip--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-chip--playground"
+        height={420}
+        title="Tags — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>
         Tags are compact keyword labels used for content categorization and tagging.

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -167,6 +167,12 @@ function HeaderExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-popupheaderfooter--header-playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-popupheaderfooter--header-playground"
+        height={420}
+        title="Header — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Headers provide top-level navigation, branding, search, and user account access. They anchor the page and adapt to different contexts with variant support.</p>
       <table>

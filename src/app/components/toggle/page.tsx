@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -160,6 +160,12 @@ function ToggleDemo({
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-toggle--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-toggle--playground"
+        height={420}
+        title="Toggle — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>
         Toggles (switches) are binary on/off controls that let users enable or disable a setting instantly.

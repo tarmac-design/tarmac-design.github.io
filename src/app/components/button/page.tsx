@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { DoDont } from '@/components/mdx';
+import { StorybookEmbed, DoDont } from '@/components/mdx';
 import { ComponentExampleSection, type PreviewSize, type PreviewTheme } from '@/components/ComponentPreview';
 
 const sizeMap: Record<PreviewSize, number> = { xs: 24, sm: 28, md: 36, lg: 44, xl: 48 };
@@ -56,6 +56,12 @@ function ButtonDemo({ label, variant, style: btnStyle, size, theme, disabled, lo
 function ExamplesTab() {
   return (
     <>
+      <StorybookEmbed
+        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-button--playground&viewMode=story"
+        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-button--playground"
+        height={420}
+        title="Button — TARMAC Storybook"
+      />
       <h2>Overview</h2>
       <p>Buttons are interactive elements used to initiate actions such as submitting data, confirming decisions, or triggering system processes.</p>
       <table>
