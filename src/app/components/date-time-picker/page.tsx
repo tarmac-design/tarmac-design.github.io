@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -229,12 +230,7 @@ function DateTimeExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-datepicker--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-datepicker--playground"
-        height={420}
-        title="Date Time Picker — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="date-time-picker" />
       <h2>Overview</h2>
       <p>
         The Date Time Picker allows users to select dates, times, or date-time combinations

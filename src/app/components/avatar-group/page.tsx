@@ -1,7 +1,8 @@
 'use client';
 
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { AvatarExampleSection } from '../avatar/AvatarPreview';
 
 const SB_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
@@ -9,12 +10,7 @@ const SB_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-avatar--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-avatar--playground"
-        height={420}
-        title="Avatar Group — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="avatar-group" />
       <h2>Overview</h2>
       <p>
         Avatar Groups display multiple participants together in a compact, overlapping layout.

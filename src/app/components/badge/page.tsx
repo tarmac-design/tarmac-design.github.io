@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -190,12 +191,7 @@ function BadgeExampleSection({
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-badge--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-badge--playground"
-        height={420}
-        title="Badge — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="badge" />
       <h2>Overview</h2>
       <p>
         Badges are compact label components used to convey status, categories, or counts.

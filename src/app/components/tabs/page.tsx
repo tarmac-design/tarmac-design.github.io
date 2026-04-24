@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -180,12 +181,7 @@ function TabsDemo({
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-tabs-tabgroup--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-tabs-tabgroup--playground"
-        height={420}
-        title="Tabs — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="tabs" />
       <h2>Overview</h2>
       <p>
         Tabs organize content into separate views where only one view is visible

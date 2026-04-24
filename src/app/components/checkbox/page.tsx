@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -303,12 +304,7 @@ function ExamplesTab() {
 
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-checkbox--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-checkbox--playground"
-        height={420}
-        title="Checkbox — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="checkbox" />
       <h2>Overview</h2>
       <p>
         Checkboxes allow users to select one or more items from a set of options.

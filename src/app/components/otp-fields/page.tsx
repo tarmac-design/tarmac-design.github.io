@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -221,12 +222,7 @@ function OTPExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-otp-fields--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-otp-fields--playground"
-        height={420}
-        title="OTP Fields — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="otp-fields" />
       <h2>Overview</h2>
       <p>OTP Fields provide a row of individual digit input boxes for one-time password entry. They support 4 and 6 digit configurations, countdown timers, resend actions, and a simulated typing animation.</p>
       <table>

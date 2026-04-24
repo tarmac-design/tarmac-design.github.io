@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -222,12 +223,7 @@ function CoachmarkExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-coachmarks--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-coachmarks--playground"
-        height={420}
-        title="Coachmarks — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="coachmarks" />
       <h2>Overview</h2>
       <p>
         Coachmarks are contextual tooltip overlays that guide users through features

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -229,12 +230,7 @@ function FileUploadExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=atoms-upload--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/atoms-upload--playground"
-        height={420}
-        title="File Upload — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="file-upload" />
       <h2>Overview</h2>
       <p>
         The File Upload component provides a drag-and-drop interface for uploading files.

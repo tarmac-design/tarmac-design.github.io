@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -199,12 +200,7 @@ function FilterExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-filterdropdown--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-filterdropdown--playground"
-        height={420}
-        title="Filter — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="filter" />
       <h2>Overview</h2>
       <p>Filters allow users to narrow down content by selecting criteria from dropdown menus, checkboxes, or chip-based controls. They support single and multi-select modes, search, and date ranges.</p>
       <table>

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -194,12 +195,7 @@ function NavigationExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=atoms-sidebar--default&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/atoms-sidebar--default"
-        height={420}
-        title="Navigation — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="navigation" />
       <h2>Overview</h2>
       <p>Navigation components provide wayfinding through sidebar menus, bottom tab bars, breadcrumb trails, and top tabs. Click items to change the active state.</p>
       <table>

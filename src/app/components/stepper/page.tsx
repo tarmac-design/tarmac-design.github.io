@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -316,12 +317,7 @@ function ExamplesTab() {
 
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=atoms-steps--default&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/atoms-steps--default"
-        height={420}
-        title="Stepper — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="stepper" />
       <h2>Overview</h2>
       <p>
         Steppers are multi-step progress indicators that guide users through a sequence of

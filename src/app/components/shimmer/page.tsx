@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -178,12 +179,7 @@ function ShimmerExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-spinner--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-spinner--playground"
-        height={420}
-        title="Shimmer — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="shimmer" />
       <h2>Overview</h2>
       <p>Shimmer components are animated loading placeholders that mimic the shape of content being loaded. They use a gradient sweep animation to indicate loading state.</p>
       <table>

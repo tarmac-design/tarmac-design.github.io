@@ -2,7 +2,8 @@
 
 import { useState, useRef, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection, type PreviewTheme } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -234,12 +235,7 @@ function DualSliderDemo({
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-slider--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-slider--playground"
-        height={420}
-        title="Slider — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="slider" />
       <h2>Overview</h2>
       <p>Sliders allow users to select a value or range from a continuous or discrete scale. They are ideal for adjusting settings like volume, brightness, or filtering numeric ranges.</p>
       <table>

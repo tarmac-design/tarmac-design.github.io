@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -132,12 +133,7 @@ function ScrollExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-scrollbar--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-scrollbar--playground"
-        height={420}
-        title="Scroll — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="scroll" />
       <h2>Overview</h2>
       <p>Scroll components provide custom-styled scrollbar containers for overflowing content. They support vertical, horizontal, and bidirectional scrolling with optional auto-hide behavior.</p>
       <table>

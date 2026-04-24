@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -240,12 +241,7 @@ function AudioExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=atoms-audioplayer--default&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/atoms-audioplayer--default"
-        height={420}
-        title="Audio Player — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="audio-player" />
       <h2>Overview</h2>
       <p>
         The Audio Player component provides playback controls for audio content.

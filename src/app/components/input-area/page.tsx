@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -150,12 +151,7 @@ function InputAreaExampleSection({ title, desc, children }: {
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-text-area--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-text-area--playground"
-        height={420}
-        title="Input Area — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="input-area" />
       <h2>Overview</h2>
       <p>Input Area is a multi-line text input for longer-form content. It supports character counting, auto-resize, rich text toolbars, and multiple validation states.</p>
       <table>

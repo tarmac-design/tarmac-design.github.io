@@ -2,7 +2,8 @@
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
-import { StorybookEmbed, DoDont } from '@/components/mdx';
+import { DoDont } from '@/components/mdx';
+import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { ComponentExampleSection } from '@/components/ComponentPreview';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -152,12 +153,7 @@ const sizeMap: Record<string, number> = { sm: 16, md: 24, lg: 32 };
 function ExamplesTab() {
   return (
     <>
-      <StorybookEmbed
-        url="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-rating--playground&viewMode=story"
-        storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/?path=/story/tarmac-tds-rating--playground"
-        height={420}
-        title="Rating — TARMAC Storybook"
-      />
+      <StorybookVariantViewer slug="rating" />
       <h2>Overview</h2>
       <p>Rating components allow users to view or set a star-based score. They support interactive selection, read-only display, half-star precision, and review counts.</p>
       <table>
