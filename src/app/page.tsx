@@ -304,7 +304,7 @@ export default function Home() {
       <section style={{ background: 'var(--color-surface-container-low)' }}>
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: 'var(--color-on-surface)' }}>
-            Designing the future of delivery
+            Designing the future of Delhivery
           </h2>
           <p className="text-base mb-10" style={{ color: 'var(--color-on-surface-variant)' }}>
             Meet the team crafting every pixel and interaction behind TARMAC — Delhivery&apos;s design system.
@@ -353,12 +353,12 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
             {[
-              { src: '/assets/images/fun-1.jpg', caption: 'Product Offsite' },
-              { src: '/assets/images/fun-2.jpg', caption: 'Team Meetup' },
-              { src: '/assets/images/fun-3.jpg', caption: 'Design Workshop' },
-              { src: '/assets/images/fun-4.jpg', caption: 'Offsite Vibes' },
-              { src: '/assets/images/fun-5.jpg', caption: 'Team Bonding' },
-              { src: '/assets/images/fun-6.jpg', caption: 'Behind the Scenes' },
+              { src: '/assets/images/fun-1.jpg', caption: 'Brainstorming' },
+              { src: '/assets/images/fun-2.jpg', caption: 'Friday Night Out' },
+              { src: '/assets/images/fun-3.jpg', caption: 'Design Review' },
+              { src: '/assets/images/fun-4.jpg', caption: 'After Hours' },
+              { src: '/assets/images/fun-5.jpg', caption: 'Crew Night' },
+              { src: '/assets/images/fun-6.jpg', caption: 'Late Night Hustle' },
             ].map((item) => (
               <div
                 key={item.src}
