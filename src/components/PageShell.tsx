@@ -109,18 +109,11 @@ export function PageShell({
         }}
       >
         {/* Subtle grid mesh pattern */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }} />
+        <div className="absolute inset-0 pointer-events-none page-shell-grid" />
         {/* Mouse glow on grid — reveals lines near cursor */}
         <div
           ref={glowRef}
-          className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-            backgroundSize: '48px 48px',
-          }}
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 page-shell-grid-glow"
         />
 
         {/* Top spacer — larger to push title below center */}
