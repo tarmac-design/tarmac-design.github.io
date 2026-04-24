@@ -121,8 +121,8 @@ export function PageShell({
           }}
         />
 
-        {/* Spacer — pushes title to vertical center */}
-        <div className="flex-1" />
+        {/* Top spacer — larger to push title below center */}
+        <div style={{ flex: 3 }} />
         <div className="relative w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6">
           <h1
             className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold tracking-tight mb-2 leading-tight"
@@ -136,8 +136,8 @@ export function PageShell({
             </p>
           )}
         </div>
-        {/* Equal spacer below */}
-        <div className="flex-1" />
+        {/* Bottom spacer — smaller */}
+        <div style={{ flex: 2 }} />
 
         {/* Tabs — left aligned with title, pinned to bottom */}
         <div className="relative w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 overflow-x-auto">
