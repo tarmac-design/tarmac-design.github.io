@@ -61,7 +61,7 @@ export default function Home() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative overflow-hidden"
-        style={{ background: theme === 'dark' ? '#0A0A0A' : '#F0F0F0', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
+        style={{ background: theme === 'dark' ? '#0A0A0A' : '#F7F7F7', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
       >
         {/* Road/tarmac texture background */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="absolute inset-0" style={{
           background: theme === 'dark'
             ? 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.4) 100%)'
-            : 'rgba(255,255,255,0.99)',
+            : 'rgba(247,247,247,0.99)',
         }} />
         {/* Film grain overlay */}
         <GrainOverlay opacity={0.15} blendMode="overlay" size={3} type="film" />
