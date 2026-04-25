@@ -181,8 +181,9 @@ function ChangelogTab() {
 export default function InputAreaPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Code', content: <CodeTab /> },
     { label: 'Usage', content: <UsageTab /> },
+    { label: 'Code', content: <CodeTab /> },
+
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 

@@ -25,22 +25,16 @@ const sidebarSections: NavGroup[] = [
   ]},
   { title: 'Foundations', items: [
     { label: 'Colors', href: '/foundations/colors' },
-    { title: 'Typography', children: [
-      { label: 'Overview', href: '/foundations/typography' },
-      { label: 'Styles', href: '/foundations/typography-styles' },
-      { label: 'Implementation', href: '/foundations/typography-implementation' },
-    ]},
-    { title: 'Grid', children: [
-      { label: 'Grid System', href: '/foundations/grid-system' },
-      { label: 'Advanced', href: '/foundations/grid-advanced' },
-      { label: 'Implementation', href: '/foundations/grid-implementation' },
-    ]},
+    { label: 'Typography', href: '/foundations/typography' },
+    { label: 'Grid System', href: '/foundations/grid-system' },
     { label: 'Iconography', href: '/foundations/iconography' },
     { label: 'Spacing', href: '/foundations/spacing' },
     { label: 'Radius', href: '/foundations/radius' },
     { label: 'Borders', href: '/foundations/borders' },
     { label: 'Shadows', href: '/foundations/shadows' },
     { label: 'Dividers', href: '/foundations/dividers' },
+    { label: 'Logo', href: '/foundations/logo' },
+    { label: 'Illustration', href: '/foundations/illustration' },
     { label: 'Image Library', href: '/foundations/image-library' },
   ]},
   { title: 'Components', items: [
