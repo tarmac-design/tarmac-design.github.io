@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
@@ -22,6 +22,246 @@ const systemCards = [
   { title: 'Tokens', desc: 'Design tokens as CSS variables and JS constants.', href: '/foundations/colors-implementation' },
   { title: 'Get started', desc: 'Installation, quick start, and integration guides.', href: '/about/overview' },
 ];
+
+/* ─── Magnetic Repulsion Cursors ─── */
+const TEAM_CURSORS = [
+  { name: 'Abhishek', color: '#ED1B36', css: { top: '-100px', left: '-10%' } as React.CSSProperties, anim: 'cursorFloat1 16s ease-in-out infinite' },
+  { name: 'Rohan', color: '#2396FB', css: { top: '-50px', right: '0%' } as React.CSSProperties, anim: 'cursorFloat2 20s ease-in-out infinite' },
+  { name: 'Abhijeet', color: '#1BA86E', css: { bottom: '-50px', right: '20%' } as React.CSSProperties, anim: 'cursorFloat3 18s ease-in-out infinite' },
+  { name: 'Arpith', color: '#A855F7', css: { top: '-90px', left: '22%' } as React.CSSProperties, anim: 'cursorFloat4 22s ease-in-out infinite' },
+];
+
+/* ─── Awareness-based message system ─── */
+const MESSAGES: Record<string, { first: string[]; repeat: string[]; high: string[]; rapid: string[] }> = {
+  Abhishek: {
+    first: ['hey there', 'let\'s collab anytime', 'design is everywhere', 'connect at 10 PM? :P', 'chill, I got this'],
+    repeat: ['still here?', 'make up your mind', 'again really?', 'escalation already?', 'okay okay'],
+    high: ['bro what now', 'this is getting weird', 'filing a complaint', 'okay I\'m concerned', 'you need help?'],
+    rapid: ['comparing managers?', 'team tour huh', 'pick one already', 'checking everyone?'],
+  },
+  Rohan: {
+    first: ['cooking fresh components', 'gone fishing push later', 'got feedback on the DS?', 'wanna collab on this?', 'got a business idea?'],
+    repeat: ['you testing this?', 'looking for consistency?', 'still poking around?', 'comparing systems?', 'haha okay'],
+    high: ['this is getting serious', 'okay now I\'m logging this', 'you broke something?', 'filing a bug report', 'need a token for that?'],
+    rapid: ['comparing us all?', 'looking for the chef?', 'team audit huh', 'checking everyone?'],
+  },
+  Abhijeet: {
+    first: ['hello', 'teach me something new', 'super excited about this', 'pune vibes', 'writing on quora for life ;)'],
+    repeat: ['haha exploring?', 'still me', 'again? nice', 'you like green huh', 'okay hi again'],
+    high: ['okay this is a lot', 'should I be worried?', 'bro what are you doing', 'I\'m flattered honestly', 'this is my fan moment'],
+    rapid: ['checking everyone?', 'team tour nice', 'haha comparing us?', 'exploring the squad?'],
+  },
+  Arpith: {
+    first: ['who\'s this?', 'building a rockstar team', 'my dog says hi', 'design review in 5', 'not now busy'],
+    repeat: ['who\'s this again?', 'this better be important', 'deciding something?', 'still here huh', 'noted'],
+    high: ['who\'s this seriously', 'okay now I\'m curious', 'should I block you?', 'calling security', 'my dog is judging you'],
+    rapid: ['who\'s this now?', 'comparing leaders?', 'team shopping?', 'pick your fighter'],
+  },
+};
+
+function getMessage(name: string, count: number, rapidSwitch: boolean): string {
+  const pool = MESSAGES[name];
+  if (!pool) return 'hey';
+  if (rapidSwitch && pool.rapid.length > 0) {
+    return pool.rapid[Math.floor(Math.random() * pool.rapid.length)];
+  }
+  if (count >= 5) return pool.high[Math.floor(Math.random() * pool.high.length)];
+  if (count >= 3) return pool.repeat[Math.floor(Math.random() * pool.repeat.length)];
+  return pool.first[count % pool.first.length];
+}
+
+const ANNOY_THRESHOLD = 80; // px displacement before they react
+
+function MagneticCursors() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cursorRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const offsetsRef = useRef(TEAM_CURSORS.map(() => ({ x: 0, y: 0 })));
+  const mouseRef = useRef({ x: -9999, y: -9999 });
+  const rafRef = useRef<number>(0);
+  const [, forceRender] = useState(0);
+
+  // Speech bubble state
+  const [bubbles, setBubbles] = useState<{ idx: number; text: string; typed: string; done: boolean }[]>([]);
+  const bubbleCooldownRef = useRef(TEAM_CURSORS.map(() => 0));
+  const interactionCountRef = useRef(TEAM_CURSORS.map(() => 0));
+  const lastPushedRef = useRef(-1);
+  const switchTimestampsRef = useRef<number[]>([]);
+
+  // Check if any cursor crossed the annoy threshold
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const offsets = offsetsRef.current;
+      for (let i = 0; i < offsets.length; i++) {
+        const dist = Math.sqrt(offsets[i].x ** 2 + offsets[i].y ** 2);
+        if (dist > ANNOY_THRESHOLD && now > bubbleCooldownRef.current[i]) {
+          bubbleCooldownRef.current[i] = now + 4000;
+          interactionCountRef.current[i] += 1;
+          const count = interactionCountRef.current[i];
+
+          // Detect rapid switching: different person pushed within 2s
+          const switches = switchTimestampsRef.current;
+          const rapidSwitch = lastPushedRef.current !== i && lastPushedRef.current !== -1 && switches.length >= 2 && (now - switches[switches.length - 1]) < 2000;
+          lastPushedRef.current = i;
+          switches.push(now);
+          if (switches.length > 5) switches.shift();
+
+          const msg = getMessage(TEAM_CURSORS[i].name, count, rapidSwitch);
+          setBubbles(prev => [...prev.filter(b => b.idx !== i), { idx: i, text: msg, typed: '', done: false }]);
+        }
+      }
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Typing effect for active bubbles
+  useEffect(() => {
+    if (bubbles.length === 0) return;
+    const activeBubble = bubbles.find(b => !b.done);
+    if (!activeBubble) return;
+
+    if (activeBubble.typed.length < activeBubble.text.length) {
+      const timer = setTimeout(() => {
+        setBubbles(prev => prev.map(b =>
+          b.idx === activeBubble.idx ? { ...b, typed: b.text.slice(0, b.typed.length + 1) } : b
+        ));
+      }, 35 + Math.random() * 25);
+      return () => clearTimeout(timer);
+    } else {
+      // Done typing — keep visible for 2.5s then remove
+      const timer = setTimeout(() => {
+        setBubbles(prev => prev.filter(b => b.idx !== activeBubble.idx));
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [bubbles]);
+
+  useEffect(() => {
+    const PUSH_RADIUS_PX = 150;
+    const PUSH_SPEED = 1.8;
+    const MAX_DISPLACEMENT = 200;
+    const RETURN_LERP = 0.025;
+
+    function tick() {
+      const offsets = offsetsRef.current;
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
+      const mouseActive = mx > -1000;
+      let moved = false;
+
+      // Find which cursor is closest to the mouse
+      let closestIdx = -1;
+      let closestDist = Infinity;
+      let closestDx = 0;
+      let closestDy = 0;
+
+      if (mouseActive) {
+        for (let i = 0; i < cursorRefs.current.length; i++) {
+          const el = cursorRefs.current[i];
+          if (!el) continue;
+          const r = el.getBoundingClientRect();
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const dx = cx - mx;
+          const dy = cy - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closestIdx = i;
+            closestDx = dx;
+            closestDy = dy;
+          }
+        }
+      }
+
+      for (let i = 0; i < offsets.length; i++) {
+        const o = offsets[i];
+        const prevX = o.x;
+        const prevY = o.y;
+
+        if (i === closestIdx && closestDist < PUSH_RADIUS_PX && closestDist > 1) {
+          // Push: accumulate displacement away from mouse
+          const pushStrength = (1 - closestDist / PUSH_RADIUS_PX) * PUSH_SPEED;
+          const currentDist = Math.sqrt(o.x * o.x + o.y * o.y);
+          if (currentDist < MAX_DISPLACEMENT) {
+            o.x += (closestDx / closestDist) * pushStrength;
+            o.y += (closestDy / closestDist) * pushStrength;
+          }
+        } else {
+          // Return: slowly lerp back to home (0,0)
+          o.x += (0 - o.x) * RETURN_LERP;
+          o.y += (0 - o.y) * RETURN_LERP;
+          if (Math.abs(o.x) < 0.3 && Math.abs(o.y) < 0.3) { o.x = 0; o.y = 0; }
+        }
+
+        if (Math.abs(o.x - prevX) > 0.05 || Math.abs(o.y - prevY) > 0.05) moved = true;
+      }
+
+      if (moved) forceRender(n => n + 1);
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    mouseRef.current = { x: e.clientX, y: e.clientY };
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    mouseRef.current = { x: -9999, y: -9999 };
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current?.closest('section') || containerRef.current?.parentElement?.parentElement;
+    if (!el) return;
+    el.addEventListener('mousemove', handleMouseMove);
+    el.addEventListener('mouseleave', handleMouseLeave);
+    return () => {
+      el.removeEventListener('mousemove', handleMouseMove);
+      el.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [handleMouseMove, handleMouseLeave]);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none hidden sm:block overflow-visible" style={{ zIndex: 5 }}>
+      {TEAM_CURSORS.map((c, i) => {
+        const o = offsetsRef.current[i];
+        const isIdle = Math.abs(o.x) < 0.5 && Math.abs(o.y) < 0.5;
+        return (
+          <div key={c.name}
+            ref={el => { cursorRefs.current[i] = el; }}
+            className="absolute flex flex-col items-start"
+            style={{
+              ...c.css,
+              animation: isIdle ? c.anim : 'none',
+              transform: isIdle ? undefined : `translate(${o.x}px, ${o.y}px)`,
+              willChange: 'transform',
+            }}>
+            <svg width="20" height="24" viewBox="0 0 16 20" fill="none">
+              <path d="M0 0L16 12L8 12L4 20L0 0Z" fill={c.color} />
+            </svg>
+            {(() => {
+              const bubble = bubbles.find(b => b.idx === i);
+              const showMessage = bubble && bubble.typed.length > 0;
+              return (
+                <span className="px-3 py-1.5 rounded-full text-[13px] font-bold whitespace-nowrap shadow-lg -mt-1 ml-3 inline-block overflow-hidden text-ellipsis"
+                  style={{
+                    background: c.color, color: '#fff', border: '2px solid rgba(255,255,255,0.25)',
+                  }}>
+                  {showMessage ? (
+                    <>{bubble.typed}<span className="animate-pulse opacity-70">|</span></>
+                  ) : c.name}
+                </span>
+              );
+            })()}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Home() {
   const { theme } = useTheme();
@@ -118,25 +358,8 @@ export default function Home() {
         </div>
         <div className="relative max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-28 w-full z-20">
           <div className="relative">
-            {/* Animated multiplayer cursors — positioned in corners away from text */}
-            {[
-              { name: 'Abhishek', color: '#ED1B36', pos: { top: '-100px', left: '-10%' }, anim: 'cursorFloat1 16s ease-in-out infinite' },
-              { name: 'Rohan', color: '#2396FB', pos: { top: '-50px', right: '0%' }, anim: 'cursorFloat2 20s ease-in-out infinite' },
-              { name: 'Abhijeet', color: '#1BA86E', pos: { bottom: '-50px', right: '20%' }, anim: 'cursorFloat3 18s ease-in-out infinite' },
-              { name: 'Arpith', color: '#A855F7', pos: { top: '-90px', left: '22%' }, anim: 'cursorFloat4 22s ease-in-out infinite' },
-            ].map((c) => (
-              <div key={c.name} className="absolute pointer-events-none hidden sm:flex flex-col items-start" style={{ ...c.pos, animation: c.anim }}>
-                <svg width="20" height="24" viewBox="0 0 16 20" fill="none">
-                  <path d="M0 0L16 12L8 12L4 20L0 0Z" fill={c.color}/>
-                </svg>
-                <span
-                  className="px-3 py-1.5 rounded-full text-[13px] font-bold whitespace-nowrap shadow-lg -mt-1 ml-3"
-                  style={{ background: c.color, color: '#fff', border: '2px solid rgba(255,255,255,0.25)' }}
-                >
-                  {c.name}
-                </span>
-              </div>
-            ))}
+            {/* Magnetic repulsion cursors — push away from user's mouse */}
+            <MagneticCursors />
 
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]"
               style={{ color: theme === 'dark' ? '#FFFFFF' : '#0D0D0D' }}>
