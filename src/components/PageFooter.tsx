@@ -111,11 +111,11 @@ export function PageFooter() {
           </div>
         )}
 
-        <div className="mt-10 pt-6 border-t flex items-center justify-between" style={{ borderColor: 'var(--color-outline)' }}>
+        <div className="mt-10 pt-6 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2" style={{ borderColor: 'var(--color-outline)' }}>
           <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
             © {new Date().getFullYear()} Delhivery Ltd. All rights reserved.
           </span>
-          <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
+          <div className="flex items-center gap-4 text-xs flex-wrap" style={{ color: 'var(--color-on-surface-variant)' }}>
             <span className="flex items-center gap-1">
               Crafted with <span className="inline-block" style={{ animation: 'heartPulse 2s ease-in-out infinite', color: '#ED1B36' }}>&#10084;</span>
             </span>

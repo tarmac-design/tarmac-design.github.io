@@ -208,9 +208,14 @@ html:hover { scrollbar-color: var(--color-outline) transparent; }
 /* Mobile responsive */
 html, body { overflow-x: hidden; }
 
+/* Hide scrollbar utility */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
 @media (max-width: 768px) {
-  .mdx-content table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .mdx-content pre { font-size: 0.8rem; padding: 1rem; }
+  .mdx-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+  .mdx-content pre { font-size: 0.75rem; padding: 0.75rem; overflow-x: auto; }
+  .mdx-content pre code { white-space: pre; }
 }
 
 /* Ensure text wraps on mobile */

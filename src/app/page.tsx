@@ -606,7 +606,7 @@ export default function Home() {
       {/* Footer */}
       <footer>
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12">
-          <div className="flex flex-wrap justify-between gap-8">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-8">
             <div className="max-w-sm">
               <div className="mb-3">
                 <img
@@ -632,7 +632,7 @@ export default function Home() {
                 <ul className="space-y-2" style={{ color: 'var(--color-on-surface-variant)' }}>
                   <li><Link href="/about/overview" className="hover:underline">Get started</Link></li>
                   <li><Link href="/foundations/colors" className="hover:underline">Foundations</Link></li>
-                  <li><Link href="/components/button" className="hover:underline">Components</Link></li>
+                  <li><Link href="/components/accordion" className="hover:underline">Components</Link></li>
                   <li><Link href="/accessibility/overview" className="hover:underline">Accessibility</Link></li>
                 </ul>
               </div>
@@ -646,7 +646,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-4 border-t text-sm flex items-center justify-between" style={{ borderColor: 'var(--color-outline)', color: 'var(--color-on-surface-variant)' }}>
+          <div className="mt-8 pt-4 border-t text-xs sm:text-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2" style={{ borderColor: 'var(--color-outline)', color: 'var(--color-on-surface-variant)' }}>
             <span>© {new Date().getFullYear()} Delhivery Ltd. All rights reserved.</span>
             <span className="flex items-center gap-1">
               Crafted with <span className="inline-block" style={{ animation: 'heartPulse 2s ease-in-out infinite', color: '#ED1B36' }}>&#10084;</span>

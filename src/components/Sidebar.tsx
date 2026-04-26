@@ -218,7 +218,7 @@ export function Sidebar({ open, onClose }: { open?: boolean; onClose?: () => voi
         <>
           <div className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm" onClick={onClose} />
           <aside
-            className="lg:hidden fixed left-0 top-16 w-72 h-[calc(100vh-64px)] overflow-y-auto z-50 border-r"
+            className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r"
             style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
           >
             {sidebarContent}

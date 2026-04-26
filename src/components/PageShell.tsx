@@ -134,15 +134,15 @@ export function PageShell({
         {/* Bottom spacer — smaller */}
         <div style={{ flex: 2 }} />
 
-        {/* Tabs — left aligned with title, pinned to bottom */}
-        <div className="relative w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 overflow-x-auto">
+        {/* Tabs — left aligned with title, pinned to bottom, scrollable on mobile */}
+        <div className="relative w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 overflow-x-auto scrollbar-hide">
           {allTabs.length > 1 ? (
-            <div className="flex gap-0 border-b" style={{ borderColor: 'var(--color-outline)' }}>
+            <div className="flex gap-0 border-b min-w-max" style={{ borderColor: 'var(--color-outline)' }}>
               {allTabs.map((tab, i) => (
                 <button
                   key={tab.label}
                   onClick={() => setActiveTab(i)}
-                  className="px-4 py-2.5 text-sm font-medium transition-colors relative"
+                  className="px-4 py-2.5 text-sm font-medium transition-colors relative whitespace-nowrap"
                   style={{ color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)' }}
                 >
                   {tab.label}

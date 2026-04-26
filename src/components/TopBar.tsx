@@ -146,14 +146,14 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
           <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={theme === 'dark' ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
         </Link>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — show on screens below lg */}
         {onMenuClick && (
-          <button onClick={onMenuClick} className="lg:hidden p-2 rounded-lg mr-2" style={{ color: heroTextColor }} aria-label="Open menu">
+          <button onClick={onMenuClick} className="lg:hidden p-2 rounded-lg mr-1" style={{ color: heroTextColor }} aria-label="Open menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
         )}
 
-        <nav className="hidden md:flex items-center gap-1 ml-auto mr-4">
+        <nav className="hidden lg:flex items-center gap-1 ml-auto mr-4">
           {topNav.map((item) => {
             const active = isActive(item.section);
             return (
