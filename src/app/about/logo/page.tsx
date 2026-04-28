@@ -104,7 +104,7 @@ export default function LogoPage() {
         <li>Always use the provided assets — never recreate the logo</li>
       </ul>
 
-      <ImagePlaceholder label="Logo usage — Clear space, minimum size, color variants" path="/assets/images/logo-usage-guidelines.png" height={240} />
+      <ImagePlaceholder label="Logo usage — Clear space, minimum size, color variants" path="/assets/images/logo-usage-guidelines.png" height={348} />
     </PageShell>
   );
 }

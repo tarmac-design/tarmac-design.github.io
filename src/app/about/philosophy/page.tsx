@@ -49,7 +49,7 @@ export default function PhilosophyPage() {
         </div>
       </div>
 
-      <ImagePlaceholder label="Core principles visual — Clarity, Consistency, Accessibility, Efficiency" path="/assets/images/core-principles.png" height={220} />
+      <ImagePlaceholder label="Core principles visual — Clarity, Consistency, Accessibility, Efficiency" path="/assets/images/core-principles.png" height={348} />
 
       <h2>Deriving Our Principles</h2>
       <p>
