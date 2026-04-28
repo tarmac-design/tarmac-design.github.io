@@ -11,7 +11,7 @@ export default function BrandLanguagePage() {
         TARMAC's brand language reflects our values and connects with our audience — across documentation, UI copy, error messages, and marketing. It's the verbal expression of the same principles that drive our visual design: clarity, consistency, and human connection.
       </p>
 
-      <ImagePlaceholder label="Brand language overview — Voice, tone, and writing style" path="/assets/images/brand-language-hero.png" aspect="900/348" />
+      <ImagePlaceholder label="Brand language overview — Voice, tone, and writing style" path="/assets/images/brand-language-hero.png" height={348} />
 
       <h2>Voice</h2>
       <p>Our voice is consistent across all communications:</p>
@@ -34,7 +34,7 @@ export default function BrandLanguagePage() {
         </div>
       </div>
 
-      <ImagePlaceholder label="Voice attributes — Clear, Confident, Human, Precise" path="/assets/images/voice-attributes.png" aspect="900/348" />
+      <ImagePlaceholder label="Voice attributes — Clear, Confident, Human, Precise" path="/assets/images/voice-attributes.png" height={348} />
 
       <h2>Tone by Context</h2>
       <Tabs>
