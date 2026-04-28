@@ -34,7 +34,7 @@ export default function BrandLanguagePage() {
         </div>
       </div>
 
-      <ImagePlaceholder label="Voice attributes — Clear, Confident, Human, Precise" path="/assets/images/voice-attributes.png" height={200} />
+      <ImagePlaceholder label="Voice attributes — Clear, Confident, Human, Precise" path="/assets/images/voice-attributes.png" height={348} />
 
       <h2>Tone by Context</h2>
       <Tabs>
