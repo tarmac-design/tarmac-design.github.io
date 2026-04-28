@@ -10,7 +10,7 @@ export default function MovementMetaphorsPage() {
         Motion in TARMAC is a functional tool that guides users, provides feedback, and creates a sense of quality. Every animation serves a purpose — it's never decorative. The movement metaphors are drawn directly from the physical world of logistics — road markings, junctions, signage, and the kinetic energy of delivery itself.
       </p>
 
-      <ImagePlaceholder label="Movement metaphors — How motion communicates in TARMAC" path="/assets/images/movement-metaphors-hero.png" height={260} />
+      <ImagePlaceholder label="Movement metaphors — How motion communicates in TARMAC" path="/assets/images/movement-metaphors-hero.png" aspect="900/348" />
 
       <h2>Nexus</h2>
       <div className="p-6 rounded-xl border mb-6" style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container-low)' }}>
@@ -88,34 +88,6 @@ export default function MovementMetaphorsPage() {
         </div>
       </div>
 
-      <h2>Motion Tokens</h2>
-
-      <ImagePlaceholder label="Animation principles — Easing curves and timing" path="/assets/images/animation-principles.png" height={220} />
-
-      <pre><code>{`const motion = {
-  duration: {
-    fast: '150ms',
-    normal: '250ms',
-    slow: '350ms',
-  },
-  easing: {
-    standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-    decelerate: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
-    accelerate: 'cubic-bezier(0.4, 0.0, 1, 1)',
-    bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-  },
-};`}</code></pre>
-
-      <h2>Testing Motion</h2>
-      <table>
-        <thead><tr><th>Scenario</th><th>How to Test</th></tr></thead>
-        <tbody>
-          <tr><td>Reduced motion</td><td>Enable <code>prefers-reduced-motion</code> in OS settings</td></tr>
-          <tr><td>Slower devices</td><td>Test on low-end hardware or throttle CPU</td></tr>
-          <tr><td>Interaction blocking</td><td>Verify animations don't block user input</td></tr>
-          <tr><td>Cross-browser</td><td>Test in Chrome, Firefox, Safari, Edge</td></tr>
-        </tbody>
-      </table>
     </PageShell>
   );
 }

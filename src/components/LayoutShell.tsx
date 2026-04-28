@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { TopBar } from '@/components/TopBar';
 import { Sidebar } from '@/components/Sidebar';
 import { PageFooter } from '@/components/PageFooter';
@@ -9,7 +9,9 @@ import { SplashScreen } from '@/components/SplashScreen';
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const isHome = pathname === '/';
+  const isPreview = searchParams.get('preview') === 'splash';
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
 
@@ -18,15 +20,15 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
     setSidebarOpen(false);
   }, [pathname]);
 
-  // Show splash only on homepage, once per session
+  // Show splash only on homepage, once per session (or force with ?preview=splash)
   useEffect(() => {
     if (isHome && typeof window !== 'undefined') {
       const seen = sessionStorage.getItem('tarmac-splash-seen');
-      if (!seen) {
+      if (!seen || isPreview) {
         setShowSplash(true);
       }
     }
-  }, [isHome]);
+  }, [isHome, isPreview]);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);

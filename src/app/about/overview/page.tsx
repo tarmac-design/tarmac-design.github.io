@@ -14,7 +14,7 @@ export default function OverviewPage() {
         Delhivery's mission is to enable customers to operate flexible, reliable, and resilient supply chains at the lowest costs — serving a diverse base of 48K+ active customers including e-commerce marketplaces, D2C brands, and enterprises across FMCG, consumer durables, electronics, lifestyle, retail, automotive, and manufacturing.
       </p>
 
-      <ImagePlaceholder label="Delhivery — Connecting India through logistics" path="/assets/images/about-delhivery-hero.png" height={280} />
+      <ImagePlaceholder label="Delhivery — Connecting India through logistics" path="/assets/images/about-delhivery-hero.gif" height={280} />
 
       <h2>Brand Philosophy</h2>
       <p>
@@ -32,7 +32,7 @@ export default function OverviewPage() {
         Each of the tangram's seven pieces twists and turns into different forms, embodying the unseen complexity and adaptability of logistics. This system of iconography becomes a versatile toolkit — representing everything from data-driven solutions to seamless shipping, all while paying homage to the universal art of movement and connection.
       </p>
 
-      <ImagePlaceholder label="Tangram geometric pieces — Delhivery's visual identity" path="/assets/images/tangram-identity.png" height={240} />
+      <ImagePlaceholder label="Tangram geometric pieces — Delhivery's visual identity" path="/assets/images/tangram-identity.gif" height={240} />
 
       <h2>What is TARMAC?</h2>
       <p>

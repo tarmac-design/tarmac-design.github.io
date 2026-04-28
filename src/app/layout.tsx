@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { LayoutShell } from '@/components/LayoutShell';
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         <ThemeProvider>
           <div id="smooth-wrapper">
-            <LayoutShell>{children}</LayoutShell>
+            <Suspense>
+              <LayoutShell>{children}</LayoutShell>
+            </Suspense>
           </div>
         </ThemeProvider>
       </body>
