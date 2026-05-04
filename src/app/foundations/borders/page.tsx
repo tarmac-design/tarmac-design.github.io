@@ -11,7 +11,6 @@ const borderScale: BorderToken[] = [
   { token: 'stroke.default', value: '1px', px: 1, purpose: 'Default border for UI components and containers' },
   { token: 'stroke.medium', value: '1.5px', px: 1.5, purpose: 'High-emphasis interactive states, active boundaries, focus outlines' },
   { token: 'stroke.large', value: '2px', px: 2, purpose: 'Strong structural separation, important emphasis elements' },
-  { token: 'stroke.xlarge', value: '4px', px: 4, purpose: 'Rare use — hero, overlays, high-priority interaction or identity elements' },
 ];
 
 const borderStates = [
@@ -218,7 +217,6 @@ function CodeTab() {
   --stroke-default: 1px;
   --stroke-medium: 1.5px;
   --stroke-large: 2px;
-  --stroke-xlarge: 4px;
 }`}</code></pre>
 
       <h2>Usage Examples</h2>

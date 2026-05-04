@@ -63,72 +63,29 @@ const variantDescriptions: Record<LogoVariant, { title: string; subtitle: string
 };
 
 /* ─── Logo Placeholder ─── */
-/* Replace the inner content of this component with actual Delhivery SVG logos when available */
+/* eslint-disable @next/next/no-img-element */
 function DelhiveryLogoSVG({ variant, style: logoStyle, width, height, fullFill }: { variant: LogoVariant; style: LogoStyle; width: number; height: number; fullFill?: boolean }) {
   const isDark = logoStyle === 'Dark';
-  const borderColor = isDark ? '#444' : '#d0d0d0';
-  const bg = isDark ? '#2a2c30' : '#f0f0f0';
-  const textColor = isDark ? '#888' : '#999';
-  const pathColor = isDark ? '#666' : '#bbb';
   const variantSlug = variant === 'Logo' ? 'logo' : variant === 'Logomark' ? 'logomark' : 'pictorial';
-  const filePath = `/logos/dlv-${variantSlug}-${logoStyle.toLowerCase()}.svg`;
+  const imgSrc = `/assets/images/dlv-${variantSlug}-${logoStyle.toLowerCase()}.png`;
 
-  // Full fill mode — stretches to fill parent container
   if (fullFill) {
     return (
       <div style={{
-        width: '100%', height: '100%', background: bg,
-        border: `1.5px dashed ${borderColor}`, borderRadius: 'inherit',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        gap: 4,
-      }}>
-        <svg width="22" height="18" viewBox="0 0 20 16" fill="none">
-          <rect x="1" y="1" width="18" height="14" rx="2" stroke={borderColor} strokeWidth="1.2" />
-          <circle cx="7" cy="6" r="2" stroke={pathColor} strokeWidth="1" />
-          <path d="M1 12l5-4 3 2.5 4-3.5 6 5" stroke={pathColor} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span style={{ fontSize: 10, color: textColor, fontFamily: 'monospace', lineHeight: 1 }}>{filePath}</span>
-      </div>
-    );
-  }
-
-  // Small sizes: just a colored box with no text
-  if (height <= 16) {
-    return (
-      <div style={{
-        width, height, background: bg,
-        border: `1px dashed ${borderColor}`, borderRadius: 2,
+        width: '100%', height: '100%',
+        background: isDark ? '#1B1D22' : '#FFFFFF',
+        borderRadius: 'inherit',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '12px',
       }}>
-        <svg width={Math.min(10, width - 4)} height={Math.min(8, height - 4)} viewBox="0 0 10 8" fill="none">
-          <rect x="0.5" y="0.5" width="9" height="7" rx="1" stroke={borderColor} strokeDasharray="2 1" />
-          <path d="M3 5.5L5 3L7 5.5" stroke={pathColor} strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <img src={imgSrc} alt={`Delhivery ${variant} ${logoStyle}`} style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }} />
       </div>
     );
   }
 
   return (
-    <div style={{
-      width, height, background: bg,
-      border: `1px dashed ${borderColor}`, borderRadius: 4,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      gap: Math.max(1, height * 0.06), padding: '0 4px',
-    }}>
-      <svg width={Math.min(20, height * 0.35)} height={Math.min(16, height * 0.28)} viewBox="0 0 20 16" fill="none">
-        <rect x="1" y="1" width="18" height="14" rx="2" stroke={borderColor} strokeWidth="1.2" />
-        <circle cx="7" cy="6" r="2" stroke={pathColor} strokeWidth="1" />
-        <path d="M1 12l5-4 3 2.5 4-3.5 6 5" stroke={pathColor} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span style={{
-        fontSize: Math.max(7, Math.min(9, height * 0.2)),
-        color: textColor, fontFamily: 'monospace',
-        whiteSpace: 'nowrap', overflow: 'hidden',
-        textOverflow: 'ellipsis', maxWidth: '100%',
-        lineHeight: 1,
-      }}>
-        {filePath}
-      </span>
+    <div style={{ width, height, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <img src={imgSrc} alt={`Delhivery ${variant} ${logoStyle}`} style={{ width, height, objectFit: 'contain' }} />
     </div>
   );
 }

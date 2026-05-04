@@ -94,29 +94,23 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
         opacity: shutterClosed ? 0 : 1,
         transition: `opacity ${SHUTTER_CLOSE_MS * 0.6}ms ease-out`,
       }}>
-        {/* Static grid mesh */}
+        {/* Static dot grid */}
         <div style={{
           position: 'absolute', inset: 0,
           opacity: 0.04,
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
+          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
         }} />
 
-        {/* Glow-revealed grid */}
+        {/* Glow-revealed dot grid */}
         <div
           ref={glowRef}
           style={{
             position: 'absolute', inset: 0,
             opacity: glowActive ? 1 : 0,
             transition: 'opacity 0.8s ease-out',
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '48px 48px',
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)`,
+            backgroundSize: '24px 24px',
             maskImage: 'radial-gradient(0px circle at 50% 50%, black 0%, transparent 70%)',
             WebkitMaskImage: 'radial-gradient(0px circle at 50% 50%, black 0%, transparent 70%)',
             pointerEvents: 'none',
