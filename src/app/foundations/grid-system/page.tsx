@@ -667,14 +667,12 @@ function UsageTab() {
           "Use 4-column grid for mobile content areas",
           "Follow breakpoint definitions for responsive design",
           "Use consistent gutters and margins across breakpoints",
-          "Center content within the 1440px frame on wider screens",
         ]}
         dontItems={[
           "Break out of the grid without good reason",
           "Use fixed pixel widths instead of grid columns",
           "Ignore mobile breakpoints",
           "Allow content to stretch beyond 1440px on wide screens",
-          "Mix grid types (fluid/fixed) within the same layout context",
         ]}
       />
     </div>

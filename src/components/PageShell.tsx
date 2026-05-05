@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { MdxProvider } from '@/components/MdxProvider';
+import { motion, AnimatePresence } from 'motion/react';
 
 /* ── Copy button injector for all <pre> code blocks ── */
 function CopyCodeButtons({ containerRef, deps }: { containerRef: React.RefObject<HTMLDivElement | null>; deps?: unknown }) {
@@ -119,16 +120,25 @@ export function PageShell({
         {/* Top spacer — larger to push title below center */}
         <div style={{ flex: 3 }} />
         <div className="relative w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6">
-          <h1
+          <motion.h1
             className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold tracking-tight mb-2 leading-tight"
             style={{ color: 'var(--color-on-surface)' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             {title}
-          </h1>
+          </motion.h1>
           {description && (
-            <p className="text-sm sm:text-[15px] leading-relaxed mb-6" style={{ color: 'var(--color-on-surface-variant)' }}>
+            <motion.p
+              className="text-sm sm:text-[15px] leading-relaxed mb-6"
+              style={{ color: 'var(--color-on-surface-variant)' }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
               {description}
-            </p>
+            </motion.p>
           )}
         </div>
         {/* Bottom spacer — smaller */}
@@ -158,7 +168,17 @@ export function PageShell({
 
       {/* Tab content — same constrained width */}
       <div className="w-full px-5 sm:w-[75%] sm:mx-auto sm:px-6 py-6 sm:py-8 mdx-content" ref={contentRef}>
-        <MdxProvider>{allTabs[activeTab].content}</MdxProvider>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <MdxProvider>{allTabs[activeTab].content}</MdxProvider>
+          </motion.div>
+        </AnimatePresence>
         <CopyCodeButtons containerRef={contentRef} deps={activeTab} />
       </div>
     </div>

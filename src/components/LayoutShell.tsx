@@ -14,6 +14,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
   const isPreview = searchParams.get('preview') === 'splash';
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Close sidebar on route change
   useEffect(() => {
@@ -42,9 +43,9 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <TopBar onMenuClick={() => setSidebarOpen(true)} />
+      <TopBar onMenuClick={() => setSidebarOpen(true)} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
       <div className={`flex ${isHome ? '' : 'pt-16'}`}>
-        {!isHome && <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />}
+        {!isHome && <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onSearchClick={() => setSearchOpen(true)} />}
         <div
           className={`flex-1 flex flex-col min-h-[calc(100vh-64px)] ${!isHome ? 'lg:ml-[var(--sidebar-width)]' : ''}`}
         >

@@ -2,16 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 type NavLink = { label: string; href: string };
-type NavSubGroup = { title: string; children: NavLink[] };
-type NavItem = NavLink | NavSubGroup;
-type NavGroup = { title: string; items: NavItem[] };
-
-function isSubGroup(item: NavItem): item is NavSubGroup {
-  return 'children' in item;
-}
+type NavGroup = { title: string; items: NavLink[] };
 
 const sidebarSections: NavGroup[] = [
   { title: 'Get Started', items: [
@@ -98,107 +92,58 @@ const sidebarSections: NavGroup[] = [
   ]},
 ];
 
-function SidebarSubGroup({ sub }: { sub: NavSubGroup }) {
-  const pathname = usePathname();
-  const hasActive = sub.children.some(c => c.href === pathname);
-  const [open, setOpen] = useState(hasActive);
-
+/* ── Search trigger button (opens the global ⌘K search) ── */
+function SidebarSearch({ onSearchClick }: { onSearchClick?: () => void }) {
   return (
-    <li>
-      <button
-        onClick={() => setOpen(!open)}
-        className={`w-full flex items-center gap-2 pl-3 pr-3 py-2.5 text-[13px] rounded-lg sidebar-link ${hasActive ? 'font-semibold' : ''}`}
-        style={{ color: hasActive ? 'var(--color-on-surface)' : 'var(--color-on-surface-variant)' }}
-      >
-        <svg
-          width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-          strokeLinecap="round" strokeLinejoin="round"
-          className="shrink-0"
-          style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.15s' }}
-        >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-        {sub.title}
-      </button>
-      {open && (
-        <ul>
-          {sub.children.map((child) => {
-            const isActive = pathname === child.href;
-            return (
-              <li key={child.href}>
-                <Link
-                  href={child.href}
-                  className={`block pl-9 pr-3 py-2 text-[13px] rounded-lg sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
-                  style={{ color: isActive ? undefined : 'var(--color-on-surface-variant)' }}
-                >
-                  {child.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </li>
+    <button
+      onClick={onSearchClick}
+      className="sidebar-search-btn"
+      aria-label="Search"
+    >
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0" style={{ opacity: 0.5 }}>
+        <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <span style={{ opacity: 0.4 }}>Search...</span>
+      <kbd className="sidebar-search-kbd">⌘K</kbd>
+    </button>
   );
 }
 
+/* ── Single group — always open, flat list ── */
 function SidebarGroup({ group }: { group: NavGroup }) {
   const pathname = usePathname();
-  const allHrefs = group.items.flatMap(item =>
-    isSubGroup(item) ? item.children.map(c => c.href) : [item.href]
-  );
-  const hasActive = allHrefs.includes(pathname);
-  const [open, setOpen] = useState(hasActive);
 
   return (
-    <div className="mb-1">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-3 py-2 text-[13px] font-semibold rounded-lg sidebar-link"
-        style={{ color: 'var(--color-on-surface)' }}
-      >
-        {group.title}
-        <svg
-          width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-          strokeLinecap="round" strokeLinejoin="round"
-          style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.15s', color: 'var(--color-on-surface-variant)' }}
-        >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </button>
-      {open && (
-        <ul className="mt-0.5">
-          {group.items.map((item) => {
-            if (isSubGroup(item)) {
-              return <SidebarSubGroup key={item.title} sub={item} />;
-            }
-            const isActive = pathname === item.href;
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block pl-9 pr-3 py-2.5 text-[13px] rounded-lg sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
-                  style={{
-                    color: isActive ? undefined : 'var(--color-on-surface-variant)',
-                  }}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+    <div className="sidebar-group">
+      <h3 className="sidebar-group-title">{group.title}</h3>
+      <ul className="sidebar-group-list">
+        {group.items.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`sidebar-nav-link ${isActive ? 'sidebar-nav-link-active' : ''}`}
+              >
+                {/* Left accent bar for active item */}
+                <span className={`sidebar-accent-bar ${isActive ? 'sidebar-accent-bar-active' : ''}`} />
+                <span>{item.label}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
 
-export function Sidebar({ open, onClose }: { open?: boolean; onClose?: () => void }) {
+export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onClose?: () => void; onSearchClick?: () => void }) {
   const pathname = usePathname();
   if (pathname === '/') return null;
 
   const sidebarContent = (
-    <nav className="py-3 px-2">
+    <nav className="sidebar-nav">
+      <SidebarSearch onSearchClick={onSearchClick} />
       {sidebarSections.map((group) => (
         <SidebarGroup key={group.title} group={group} />
       ))}
@@ -207,6 +152,7 @@ export function Sidebar({ open, onClose }: { open?: boolean; onClose?: () => voi
 
   return (
     <>
+      {/* Desktop sidebar */}
       <aside
         className="hidden lg:block fixed left-0 top-16 w-[var(--sidebar-width)] h-[calc(100vh-64px)] overflow-y-auto z-30 border-r sidebar-scroll"
         style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
@@ -214,17 +160,31 @@ export function Sidebar({ open, onClose }: { open?: boolean; onClose?: () => voi
         {sidebarContent}
       </aside>
 
-      {open && (
-        <>
-          <div className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm" onClick={onClose} />
-          <aside
-            className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r"
-            style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
-          >
-            {sidebarContent}
-          </aside>
-        </>
-      )}
+      {/* Mobile sidebar */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+              onClick={onClose}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.aside
+              className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r"
+              style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {sidebarContent}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

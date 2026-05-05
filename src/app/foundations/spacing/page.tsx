@@ -241,13 +241,11 @@ function UsageTab() {
           'Use the 8px base unit for all spacing decisions',
           'Apply consistent spacing within component groups',
           'Use larger spacing to separate distinct sections',
-          'Use 2–4px only for fine-tuning and precision alignment',
         ]}
         dontItems={[
           'Use arbitrary pixel values outside the scale',
           'Mix spacing scales within the same component',
           'Remove spacing between interactive elements',
-          'Use large spacing values inside compact components',
         ]}
       />
     </div>

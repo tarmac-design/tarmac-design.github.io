@@ -181,13 +181,11 @@ function UsageTab() {
           'Use shadows to communicate elevation and layering',
           'Keep shadows soft and subtle',
           'Pair shadows with borders for accessibility',
-          'Adjust shadow intensity between light and dark modes',
         ]}
         dontItems={[
           'Use shadows as the only indicator of interactive state',
           'Apply heavy shadows to flat UI elements',
           'Use colored shadows outside of brand-specific contexts',
-          'Stack multiple shadow levels on the same element',
         ]}
       />
     </div>

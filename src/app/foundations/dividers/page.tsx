@@ -172,13 +172,11 @@ function UsageTab() {
           'Use 0.5px for subtle inline separation (lists, tables)',
           'Use 1px for section-level breaks',
           'Pair dividers with spacing for clear visual hierarchy',
-          'Ensure dividers are visible in both light and dark modes',
         ]}
         dontItems={[
           'Use dividers when spacing alone provides enough separation',
           'Stack multiple dividers close together',
           'Use dividers as the only grouping signal',
-          'Apply heavy dividers to lightweight content areas',
         ]}
       />
     </div>

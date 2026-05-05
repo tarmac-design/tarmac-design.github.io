@@ -335,13 +335,11 @@ function UsageTab() {
           'Use predefined sizes from the token scale (14–48px)',
           'Choose Light/Dark style based on background contrast',
           'Use the Wordmark when space allows for full identification',
-          'Maintain clear space around the logo equal to the logomark height',
         ]}
         dontItems={[
           'Stretch, skew, or rotate the logo',
           'Use arbitrary sizes outside the defined scale',
           'Place a Light logo on a light background (or Dark on dark)',
-          'Add effects like shadows, glows, or outlines to the logo',
         ]}
       />
     </div>

@@ -295,13 +295,11 @@ function UsageTab() {
           'Use the correct Light/Dark variant for the current theme',
           'Use SVG format for scalability',
           'Pair illustrations with text for context',
-          'Use consistent sizing within the same layout',
         ]}
         dontItems={[
           'Stretch or distort illustrations',
           'Use Light illustrations on light backgrounds without contrast',
           'Mix illustration styles from different systems',
-          'Use illustrations as primary navigation elements',
         ]}
       />
     </div>

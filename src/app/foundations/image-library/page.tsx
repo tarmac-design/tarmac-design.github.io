@@ -275,13 +275,11 @@ function UsageTab() {
           'Be specific and descriptive in prompts',
           'Anchor scenes in real environments',
           'Define lighting and composition',
-          'Keep subjects clear and readable',
         ]}
         dontItems={[
           'Use vague or generic descriptions',
           'Create abstract or conceptual imagery',
           'Over-stylize or dramatize scenes',
-          'Rely on imagery to convey critical information',
         ]}
       />
 

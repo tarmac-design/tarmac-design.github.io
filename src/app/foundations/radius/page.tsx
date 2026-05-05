@@ -230,13 +230,11 @@ function UsageTab() {
           'Use radius tokens consistently across all components',
           'Match radius to element size — larger elements get larger radii',
           'Use radius.none (0px) intentionally for sharp-edged elements',
-          'Use radius.max (999px) only for circular elements like avatars',
         ]}
         dontItems={[
           'Use arbitrary radius values outside the scale',
           'Apply large radii to small elements — it distorts the shape',
           'Mix different radius values within the same component group',
-          'Use radius purely for decoration without functional purpose',
         ]}
       />
     </div>
