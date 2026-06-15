@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Logo data from Figma ─── */
 type LogoVariant = 'Logo' | 'Logomark' | 'Pictorial';
@@ -67,7 +68,8 @@ const variantDescriptions: Record<LogoVariant, { title: string; subtitle: string
 function DelhiveryLogoSVG({ variant, style: logoStyle, width, height, fullFill }: { variant: LogoVariant; style: LogoStyle; width: number; height: number; fullFill?: boolean }) {
   const isDark = logoStyle === 'Dark';
   const variantSlug = variant === 'Logo' ? 'logo' : variant === 'Logomark' ? 'logomark' : 'pictorial';
-  const imgSrc = `/assets/images/dlv-${variantSlug}-${logoStyle.toLowerCase()}.png`;
+  const fileName = `dlv-${variantSlug}-${logoStyle.toLowerCase()}.png`;
+  const imgSrc = `/assets/images/logos/${fileName}`;
 
   if (fullFill) {
     return (
@@ -78,14 +80,46 @@ function DelhiveryLogoSVG({ variant, style: logoStyle, width, height, fullFill }
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: '12px',
       }}>
-        <img src={imgSrc} alt={`Delhivery ${variant} ${logoStyle}`} style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }} />
+        <img
+          src={imgSrc}
+          alt={`Delhivery ${variant} ${logoStyle}`}
+          style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }}
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent && !parent.querySelector('.logo-placeholder')) {
+              const el = document.createElement('span');
+              el.className = 'logo-placeholder';
+              el.style.cssText = 'font-size:10px;color:#999;font-family:monospace;text-align:center;';
+              el.textContent = fileName;
+              parent.appendChild(el);
+            }
+          }}
+        />
       </div>
     );
   }
 
   return (
-    <div style={{ width, height, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <img src={imgSrc} alt={`Delhivery ${variant} ${logoStyle}`} style={{ width, height, objectFit: 'contain' }} />
+    <div style={{ width: width || 'auto', height: height || 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <img
+        src={imgSrc}
+        alt={`Delhivery ${variant} ${logoStyle}`}
+        style={{ width: width || 'auto', height: height || 'auto', objectFit: 'contain' }}
+        onError={(e) => {
+          const target = e.currentTarget;
+          target.style.display = 'none';
+          const parent = target.parentElement;
+          if (parent && !parent.querySelector('.logo-placeholder')) {
+            const el = document.createElement('span');
+            el.className = 'logo-placeholder';
+            el.style.cssText = 'font-size:10px;color:#999;font-family:monospace;text-align:center;';
+            el.textContent = fileName;
+            parent.appendChild(el);
+          }
+        }}
+      />
     </div>
   );
 }
@@ -411,17 +445,31 @@ DLV_pictorial.dark.48px`}</code></pre>
   );
 }
 
+/* ─── Changelog Data ─── */
+const logoChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '3 logo variants: Wordmark, Logomark, Pictorial',
+        '2 styles: Light and Dark',
+        '6 predefined sizes: 14px, 18px, 24px, 32px, 40px, 48px',
+        'Clear space and placement guidelines',
+        'Delhivery brand logo token system',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function LogoPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={logoChangelog} /> },
   ];
 
   return (

@@ -5,7 +5,6 @@ import { useRef, useCallback, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
-import { GrainOverlay } from '@/components/GrainOverlay';
 import { motion, useInView } from 'motion/react';
 
 /* ── Reusable scroll-triggered fade-in wrapper ── */
@@ -37,24 +36,12 @@ const systemCards = [
 export default function Home() {
   const { theme } = useTheme();
   const heroRef = useRef<HTMLElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const youCursorRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
   const [showYou, setShowYou] = useState(false);
 
-  const handleHeroMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!heroRef.current || !glowRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    glowRef.current.style.maskImage = `radial-gradient(300px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
-    (glowRef.current.style as unknown as Record<string, string>)['webkitMaskImage'] = `radial-gradient(300px circle at ${x}px ${y}px, black 0%, transparent 70%)`;
-    glowRef.current.style.opacity = '1';
-  }, []);
-
-  const handleHeroMouseLeave = useCallback(() => {
-    if (glowRef.current) glowRef.current.style.opacity = '0';
-  }, []);
+  const handleHeroMouseMove = useCallback(() => {}, []);
+  const handleHeroMouseLeave = useCallback(() => {}, []);
 
   const handlePageMouseMove = useCallback((e: React.MouseEvent) => {
     if (youCursorRef.current) {
@@ -100,85 +87,80 @@ export default function Home() {
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
         className="relative overflow-hidden"
-        style={{ background: theme === 'dark' ? '#0A0A0A' : '#F7F7F7', minHeight: '100vh', display: 'flex', alignItems: 'center', cursor: 'none' }}
+        style={{ background: '#000000', minHeight: '100vh', display: 'flex', flexDirection: 'column', cursor: 'none' }}
       >
-        <img src="/assets/images/road-texture.jpg" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-        <div className="absolute inset-0" style={{
-          background: theme === 'dark'
-            ? 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.4) 100%)'
-            : 'rgba(247,247,247,0.99)',
+        {/* Top gradient for nav visibility */}
+        <div className="absolute top-0 left-0 right-0 h-32 z-10 pointer-events-none" style={{
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%)',
         }} />
-        <GrainOverlay opacity={0.15} blendMode="overlay" size={3} type="film" />
-        <div className="absolute inset-0 opacity-[0.05]" style={{
-          backgroundImage: theme === 'dark'
-            ? `radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)`
-            : `radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-        }} />
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 40%)`,
-        }} />
-        <div
-          ref={glowRef}
-          className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-          style={{
-            opacity: 0,
-            backgroundImage: theme === 'dark'
-              ? `radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)`
-              : `radial-gradient(circle, rgba(0,0,0,0.25) 1.5px, transparent 1.5px)`,
-            backgroundSize: '24px 24px',
-          }}
-        />
-        {/* Hero content — animated */}
-        <div className="relative max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-28 w-full z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]"
-              style={{ color: theme === 'dark' ? '#FFFFFF' : '#0D0D0D' }}>
-              Build great experiences<br />
-              with <span style={{ color: '#ED1B36' }}>TARMAC</span>
-            </h1>
-          </motion.div>
 
-          <motion.p
-            className="text-lg sm:text-xl max-w-2xl leading-relaxed mb-10"
-            style={{ color: theme === 'dark' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.55)' }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            Delhivery&apos;s unified design system — the single source of truth for design decisions, UI components, and interaction patterns.
-          </motion.p>
+        {/* Container image — top portion */}
+        <div className="relative w-full" style={{ height: '60vh', minHeight: '360px' }}>
+          <img
+            src="/assets/images/guidelines/Containers.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none"
+          />
+          {/* Gradient fade from image to black */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.4) 60%, #000000 100%)',
+          }} />
+        </div>
 
-          <motion.div
-            className="flex flex-wrap gap-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Link
-              href="/about/overview"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
-              style={{ background: '#ED1B36', color: '#FFFFFF' }}
+        {/* Hero text content — bottom portion on black */}
+        <div className="relative flex-1 flex items-end pb-16 sm:pb-20 z-20" style={{ marginTop: '-80px' }}>
+          <div className="w-full px-5 sm:px-8 lg:px-16 xl:px-24">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              Get started <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/components/accordion"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border"
-              style={{
-                borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)',
-                color: theme === 'dark' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = '#000000'; e.currentTarget.style.color = '#FFFFFF'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = theme === 'dark' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)'; e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)'; }}
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]"
+                style={{ color: '#FFFFFF' }}>
+                Build great experience<br />
+                with{/* eslint-disable-next-line @next/next/no-img-element */}<img
+                  src="/tarmac-logo-dark.svg"
+                  alt="TARMAC"
+                  className="inline-block ml-3 align-baseline"
+                  style={{ height: '0.75em', width: 'auto', verticalAlign: 'baseline', position: 'relative', top: '-0.05em' }}
+                />
+              </h1>
+            </motion.div>
+
+            <motion.p
+              className="text-base sm:text-lg max-w-lg leading-relaxed mb-8"
+              style={{ color: 'rgba(255,255,255,0.5)' }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              Browse components
-            </Link>
-          </motion.div>
+              Delhivery&apos;s unified design system — the single source of truth for design decisions, UI components, and interaction patterns.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-wrap gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link
+                href="/about/overview"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+                style={{ background: '#ED1B36', color: '#FFFFFF' }}
+              >
+                Get started <ArrowRight size={14} />
+              </Link>
+              <Link
+                href="/components/accordion"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 border"
+                style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.8)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; }}
+              >
+                Browse components
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 

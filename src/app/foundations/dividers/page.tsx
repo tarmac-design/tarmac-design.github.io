@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Divider data from Figma ─── */
 type DividerToken = { type: 'Line' | 'Dash'; size: string; px: number; placement: string; purpose: string };
@@ -171,12 +172,14 @@ function UsageTab() {
         doItems={[
           'Use 0.5px for subtle inline separation (lists, tables)',
           'Use 1px for section-level breaks',
-          'Pair dividers with spacing for clear visual hierarchy',
+          'Use dividers in tables, Lists etc, to seperate contents',
+          'Use dashed divider for specific use cases',
         ]}
         dontItems={[
-          'Use dividers when spacing alone provides enough separation',
+          'use dividers when spacing alone provides enough seperation',
           'Stack multiple dividers close together',
-          'Use dividers as the only grouping signal',
+          'Use extra heavy stoke sizes for dividers',
+          'Use random lines (horizontal & vertical)',
         ]}
       />
     </div>
@@ -245,17 +248,30 @@ function CodeTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const dividerChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '2 styles: Solid line and Dashed line',
+        '3 sizes: 0.5px (subtle), 1px (default), 1.5px (strong)',
+        'Horizontal and vertical orientation support',
+        'Theme-aware color using outline token',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function DividersPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={dividerChangelog} /> },
   ];
 
   return (

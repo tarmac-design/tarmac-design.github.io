@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 import {
   headings, body, captions,
   weightValues, getLetterSpacing, tokenName,
@@ -165,15 +166,15 @@ function UsageTab() {
       <DoDont slug="typography"
         doItems={[
           "Use the type scale tokens consistently across all pages",
-          "Maintain sequential heading hierarchy (H1 → H2 → H3)",
-          "Use Noto Sans as the primary typeface",
-          "Keep body text at B1 (16px) or B2 (14px) minimum",
+          "Maintain sequential heading hierarchy",
+          "Use the text color token eg (Heading, body, caption)",
+          "Use Appropriate text colors, to pair with the respective Surface color",
         ]}
         dontItems={[
-          "Skip heading levels (e.g., H1 directly to H3)",
+          "Use raw values as text sizes, with any lineheight",
           "Use more than 3 font weights on a single screen",
-          "Set body text smaller than 14px for readable content",
-          "Use arbitrary font sizes outside the type scale",
+          "Use extra light text in any product screen",
+          "Use gradient texts styles",
         ]}
       />
     </div>
@@ -277,17 +278,31 @@ export default {
   );
 }
 
+/* ─── Changelog Data ─── */
+const typographyChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        'Noto Sans as primary typeface',
+        'Type scale: H1–H5 headings, B1–B2 body, C1–C2 captions',
+        '5 weight levels: Light (300), Regular (400), Medium (500), Semibold (600), Bold (700)',
+        'Letter-spacing tokens per style and weight',
+        'CSS custom properties and Tailwind integration',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function TypographyPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the type system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={typographyChangelog} /> },
   ];
 
   return (

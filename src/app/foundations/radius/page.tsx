@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Radius data from Figma ─── */
 type RadiusToken = { size: string; token: string; value: string; px: number; purpose: string };
@@ -228,13 +229,13 @@ function UsageTab() {
       <DoDont slug="radius"
         doItems={[
           'Use radius tokens consistently across all components',
-          'Match radius to element size — larger elements get larger radii',
-          'Use radius.none (0px) intentionally for sharp-edged elements',
+          'Align radius, when pairing with multiple layers',
+          'Maintain the same radius for all components in the screens',
         ]}
         dontItems={[
-          'Use arbitrary radius values outside the scale',
-          'Apply large radii to small elements — it distorts the shape',
-          'Mix different radius values within the same component group',
+          'Use different type of scales on all sides',
+          'Apply large radius for small elements',
+          'Use raw values for radius',
         ]}
       />
     </div>
@@ -302,17 +303,30 @@ export default {
   );
 }
 
+/* ─── Changelog Data ─── */
+const radiusChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        'Radius scale: None (0), Small (2px), Default (4px), Medium (8px), Large (12px), XLarge (16px), Max (999px)',
+        'Token-based radius system with Figma variables',
+        'Component-to-radius mapping guidelines',
+        'Nested radius alignment rules',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function RadiusPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the radius system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={radiusChangelog} /> },
   ];
 
   return (

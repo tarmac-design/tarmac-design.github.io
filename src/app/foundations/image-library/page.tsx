@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Image Library data from Figma ─── */
 type ImageCategory = 'Vehicles' | 'People' | 'Warehouse' | 'Riders' | 'Illustrative';
@@ -15,7 +16,7 @@ type ImageItem = {
 };
 
 const categoryInfo: { key: ImageCategory; label: string; count: number }[] = [
-  { key: 'Vehicles', label: 'Vehicles', count: 8 },
+  { key: 'Vehicles', label: 'Vehicles', count: 10 },
   { key: 'People', label: 'People', count: 1 },
   { key: 'Warehouse', label: 'Warehouse', count: 4 },
   { key: 'Riders', label: 'Riders', count: 3 },
@@ -23,31 +24,48 @@ const categoryInfo: { key: ImageCategory; label: string; count: number }[] = [
 ];
 
 const allImages: ImageItem[] = [
-  { name: 'Highway Fleet', category: 'Vehicles', width: 1800, height: 777, path: '/images/vehicles/highway-fleet.jpg' },
-  { name: 'Delivery Trucks', category: 'Vehicles', width: 1800, height: 645, path: '/images/vehicles/delivery-trucks.jpg' },
-  { name: 'Volvo Fleet', category: 'Vehicles', width: 1800, height: 635, path: '/images/vehicles/volvo-fleet.jpg' },
-  { name: 'Urban Delivery', category: 'Vehicles', width: 1800, height: 645, path: '/images/vehicles/urban-delivery.jpg' },
-  { name: 'Truck Closeup', category: 'Vehicles', width: 1800, height: 771, path: '/images/vehicles/truck-closeup.jpg' },
-  { name: 'Night Operations', category: 'Vehicles', width: 1800, height: 579, path: '/images/vehicles/night-operations.jpg' },
-  { name: 'Logistics Hub', category: 'Vehicles', width: 1800, height: 1029, path: '/images/vehicles/logistics-hub.jpg' },
-  { name: 'Delivery Van', category: 'Vehicles', width: 843, height: 666, path: '/images/vehicles/delivery-van.jpg' },
-  { name: 'Operations Team', category: 'People', width: 1951, height: 627, path: '/images/people/operations-team.jpg' },
-  { name: 'Warehouse Interior', category: 'Warehouse', width: 1436, height: 820, path: '/images/warehouse/interior.jpg' },
-  { name: 'Sorting Facility', category: 'Warehouse', width: 1436, height: 820, path: '/images/warehouse/sorting-facility.jpg' },
-  { name: 'Conveyor Belt A', category: 'Warehouse', width: 688, height: 943, path: '/images/warehouse/conveyor-a.jpg' },
-  { name: 'Conveyor Belt B', category: 'Warehouse', width: 688, height: 943, path: '/images/warehouse/conveyor-b.jpg' },
-  { name: 'Rider Portrait', category: 'Riders', width: 1120, height: 928, path: '/images/riders/portrait.jpg' },
-  { name: 'Rider in Motion', category: 'Riders', width: 1120, height: 928, path: '/images/riders/in-motion.jpg' },
-  { name: 'Rider Delivery', category: 'Riders', width: 1024, height: 1024, path: '/images/riders/delivery.jpg' },
-  { name: 'Brand Landscape', category: 'Illustrative', width: 1724, height: 985, path: '/images/illustrative/brand-landscape.jpg' },
-  { name: 'Abstract Motion', category: 'Illustrative', width: 1724, height: 676, path: '/images/illustrative/abstract-motion.jpg' },
-  { name: 'Composition A', category: 'Illustrative', width: 832, height: 1248, path: '/images/illustrative/composition-a.jpg' },
-  { name: 'Composition B', category: 'Illustrative', width: 832, height: 1248, path: '/images/illustrative/composition-b.jpg' },
-  { name: 'Feature Image', category: 'Illustrative', width: 832, height: 1248, path: '/images/illustrative/feature.jpg' },
+  { name: 'Highway Fleet', category: 'Vehicles', width: 1800, height: 777, path: '/assets/images/guidelines/highway-fleet.jpg' },
+  { name: 'Delivery Trucks', category: 'Vehicles', width: 1800, height: 645, path: '/assets/images/guidelines/delivery-trucks.jpg' },
+  { name: 'Volvo Fleet', category: 'Vehicles', width: 1800, height: 635, path: '/assets/images/guidelines/volvo-fleet.jpg' },
+  { name: 'Urban Delivery', category: 'Vehicles', width: 1800, height: 645, path: '/assets/images/guidelines/urban-delivery.jpg' },
+  { name: 'Truck Closeup', category: 'Vehicles', width: 1800, height: 771, path: '/assets/images/guidelines/truck-closeup.jpg' },
+  { name: 'Night Operations', category: 'Vehicles', width: 1800, height: 579, path: '/assets/images/guidelines/night-operations.jpg' },
+  { name: 'Logistics Hub', category: 'Vehicles', width: 1800, height: 1029, path: '/assets/images/guidelines/logistics-hub.jpg' },
+  { name: 'Delivery Van', category: 'Vehicles', width: 843, height: 666, path: '/assets/images/guidelines/delivery-van.jpg' },
+  { name: 'Delivery Truck', category: 'Vehicles', width: 1800, height: 777, path: '/assets/images/guidelines/delivery-truck.png' },
+  { name: 'Highway Fleet (Alt)', category: 'Vehicles', width: 1800, height: 777, path: '/assets/images/guidelines/highway-fleet.png' },
+  { name: 'Operations Team', category: 'People', width: 1951, height: 627, path: '/assets/images/guidelines/operations-team.jpg' },
+  { name: 'Warehouse Interior', category: 'Warehouse', width: 1436, height: 820, path: '/assets/images/guidelines/interior.jpg' },
+  { name: 'Sorting Facility', category: 'Warehouse', width: 1436, height: 820, path: '/assets/images/guidelines/sorting-facility.jpg' },
+  { name: 'Conveyor Belt A', category: 'Warehouse', width: 688, height: 943, path: '/assets/images/guidelines/conveyor-a.jpg' },
+  { name: 'Conveyor Belt B', category: 'Warehouse', width: 688, height: 943, path: '/assets/images/guidelines/conveyer-b.jpg' },
+  { name: 'Rider Portrait', category: 'Riders', width: 1120, height: 928, path: '/assets/images/guidelines/portrait.jpg' },
+  { name: 'Rider in Motion', category: 'Riders', width: 1120, height: 928, path: '/assets/images/guidelines/in-motion.jpg' },
+  { name: 'Rider Delivery', category: 'Riders', width: 1024, height: 1024, path: '/assets/images/guidelines/delivery.jpg' },
+  { name: 'Brand Landscape', category: 'Illustrative', width: 1724, height: 985, path: '/assets/images/guidelines/brand-landscape.jpg' },
+  { name: 'Abstract Motion', category: 'Illustrative', width: 1724, height: 676, path: '/assets/images/guidelines/abstract-motion.jpg' },
+  { name: 'Composition A', category: 'Illustrative', width: 832, height: 1248, path: '/assets/images/guidelines/composition-a.jpg' },
+  { name: 'Composition B', category: 'Illustrative', width: 832, height: 1248, path: '/assets/images/guidelines/composition-b.jpg' },
+  { name: 'Feature Image', category: 'Illustrative', width: 832, height: 1248, path: '/assets/images/guidelines/feature.jpg' },
 ];
 
 /* ─── Image Placeholder ─── */
 function ImagePlaceholder({ name, width, height, path }: { name: string; width: number; height: number; path: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!failed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={path}
+        alt={name}
+        className="w-full object-cover rounded-lg"
+        style={{ aspectRatio: '4/3', minHeight: 80 }}
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+
   return (
     <div style={{
       width: '100%', aspectRatio: '4/3', background: '#f0f0f0',
@@ -86,7 +104,7 @@ function ImagePopup({ items, index, onClose, onNav }: {
       {index > 0 && <button onClick={(e) => { e.stopPropagation(); onNav(-1); }} className="absolute left-4 sm:left-8 z-10 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--color-surface)', color: 'var(--color-on-surface)', border: '1px solid var(--color-outline)' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>}
       {index < items.length - 1 && <button onClick={(e) => { e.stopPropagation(); onNav(1); }} className="absolute right-4 sm:right-8 z-10 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--color-surface)', color: 'var(--color-on-surface)', border: '1px solid var(--color-outline)' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>}
       <div className="relative z-10 w-[90vw] max-w-lg rounded-2xl overflow-hidden shadow-2xl" style={{ border: '1px solid var(--color-outline)' }} onClick={(e) => e.stopPropagation()}>
-        <div className="p-4" style={{ background: '#FFFFFF' }}>
+        <div className="p-4" style={{ background: 'var(--color-surface)' }}>
           <ImagePlaceholder name={item.name} width={item.width} height={item.height} path={item.path} />
         </div>
         <div className="p-5" style={{ background: 'var(--color-surface)' }}>
@@ -176,12 +194,8 @@ function GalleryTab() {
                     <button key={item.path} onClick={() => setPopup({ index: globalIdx })}
                       className="rounded-xl border overflow-hidden text-left transition-all hover:shadow-md"
                       style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container-low)' }}>
-                      <div className="w-full p-3" style={{ background: '#FFFFFF' }}>
+                      <div className="w-full p-3" style={{ background: 'var(--color-surface)' }}>
                         <ImagePlaceholder name={item.name} width={item.width} height={item.height} path={item.path} />
-                      </div>
-                      <div className="px-3 py-2">
-                        <span className="text-[11px] font-medium block truncate" style={{ color: 'var(--color-on-surface)' }}>{item.name}</span>
-                        <span className="text-[10px]" style={{ color: 'var(--color-on-surface-variant)' }}>{item.width}×{item.height}</span>
                       </div>
                     </button>
                   );
@@ -298,17 +312,29 @@ function UsageTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const imageLibraryChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '5 image categories: Vehicles, People, Warehouse, Riders, Illustrative',
+        'AI-generated imagery using Google Gemini',
+        'Prompt templates for consistent generation',
+        'Technical guidelines for format, resolution, and aspect ratios',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function ImageLibraryPage() {
   const tabs = [
     { label: 'Gallery', content: <GalleryTab /> },
     { label: 'Prompt Guide', content: <PromptGuideTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={imageLibraryChangelog} /> },
   ];
 
   return (

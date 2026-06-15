@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Illustration data from Figma ─── */
 type IllustrationCategory = 'Vehicles' | 'Vehicle Top View' | 'Scenes' | 'Icons' | 'Profiles' | 'Packages' | 'Additional';
@@ -29,58 +30,69 @@ const categories: { key: IllustrationCategory; label: string; description: strin
 function buildItems(): IllustrationItem[] {
   const items: IllustrationItem[] = [];
   const styles: IllustrationStyle[] = ['Light', 'Dark'];
+  const basePath = '/assets/images/illustrations';
 
-  // Vehicles — 4 types × 3 variants × 2 styles
+  // Vehicles — 4 types × 3 variants × 2 styles (from Figma: 140×140)
   const vehicleTypes = ['Scooter', 'Rickshaw', 'Truck', 'Auto'];
   for (const style of styles) {
     for (const type of vehicleTypes) {
       for (let i = 1; i <= 3; i++) {
-        items.push({ name: `${type} ${i}`, category: 'Vehicles', style, width: 140, height: 140, path: `/illustrations/vehicles/${type.toLowerCase()}-${i}-${style.toLowerCase()}.svg` });
+        items.push({ name: `${type} ${i}`, category: 'Vehicles', style, width: 140, height: 140, path: `${basePath}/vehicles/${type.toLowerCase()}-${i}-${style.toLowerCase()}.png` });
       }
     }
   }
 
-  // Vehicle Top View — small (100×100) and large (180×180)
-  const topViewSmall = ['Bike', 'Auto', 'Truck', 'Rickshaw', 'Plane'];
+  // Vehicle Top View — 6 types × 2 styles (from Figma: 180×180)
+  const topViewTypes = ['Bike', 'Auto', 'Truck', 'Rickshaw 1', 'Rickshaw 2', 'Plane'];
   for (const style of styles) {
-    for (const name of topViewSmall) {
-      items.push({ name, category: 'Vehicle Top View', style, width: 100, height: 100, path: `/illustrations/top-view/${name.toLowerCase()}-${style.toLowerCase()}.svg` });
+    for (const name of topViewTypes) {
+      const slug = name.toLowerCase().replace(/ /g, '-');
+      items.push({ name, category: 'Vehicle Top View', style, width: 180, height: 180, path: `${basePath}/vehicle-top-view/${slug}-${style.toLowerCase()}.png` });
     }
   }
 
-  // Scenes
-  const scenes = ['Delivery at Door', 'Rider with Package', 'Warehouse', 'Route Map'];
+  // Scenes — contextual delivery illustrations (from Figma)
+  const scenes = [
+    { name: 'Delivery at Door', w: 360, h: 292 },
+    { name: 'Rider with Package', w: 360, h: 292 },
+    { name: 'Orders Delivered', w: 360, h: 427 },
+    { name: 'Referral Reward', w: 360, h: 247 },
+  ];
   for (const style of styles) {
-    for (const name of scenes) {
-      items.push({ name, category: 'Scenes', style, width: 360, height: 240, path: `/illustrations/scenes/${name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.svg` });
+    for (const scene of scenes) {
+      items.push({ name: scene.name, category: 'Scenes', style, width: scene.w, height: scene.h, path: `${basePath}/scenes/${scene.name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.png` });
     }
   }
 
-  // Icons & Stickers — 3×6 grid
-  const iconNames = ['Location Pin', 'Package Box', 'Delivery Van', 'Clock', 'Shield Check', 'Star Rating', 'Barcode', 'QR Code', 'Weight Scale', 'Route Path', 'Warehouse', 'Support Chat', 'Payment', 'Tracking', 'Returns', 'Notification', 'Calendar', 'Document'];
+  // Icons & Stickers — illustrative UI elements (from Figma: 117×117)
+  const iconNames = [
+    'Location Pin', 'Package Box', 'Delivery Van', 'Clock', 'Shield Check', 'Star Rating',
+    'Barcode', 'QR Code', 'Weight Scale', 'Route Path', 'Warehouse', 'Support Chat',
+    'Payment', 'Tracking', 'Returns', 'Notification', 'Calendar', 'Document',
+  ];
   for (const style of styles) {
     for (const name of iconNames) {
-      items.push({ name, category: 'Icons', style, width: 117, height: 117, path: `/illustrations/icons/${name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.svg` });
+      items.push({ name, category: 'Icons', style, width: 117, height: 117, path: `${basePath}/icons/${name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.png` });
     }
   }
 
-  // Profiles
+  // Profiles — character avatars (from Figma: 64×64, 9 profiles)
   const profiles = ['Rider Male', 'Rider Female', 'Customer Male', 'Customer Female', 'Support Agent', 'Warehouse Staff', 'Driver', 'Manager', 'Delivery Partner'];
   for (const name of profiles) {
-    items.push({ name, category: 'Profiles', style: 'Light', width: 64, height: 64, path: `/illustrations/profiles/${name.toLowerCase().replace(/ /g, '-')}.svg` });
+    items.push({ name, category: 'Profiles', style: 'Light', width: 64, height: 64, path: `${basePath}/profiles/${name.toLowerCase().replace(/ /g, '-')}.png` });
   }
 
-  // Packages
-  const packages = ['Package L1', 'Package L2', 'Package L3', 'Content L1', 'Content L2', 'Content L3'];
+  // Packages — package and content type icons (from Figma: ~100×100)
+  const packages = ['Package L1', 'Package L2', 'Package L3', 'Content L1', 'Content L2', 'Content L3', 'Content L4', 'Content L5', 'Content L6', 'Content L7', 'Content L8', 'Content L9'];
   for (const style of styles) {
     for (const name of packages) {
-      items.push({ name, category: 'Packages', style, width: 100, height: 100, path: `/illustrations/packages/${name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.svg` });
+      items.push({ name, category: 'Packages', style, width: 100, height: 100, path: `${basePath}/packages/${name.toLowerCase().replace(/ /g, '-')}-${style.toLowerCase()}.png` });
     }
   }
 
-  // Additional
-  for (let i = 1; i <= 20; i++) {
-    items.push({ name: `Asset ${i}`, category: 'Additional', style: 'Light', width: 200, height: 200, path: `/illustrations/additional/asset-${i}.svg` });
+  // Additional — supplementary assets (from Figma: 200×200, 35 items)
+  for (let i = 1; i <= 35; i++) {
+    items.push({ name: `Asset ${i}`, category: 'Additional', style: 'Light', width: 200, height: 200, path: `${basePath}/additional/asset-${i}.png` });
   }
 
   return items;
@@ -288,20 +300,6 @@ function UsageTab() {
         <li>Ensure sufficient contrast between illustration and background in both themes</li>
         <li>Decorative illustrations should use <code>aria-hidden=&quot;true&quot;</code></li>
       </ul>
-
-      <h2>Do&apos;s &amp; Don&apos;ts</h2>
-      <DoDont slug="illustration"
-        doItems={[
-          'Use the correct Light/Dark variant for the current theme',
-          'Use SVG format for scalability',
-          'Pair illustrations with text for context',
-        ]}
-        dontItems={[
-          'Stretch or distort illustrations',
-          'Use Light illustrations on light backgrounds without contrast',
-          'Mix illustration styles from different systems',
-        ]}
-      />
     </div>
   );
 }
@@ -359,17 +357,30 @@ function CodeTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const illustrationChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '7 illustration categories: Vehicles, Vehicle Top View, Scenes, Icons, Profiles, Packages, Additional',
+        'Light and Dark theme variants for all illustrations',
+        'Vector-based (SVG/PNG) format for scalability',
+        'Consistent style language across all categories',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function IllustrationPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={illustrationChangelog} /> },
   ];
 
   return (

@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Data from Figma ─── */
 
@@ -663,16 +664,16 @@ function UsageTab() {
       <h2>Do&apos;s &amp; Don&apos;ts</h2>
       <DoDont slug="grid-system"
         doItems={[
-          "Use the 12-column grid for desktop page layouts",
-          "Use 4-column grid for mobile content areas",
-          "Follow breakpoint definitions for responsive design",
-          "Use consistent gutters and margins across breakpoints",
+          "Use the 12 column grid for desktop layouts",
+          "Use 4-column grid & 2 column for mobile content + Nav areas",
+          "Use the Side Nav grid",
+          "Utilize consistent margins & gutters across layouts",
         ]}
         dontItems={[
           "Break out of the grid without good reason",
-          "Use fixed pixel widths instead of grid columns",
+          "Use custom layouts for special use cases",
           "Ignore mobile breakpoints",
-          "Allow content to stretch beyond 1440px on wide screens",
+          "Allow content to flow out of the grid",
         ]}
       />
     </div>
@@ -732,17 +733,31 @@ function CodeTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const gridChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '12-column grid for desktop (1440px frame)',
+        '4-column grid for mobile layouts',
+        '2-column side navigation grid',
+        'Responsive breakpoints: Mobile, Tablet, Desktop, Wide',
+        'Consistent gutter (16px) and margin (24px) system',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function GridSystemPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the grid system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={gridChangelog} /> },
   ];
 
   return (

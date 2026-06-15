@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Shadow data from Figma ─── */
 type ShadowToken = { name: string; token: string; color: string; css: string; type: 'default' | 'raised' | 'inner' };
@@ -178,14 +179,16 @@ function UsageTab() {
       <h2>Do&apos;s &amp; Don&apos;ts</h2>
       <DoDont slug="shadows"
         doItems={[
-          'Use shadows to communicate elevation and layering',
-          'Keep shadows soft and subtle',
-          'Pair shadows with borders for accessibility',
+          'Use shadows to communicate elevations and layering',
+          'Keep shadows subtle, Utilize the the shadows library',
+          'Pair shadows with borders for accessebility',
+          'Use Alpha colors for shadows and focused states',
         ]}
         dontItems={[
-          'Use shadows as the only indicator of interactive state',
-          'Apply heavy shadows to flat UI elements',
-          'Use colored shadows outside of brand-specific contexts',
+          'Use overly highlighted shadows',
+          'Use multiple shadow layers',
+          'Use shadows for text or icons on components',
+          'Use raw values for the shadows',
         ]}
       />
     </div>
@@ -232,17 +235,31 @@ function CodeTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const shadowChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '3 elevation types: Default, Raised, Inner',
+        'Primary and Secondary levels per elevation',
+        'Light and Dark mode shadow values',
+        'Alpha-based shadow colors for theme compatibility',
+        'CSS custom properties for all shadow tokens',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function ShadowsPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={shadowChangelog} /> },
   ];
 
   return (

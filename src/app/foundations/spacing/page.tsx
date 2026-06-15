@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Spacing data from Figma ─── */
 type SpacingToken = { token: string; multiplier: string; px: number; group: 'Small' | 'Medium' | 'Large' };
@@ -238,14 +239,14 @@ function UsageTab() {
       <h2>Do&apos;s &amp; Don&apos;ts</h2>
       <DoDont slug="spacing"
         doItems={[
-          'Use the 8px base unit for all spacing decisions',
+          'Use space variables/tokens, in all senarios',
           'Apply consistent spacing within component groups',
           'Use larger spacing to separate distinct sections',
         ]}
         dontItems={[
-          'Use arbitrary pixel values outside the scale',
+          'Use raw values anywhere in spacing',
           'Mix spacing scales within the same component',
-          'Remove spacing between interactive elements',
+          'remove spacing between interactive elements',
         ]}
       />
     </div>
@@ -327,17 +328,31 @@ export default {
   );
 }
 
+/* ─── Changelog Data ─── */
+const spacingChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '8px base unit spacing system',
+        'Spacing scale: 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64px',
+        'Figma space variables for all tokens',
+        'CSS custom properties for spacing',
+        'Component-level and layout-level spacing guidelines',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function SpacingPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the spacing system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={spacingChangelog} /> },
   ];
 
   return (

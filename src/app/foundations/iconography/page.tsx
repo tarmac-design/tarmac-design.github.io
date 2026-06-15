@@ -2,6 +2,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── helpers ─── */
 function toMaterialName(kebab: string) {
@@ -671,18 +672,18 @@ function UsageTab() {
       <DoDont
         slug="iconography"
         doItems={[
-          'Use icons with well-established, universally understood meaning',
-          'Always pair icon-only buttons with aria-label for accessibility',
-          'Keep icon size consistent within the same context (e.g., all toolbar icons at 24px)',
-          'Use outlined style for secondary/inactive states and filled for primary actions',
-          'Maintain minimum 44×44px touch targets on mobile',
+          'Use Icon container component, where Icon is required',
+          'Utilize Material Symbols plugin "Within Slot variant – Icon container"',
+          'Match the icon container size with the text paired + colors',
+          'Use Min 4px and max 8px spacing between icon and text',
+          'Utilize the Icon styles to pair and match with the correct use case',
         ]}
         dontItems={[
-          'Use ambiguous or unfamiliar icons without a text label',
-          'Mix filled and outlined styles in the same component group',
-          'Resize icons below 12px — they become unreadable',
-          'Use one icon to mean different things in different contexts',
-          'Rely on color alone to convey icon meaning',
+          'Use ambiguous Icon without a text label',
+          'Mix outlined and filled icon within the same component',
+          'use multiple colors',
+          'Add too much spacing between the paired text',
+          'Reduce icon size less than 12px',
         ]}
       />
     </div>
@@ -804,22 +805,31 @@ function Icon({
   );
 }
 
+/* ─── Changelog Data ─── */
+const iconChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        'Material Symbols integration via Icon Container component',
+        'Icon sizes: 16px, 20px, 24px, 32px, 40px',
+        'Outlined and Filled style variants',
+        '5 icon color tokens: primary, secondary, tertiary, disabled, inverse',
+        'Slot-based icon container with auto-sizing',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function IconographyPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    {
-      label: 'Changelog',
-      content: (
-        <div className="mdx-content py-4">
-          <p style={{ color: 'var(--color-on-surface-variant)' }}>
-            No changelog entries yet. Updates will appear here as the icon system evolves.
-          </p>
-        </div>
-      ),
-    },
+    { label: 'Changelog', content: <Changelog entries={iconChangelog} /> },
   ];
 
   return (
