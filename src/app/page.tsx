@@ -118,6 +118,7 @@ export default function Home() {
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.05]"
                 style={{ color: '#FFFFFF' }}>
                 Build great experience<br />
+                <span className="block mt-3" />
                 with{/* eslint-disable-next-line @next/next/no-img-element */}<img
                   src="/tarmac-logo-dark.svg"
                   alt="TARMAC"
