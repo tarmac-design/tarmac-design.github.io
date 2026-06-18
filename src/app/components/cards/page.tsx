@@ -241,7 +241,6 @@ function UsageTab() {
           'Use consistent card sizes within the same grid layout',
           'Limit footer actions to 2–3 buttons maximum',
           'Use selection cards for choosing between distinct options',
-          'Provide visual feedback on hover and selection states',
         ]}
         dontItems={[
           'Don\'t overload cards with too much content or too many actions',
@@ -249,7 +248,6 @@ function UsageTab() {
           'Don\'t use cards for single pieces of information — use a label instead',
           'Don\'t nest cards inside other cards',
           'Don\'t use ghost cards as permanent UI — they are for loading states only',
-          'Don\'t rely solely on color to indicate selection state',
         ]}
       />
 

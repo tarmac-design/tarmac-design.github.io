@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 /*
   Splash Screen — TARMAC Design System
 
   - Dark background with static grid mesh
   - Orbiting glow reveals grid lines (connectivity with homepage)
-  - TARMAC logo zooms out in center
+  - TARMAC logo zooms out in center (Motion-powered)
   - Exit: shutter close (top/bottom halves slide to center) then open to reveal site
 */
 
@@ -27,10 +28,8 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const exit = useCallback(() => {
     if (doneRef.current) return;
     doneRef.current = true;
-    // Stage 3: shutter closes
     setStage(3);
     setTimeout(() => {
-      // Stage 4: shutter opens to reveal site
       setStage(4);
       setTimeout(() => {
         setRemoved(true);
@@ -87,106 +86,111 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
         overflow: 'hidden', userSelect: 'none', cursor: 'pointer',
       }}
     >
-      {/* Main splash content — hidden once shutter closes */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: '#0A0A0A',
-        opacity: shutterClosed ? 0 : 1,
-        transition: `opacity ${SHUTTER_CLOSE_MS * 0.6}ms ease-out`,
-      }}>
-        {/* Static grid mesh */}
+      {/* Main splash content */}
+      <motion.div
+        style={{ position: 'absolute', inset: 0, background: '#0A0A0A' }}
+        animate={{ opacity: shutterClosed ? 0 : 1 }}
+        transition={{ duration: SHUTTER_CLOSE_MS * 0.6 / 1000, ease: 'easeOut' }}
+      >
+        {/* Static dot grid */}
         <div style={{
           position: 'absolute', inset: 0,
           opacity: 0.04,
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
+          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
         }} />
 
-        {/* Glow-revealed grid */}
-        <div
+        {/* Glow-revealed dot grid */}
+        <motion.div
           ref={glowRef}
           style={{
             position: 'absolute', inset: 0,
-            opacity: glowActive ? 1 : 0,
-            transition: 'opacity 0.8s ease-out',
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '48px 48px',
+            backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)`,
+            backgroundSize: '24px 24px',
             maskImage: 'radial-gradient(0px circle at 50% 50%, black 0%, transparent 70%)',
             WebkitMaskImage: 'radial-gradient(0px circle at 50% 50%, black 0%, transparent 70%)',
             pointerEvents: 'none',
           }}
+          animate={{ opacity: glowActive ? 1 : 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         />
 
-        {/* TARMAC logo */}
+        {/* TARMAC logo — Motion-powered zoom + fade */}
         <div style={{
           position: 'absolute', inset: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           zIndex: 10,
         }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/images/splash-logo.png"
-            alt="TARMAC"
-            draggable={false}
-            style={{
-              width: 'clamp(160px, 25vw, 360px)',
-              height: 'auto',
-              opacity: logoVisible ? 1 : 0,
-              transform: logoVisible ? 'scale(1)' : 'scale(1.6)',
-              transition: 'opacity 0.8s ease-out, transform 1.2s cubic-bezier(0.22,1,0.36,1)',
-              pointerEvents: 'none',
-            }}
-          />
+          <AnimatePresence>
+            {logoVisible && (
+              <motion.img
+                key="splash-logo"
+                src="/assets/images/splash-logo.png"
+                alt="TARMAC"
+                draggable={false}
+                initial={{ opacity: 0, scale: 1.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  width: 'clamp(160px, 25vw, 360px)',
+                  height: 'auto',
+                  pointerEvents: 'none',
+                }}
+              />
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Skip hint */}
-        <span style={{
-          position: 'absolute', bottom: 28, left: '50%',
-          transform: 'translateX(-50%)',
-          fontSize: 11, letterSpacing: '0.12em',
-          textTransform: 'uppercase' as const,
-          color: 'rgba(255,255,255,0.15)',
-          zIndex: 11,
-        }}>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          style={{
+            position: 'absolute', bottom: 28, left: '50%',
+            transform: 'translateX(-50%)',
+            fontSize: 11, letterSpacing: '0.12em',
+            textTransform: 'uppercase' as const,
+            color: 'rgba(255,255,255,0.15)',
+            zIndex: 11,
+          }}
+        >
           Click to skip
-        </span>
-      </div>
+        </motion.span>
+      </motion.div>
 
       {/* Shutter — top half */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0,
-        height: '50%',
-        background: '#0A0A0A',
-        transform: shutterClosed
-          ? (shutterOpen ? 'translateY(-100%)' : 'translateY(0)')
-          : 'translateY(-100%)',
-        transition: shutterClosed
-          ? `transform ${shutterOpen ? SHUTTER_OPEN_MS : SHUTTER_CLOSE_MS}ms cubic-bezier(0.22,1,0.36,1)`
-          : 'none',
-        zIndex: 20,
-      }} />
+      <motion.div
+        style={{
+          position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
+          background: '#0A0A0A', zIndex: 20,
+        }}
+        initial={{ y: '-100%' }}
+        animate={{
+          y: shutterClosed ? (shutterOpen ? '-100%' : '0%') : '-100%',
+        }}
+        transition={{
+          duration: (shutterOpen ? SHUTTER_OPEN_MS : SHUTTER_CLOSE_MS) / 1000,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      />
 
       {/* Shutter — bottom half */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: 0, right: 0,
-        height: '50%',
-        background: '#0A0A0A',
-        transform: shutterClosed
-          ? (shutterOpen ? 'translateY(100%)' : 'translateY(0)')
-          : 'translateY(100%)',
-        transition: shutterClosed
-          ? `transform ${shutterOpen ? SHUTTER_OPEN_MS : SHUTTER_CLOSE_MS}ms cubic-bezier(0.22,1,0.36,1)`
-          : 'none',
-        zIndex: 20,
-      }} />
+      <motion.div
+        style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
+          background: '#0A0A0A', zIndex: 20,
+        }}
+        initial={{ y: '100%' }}
+        animate={{
+          y: shutterClosed ? (shutterOpen ? '100%' : '0%') : '100%',
+        }}
+        transition={{
+          duration: (shutterOpen ? SHUTTER_OPEN_MS : SHUTTER_CLOSE_MS) / 1000,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      />
     </div>
   );
 }

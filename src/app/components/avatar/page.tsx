@@ -140,15 +140,11 @@ function UsageTab() {
           'Provide meaningful alt text — use the person\'s name, not "avatar"',
           'Use the fallback chain: Image → Initials → Icon',
           'Keep the same size and shape within a given context',
-          'Handle loading states with skeleton shimmer',
-          'Communicate status via aria-label — don\'t rely on color alone',
         ]}
         dontItems={[
           'Don\'t use avatars for decorative images unrelated to identity',
           'Don\'t mix circle and square shapes in the same list',
           'Don\'t use low-resolution or stretched images',
-          'Don\'t skip alt text or aria-labels',
-          'Don\'t display more than 2 initials',
         ]}
       />
 

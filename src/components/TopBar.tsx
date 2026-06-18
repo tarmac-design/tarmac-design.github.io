@@ -5,6 +5,7 @@ import Link from 'next/link';
 /* eslint-disable @next/next/no-img-element */
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
+import { motion, AnimatePresence } from 'motion/react';
 
 const topNav = [
   { label: 'About', href: '/about/overview', section: 'about' },
@@ -83,15 +84,22 @@ const searchablePages = [
   { label: 'Screen Readers', href: '/accessibility/screen-readers', section: 'Accessibility' },
 ];
 
-export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
+export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick?: () => void; searchOpen?: boolean; setSearchOpen?: (v: boolean) => void }) {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [localSearchOpen, setLocalSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const isHome = pathname === '/';
+
+  // Use external state if provided, otherwise fall back to local
+  const isSearchOpen = searchOpen !== undefined ? searchOpen : localSearchOpen;
+  const toggleSearch = (v: boolean) => {
+    if (setSearchOpen) setSearchOpen(v);
+    else setLocalSearchOpen(v);
+  };
 
   const isActive = (section: string) => {
     const current = pathname.split('/')[1];
@@ -104,18 +112,18 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     : [];
 
   useEffect(() => {
-    if (searchOpen) setTimeout(() => inputRef.current?.focus(), 50);
+    if (isSearchOpen) setTimeout(() => inputRef.current?.focus(), 50);
     else setQuery('');
-  }, [searchOpen]);
+  }, [isSearchOpen]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); setSearchOpen(v => !v); }
-      if (e.key === 'Escape') setSearchOpen(false);
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); toggleSearch(!isSearchOpen); }
+      if (e.key === 'Escape') toggleSearch(false);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, []);
+  }, [isSearchOpen]);
 
   useEffect(() => {
     if (!isHome) { setScrolledPastHero(true); return; }
@@ -173,7 +181,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         </nav>
 
         <div className="flex items-center gap-2 shrink-0">
-          <button onClick={() => setSearchOpen(true)} className="p-2 rounded-lg transition-colors" style={{ color: heroTextColor }} aria-label="Search">
+          <button onClick={() => toggleSearch(true)} className="p-2 rounded-lg transition-colors" style={{ color: heroTextColor }} aria-label="Search">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
           <a href="https://github.com/abhishekthakur3-sketch/TDS" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg transition-colors" style={{ color: heroTextColor }} aria-label="GitHub">
@@ -189,31 +197,46 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         </div>
       </header>
 
-      {searchOpen && (
-        <div className="fixed inset-0 z-[60]" onClick={() => setSearchOpen(false)}>
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
-          <div className="relative max-w-lg mx-auto mt-24 rounded-2xl border shadow-2xl overflow-hidden"
-            style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
-            onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ borderColor: 'var(--color-outline)' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-on-surface-variant)', flexShrink: 0 }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input ref={inputRef} type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search pages... (⌘K)" className="flex-1 bg-transparent outline-none text-sm" style={{ color: 'var(--color-on-surface)' }} />
-              <kbd className="text-[10px] px-1.5 py-0.5 rounded border font-mono" style={{ borderColor: 'var(--color-outline)', color: 'var(--color-on-surface-variant)' }}>ESC</kbd>
-            </div>
-            <div className="max-h-80 overflow-y-auto">
-              {query.trim() && filtered.length === 0 && <div className="px-4 py-8 text-center text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>No results found</div>}
-              {filtered.map((page) => (
-                <button key={page.href} className="w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-black/5 transition-colors"
-                  onClick={() => { router.push(page.href); setSearchOpen(false); }}>
-                  <span className="text-sm" style={{ color: 'var(--color-on-surface)' }}>{page.label}</span>
-                  <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>{page.section}</span>
-                </button>
-              ))}
-              {!query.trim() && <div className="px-4 py-8 text-center text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>Start typing to search...</div>}
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60]"
+            onClick={() => toggleSearch(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+            <motion.div
+              className="relative max-w-lg mx-auto mt-24 rounded-2xl border shadow-2xl overflow-hidden"
+              style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, y: -20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="flex items-center gap-3 px-4 py-3 border-b" style={{ borderColor: 'var(--color-outline)' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-on-surface-variant)', flexShrink: 0 }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input ref={inputRef} type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search pages... (⌘K)" className="flex-1 bg-transparent outline-none text-sm" style={{ color: 'var(--color-on-surface)' }} />
+                <kbd className="text-[10px] px-1.5 py-0.5 rounded border font-mono" style={{ borderColor: 'var(--color-outline)', color: 'var(--color-on-surface-variant)' }}>ESC</kbd>
+              </div>
+              <div className="max-h-80 overflow-y-auto">
+                {query.trim() && filtered.length === 0 && <div className="px-4 py-8 text-center text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>No results found</div>}
+                {filtered.map((page) => (
+                  <button key={page.href} className="w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-black/5 transition-colors"
+                    onClick={() => { router.push(page.href); toggleSearch(false); }}>
+                    <span className="text-sm" style={{ color: 'var(--color-on-surface)' }}>{page.label}</span>
+                    <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>{page.section}</span>
+                  </button>
+                ))}
+                {!query.trim() && <div className="px-4 py-8 text-center text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>Start typing to search...</div>}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

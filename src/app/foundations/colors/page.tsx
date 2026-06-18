@@ -2,6 +2,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 import {
   brandAccentColors, neutralColors, alphaColors,
   surfaceTokens, textTokens, borderTokens,
@@ -583,16 +584,16 @@ function UsageTab() {
       <h2>Do&apos;s &amp; Don&apos;ts</h2>
       <DoDont slug="colors"
         doItems={[
-          "Use semantic tokens instead of raw hex values",
-          "Ensure all text meets WCAG AA contrast ratios (4.5:1)",
-          "Use brand red sparingly — only for primary actions and accents",
-          "Pair color with icons, text, or shape to convey meaning",
+          "Use the right color role for your situation",
+          "Ensure all text/icons meets WCAG \"AA\" Contrast ratio",
+          "Use brand red sparingly, only for highlighting actions or accents",
+          "Pair color with icons, text, or shapes to convey meaning",
         ]}
         dontItems={[
-          "Hardcode hex values in component styles",
-          "Use color alone to convey meaning",
-          "Mix core tokens and semantic tokens in the same component",
-          "Use low-contrast alpha overlays for critical content",
+          "Use Raw hex values in any designs",
+          "Pair colors that will disrupt the viewers reading",
+          "Mix colors, in the same component",
+          "use low contrast alpha overlays for critical content",
         ]}
       />
     </div>
@@ -663,17 +664,31 @@ export default {
   );
 }
 
+/* ─── Changelog Data ─── */
+const colorChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        'Core color palette: 12 base colors with light/dark variants',
+        '3-layer token architecture: Core → Semantic → Usage',
+        'Semantic tokens for surface, text, border, and status colors',
+        'Dark mode support with automatic token switching',
+        'WCAG AA compliant contrast ratios across all pairings',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function ColorsPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the color system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={colorChangelog} /> },
   ];
 
   return (

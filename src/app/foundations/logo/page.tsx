@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Logo data from Figma ─── */
 type LogoVariant = 'Logo' | 'Logomark' | 'Pictorial';
@@ -63,72 +64,62 @@ const variantDescriptions: Record<LogoVariant, { title: string; subtitle: string
 };
 
 /* ─── Logo Placeholder ─── */
-/* Replace the inner content of this component with actual Delhivery SVG logos when available */
+/* eslint-disable @next/next/no-img-element */
 function DelhiveryLogoSVG({ variant, style: logoStyle, width, height, fullFill }: { variant: LogoVariant; style: LogoStyle; width: number; height: number; fullFill?: boolean }) {
   const isDark = logoStyle === 'Dark';
-  const borderColor = isDark ? '#444' : '#d0d0d0';
-  const bg = isDark ? '#2a2c30' : '#f0f0f0';
-  const textColor = isDark ? '#888' : '#999';
-  const pathColor = isDark ? '#666' : '#bbb';
   const variantSlug = variant === 'Logo' ? 'logo' : variant === 'Logomark' ? 'logomark' : 'pictorial';
-  const filePath = `/logos/dlv-${variantSlug}-${logoStyle.toLowerCase()}.svg`;
+  const fileName = `dlv-${variantSlug}-${logoStyle.toLowerCase()}.png`;
+  const imgSrc = `/assets/images/logos/${fileName}`;
 
-  // Full fill mode — stretches to fill parent container
   if (fullFill) {
     return (
       <div style={{
-        width: '100%', height: '100%', background: bg,
-        border: `1.5px dashed ${borderColor}`, borderRadius: 'inherit',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        gap: 4,
-      }}>
-        <svg width="22" height="18" viewBox="0 0 20 16" fill="none">
-          <rect x="1" y="1" width="18" height="14" rx="2" stroke={borderColor} strokeWidth="1.2" />
-          <circle cx="7" cy="6" r="2" stroke={pathColor} strokeWidth="1" />
-          <path d="M1 12l5-4 3 2.5 4-3.5 6 5" stroke={pathColor} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span style={{ fontSize: 10, color: textColor, fontFamily: 'monospace', lineHeight: 1 }}>{filePath}</span>
-      </div>
-    );
-  }
-
-  // Small sizes: just a colored box with no text
-  if (height <= 16) {
-    return (
-      <div style={{
-        width, height, background: bg,
-        border: `1px dashed ${borderColor}`, borderRadius: 2,
+        width: '100%', height: '100%',
+        background: isDark ? '#1B1D22' : '#FFFFFF',
+        borderRadius: 'inherit',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '12px',
       }}>
-        <svg width={Math.min(10, width - 4)} height={Math.min(8, height - 4)} viewBox="0 0 10 8" fill="none">
-          <rect x="0.5" y="0.5" width="9" height="7" rx="1" stroke={borderColor} strokeDasharray="2 1" />
-          <path d="M3 5.5L5 3L7 5.5" stroke={pathColor} strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <img
+          src={imgSrc}
+          alt={`Delhivery ${variant} ${logoStyle}`}
+          style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }}
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent && !parent.querySelector('.logo-placeholder')) {
+              const el = document.createElement('span');
+              el.className = 'logo-placeholder';
+              el.style.cssText = 'font-size:10px;color:#999;font-family:monospace;text-align:center;';
+              el.textContent = fileName;
+              parent.appendChild(el);
+            }
+          }}
+        />
       </div>
     );
   }
 
   return (
-    <div style={{
-      width, height, background: bg,
-      border: `1px dashed ${borderColor}`, borderRadius: 4,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      gap: Math.max(1, height * 0.06), padding: '0 4px',
-    }}>
-      <svg width={Math.min(20, height * 0.35)} height={Math.min(16, height * 0.28)} viewBox="0 0 20 16" fill="none">
-        <rect x="1" y="1" width="18" height="14" rx="2" stroke={borderColor} strokeWidth="1.2" />
-        <circle cx="7" cy="6" r="2" stroke={pathColor} strokeWidth="1" />
-        <path d="M1 12l5-4 3 2.5 4-3.5 6 5" stroke={pathColor} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span style={{
-        fontSize: Math.max(7, Math.min(9, height * 0.2)),
-        color: textColor, fontFamily: 'monospace',
-        whiteSpace: 'nowrap', overflow: 'hidden',
-        textOverflow: 'ellipsis', maxWidth: '100%',
-        lineHeight: 1,
-      }}>
-        {filePath}
-      </span>
+    <div style={{ width: width || 'auto', height: height || 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <img
+        src={imgSrc}
+        alt={`Delhivery ${variant} ${logoStyle}`}
+        style={{ width: width || 'auto', height: height || 'auto', objectFit: 'contain' }}
+        onError={(e) => {
+          const target = e.currentTarget;
+          target.style.display = 'none';
+          const parent = target.parentElement;
+          if (parent && !parent.querySelector('.logo-placeholder')) {
+            const el = document.createElement('span');
+            el.className = 'logo-placeholder';
+            el.style.cssText = 'font-size:10px;color:#999;font-family:monospace;text-align:center;';
+            el.textContent = fileName;
+            parent.appendChild(el);
+          }
+        }}
+      />
     </div>
   );
 }
@@ -378,13 +369,11 @@ function UsageTab() {
           'Use predefined sizes from the token scale (14–48px)',
           'Choose Light/Dark style based on background contrast',
           'Use the Wordmark when space allows for full identification',
-          'Maintain clear space around the logo equal to the logomark height',
         ]}
         dontItems={[
           'Stretch, skew, or rotate the logo',
           'Use arbitrary sizes outside the defined scale',
           'Place a Light logo on a light background (or Dark on dark)',
-          'Add effects like shadows, glows, or outlines to the logo',
         ]}
       />
     </div>
@@ -456,17 +445,31 @@ DLV_pictorial.dark.48px`}</code></pre>
   );
 }
 
+/* ─── Changelog Data ─── */
+const logoChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        '3 logo variants: Wordmark, Logomark, Pictorial',
+        '2 styles: Light and Dark',
+        '6 predefined sizes: 14px, 18px, 24px, 32px, 40px, 48px',
+        'Clear space and placement guidelines',
+        'Delhivery brand logo token system',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function LogoPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={logoChangelog} /> },
   ];
 
   return (

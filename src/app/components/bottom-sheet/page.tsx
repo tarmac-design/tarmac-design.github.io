@@ -144,14 +144,12 @@ function UsageTab() {
           'Use overlay to indicate the sheet is above the main content',
           'Allow dismissal by tapping the overlay or swiping down',
           'Use snap points for expandable sheets to guide user interaction',
-          'Keep action sheet items to 5 or fewer for scannability',
         ]}
         dontItems={[
           'Don\'t nest bottom sheets inside other bottom sheets',
           'Don\'t use bottom sheets on desktop — prefer side drawers or modals',
           'Don\'t put critical actions only in the sheet with no alternative',
           'Don\'t disable the dismiss gesture without a clear close button',
-          'Don\'t use full-screen sheets for simple confirmations',
         ]}
       />
 

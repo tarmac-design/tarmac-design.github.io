@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { Info, DoDont } from '@/components/mdx';
+import { Changelog, ChangelogEntry } from '@/components/Changelog';
 
 /* ─── Border data from Figma ─── */
 type BorderToken = { token: string; value: string; px: number; purpose: string };
@@ -11,7 +12,6 @@ const borderScale: BorderToken[] = [
   { token: 'stroke.default', value: '1px', px: 1, purpose: 'Default border for UI components and containers' },
   { token: 'stroke.medium', value: '1.5px', px: 1.5, purpose: 'High-emphasis interactive states, active boundaries, focus outlines' },
   { token: 'stroke.large', value: '2px', px: 2, purpose: 'Strong structural separation, important emphasis elements' },
-  { token: 'stroke.xlarge', value: '4px', px: 4, purpose: 'Rare use — hero, overlays, high-priority interaction or identity elements' },
 ];
 
 const borderStates = [
@@ -192,16 +192,14 @@ function UsageTab() {
       <h2>Do&apos;s &amp; Don&apos;ts</h2>
       <DoDont slug="borders"
         doItems={[
-          'Use 1px as the default border for most components',
-          'Use semantic border colors for success, error, warning, and info states',
-          'Increase border weight for focus and active states',
-          'Keep borders consistent within the same component group',
+          'Use 1px as the default border for most of the components',
+          'Use semantic borders for success, error, warning and info states',
+          'Use consistent border radius across the screen',
         ]}
         dontItems={[
           'Use borders purely for decoration',
-          'Apply 4px borders to standard UI components',
-          'Mix border weights arbitrarily within the same context',
-          'Use borders when spacing or background color can achieve the same separation',
+          'Use raw values as border radius or colors',
+          'Mix border weights arbitrarily with the same contrast',
         ]}
       />
     </div>
@@ -218,7 +216,6 @@ function CodeTab() {
   --stroke-default: 1px;
   --stroke-medium: 1.5px;
   --stroke-large: 2px;
-  --stroke-xlarge: 4px;
 }`}</code></pre>
 
       <h2>Usage Examples</h2>
@@ -262,17 +259,30 @@ function CodeTab() {
   );
 }
 
+/* ─── Changelog Data ─── */
+const borderChangelog: ChangelogEntry[] = [
+  {
+    version: '1.0.0',
+    date: 'April 2026',
+    author: 'TARMAC Design Team',
+    changes: [
+      { category: 'Added', items: [
+        'Border weight scale: 0.5px, 1px, 1.5px, 2px, 4px',
+        'Semantic border colors: neutral, info, success, warning, error',
+        'Primary and tertiary border style variants',
+        'Focus and active state border specifications',
+      ]},
+    ],
+  },
+];
+
 /* ─── Main Page ─── */
 export default function BordersPage() {
   const tabs = [
     { label: 'Examples', content: <ExamplesTab /> },
     { label: 'Usage', content: <UsageTab /> },
     { label: 'Code', content: <CodeTab /> },
-    { label: 'Changelog', content: (
-      <div className="mdx-content py-4">
-        <p style={{ color: 'var(--color-on-surface-variant)' }}>No changelog entries yet. Updates will appear here as the border system evolves.</p>
-      </div>
-    )},
+    { label: 'Changelog', content: <Changelog entries={borderChangelog} /> },
   ];
 
   return (
