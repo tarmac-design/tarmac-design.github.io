@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -203,30 +204,36 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const accordionChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Accordion Prototype fixed'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Accordion Prototype fixed'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>allowMultiple</code> prop for multi-expand mode</li>
-        <li>Added <code>ghost</code> variant for low-emphasis contexts</li>
-        <li>Added <code>size</code> prop with SM, MD, LG options</li>
-        <li>Added <code>bordered</code> prop to toggle border visibility</li>
-        <li>Added <code>disabled</code> state for individual items</li>
-        <li>Smooth height animation on expand/collapse</li>
-        <li>Chevron rotates 180° when expanded</li>
-        <li>Improved accessibility with aria-expanded support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single-expand accordion</li>
-        <li>Bordered and flush variants</li>
-        <li>Basic expand/collapse with chevron indicator</li>
-        <li>Keyboard navigation support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={accordionChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

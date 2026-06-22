@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -178,31 +179,30 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const audioPlayerChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June 10, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Icons & colors'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v1.2.0</h3>
-      <ul>
-        <li>Added <code>waveform</code> variant with animated visualization</li>
-        <li>Added <code>playlist</code> variant with track list management</li>
-        <li>Added <code>compact</code> variant for inline usage</li>
-        <li>Improved keyboard navigation for seek and volume controls</li>
-      </ul>
-      <h3>v1.1.0</h3>
-      <ul>
-        <li>Added volume control with mute toggle</li>
-        <li>Added buffering state indicator</li>
-        <li>Added <code>onTimeUpdate</code> callback</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with play/pause, progress bar, and time display</li>
-        <li>Three size options: SM (32px), MD (48px), LG (64px)</li>
-        <li>Light and dark theme support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={audioPlayerChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

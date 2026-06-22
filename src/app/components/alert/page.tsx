@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -196,28 +197,36 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const alertChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Additional variant added (Outlined alerts)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated buttons & texts'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>actions</code> prop for CTA buttons</li>
-        <li>Added <code>size</code> prop with Small and Large options</li>
-        <li>New color variants: Black, White, Coal</li>
-        <li>Dark mode support with dedicated color palette</li>
-        <li>Improved close button with hover and press states</li>
-        <li>Added <code>aria-live=&quot;assertive&quot;</code> for screen reader announcements</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Success, Error, Info, Warning variants</li>
-        <li>Leading icon and close button support</li>
-        <li>Left border accent styling</li>
-        <li>Basic accessibility with role=&quot;alert&quot;</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={alertChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

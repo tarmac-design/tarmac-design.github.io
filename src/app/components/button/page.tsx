@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -134,27 +135,47 @@ function UsageTab() {
   );
 }
 
+const buttonChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Component configuration updated, and version updated'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Color changed in Warning button & added Tertiary Icon buttons'] }],
+  },
+  {
+    version: '1.0.3',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated focus mode and ghost mode'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated Component with additional variant (DLV Red & Coal)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Icon container'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added DLV Red and Coal variants</li>
-        <li>Added Slider Button and Two-Liner types</li>
-        <li>Added <code>loadingPosition</code> prop</li>
-        <li>Improved focus ring contrast</li>
-        <li>Added Ghost/Skeleton loading state</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with 6 color variants</li>
-        <li>Primary, Secondary, Tertiary styles</li>
-        <li>5 sizes (XS to XL)</li>
-        <li>Icon support and loading states</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={buttonChangelog} />;
 }
 
 export default function ButtonPage() {
