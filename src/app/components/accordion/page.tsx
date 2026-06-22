@@ -213,10 +213,10 @@ const accordionChangelog: ChangelogEntry[] = [
     changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
   },
   {
-    version: '1.0.1',
+    version: '1.1.0',
     date: 'June, 2026',
     author: 'Rohan',
-    changes: [{ category: 'Fixed', items: ['Accordion Prototype fixed'] }],
+    changes: [{ category: 'Changed', items: ['Accordion strokes updated and autolayouts'] }],
   },
   {
     version: '1.0.1',
