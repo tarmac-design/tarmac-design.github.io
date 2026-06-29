@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -156,26 +157,42 @@ function UsageTab() {
 }
 
 /* ─── TAB 4 — Changelog ─── */
+
+const filterChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June 10, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with additional variant 3 types (Default, Success, Error)'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with focus mode & Ghost mode'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Updated Stroke colors with coal'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added chip filter variant</li>
-        <li>Added searchable dropdown with debounced input</li>
-        <li>Added date range filter variant</li>
-        <li>Added selected count badge on trigger</li>
-        <li>Improved keyboard navigation and focus management</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single and multi-select variants</li>
-        <li>Basic dropdown with checkbox options</li>
-        <li>Clear all action</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={filterChangelog} />;
 }
 
 /* ─── Page Export ─── */

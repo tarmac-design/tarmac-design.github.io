@@ -203,7 +203,7 @@ const avatarChangelog: ChangelogEntry[] = [
     changes: [
       {
         category: 'Changed',
-        items: ['Updated component configuration & version updated (Avatar & Avatar groups)'],
+        items: ['Updated component configuration & version updated'],
       },
     ],
   },

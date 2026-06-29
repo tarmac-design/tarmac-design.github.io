@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -155,26 +156,36 @@ function UsageTab() {
 }
 
 /* ─── TAB 4 — Changelog ─── */
+
+const textAreaChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component configuration'] }],
+  },
+  {
+    version: '1.1.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Added focused state & ghost variant'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Autolayouts and stroke sizes fixed & updated tags within the component'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added auto-resize variant</li>
-        <li>Added rich text toolbar variant with bold, italic, list</li>
-        <li>Added character counter with overflow warning</li>
-        <li>Added three size presets: SM, MD, LG</li>
-        <li>Improved focus ring and error state styling</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with basic multi-line text input</li>
-        <li>Label, placeholder, and helper text support</li>
-        <li>Disabled and error states</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={textAreaChangelog} />;
 }
 
 /* ─── Page Export ─── */
@@ -189,7 +200,7 @@ export default function InputAreaPage() {
 
   return (
     <PageShell
-      title="Input Area"
+      title="Text Area"
       description="Multi-line text input with character counting, auto-resize, and rich text toolbar support."
       tabs={tabs}
     >

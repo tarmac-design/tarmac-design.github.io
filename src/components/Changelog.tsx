@@ -65,8 +65,14 @@ export function Changelog({ entries }: { entries: ChangelogEntry[] }) {
             </span>
           </div>
           {entry.author && (
-            <p className="text-xs mb-4" style={{ color: 'var(--color-on-surface-variant)', margin: '4px 0 16px' }}>
-              Author: {entry.author}
+            <p className="text-xs mb-4 flex items-center gap-2" style={{ color: 'var(--color-on-surface-variant)', margin: '4px 0 16px' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/images/guidelines/Profile_RP.png"
+                alt={entry.author}
+                style={{ width: '20px', height: '20px', borderRadius: '50%', objectFit: 'cover' }}
+              />
+              {entry.author}
             </p>
           )}
 

@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -178,28 +179,35 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const dateTimePickerChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Component configuration and updated version'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with 2 extra variants (Success & error)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with active stroke colors and expanded state'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>range</code> variant for date range selection</li>
-        <li>Added <code>datetime</code> variant combining calendar and time input</li>
-        <li>Added <code>time</code> variant for time-only selection</li>
-        <li>Added <code>minDate</code>, <code>maxDate</code>, and <code>disabledDates</code> props</li>
-        <li>Improved keyboard navigation with arrow key support</li>
-        <li>Added today highlight and month/year navigation</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single date picker</li>
-        <li>Calendar grid with month navigation</li>
-        <li>Light and dark theme support</li>
-        <li>Cancel and Apply footer actions</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={dateTimePickerChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

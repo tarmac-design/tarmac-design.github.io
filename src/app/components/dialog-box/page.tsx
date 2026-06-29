@@ -1,9 +1,9 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -181,28 +181,35 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const dialogBoxChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component with new configuration'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Removed', items: ['Removed 2 variants (which was not necessary)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component autolayouts in Slots'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>form</code> variant with children content support</li>
-        <li>Added <code>fullscreen</code> variant for mobile editing flows</li>
-        <li>Added <code>alert</code> variant with icon support</li>
-        <li>Added <code>size</code> prop with SM, MD, LG options</li>
-        <li>Added <code>destructive</code> option for primary action</li>
-        <li>Improved focus trap and keyboard navigation</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with confirmation dialog</li>
-        <li>Overlay backdrop with click-to-dismiss</li>
-        <li>Primary and secondary action buttons</li>
-        <li>Light and dark theme support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={dialogBoxChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -135,25 +136,55 @@ function UsageTab() {
   );
 }
 
+const avatarGroupChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Changed',
+        items: ['Updated component configuration & version updated'],
+      },
+    ],
+  },
+  {
+    version: '1.0.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Changed',
+        items: ['Updated ghost variant of Avatar'],
+      },
+    ],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Fixed',
+        items: ['Updated Stroke colors'],
+      },
+    ],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Added',
+        items: ['Component Published'],
+      },
+    ],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>onOverflowClick</code> callback</li>
-        <li>Added <code>overlap</code> prop for custom overlap percentage</li>
-        <li>Added square shape support</li>
-        <li>Improved accessibility with role="group" and aria-label</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with circle avatars and numeric overflow</li>
-        <li>Configurable max visible count</li>
-        <li>5 size options</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={avatarGroupChangelog} />;
 }
 
 export default function AvatarGroupPage() {

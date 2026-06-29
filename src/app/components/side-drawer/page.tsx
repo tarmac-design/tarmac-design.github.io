@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -156,27 +157,15 @@ function UsageTab() {
 }
 
 /* ── TAB 4 — Changelog ── */
+const sideDrawerChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.1.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated Slot autolayouts'] }] },
+  { version: '1.1.0', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated corner radius & Min Max width set, and added Tabs into the Component'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>persistent</code> mode for always-visible sidebars</li>
-        <li>Added <code>header</code> and <code>footer</code> slot props</li>
-        <li>Added right-side drawer support</li>
-        <li>Added focus trap and focus restore for overlay mode</li>
-        <li>Improved slide animation with spring easing</li>
-        <li>Added <code>width</code> prop for custom drawer width</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with left-side overlay drawer</li>
-        <li>Backdrop overlay with click-to-dismiss</li>
-        <li>Basic navigation item component</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={sideDrawerChangelog} />;
 }
 
 /* ── Page Export ── */

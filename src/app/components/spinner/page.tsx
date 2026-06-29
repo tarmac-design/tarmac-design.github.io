@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -222,29 +223,13 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const spinnerChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Redesigned with pure CSS border-based animation</li>
-        <li>Added 4 color variants: dark, light, white, dlv-red</li>
-        <li>Added XLarge (48px) size option</li>
-        <li>Updated size tokens: SM (16px), MD (24px), LG (32px), XL (48px)</li>
-        <li>Improved accessibility with <code>role=&quot;status&quot;</code> and <code>aria-label</code></li>
-        <li>Reduced animation duration to 0.8s for snappier feel</li>
-        <li>Added <code>prefers-reduced-motion</code> support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with default, small, and large variants</li>
-        <li>SVG-based spinner animation</li>
-        <li>Primary and neutral color options</li>
-        <li>Overlay variant for full-screen loading</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={spinnerChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -139,27 +140,13 @@ function UsageTab() {
 }
 
 /* ── TAB 4 — Changelog ── */
+const ratingChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added half-star precision support</li>
-        <li>Added <code>showValue</code> and <code>showCount</code> props</li>
-        <li>Added hover preview with scale animation</li>
-        <li>Added 3 size variants: sm, md, lg</li>
-        <li>Improved keyboard navigation with arrow keys</li>
-        <li>Added <code>disabled</code> state</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with interactive and read-only modes</li>
-        <li>5-star scale with click-to-set behavior</li>
-        <li>Single size (24px)</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={ratingChangelog} />;
 }
 
 /* ── Page Export ── */

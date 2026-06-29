@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -196,28 +197,36 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const fileUploadChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component with new configuration'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with additional variant (CTA Bottom & CTA Right)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with updated progress bar'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>preview</code> variant with image thumbnails</li>
-        <li>Added <code>single</code> variant for single-file uploads</li>
-        <li>Added per-file progress tracking with progress bars</li>
-        <li>Added error state with descriptive error messages</li>
-        <li>Added file removal before and after upload</li>
-        <li>Improved drag-and-drop visual feedback</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with drag-and-drop zone</li>
-        <li>Multiple file selection support</li>
-        <li>File type and size validation</li>
-        <li>Light and dark theme support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={fileUploadChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -4,6 +4,7 @@ import { useState, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -311,33 +312,15 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const pillsChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated ghost variant'] }] },
+  { version: '1.0.2', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Fixed', items: ['Updated warning variant stroke colors'] }] },
+  { version: '1.0.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Updated component with Orange & DLV Red variant'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added toggle behavior with <code>selected</code> and <code>onToggle</code> props</li>
-        <li>Added <code>closable</code> prop with trailing close button</li>
-        <li>Added <code>disabled</code> state support</li>
-        <li>Added leading icon support via <code>icon</code> prop</li>
-        <li>9 color variants: Black, White, Coal, Blue, Success, Error, Warning, Legacy Blue, DLV Red</li>
-        <li>Two sizes: Small (24px) and Medium (32px)</li>
-        <li>Pill shape (border-radius: 9999px) for visual distinction</li>
-        <li>Unselected state: outlined border, transparent background</li>
-        <li>Selected state: filled background, white text</li>
-        <li>Hover scale and press scale interaction states</li>
-        <li>Accessibility: role=&quot;switch&quot;, aria-checked, keyboard support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with basic pill chip support</li>
-        <li>5 color variants: Black, White, Blue, Success, Error</li>
-        <li>Single size (28px)</li>
-        <li>Static display only — no toggle or icon support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={pillsChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

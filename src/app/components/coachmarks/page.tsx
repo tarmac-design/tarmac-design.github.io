@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -187,27 +188,30 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const coachmarksChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated configuration and version changed to latest'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Borders & Added badge inside component'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>CoachmarkTour</code> component for multi-step guided tours</li>
-        <li>Added <code>spotlight</code> variant with backdrop mask</li>
-        <li>Added <code>dismissible</code> variant with close button</li>
-        <li>Added step indicator dots for multi-step tours</li>
-        <li>Improved positioning engine with collision detection</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single coachmark tooltip</li>
-        <li>Four position options: top, bottom, left, right</li>
-        <li>Arrow pointer with automatic direction</li>
-        <li>Light and dark theme support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={coachmarksChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

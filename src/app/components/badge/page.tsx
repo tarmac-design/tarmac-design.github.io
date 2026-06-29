@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -189,29 +190,42 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const badgeChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component with new configuration'] }],
+  },
+  {
+    version: '1.0.3',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated focus mode and ghost mode'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated Component DLV Red variant'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Icon container'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>subtle</code> and <code>outlined</code> style variants</li>
-        <li>Added <code>ghost</code> and <code>disabled</code> states</li>
-        <li>Added <code>closable</code> prop with close button</li>
-        <li>Added leading and trailing icon support</li>
-        <li>New color variants: Coal, DLV Red, Cardbox</li>
-        <li>Updated sizing tokens: SM (20px), MD (24px), LG (28px)</li>
-        <li>Improved accessibility with role=&quot;status&quot; and aria-label support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Numeric, Dot, and Standalone variants</li>
-        <li>5 color options: Error, Warning, Success, Info, Neutral</li>
-        <li>Single size (20px)</li>
-        <li>Basic count overflow (99+)</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={badgeChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

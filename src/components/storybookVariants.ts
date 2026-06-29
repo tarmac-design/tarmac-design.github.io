@@ -6,28 +6,40 @@
  *   insert hyphen before each uppercase letter, then lowercase everything.
  */
 
-const BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook';
+const BASE_REACT = 'https://tarmac-storybook.delhivery.com/storybook';
+const BASE_ANGULAR = 'https://tarmac-storybook.delhivery.com/storybook-angular';
+
+/** @deprecated Use BASE_REACT instead */
+const BASE = BASE_REACT;
+
+export type Framework = 'react' | 'angular';
 
 export interface StoryVariant {
   id: string;
   label: string;
 }
 
-export function getIframeUrl(storyId: string) {
-  return `${BASE}/sb/iframe.html?id=${storyId}&viewMode=story`;
+export function getIframeUrl(storyId: string, framework: Framework = 'react') {
+  if (framework === 'angular') {
+    return `${BASE_ANGULAR}/iframe.html?id=${storyId}&viewMode=story`;
+  }
+  return `${BASE_REACT}/sb/iframe.html?id=${storyId}&viewMode=story`;
 }
 
-export function getStorybookUrl(storyId: string) {
-  return `${BASE}/sb/index.html?path=/story/${storyId}`;
+export function getStorybookUrl(storyId: string, framework: Framework = 'react') {
+  if (framework === 'angular') {
+    return `${BASE_ANGULAR}/index.html?path=/story/${storyId}`;
+  }
+  return `${BASE_REACT}/sb/index.html?path=/story/${storyId}`;
 }
 
 // Keep legacy helpers for backward compat
 export function getDocsIframeUrl(docsId: string) {
-  return `${BASE}/sb/iframe.html?id=${docsId}&viewMode=docs`;
+  return `${BASE_REACT}/sb/iframe.html?id=${docsId}&viewMode=docs`;
 }
 
 export function getDocsStorybookUrl(docsId: string) {
-  return `${BASE}/sb/index.html?path=/docs/${docsId}`;
+  return `${BASE_REACT}/sb/index.html?path=/docs/${docsId}`;
 }
 
 export function getStoryIframeUrl(storyId: string) {

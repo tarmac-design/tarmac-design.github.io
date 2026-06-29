@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -156,26 +157,15 @@ function UsageTab() {
 }
 
 /* ── TAB 4 — Changelog ── */
+const popupsChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Added empty state variant & updated configuration'] }] },
+  { version: '1.1.0', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component with Tabs & Snackbar'] }] },
+  { version: '1.0.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Slot updated with autolayouts'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>confirmation</code> variant with action buttons</li>
-        <li>Added <code>arrow</code> prop with automatic positioning</li>
-        <li>Added <code>offset</code> prop for custom spacing</li>
-        <li>Improved viewport boundary detection and flip behavior</li>
-        <li>Added focus trap for confirmation variant</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Tooltip, Popover, and Menu variants</li>
-        <li>4 position options: top, bottom, left, right</li>
-        <li>Click and hover trigger modes</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={popupsChangelog} />;
 }
 
 /* ── Page Export ── */
