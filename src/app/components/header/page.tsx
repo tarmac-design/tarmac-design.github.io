@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -170,25 +171,36 @@ function UsageTab() {
 }
 
 /* ─── TAB 4 — Changelog ─── */
+
+const headerChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with Ghost Variant & updated stroke colors'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Icon Button'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added transparent and sticky variants</li>
-        <li>Added breadcrumb sub-header support</li>
-        <li>Added expandable search input</li>
-        <li>Improved mobile hamburger menu with animation</li>
-        <li>Added skip-to-content link support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with logo, navigation, and avatar</li>
-        <li>Basic responsive hamburger menu</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={headerChangelog} />;
 }
 
 /* ─── Page Export ─── */

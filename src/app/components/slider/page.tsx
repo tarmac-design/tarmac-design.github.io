@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -160,28 +161,14 @@ function UsageTab() {
 }
 
 /* ── Changelog Tab ── */
+const sliderChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.0.1', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Slider knob updated, and surface colors updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added Coal and DLV Red color variants</li>
-        <li>Added dual / range slider type</li>
-        <li>Added hover effect with thumb enlargement</li>
-        <li>Added step increment support</li>
-        <li>Improved accessibility with native input[type=range]</li>
-        <li>Added min/max labels and value display</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single slider</li>
-        <li>Black and Blue variants</li>
-        <li>Default and disabled states</li>
-        <li>Basic label support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={sliderChangelog} />;
 }
 
 /* ── Page Export ── */

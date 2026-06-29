@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -235,30 +236,48 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const inputFieldChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Added New variant (Idle ~ a non editable input field)'] }],
+  },
+  {
+    version: '1.0.3',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated focus mode and Prototype'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated with ghost mode and updated component configuration'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with Badges & Subtext'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>success</code>, <code>info</code>, and <code>error</code> border color variants</li>
-        <li>Added <code>ghost</code> / skeleton loading state</li>
-        <li>Added <code>addonLeft</code> and <code>addonRight</code> props for leading/trailing addons</li>
-        <li>New size tokens: SM (28px), MD (36px), LG (44px)</li>
-        <li>Updated border-radius to 6px</li>
-        <li>Added 3px focus ring with variant-aware color</li>
-        <li>Improved accessibility with aria-describedby, aria-invalid, and role=&quot;alert&quot; on errors</li>
-        <li>Helper text now hidden when error message is present</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with default, disabled, and error states</li>
-        <li>Single size (40px height)</li>
-        <li>Label and placeholder support</li>
-        <li>Basic helper text and error message</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={inputFieldChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */
@@ -275,7 +294,7 @@ export default function InputPage() {
 
   return (
     <PageShell
-      title="Input"
+      title="Input Field"
       description="Text inputs allow users to enter and edit single-line text with labels, validation, and addons."
       tabs={tabs}
     >

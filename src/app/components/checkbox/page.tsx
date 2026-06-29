@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -220,30 +221,42 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const checkboxChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated configuration and version changed to latest'] }],
+  },
+  {
+    version: '1.0.3',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with Focus state'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with Ghost variant'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Updated Border colors'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added color variants: Standard, Blue, Green, DLV Red</li>
-        <li>Added <code>indeterminate</code> prop with visual dash icon</li>
-        <li>Added <code>description</code> prop for helper text</li>
-        <li>Added <code>error</code> prop with validation message</li>
-        <li>Added <code>variant</code> prop for color customization</li>
-        <li>Added <code>CheckboxGroup</code> component for grouped checkboxes</li>
-        <li>Improved focus ring with accent color tinting</li>
-        <li>Updated control size to 20×20px with 4px border-radius</li>
-        <li>Enhanced accessibility with aria-checked=&quot;mixed&quot; support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with checked and unchecked states</li>
-        <li>Label and disabled support</li>
-        <li>Basic keyboard navigation (Space to toggle)</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={checkboxChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

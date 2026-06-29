@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -181,27 +182,36 @@ function UsageTab() {
 }
 
 /* ── Changelog Tab ── */
+
+const linksChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated with ghost mode and updated component configuration'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component with Focus mode'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added White variant for dark backgrounds</li>
-        <li>Added <code>icon</code> and <code>iconPosition</code> props</li>
-        <li>Added visited state color shift</li>
-        <li>Improved disabled state with <code>aria-disabled</code></li>
-        <li>External links now auto-render trailing arrow icon</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Blue and Black variants</li>
-        <li>Hover underline interaction</li>
-        <li>External link support with <code>target=&quot;_blank&quot;</code></li>
-        <li>Disabled state</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={linksChangelog} />;
 }
 
 /* ── Page Export ── */

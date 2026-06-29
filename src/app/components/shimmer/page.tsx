@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -149,26 +150,15 @@ function UsageTab() {
 }
 
 /* ── TAB 4 — Changelog ── */
+const shimmerChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.1.0', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Added dark mode & and added variant with rounded corners'] }] },
+  { version: '1.0.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Prototype updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>ShimmerCard</code> and <code>ShimmerListItem</code> presets</li>
-        <li>Added dark mode support with theme-aware colors</li>
-        <li>Added <code>duration</code> prop for custom animation speed</li>
-        <li>Added <code>prefers-reduced-motion</code> support</li>
-        <li>Improved gradient smoothness</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with basic shimmer block</li>
-        <li>Text and circle presets</li>
-        <li>CSS keyframe animation</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={shimmerChangelog} />;
 }
 
 /* ── Page Export ── */

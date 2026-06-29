@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -214,30 +215,14 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const progressBarChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Added new variant "0%" and changed the existing 0% to 10%'] }] },
+  { version: '1.0.1', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component with line variant'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added indeterminate mode with CSS sliding animation</li>
-        <li>Added 6 color variants: Black, Blue, Success, Error, Warning, DLV Red</li>
-        <li>Added 3 size options: SM (4px), MD (8px), LG (12px)</li>
-        <li>Added <code>showLabel</code> prop for percentage display</li>
-        <li>Added <code>label</code> prop for text descriptions</li>
-        <li>Smooth animated fill transitions (0.4s ease)</li>
-        <li>Full accessibility support with <code>role=&quot;progressbar&quot;</code> and ARIA attributes</li>
-        <li>Light and dark theme track colors</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with linear determinate progress bar</li>
-        <li>Single color option (primary blue)</li>
-        <li>Fixed 8px height</li>
-        <li>Basic percentage label support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={progressBarChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

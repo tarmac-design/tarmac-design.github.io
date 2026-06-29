@@ -4,6 +4,7 @@ import { useState, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -310,31 +311,16 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const snackbarChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.1.0', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Secondary buttons updated, and secondary texts colors updated'] }] },
+  { version: '1.0.3', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Added new variant (Subtle)'] }] },
+  { version: '1.0.2', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Fixed', items: ['Stroke colors updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>style</code> prop with Filled, Subtle, and Outlined options</li>
-        <li>Added <code>description</code> prop for dual-text layout</li>
-        <li>Added <code>actions</code> prop for inline CTA buttons</li>
-        <li>Added <code>size</code> prop with Small and Large options</li>
-        <li>New color variants: Black, White</li>
-        <li>Dark mode support with dedicated color palette</li>
-        <li>Fade-in / fade-out animation with bottom-center positioning</li>
-        <li>Improved close button with hover and press states</li>
-        <li>Added <code>aria-live=&quot;polite&quot;</code> for screen reader announcements</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Info, Positive, Negative, Warning variants</li>
-        <li>Leading icon and close button support</li>
-        <li>Auto-dismiss with configurable duration</li>
-        <li>Basic accessibility with role=&quot;status&quot;</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={snackbarChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -271,30 +272,36 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const breadcrumbsChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated configuration'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Component with Focus mode'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Borders (Chevrons & Slash)'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>pill</code> container style</li>
-        <li>Added <code>ghost</code> and <code>disabled</code> states</li>
-        <li>Added <code>chevron</code> divider option alongside slash</li>
-        <li>Added leading and trailing icon support per crumb item</li>
-        <li>New color variants: Blue, DLV Red</li>
-        <li>Two size presets: Small (12px) and Large (16px)</li>
-        <li>Improved accessibility with aria-current=&quot;page&quot; and aria-hidden separators</li>
-        <li>Support for 2–8 crumb items</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with default breadcrumb trail</li>
-        <li>Slash separator</li>
-        <li>Single size (14px)</li>
-        <li>Basic link hover underline interaction</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={breadcrumbsChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

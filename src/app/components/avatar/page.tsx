@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -193,28 +194,56 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const avatarChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Changed',
+        items: ['Updated component configuration & version updated'],
+      },
+    ],
+  },
+  {
+    version: '1.0.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Changed',
+        items: ['Updated ghost variant of Avatar'],
+      },
+    ],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Fixed',
+        items: ['Updated Stroke colors'],
+      },
+    ],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [
+      {
+        category: 'Added',
+        items: ['Component Published'],
+      },
+    ],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>numeric</code> variant for Avatar Group overflow</li>
-        <li>Added <code>ghost</code> and <code>loading</code> states</li>
-        <li>Added 7 status indicator colors</li>
-        <li>Added <code>shape</code> prop with <code>circle</code> and <code>square</code> options</li>
-        <li>Updated sizes: S (24px), M (28px), L (36px), XL (40px), XXL (48px)</li>
-        <li>Improved accessibility with required alt text and aria-label support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Image, Initials, and Icon variants</li>
-        <li>5 sizes: XSmall to XLarge</li>
-        <li>Circle shape only</li>
-        <li>Basic status indicators (online, offline, away)</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={avatarChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -178,27 +179,42 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+
+const bottomSheetChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Latest component with latest configuration'] }],
+  },
+  {
+    version: '1.1.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated Slot auto layouts & Added empty state variant'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated Component with additional variant (advanced)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated with tabs inside bottom sheet'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>expandable</code> variant with configurable snap points</li>
-        <li>Added <code>action-sheet</code> variant for contextual action lists</li>
-        <li>Added <code>fullscreen</code> variant</li>
-        <li>Improved gesture handling with spring physics animation</li>
-        <li>Added focus trap and keyboard dismiss support</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with standard bottom sheet</li>
-        <li>Drag handle and overlay support</li>
-        <li>Swipe-to-dismiss gesture</li>
-        <li>Light and dark theme support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={bottomSheetChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

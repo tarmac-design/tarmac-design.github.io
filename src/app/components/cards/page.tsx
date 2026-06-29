@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -300,31 +300,41 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const cardsChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated configuration and version changed to latest'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated with Slot auto layouts & Added ghost mode'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated with new variants, (Button tucked & Slots variants)'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated with add-on text variants'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>selectable</code> prop with radio/checkbox selection indicator</li>
-        <li>Added <code>ghost</code> state for skeleton/placeholder cards</li>
-        <li>Added <code>cover</code> slot for header images and media</li>
-        <li>Added <code>badge</code> slot for status pills at top-right</li>
-        <li>Added configurable <code>padding</code> prop (sm, md, lg)</li>
-        <li>Added <code>disabled</code> state with reduced opacity</li>
-        <li>Hover state now shows subtle elevation shadow</li>
-        <li>Keyboard navigation support with Enter/Space activation</li>
-        <li>Improved accessibility with role, aria-selected, and aria-disabled</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with Basic, Image, Horizontal, and Interactive variants</li>
-        <li>Header, Body, and Footer anatomy</li>
-        <li>Elevated and outlined container styles</li>
-        <li>Click handler support for interactive cards</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={cardsChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

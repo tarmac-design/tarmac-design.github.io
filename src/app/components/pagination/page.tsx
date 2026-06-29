@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -247,29 +248,14 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const paginationChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated coal color and selection color, and version updated to V1.1.2'] }] },
+  { version: '1.1.0', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated Prototype & component configuration & added ghost variant'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added interactive pagination demo with live page switching</li>
-        <li>Added color variants: Black, Blue, DLV Red</li>
-        <li>Added size options: Small (28px), Medium (36px)</li>
-        <li>Added ellipsis truncation for large page ranges</li>
-        <li>Added optional divider between nav buttons and page numbers</li>
-        <li>Added <code>showPrevNext</code> prop to toggle Prev/Next buttons</li>
-        <li>Improved accessibility with <code>aria-current</code>, <code>aria-label</code>, and <code>role=&quot;navigation&quot;</code></li>
-        <li>Added disabled state for the entire component</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with numbered page buttons and prev/next navigation</li>
-        <li>Basic ellipsis support for large page counts</li>
-        <li>Single size and color variant</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={paginationChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -156,27 +157,16 @@ function UsageTab() {
 }
 
 /* ─── TAB 4 — Changelog ─── */
+const otpFieldsChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Latest component'] }] },
+  { version: '1.1.0', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated Prototype & component configuration & added shimmer into ghost variant'] }] },
+  { version: '1.0.2', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated bottom text to Link'] }] },
+  { version: '1.0.1', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component Focus mode & added a subtext bottom'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added 6-digit variant with separator</li>
-        <li>Added countdown timer with resend action</li>
-        <li>Added paste support for auto-filling all boxes</li>
-        <li>Added three size presets: SM, MD, LG</li>
-        <li>Added focus ring and cursor blink animation</li>
-        <li>Added autocomplete=&quot;one-time-code&quot; for SMS autofill</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with 4-digit OTP input</li>
-        <li>Auto-advance focus between boxes</li>
-        <li>Error and disabled states</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={otpFieldsChangelog} />;
 }
 
 /* ─── Page Export ─── */

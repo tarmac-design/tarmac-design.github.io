@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -191,29 +192,41 @@ function UsageTab() {
 /* ─────────────────────────────────────────────── */
 /*  TAB 4 — Changelog                              */
 /* ─────────────────────────────────────────────── */
+const dropdownChangelog: ChangelogEntry[] = [
+  {
+    version: '1.1.2',
+    date: 'June, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated dropdown list, added success and error and updated configuration'] }],
+  },
+  {
+    version: '1.1.0',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Updated component with Active state variant'] }],
+  },
+  {
+    version: '1.0.2',
+    date: 'May, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Changed', items: ['Updated component gap between List and input fields'] }],
+  },
+  {
+    version: '1.0.1',
+    date: 'April, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Fixed', items: ['Updated Stroke colors'] }],
+  },
+  {
+    version: '1.0.0',
+    date: 'March, 2026',
+    author: 'Rohan',
+    changes: [{ category: 'Added', items: ['Component published'] }],
+  },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>searchable</code> prop with built-in filter input</li>
-        <li>Added <code>multiSelect</code> mode with checkbox indicators</li>
-        <li>Added grouped options with section headers</li>
-        <li>Added <code>ghost</code> skeleton variant</li>
-        <li>New size variants: SM (32px), MD (40px), LG (48px)</li>
-        <li>Improved accessibility with ARIA listbox pattern</li>
-        <li>Click-outside dismissal and chevron rotation animation</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with single-select dropdown</li>
-        <li>Trigger button with chevron indicator</li>
-        <li>Basic option list with selected state highlight</li>
-        <li>Disabled state support</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={dropdownChangelog} />;
 }
 
 /* ─────────────────────────────────────────────── */

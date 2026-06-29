@@ -3,6 +3,7 @@
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 
 /* ─────────────────────────────────────────────── */
 /*  TAB 1 — Examples                               */
@@ -153,26 +154,16 @@ function UsageTab() {
 }
 
 /* ── TAB 4 — Changelog ── */
+const searchChangelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
+  { version: '1.1.1', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated fields with focused & ghost variant & updated list cell colors'] }] },
+  { version: '1.1.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated stroke colors and spacing between list and field'] }] },
+  { version: '1.0.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Dropdown list updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
 function ChangelogTab() {
-  return (
-    <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
-      <ul>
-        <li>Added <code>command</code> variant with sections and keyboard shortcuts</li>
-        <li>Added <code>expandable</code> variant with animated expand/collapse</li>
-        <li>Added loading spinner state</li>
-        <li>Added debounced suggestion fetching</li>
-        <li>Improved keyboard navigation for suggestions</li>
-      </ul>
-      <h3>v1.0.0</h3>
-      <ul>
-        <li>Initial release with default and suggestions variants</li>
-        <li>Search icon and clear button</li>
-        <li>Basic suggestion dropdown</li>
-      </ul>
-    </>
-  );
+  return <Changelog entries={searchChangelog} />;
 }
 
 /* ── Page Export ── */
