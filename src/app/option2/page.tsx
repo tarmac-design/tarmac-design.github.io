@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { motion, useInView } from 'motion/react';
-import HeroFold from '@/components/HeroFold';
+import HeroFoldOption2 from '@/components/HeroFoldOption2';
 
 /* ── Reusable scroll-triggered fade-in wrapper ── */
 function FadeIn({ children, delay = 0, className = '', y = 30 }: { children: React.ReactNode; delay?: number; className?: string; y?: number }) {
@@ -34,13 +34,13 @@ const systemCards = [
   { title: 'Get started', desc: 'Installation, quick start, and integration guides.', href: '/about/overview' },
 ];
 
-export default function Home() {
+export default function Option2Page() {
   const { theme } = useTheme();
 
   return (
     <div>
-      {/* ═══════════ HERO FOLD ═══════════ */}
-      <HeroFold />
+      {/* ═══════════ HERO FOLD OPTION 2 ═══════════ */}
+      <HeroFoldOption2 />
 
       {/* ═══════════ DISCOVER THE SYSTEM ═══════════ */}
       <section>
@@ -108,96 +108,10 @@ export default function Home() {
             </p>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <div
-              className="rounded-2xl overflow-hidden border-2 mx-auto"
-              style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container)' }}
-            >
-              <img
-                src="/assets/images/team-photo.jpg"
-                alt="TARMAC Design System Team"
-                className="w-full object-cover transition-all duration-500 grayscale hover:grayscale-0"
-                style={{ minHeight: '420px' }}
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent && !parent.querySelector('.placeholder-icon')) {
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'placeholder-icon flex flex-col items-center justify-center w-full gap-3';
-                    placeholder.style.cssText = 'min-height: 420px; padding: 2rem;';
-                    placeholder.innerHTML = `
-                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--color-outline-variant)">
-                        <circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M21 21v-1a4 4 0 0 0-3-3.87"/><path d="M13 21v-2a5 5 0 0 0-10 0v2"/>
-                      </svg>
-                      <span style="font-size: 12px; color: var(--color-outline-variant)">Team photo</span>
-                      <span style="font-size: 10px; color: var(--color-outline-variant); font-family: monospace">/assets/images/team-photo.jpg</span>
-                    `;
-                    parent.appendChild(placeholder);
-                  }
-                }}
-              />
+            <div className="rounded-2xl overflow-hidden border-2 mx-auto" style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container)' }}>
+              <img src="/assets/images/team-photo.jpg" alt="TARMAC Design System Team" className="w-full object-cover transition-all duration-500 grayscale hover:grayscale-0" style={{ minHeight: '420px' }} />
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* ═══════════ LIFE AT DELHIVERY ═══════════ */}
-      <section>
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-16">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: 'var(--color-on-surface)' }}>
-              Life at Delhivery
-            </h2>
-            <p className="text-base mb-10 max-w-2xl" style={{ color: 'var(--color-on-surface-variant)' }}>
-              We work hard and have fun doing it. Here&apos;s a glimpse of our journey together.
-            </p>
-          </FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
-            {[
-              { src: '/assets/images/fun-1.jpg', caption: 'Brainstorming' },
-              { src: '/assets/images/fun-2.jpg', caption: 'Friday Night Out' },
-              { src: '/assets/images/fun-3.jpg', caption: 'Design Review' },
-              { src: '/assets/images/fun-4.jpg', caption: 'After Hours' },
-              { src: '/assets/images/fun-5.jpg', caption: 'Crew Night' },
-              { src: '/assets/images/fun-6.jpg', caption: 'Behind the Scene' },
-            ].map((item, i) => (
-              <FadeIn key={item.src} delay={i * 0.08}>
-                <div
-                  className="group relative rounded-2xl overflow-hidden border-2 aspect-square"
-                  style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container)' }}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.caption}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent && !parent.querySelector('.placeholder-icon')) {
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'placeholder-icon flex flex-col items-center justify-center w-full h-full gap-2';
-                        placeholder.innerHTML = `
-                          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--color-outline-variant)">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-                          </svg>
-                          <span style="font-size: 11px; color: var(--color-outline-variant)">${item.caption}</span>
-                          <span style="font-size: 9px; color: var(--color-outline-variant); font-family: monospace">${item.src}</span>
-                        `;
-                        parent.appendChild(placeholder);
-                      }
-                    }}
-                  />
-                  <div
-                    className="absolute bottom-0 left-0 right-0 px-4 py-3 text-left"
-                    style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.7))' }}
-                  >
-                    <span className="text-sm font-semibold text-white">{item.caption}</span>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -207,39 +121,13 @@ export default function Home() {
           <FadeIn>
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="shrink-0 group">
-                <div
-                  className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2"
-                  style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container)' }}
-                >
-                  <img
-                    src="/assets/images/arpith-portrait.jpg"
-                    alt="Arpith — Head of Design, Delhivery"
-                    className="w-full h-full object-cover transition-all duration-500 grayscale group-hover:grayscale-0"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent && !parent.querySelector('.placeholder-icon')) {
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'placeholder-icon flex flex-col items-center justify-center w-full h-full gap-2';
-                        placeholder.innerHTML = `
-                          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color: var(--color-outline-variant)">
-                            <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
-                          </svg>
-                          <span style="font-size: 10px; color: var(--color-outline-variant); font-family: monospace">/assets/images/arpith-portrait.jpg</span>
-                        `;
-                        parent.appendChild(placeholder);
-                      }
-                    }}
-                  />
+                <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-2" style={{ borderColor: 'var(--color-outline)', background: 'var(--color-surface-container)' }}>
+                  <img src="/assets/images/arpith-portrait.jpg" alt="Arpith — Head of Design, Delhivery" className="w-full h-full object-cover transition-all duration-500 grayscale group-hover:grayscale-0" />
                 </div>
               </div>
               <div className="flex-1">
                 <div className="text-4xl font-bold mb-4" style={{ color: 'var(--color-on-surface)', opacity: 0.15 }}>&ldquo;</div>
-                <blockquote
-                  className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-snug mb-6 -mt-6"
-                  style={{ color: 'var(--color-on-surface)' }}
-                >
+                <blockquote className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-snug mb-6 -mt-6" style={{ color: 'var(--color-on-surface)' }}>
                   A design system isn&apos;t just a library of components — it&apos;s a shared language that unites design and engineering to deliver consistent, delightful experiences at scale.
                 </blockquote>
                 <div>
@@ -258,18 +146,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-8">
             <div className="max-w-sm">
               <div className="mb-3">
-                <img
-                  src="/tarmac-logo-light.svg"
-                  alt="TARMAC Design System"
-                  className={theme === 'light' ? 'block' : 'hidden'}
-                  style={{ height: '24px', width: 'auto' }}
-                />
-                <img
-                  src="/tarmac-logo-dark.svg"
-                  alt="TARMAC Design System"
-                  className={theme === 'dark' ? 'block' : 'hidden'}
-                  style={{ height: '24px', width: 'auto' }}
-                />
+                <img src="/tarmac-logo-light.svg" alt="TARMAC Design System" className={theme === 'light' ? 'block' : 'hidden'} style={{ height: '24px', width: 'auto' }} />
+                <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={theme === 'dark' ? 'block' : 'hidden'} style={{ height: '24px', width: 'auto' }} />
               </div>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--color-on-surface-variant)' }}>
                 Delhivery&apos;s unified design system — the single source of truth for design decisions, UI components, and interaction patterns.
