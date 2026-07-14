@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
@@ -109,30 +110,71 @@ function SidebarSearch({ onSearchClick }: { onSearchClick?: () => void }) {
   );
 }
 
-/* ── Single group — always open, flat list ── */
+/* ── Single group — accordion style, auto-opens if active item inside ── */
 function SidebarGroup({ group }: { group: NavGroup }) {
   const pathname = usePathname();
+  const hasActiveItem = group.items.some((item) => pathname === item.href);
+  const [isOpen, setIsOpen] = useState(hasActiveItem);
+
+  // Auto-open when navigating to an item in this group
+  useEffect(() => {
+    if (hasActiveItem) setIsOpen(true);
+  }, [hasActiveItem]);
 
   return (
     <div className="sidebar-group">
-      <h3 className="sidebar-group-title">{group.title}</h3>
-      <ul className="sidebar-group-list">
-        {group.items.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`sidebar-nav-link ${isActive ? 'sidebar-nav-link-active' : ''}`}
-              >
-                {/* Left accent bar for active item */}
-                <span className={`sidebar-accent-bar ${isActive ? 'sidebar-accent-bar-active' : ''}`} />
-                <span>{item.label}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="sidebar-group-title"
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          width: '100%', background: 'none', border: 'none',
+          cursor: 'pointer', textAlign: 'left',
+        }}
+        aria-expanded={isOpen}
+      >
+        <span>{group.title}</span>
+        <svg
+          width="12" height="12" viewBox="0 0 12 12" fill="none"
+          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+          style={{
+            transition: 'transform 0.2s ease',
+            opacity: 0.5,
+          }}
+        >
+          {isOpen
+            ? <path d="M2.5 7.5L6 4.5L9.5 7.5" />
+            : <path d="M2.5 4.5L6 7.5L9.5 4.5" />
+          }
+        </svg>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.ul
+            className="sidebar-group-list"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            {group.items.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`sidebar-nav-link ${isActive ? 'sidebar-nav-link-active' : ''}`}
+                  >
+                    <span className={`sidebar-accent-bar ${isActive ? 'sidebar-accent-bar-active' : ''}`} />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
