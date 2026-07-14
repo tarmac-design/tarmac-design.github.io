@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { motion, useInView } from 'motion/react';
-import HeroFold from '@/components/HeroFold';
+import HeroFoldOption2 from '@/components/HeroFoldOption2';
 
 /* ── Reusable scroll-triggered fade-in wrapper ── */
 function FadeIn({ children, delay = 0, className = '', y = 30 }: { children: React.ReactNode; delay?: number; className?: string; y?: number }) {
@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div>
       {/* ═══════════ HERO FOLD ═══════════ */}
-      <HeroFold />
+      <HeroFoldOption2 />
 
       {/* ═══════════ DISCOVER THE SYSTEM ═══════════ */}
       <section>
