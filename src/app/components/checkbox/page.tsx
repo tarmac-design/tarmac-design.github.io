@@ -53,54 +53,38 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Checkbox component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Clickable hit area wrapping box and label</li>
-          <li><strong>Check Box</strong> — Square visual indicator</li>
-          <li><strong>Checkmark Icon</strong> — Tick or dash icon inside the box</li>
-          <li><strong>Label</strong> — Optional text describing the option</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Check Box</td><td>The square toggle control</td></tr>
+        <tr><td>Checkmark</td><td>Icon shown when checked</td></tr>
+        <tr><td>Label</td><td>Descriptive text beside the control</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-checkbox--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="checkbox example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Checkbox without label text</li>
-          <li><strong>With Label</strong> — Checkbox with accompanying text label</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Touch-friendly for mobile</td></tr>
+        <tr><td>Medium</td><td>Default for forms</td></tr>
+        <tr><td>Small</td><td>Dense settings panels</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — Prominent checkbox for touch targets</li>
-          <li><strong>Medium</strong> — Default size for forms and lists</li>
-          <li><strong>Small</strong> — Compact checkbox for dense layouts</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Unchecked</td><td>Empty — not selected</td></tr>
+        <tr><td>Checked</td><td>Filled with checkmark</td></tr>
+        <tr><td>Indeterminate</td><td>Partial selection (dash icon)</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, muted</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">States</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Unchecked</strong> — Empty checkbox, option not selected</li>
-          <li><strong>Checked</strong> — Checkmark visible, option selected</li>
-          <li><strong>Indeterminate</strong> — Dash icon, partial selection (parent)</li>
-          <li><strong>Disabled</strong> — Non-interactive, reduced opacity</li>
-          <li><strong>Ghost</strong> — Loading skeleton placeholder</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="checkbox" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="checkbox" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

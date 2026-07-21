@@ -24,28 +24,32 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-pagination--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="pagination interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Wrapping element that holds all pagination controls</td></tr>
+        <tr><td>Page Numbers</td><td>Clickable number buttons representing available pages</td></tr>
+        <tr><td>Previous/Next Arrows</td><td>Navigation arrows to move between adjacent pages</td></tr>
+        <tr><td>Ellipsis</td><td>Indicator for skipped page ranges in long lists</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-pagination--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="pagination example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Pagination component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Pagination component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Larger click targets for touch-friendly interfaces</td></tr>
+        <tr><td>Medium</td><td>Standard size for desktop layouts</td></tr>
+        <tr><td>Small</td><td>Compact size for constrained spaces</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Default</td><td>Resting state with available page numbers</td></tr>
+        <tr><td>Active Page</td><td>Currently selected page highlighted</td></tr>
+        <tr><td>Disabled Arrow</td><td>Previous/next arrow disabled at boundary</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over a page number or arrow</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="pagination" />
     </>
   );

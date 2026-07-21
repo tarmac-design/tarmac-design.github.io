@@ -53,37 +53,35 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Coachmarks component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Highlight Area</strong> — Cutout region exposing the target element</li>
-          <li><strong>Tooltip Bubble</strong> — Floating container with guidance content</li>
-          <li><strong>Title</strong> — Brief headline describing the feature</li>
-          <li><strong>Description</strong> — Explanatory text about the highlighted element</li>
-          <li><strong>Step Indicator</strong> — Dots or text showing progress (e.g., 2/5)</li>
-          <li><strong>Navigation</strong> — Next, Previous, and Skip buttons</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Highlight Area</td><td>Focused region of the UI being explained</td></tr>
+        <tr><td>Tooltip Bubble</td><td>Content card with title and description</td></tr>
+        <tr><td>Step Indicator</td><td>Progress dots showing current step</td></tr>
+        <tr><td>Navigation</td><td>Next, Previous, Skip controls</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-coachmarks--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="coachmarks example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Single Step</strong> — One-off highlight with no navigation</li>
-          <li><strong>Multi-step</strong> — Sequential tour with navigation controls</li>
-          <li><strong>Dismissible</strong> — Includes skip-all option to exit the tour</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard tooltip sizing</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="coachmarks" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Active</td><td>Currently showing a step</td></tr>
+        <tr><td>Completed</td><td>Step has been viewed</td></tr>
+        <tr><td>Dismissed</td><td>User skipped the tour</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="coachmarks" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

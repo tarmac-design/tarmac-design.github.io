@@ -24,28 +24,29 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-tdsscrollbar--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="scroll interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Track</td><td>Background area where the scrollbar thumb moves</td></tr>
+        <tr><td>Thumb</td><td>Draggable indicator showing current scroll position</td></tr>
+        <tr><td>Arrow Buttons (optional)</td><td>Up/down or left/right arrows for incremental scrolling</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-tdsscrollbar--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="scroll example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Scroll component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Scroll component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>6px width for standard scrollbar appearance</td></tr>
+        <tr><td>Thin</td><td>4px width for minimal visual footprint</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Idle (hidden)</td><td>Scrollbar is not visible when not scrolling</td></tr>
+        <tr><td>Hover (visible)</td><td>Scrollbar appears when cursor enters the scroll area</td></tr>
+        <tr><td>Active (dragging)</td><td>Thumb is being dragged by the user</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="scroll" />
     </>
   );

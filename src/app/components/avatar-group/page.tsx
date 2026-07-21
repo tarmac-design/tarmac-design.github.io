@@ -52,45 +52,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Avatar Group component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Avatar Stack</strong> — Container holding overlapping avatars</li>
-          <li><strong>Individual Avatar</strong> — Each user avatar in the group</li>
-          <li><strong>Overflow Counter (+N)</strong> — Badge showing remaining count</li>
-          <li><strong>Border Ring</strong> — White ring separating overlapping avatars</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Avatar Stack</td><td>Horizontally overlapping avatar items</td></tr>
+        <tr><td>Overflow Counter</td><td>+N badge showing remaining hidden avatars</td></tr>
+        <tr><td>Border Ring</td><td>White separator between overlapping items</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-avatar-group--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="avatar-group example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 40px avatars, suitable for cards and headers</li>
-          <li><strong>Medium</strong> — 32px avatars, default for most contexts</li>
-          <li><strong>Small</strong> — 24px avatars, compact lists and tight spaces</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (40px)</td><td>Cards and headers</td></tr>
+        <tr><td>Medium (32px)</td><td>Default context</td></tr>
+        <tr><td>Small (24px)</td><td>Compact lists and metadata</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Properties</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>max</strong> — Maximum number of visible avatars before overflow</li>
-          <li><strong>size</strong> — Size of individual avatars (Large, Medium, Small)</li>
-          <li><strong>items</strong> — Array of avatar data (image, name, etc.)</li>
-          <li><strong>shapes</strong> — Circle or square shape for individual avatars</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Stacked avatars with overflow</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading state</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, muted</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="avatar-group" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="avatar-group" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

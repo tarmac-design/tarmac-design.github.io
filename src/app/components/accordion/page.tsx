@@ -35,83 +35,49 @@ function SpecsTab() {
   return (
     <>
       <h2>Component Structure</h2>
-      <p>The accordion system is composed of three master components and one published child component.</p>
-      <table><thead><tr><th>Component</th><th>Type</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Accordion Header</td><td>Master</td><td>Primary trigger that expands or collapses the content section</td></tr>
-        <tr><td>Accordion Footer</td><td>Master</td><td>Appears within expanded sections, contains supporting content or actions</td></tr>
-        <tr><td>Accordion Dropdown (Prototype)</td><td>Master</td><td>Controls the expand and collapse interaction behavior</td></tr>
-        <tr><td>Accordion Container</td><td>Published</td><td>Composed accordion layout supporting 1–5 sections</td></tr>
+      <p>A stacked disclosure system with expandable header rows that reveal body content.</p>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Accordion Header</td><td>Clickable trigger row — toggles the content section</td></tr>
+        <tr><td>Accordion Footer</td><td>Expanded content area with optional actions</td></tr>
+        <tr><td>Accordion Container</td><td>Published group layout supporting 1–5 sections</td></tr>
       </tbody></table>
+      {/* Header Variants specimen */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--header-variants&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Header Variants" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
+      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Header variants — single text, dual text, with icons, badges, and status indicators.</p>
 
-      <h2>Accordion Header</h2>
-      <p>The accordion header acts as the primary trigger that expands or collapses the content section.</p>
-      <h3>Sizes</h3>
+      <h2>Sizes</h2>
+      <p>Two density options — pick by context, never scale manually.</p>
       <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Large</td><td>Default size with comfortable touch targets</td></tr>
-        <tr><td>Small</td><td>Compact size for dense layouts</td></tr>
-      </tbody></table>
-      <h3>Types</h3>
-      <table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Single Text</td><td>Displays one line of header content</td></tr>
-        <tr><td>Dual Text</td><td>Displays primary and secondary text</td></tr>
-      </tbody></table>
-      <h3>Optional Elements</h3>
-      <table><thead><tr><th>Element</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Leading Icon</td><td>Displays an icon before the text</td></tr>
-        <tr><td>Trailing Icon</td><td>Indicates expand or collapse interaction</td></tr>
-        <tr><td>Badge</td><td>Displays contextual status or metadata</td></tr>
-        <tr><td>Status Text</td><td>Displays supporting status information</td></tr>
-        <tr><td>Status Indicator</td><td>Visual indicator for state or category</td></tr>
-      </tbody></table>
-
-      <h2>Accordion Footer</h2>
-      <p>The accordion footer appears within expanded sections and contains supporting content or actions.</p>
-      <h3>Sizes</h3>
-      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Large</td><td>Spacious footer area</td></tr>
-        <tr><td>Small</td><td>Compact footer for tight layouts</td></tr>
-      </tbody></table>
-      <h3>Types</h3>
-      <table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Single Text</td><td>Displays a single informational message</td></tr>
-        <tr><td>Dual Text</td><td>Displays primary and supporting text</td></tr>
-      </tbody></table>
-      <h3>Optional Elements</h3>
-      <table><thead><tr><th>Element</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Leading Icon</td><td>Provides contextual visual cues</td></tr>
-        <tr><td>Badge</td><td>Displays metadata or status</td></tr>
-        <tr><td>CTA Buttons</td><td>Allows users to take actions related to the expanded content</td></tr>
-        <tr><td>Tags</td><td>Displays categorized metadata or attributes</td></tr>
-      </tbody></table>
-
-      <h2>Published Accordion Component</h2>
-      <p>The final accordion component is the published version used within product interfaces.</p>
-      <h3>Accordion Count</h3>
-      <table><thead><tr><th>Count</th><th>Description</th></tr></thead><tbody>
-        <tr><td>1 section</td><td>Single expandable item</td></tr>
-        <tr><td>2 sections</td><td>Two grouped items</td></tr>
-        <tr><td>3 sections</td><td>Three grouped items</td></tr>
-        <tr><td>4 sections</td><td>Four grouped items</td></tr>
-        <tr><td>5 sections</td><td>Maximum recommended group</td></tr>
+        <tr><td>Large</td><td>Default for web — 48px row height, comfortable touch targets</td></tr>
+        <tr><td>Small</td><td>Dense layouts — 44px row height, compact panels and sidebars</td></tr>
       </tbody></table>
 
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default (Collapsed)</td><td>Section is closed, only header visible</td></tr>
-        <tr><td>Expanded</td><td>Section is open, content is visible</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the header area</td></tr>
+        <tr><td>Collapsed</td><td>Only header visible — the default resting state</td></tr>
+        <tr><td>Expanded</td><td>Content revealed below the header</td></tr>
+        <tr><td>Hover</td><td>Cursor over the header area</td></tr>
         <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
       </tbody></table>
+      {/* Collapsed vs Expanded specimen */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--collapsed-vs-expanded&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Collapsed vs Expanded" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
+      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Collapsed vs Expanded — clicking the header toggles the content section.</p>
 
-      <h2>Component Behavior</h2>
-      <ul>
-        <li>Clicking the header expands or collapses the section</li>
-        <li>Expanding a section reveals the associated content</li>
-        <li>Collapsing a section hides the content</li>
-        <li>Multiple accordion sections may exist within the same group</li>
-        <li>Accordions may allow multiple sections expanded simultaneously or only one at a time</li>
-        <li>Interaction behavior should remain consistent across the product</li>
-      </ul>
+      <h2>Behavior</h2>
+      <table><thead><tr><th>Pattern</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Single expand</td><td>Only one section open at a time — opening one closes others</td></tr>
+        <tr><td>Multi expand</td><td>Multiple sections can be open simultaneously</td></tr>
+        <tr><td>Controlled</td><td>Expand/collapse managed programmatically via props</td></tr>
+      </tbody></table>
+      {/* Accordion Mode specimen */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--accordion-mode&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Accordion Mode" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
+      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Accordion mode — single open vs multiple open behavior.</p>
 
       <StorybookVariantViewer slug="accordion" />
     </>

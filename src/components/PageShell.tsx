@@ -148,7 +148,7 @@ export function PageShell({ title, description, tabs, children, version, hideVer
 
       {/* ─── Sticky tabs ─── */}
       {isScrolled && allTabs.length > 1 && (
-        <div className="fixed top-16 left-0 lg:left-[var(--sidebar-width)] right-0 z-[35]" style={{ backgroundColor: 'var(--color-surface, #1a1a1a)', borderBottom: '1px solid var(--color-outline)' }}>
+        <div className="fixed top-16 left-0 right-0 z-[35]" style={{ backgroundColor: 'var(--color-surface, #1a1a1a)', borderBottom: '1px solid var(--color-outline)' }}>
           <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-[240px]">
             <div className="flex gap-0 min-w-max">
               {allTabs.map((tab, i) => (

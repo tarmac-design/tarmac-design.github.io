@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-otpinput--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="otp-fields interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Input Container</td><td>Wrapping element that holds all OTP cells in a row</td></tr>
+        <tr><td>Individual Cell</td><td>Single character input box for one digit of the OTP</td></tr>
+        <tr><td>Cursor</td><td>Blinking indicator showing the active input position</td></tr>
+        <tr><td>Separator</td><td>Visual divider between cell groups (e.g., after 3 digits)</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-otpinput--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="otp-fields example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Otp Fields component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Otp Fields component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>48px cells for prominent OTP entry forms</td></tr>
+        <tr><td>Medium</td><td>40px cells for standard OTP inputs</td></tr>
+        <tr><td>Small</td><td>36px cells for compact layouts</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Empty</td><td>No value entered, cells show placeholder styling</td></tr>
+        <tr><td>Focused</td><td>Active cell highlighted with cursor visible</td></tr>
+        <tr><td>Filled</td><td>All cells contain input values</td></tr>
+        <tr><td>Error</td><td>Validation failed, cells show error styling</td></tr>
         <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="otp-fields" />
     </>
   );

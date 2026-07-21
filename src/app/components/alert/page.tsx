@@ -53,70 +53,39 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Alert component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Wraps the entire alert with background color and border</li>
-          <li><strong>Icon</strong> — Leading status icon representing the alert type</li>
-          <li><strong>Title</strong> — Optional bold headline for the alert message</li>
-          <li><strong>Description</strong> — Body text conveying the alert information</li>
-          <li><strong>Action Button</strong> — Optional CTA for user action</li>
-          <li><strong>Close Button</strong> — Optional dismiss control to remove the alert</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Wraps the alert content with appropriate background and border</td></tr>
+        <tr><td>Icon</td><td>Status indicator icon (success, error, warning, info)</td></tr>
+        <tr><td>Title</td><td>Optional bold heading text</td></tr>
+        <tr><td>Description</td><td>Body message explaining the alert</td></tr>
+        <tr><td>Actions</td><td>Optional CTA buttons for user response</td></tr>
+        <tr><td>Close Button</td><td>Dismisses the alert when clicked</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-alert--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="alert example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <p className="text-gray-700 mb-4">
-          Alerts support the following color variants to communicate different states:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Success</strong> — Confirms a completed action or positive outcome</li>
-          <li><strong>Error</strong> — Indicates a failure or critical issue</li>
-          <li><strong>Warning</strong> — Draws attention to potential problems</li>
-          <li><strong>Info</strong> — Provides neutral informational context</li>
-          <li><strong>Black</strong> — High-contrast dark theme alert</li>
-          <li><strong>White</strong> — Light theme alert for dark backgrounds</li>
-          <li><strong>Coal</strong> — Subtle dark-toned alert</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Default — spacious padding for prominent alerts</td></tr>
+        <tr><td>Medium</td><td>Balanced for inline usage</td></tr>
+        <tr><td>Small</td><td>Compact for dense layouts</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Types</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default (Filled)</strong> — Solid background with contrasting text</li>
-          <li><strong>Outlined</strong> — Border-only style with transparent background</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Static informational display</td></tr>
+        <tr><td>Dismissible</td><td>User can close the alert</td></tr>
+        <tr><td>With CTAs</td><td>Includes action buttons</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — Full-width alert with prominent spacing</li>
-          <li><strong>Medium</strong> — Standard size for most use cases</li>
-          <li><strong>Small</strong> — Compact alert for tight layouts</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">States</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Standard static display</li>
-          <li><strong>With CTAs</strong> — Includes action buttons for user interaction</li>
-          <li><strong>Dismissible</strong> — Includes close button for removal</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="alert" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="alert" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

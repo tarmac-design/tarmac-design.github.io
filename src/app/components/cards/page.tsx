@@ -53,37 +53,38 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Cards component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Outer card surface with border and shadow</li>
-          <li><strong>Media Area</strong> — Optional image or video region</li>
-          <li><strong>Content Area</strong> — Title, description, and metadata</li>
-          <li><strong>Action Area</strong> — Buttons or interactive elements</li>
-          <li><strong>Badge Slot</strong> — Optional badge for status/category</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Card surface with border and radius</td></tr>
+        <tr><td>Media Area</td><td>Image or illustration slot</td></tr>
+        <tr><td>Content Area</td><td>Title, description, and metadata</td></tr>
+        <tr><td>Action Area</td><td>Buttons or links at the bottom</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-card--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="cards example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Standard content card with text and actions</li>
-          <li><strong>Media Card</strong> — Card with prominent media/image area</li>
-          <li><strong>Action Card</strong> — Interactive card that acts as a button</li>
-          <li><strong>Selection Card</strong> — Card with checkbox for multi-select</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Feature cards and hero content</td></tr>
+        <tr><td>Medium</td><td>Default product/content cards</td></tr>
+        <tr><td>Small</td><td>Compact list-style cards</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="cards" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard display</td></tr>
+        <tr><td>Hover</td><td>Slight elevation on mouse over</td></tr>
+        <tr><td>Selected</td><td>Active/checked state</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="cards" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

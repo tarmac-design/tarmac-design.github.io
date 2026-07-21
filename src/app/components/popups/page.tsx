@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="popups interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Overlay</td><td>Semi-transparent backdrop behind the popup</td></tr>
+        <tr><td>Container</td><td>Main popup panel with rounded corners and elevation</td></tr>
+        <tr><td>Header</td><td>Title area with optional close button</td></tr>
+        <tr><td>Body</td><td>Scrollable content area for the popup message or form</td></tr>
+        <tr><td>Footer Actions</td><td>Action buttons (confirm, cancel) at the bottom</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="popups example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Popups component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Popups component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Small</td><td>Compact popup for simple confirmations</td></tr>
+        <tr><td>Medium</td><td>Standard size for forms and content</td></tr>
+        <tr><td>Large</td><td>Wider popup for complex content or media</td></tr>
+        <tr><td>Full-screen</td><td>Takes up the entire viewport on mobile</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Open</td><td>Popup is visible with overlay active</td></tr>
+        <tr><td>Closing</td><td>Exit animation playing before removal</td></tr>
+        <tr><td>Nested</td><td>A popup opened on top of another popup</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="popups" />
     </>
   );

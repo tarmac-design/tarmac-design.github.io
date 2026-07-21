@@ -11,6 +11,7 @@ const topNav = [
   { label: 'About', href: '/about/overview', section: 'about' },
   { label: 'Foundations', href: '/foundations/colors', section: 'foundations' },
   { label: 'Components', href: '/components/accordion', section: 'components' },
+  { label: 'Tools', href: '/tools/design-file-access', section: 'tools' },
   { label: 'Accessibility', href: '/accessibility/overview', section: 'accessibility' },
 ];
 
@@ -84,7 +85,7 @@ const searchablePages = [
   { label: 'Screen Readers', href: '/accessibility/screen-readers', section: 'Accessibility' },
 ];
 
-export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick?: () => void; searchOpen?: boolean; setSearchOpen?: (v: boolean) => void }) {
+export function TopBar({ onMenuClick, sidebarOpen, searchOpen, setSearchOpen }: { onMenuClick?: () => void; sidebarOpen?: boolean; searchOpen?: boolean; setSearchOpen?: (v: boolean) => void }) {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
@@ -147,19 +148,23 @@ export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick
           borderBottom: onHero ? 'none' : '1px solid var(--color-outline)',
         }}
       >
+        {/* Hamburger menu — left of logo */}
+        {onMenuClick && (
+          <button onClick={onMenuClick} className="rounded-lg mr-3" style={{ color: heroTextColor, padding: '8px', backgroundColor: 'rgba(255,255,255,0.24)' }} aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}>
+            {sidebarOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            )}
+          </button>
+        )}
+
         <Link href="/" className="flex items-center shrink-0 mr-6 py-2">
           {/* Light BG logo = dark text, for: light theme always */}
           <img src="/tarmac-logo-light.svg" alt="TARMAC Design System" className={theme === 'light' ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
           {/* Dark BG logo = white text, for: dark theme always */}
           <img src="/tarmac-logo-dark.svg" alt="TARMAC Design System" className={theme === 'dark' ? 'block' : 'hidden'} style={{ height: '18px', width: 'auto' }} />
         </Link>
-
-        {/* Mobile hamburger — show on screens below lg */}
-        {onMenuClick && (
-          <button onClick={onMenuClick} className="lg:hidden p-2 rounded-lg mr-1" style={{ color: heroTextColor }} aria-label="Open menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          </button>
-        )}
 
         <div className="flex items-center gap-2 shrink-0 ml-auto">
           <nav className="hidden lg:flex items-center gap-1 mr-3">

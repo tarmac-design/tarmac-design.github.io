@@ -53,58 +53,40 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Avatar component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Circular or square frame holding the avatar content</li>
-          <li><strong>Image/Initials/Icon</strong> — Primary visual content of the avatar</li>
-          <li><strong>Status Dot</strong> — Optional indicator showing online/offline/busy state</li>
-          <li><strong>Border Ring</strong> — Optional border ring for emphasis or grouping context</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Circular or square frame holding the avatar content</td></tr>
+        <tr><td>Image</td><td>User photo or placeholder</td></tr>
+        <tr><td>Initials</td><td>First letter(s) when no image is available</td></tr>
+        <tr><td>Status Dot</td><td>Online/offline/busy indicator</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-avatar--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="avatar example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Image</strong> — Displays a user photo or uploaded image</li>
-          <li><strong>Initials</strong> — Shows first/last name initials as text</li>
-          <li><strong>Numeric</strong> — Displays a number (e.g., for overflow counts)</li>
-          <li><strong>Icon</strong> — Shows a generic user or custom icon</li>
-          <li><strong>Square</strong> — Square-shaped variant for non-user entities</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>XLarge (64px)</td><td>Profile headers and cards</td></tr>
+        <tr><td>Large (48px)</td><td>User lists and comments</td></tr>
+        <tr><td>Medium (40px)</td><td>Default for most contexts</td></tr>
+        <tr><td>Small (32px)</td><td>Compact lists</td></tr>
+        <tr><td>XSmall (24px)</td><td>Dense metadata rows</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>XLarge</strong> — 64px, used for profile pages and hero sections</li>
-          <li><strong>Large</strong> — 48px, used for cards and detail views</li>
-          <li><strong>Medium</strong> — 40px, default size for most contexts</li>
-          <li><strong>Small</strong> — 32px, used in lists and compact layouts</li>
-          <li><strong>XSmall</strong> — 24px, used in inline text and tight spaces</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard display with image or initials</td></tr>
+        <tr><td>With Status</td><td>Shows online/offline dot</td></tr>
+        <tr><td>Disabled</td><td>Greyed out, non-interactive</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading placeholder</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">States</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Standard display state</li>
-          <li><strong>With Status Dot</strong> — Shows online/offline/busy indicator</li>
-          <li><strong>Disabled</strong> — Reduced opacity, non-interactive</li>
-          <li><strong>Ghost</strong> — Loading/skeleton placeholder</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="avatar" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="avatar" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

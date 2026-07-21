@@ -53,72 +53,39 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Badge component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Radius/Default 4px, Spacing/6 padding, Spacing/2 gap</li>
-          <li><strong>Leading Icon</strong> — Optional icon before label (12-14px)</li>
-          <li><strong>Label</strong> — Text content (Noto Sans Medium 12)</li>
-          <li><strong>Trailing Icon</strong> — Optional icon after label (12-14px)</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>4px radius, Spacing/6 padding — holds label and optional icons</td></tr>
+        <tr><td>Label</td><td>Noto Sans Medium 12 — one or two words max</td></tr>
+        <tr><td>Leading Icon</td><td>Optional 12-14px icon reinforcing meaning</td></tr>
+        <tr><td>Trailing Icon</td><td>Optional icon after the label</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-badge--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="badge example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Black</strong> — High-contrast dark badge</li>
-          <li><strong>White</strong> — Light badge for dark surfaces</li>
-          <li><strong>Coal</strong> — Subtle dark-toned badge</li>
-          <li><strong>DLV Red</strong> — Brand-colored badge</li>
-          <li><strong>Info</strong> — Blue informational badge</li>
-          <li><strong>Success</strong> — Green positive status badge</li>
-          <li><strong>Warning</strong> — Yellow/amber caution badge</li>
-          <li><strong>Error</strong> — Red critical status badge</li>
-          <li><strong>Cardbox</strong> — Muted cardbox-themed badge</li>
-          <li><strong>Cyan</strong> — Cyan accent badge</li>
-          <li><strong>Orange</strong> — Orange accent badge</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (28px)</td><td>Cards, banners, and headers</td></tr>
+        <tr><td>Medium (24px)</td><td>Default for most contexts</td></tr>
+        <tr><td>Small (20px)</td><td>Dense tables and metadata rows</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Types</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Solid</strong> — Loudest, filled background for primary emphasis</li>
-          <li><strong>Subtle</strong> — Secondary emphasis with lighter background</li>
-          <li><strong>Outlined</strong> — Border-only for use on tinted surfaces</li>
-          <li><strong>Ghost</strong> — Loading/skeleton placeholder state</li>
-          <li><strong>Disabled</strong> — Non-interactive muted state</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Solid</td><td>Filled — strongest emphasis for critical status</td></tr>
+        <tr><td>Subtle</td><td>Light background — secondary information</td></tr>
+        <tr><td>Outlined</td><td>Border only — minimal visual weight</td></tr>
+        <tr><td>Ghost</td><td>Extremely lightweight — loading placeholders</td></tr>
+        <tr><td>Disabled</td><td>Inactive, visually muted</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 28px height</li>
-          <li><strong>Medium</strong> — 24px height</li>
-          <li><strong>Small</strong> — 20px height</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Boolean Properties</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Leading Icon</strong> — Toggles icon before label</li>
-          <li><strong>Trailing Icon</strong> — Toggles icon after label</li>
-          <li><strong>Status Dot</strong> — Toggles colored status indicator dot</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="badge" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="badge" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

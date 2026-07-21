@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-tabgroup--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="tabs interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Tab Container</td><td>Horizontal bar holding all tab items</td></tr>
+        <tr><td>Tab Item</td><td>Individual clickable tab label</td></tr>
+        <tr><td>Active Indicator</td><td>Underline or highlight showing the active tab</td></tr>
+        <tr><td>Content Panel</td><td>Area below the tabs displaying the active tab content</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-tabgroup--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="tabs example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Tabs component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Tabs component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Larger tab items for prominent navigation</td></tr>
+        <tr><td>Medium</td><td>Standard tab size for most layouts</td></tr>
+        <tr><td>Small</td><td>Compact tabs for constrained spaces</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Default</td><td>Inactive tab in resting state</td></tr>
+        <tr><td>Active</td><td>Currently selected tab with indicator</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over a tab item</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted tab</td></tr>
+        <tr><td>Scrollable</td><td>Tabs overflow with horizontal scrolling enabled</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="tabs" />
     </>
   );

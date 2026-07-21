@@ -52,35 +52,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Card Block component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Outer wrapper with border, padding, and background</li>
-          <li><strong>Header</strong> — Optional title area with actions</li>
-          <li><strong>Body</strong> — Main content area supporting nested content</li>
-          <li><strong>Footer</strong> — Optional action area at the bottom</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Bordered surface with padding and radius</td></tr>
+        <tr><td>Content Area</td><td>Flexible slot for any content</td></tr>
+        <tr><td>Header</td><td>Optional title section</td></tr>
+        <tr><td>Footer</td><td>Optional action area</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-card-block--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="card-block example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Standard bordered card with white background</li>
-          <li><strong>Elevated</strong> — Card with box shadow for layered depth</li>
-          <li><strong>Outlined</strong> — Subtle border-only without shadow</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard card with comfortable padding</td></tr>
+        <tr><td>Compact</td><td>Reduced padding for dense layouts</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="card-block" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard appearance</td></tr>
+        <tr><td>Elevated</td><td>Shadow for visual hierarchy</td></tr>
+        <tr><td>Outlined</td><td>Border-only, no elevation</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="card-block" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

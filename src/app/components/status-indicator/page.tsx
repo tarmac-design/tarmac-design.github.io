@@ -24,28 +24,30 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-statusindicator--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="status-indicator interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Dot</td><td>Small colored circle indicating status</td></tr>
+        <tr><td>Optional Label</td><td>Text describing the status meaning</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-statusindicator--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="status-indicator example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Status Indicator component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Status Indicator component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>12px dot for prominent status displays</td></tr>
+        <tr><td>Medium</td><td>8px dot for standard status indicators</td></tr>
+        <tr><td>Small</td><td>6px dot for compact or inline status</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Online (green)</td><td>Entity is active and available</td></tr>
+        <tr><td>Offline (grey)</td><td>Entity is inactive or disconnected</td></tr>
+        <tr><td>Busy (red)</td><td>Entity is occupied and unavailable</td></tr>
+        <tr><td>Away (yellow)</td><td>Entity is idle or temporarily unavailable</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="status-indicator" />
     </>
   );

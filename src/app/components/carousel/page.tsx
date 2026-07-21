@@ -53,36 +53,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Carousel component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Outer wrapper with overflow hidden</li>
-          <li><strong>Slide Items</strong> — Individual content slides</li>
-          <li><strong>Navigation Arrows</strong> — Previous/Next buttons</li>
-          <li><strong>Pagination Dots</strong> — Slide position indicators</li>
-          <li><strong>Scroll Track</strong> — Horizontal sliding track</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Horizontal scroll viewport</td></tr>
+        <tr><td>Slide Items</td><td>Individual content cards or images</td></tr>
+        <tr><td>Navigation Arrows</td><td>Left/right controls</td></tr>
+        <tr><td>Pagination Dots</td><td>Current position indicators</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-carousel--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="carousel example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Manual navigation with arrows and dots</li>
-          <li><strong>Auto-play</strong> — Automatic slide progression with pause controls</li>
-          <li><strong>With Thumbnails</strong> — Thumbnail strip below for direct slide access</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Full Width</td><td>Hero banners and featured content</td></tr>
+        <tr><td>Contained</td><td>Within a defined column width</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="carousel" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Manual navigation by user</td></tr>
+        <tr><td>Auto-play</td><td>Automatic slide rotation</td></tr>
+        <tr><td>Paused</td><td>Auto-play stopped on hover/focus</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="carousel" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

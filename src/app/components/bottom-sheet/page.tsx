@@ -53,63 +53,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Bottom Sheet component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Drag Handle</strong> — Visual indicator for swipe-to-dismiss gesture</li>
-          <li><strong>Header</strong> — Title, Close button, and optional Leading Icon</li>
-          <li><strong>Info Banner</strong> — Optional informational banner below header</li>
-          <li><strong>Divider</strong> — Visual separator between sections</li>
-          <li><strong>Snackbar</strong> — Optional inline notification area</li>
-          <li><strong>Tab Group</strong> — Optional tabbed content navigation</li>
-          <li><strong>Body Content</strong> — Main scrollable content area</li>
-          <li><strong>Slot Area</strong> — Configurable slot for custom content</li>
-          <li><strong>Footer CTA</strong> — Action buttons at the bottom</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Drag Handle</td><td>Swipe affordance at the top</td></tr>
+        <tr><td>Header</td><td>Title + optional close icon and leading icon</td></tr>
+        <tr><td>Body Content</td><td>Scrollable area with text, slots, or custom content</td></tr>
+        <tr><td>Footer CTA</td><td>Primary and secondary action buttons</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-bottomsheet--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="bottom-sheet example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Standard</strong> — Default bottom sheet with header and body</li>
-          <li><strong>Slot Mini</strong> — Compact slot-based layout</li>
-          <li><strong>Slot Dual</strong> — Two-slot layout side by side</li>
-          <li><strong>Slot</strong> — Single prominent slot layout</li>
-          <li><strong>Advanced</strong> — Full-featured with tabs and multiple sections</li>
-          <li><strong>Empty State</strong> — Placeholder for no-content scenarios</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Web</td><td>724px width, dynamic height</td></tr>
+        <tr><td>Mobile</td><td>346px width, dynamic height</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">CTA Styles</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Horizontal</strong> — Inline buttons side by side</li>
-          <li><strong>Vertical</strong> — Stacked full-width buttons</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Collapsed</td><td>Sheet hidden below viewport</td></tr>
+        <tr><td>Expanded</td><td>Sheet visible with content</td></tr>
+        <tr><td>Completed</td><td>V2 only — marks finished step</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Boolean Properties</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>hasIcon</strong> — Shows leading icon in header</li>
-          <li><strong>hasClose</strong> — Shows close button in header</li>
-          <li><strong>hasBanner</strong> — Shows info banner section</li>
-          <li><strong>hasCheckbox</strong> — Includes checkbox in content</li>
-          <li><strong>hasSecondaryAction</strong> — Shows secondary CTA button</li>
-          <li><strong>hasSlot</strong> — Enables slot content area</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="bottom-sheet" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="bottom-sheet" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

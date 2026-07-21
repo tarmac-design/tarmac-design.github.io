@@ -53,74 +53,43 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Button component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Clickable area with background and border</li>
-          <li><strong>Label</strong> — Text content describing the action</li>
-          <li><strong>Leading Icon</strong> — Optional icon before the label</li>
-          <li><strong>Trailing Icon</strong> — Optional icon after the label</li>
-          <li><strong>Loading Indicator</strong> — Spinner replacing content during loading</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Clickable surface with padding and border radius</td></tr>
+        <tr><td>Label</td><td>Action text describing what the button does</td></tr>
+        <tr><td>Leading Icon</td><td>Optional icon before the label</td></tr>
+        <tr><td>Trailing Icon</td><td>Optional icon after the label</td></tr>
+        <tr><td>Loading Indicator</td><td>Spinner replacing icon during async actions</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-button--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="button example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Black</strong> — High-contrast primary action</li>
-          <li><strong>White</strong> — Light variant for dark backgrounds</li>
-          <li><strong>Coal</strong> — Subtle dark-toned button</li>
-          <li><strong>DLV Red</strong> — Brand-colored emphasis button</li>
-          <li><strong>Info</strong> — Blue informational action</li>
-          <li><strong>Success</strong> — Green positive/confirm action</li>
-          <li><strong>Error</strong> — Red destructive/danger action</li>
-          <li><strong>Warning</strong> — Amber caution action</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>XLarge (48px)</td><td>Hero sections and primary CTAs</td></tr>
+        <tr><td>Large (44px)</td><td>Form submissions</td></tr>
+        <tr><td>Regular (36px)</td><td>Default for most contexts</td></tr>
+        <tr><td>Small (28px)</td><td>Inline actions</td></tr>
+        <tr><td>XSmall (24px)</td><td>Dense toolbars</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Types</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Standard (Filled)</strong> — Solid background, highest emphasis</li>
-          <li><strong>Outlined</strong> — Border-only, medium emphasis</li>
-          <li><strong>Text</strong> — No background or border, lowest emphasis</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting, ready for interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor over the button</td></tr>
+        <tr><td>Pressed</td><td>Active click state</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus ring visible</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, muted</td></tr>
+        <tr><td>Loading</td><td>Async action in progress</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>XLarge</strong> — 48px height, hero sections and prominent CTAs</li>
-          <li><strong>Large</strong> — 44px height, form submissions and modals</li>
-          <li><strong>Regular</strong> — 36px height, default for most contexts</li>
-          <li><strong>Small</strong> — 28px height, compact toolbars and cards</li>
-          <li><strong>XSmall</strong> — 24px height, inline and dense layouts</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">States</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Resting state</li>
-          <li><strong>Hover</strong> — Mouse hover interaction</li>
-          <li><strong>Pressed</strong> — Active/pressed down state</li>
-          <li><strong>Focused</strong> — Keyboard focus visible</li>
-          <li><strong>Disabled</strong> — Non-interactive, reduced opacity</li>
-          <li><strong>Ghost</strong> — Loading skeleton placeholder</li>
-          <li><strong>Loading</strong> — Spinner indicating async operation</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="button" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="button" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

@@ -53,37 +53,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Date Time Picker component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Input Field</strong> — Text input showing selected date/time</li>
-          <li><strong>Calendar Grid</strong> — Monthly grid of selectable day cells</li>
-          <li><strong>Month/Year Navigation</strong> — Controls to change visible month/year</li>
-          <li><strong>Time Selector</strong> — Hour and minute selection interface</li>
-          <li><strong>Footer Actions</strong> — Confirm/Cancel buttons for the selection</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Input Field</td><td>Displays selected date/time value</td></tr>
+        <tr><td>Calendar Grid</td><td>Month view with selectable days</td></tr>
+        <tr><td>Navigation</td><td>Month/year forward and back controls</td></tr>
+        <tr><td>Footer Actions</td><td>Confirm and cancel buttons</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-daterangepicker--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="date-time-picker example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Date Only</strong> — Calendar grid for date selection</li>
-          <li><strong>Time Only</strong> — Time selection without calendar</li>
-          <li><strong>Date + Time</strong> — Combined date and time selection</li>
-          <li><strong>Range Picker</strong> — Start and end date selection</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard form input size</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="date-time-picker" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Closed</td><td>Only input field visible</td></tr>
+        <tr><td>Open</td><td>Calendar/time picker expanded</td></tr>
+        <tr><td>Range Mode</td><td>Start and end date selection</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="date-time-picker" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

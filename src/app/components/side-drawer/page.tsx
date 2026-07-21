@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-sidedrawer--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="side-drawer interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Overlay Backdrop</td><td>Semi-transparent background covering the main content</td></tr>
+        <tr><td>Drawer Panel</td><td>Sliding panel containing the drawer content</td></tr>
+        <tr><td>Header</td><td>Title and optional close button at the top of the drawer</td></tr>
+        <tr><td>Body Content</td><td>Scrollable area for the drawer's main content</td></tr>
+        <tr><td>Close Button</td><td>Action to dismiss the drawer</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-sidedrawer--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="side-drawer example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Side Drawer component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Side Drawer component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Small</td><td>320px width for narrow content or navigation</td></tr>
+        <tr><td>Medium</td><td>400px width for standard forms and details</td></tr>
+        <tr><td>Large</td><td>480px width for complex content or multi-step flows</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Open</td><td>Drawer is visible and slid into view</td></tr>
+        <tr><td>Closing</td><td>Exit animation playing as drawer slides out</td></tr>
+        <tr><td>From Left</td><td>Drawer enters from the left edge of the screen</td></tr>
+        <tr><td>From Right</td><td>Drawer enters from the right edge of the screen</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="side-drawer" />
     </>
   );

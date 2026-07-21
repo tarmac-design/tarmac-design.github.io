@@ -53,46 +53,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Dialog Box component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Overlay Backdrop</strong> — Semi-transparent layer blocking background</li>
-          <li><strong>Container</strong> — Centered dialog surface</li>
-          <li><strong>Header</strong> — Title and optional close button</li>
-          <li><strong>Body Content</strong> — Message text, form, or custom content</li>
-          <li><strong>Footer</strong> — Primary CTA and optional Secondary CTA</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Overlay</td><td>Semi-transparent backdrop blocking background</td></tr>
+        <tr><td>Container</td><td>Modal surface with title, content, and actions</td></tr>
+        <tr><td>Header</td><td>Title and optional close button</td></tr>
+        <tr><td>Footer</td><td>Primary and secondary action buttons</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-dialogbox--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="dialog-box example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Confirmation</strong> — Asks user to confirm or cancel an action</li>
-          <li><strong>Alert</strong> — Displays important information requiring acknowledgment</li>
-          <li><strong>Form</strong> — Contains form fields for focused input collection</li>
-          <li><strong>Custom Content</strong> — Flexible layout for any content type</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Small</td><td>Confirmation dialogs</td></tr>
+        <tr><td>Medium</td><td>Default for most content</td></tr>
+        <tr><td>Large</td><td>Complex forms and content</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Small</strong> — Compact dialog for simple confirmations</li>
-          <li><strong>Medium</strong> — Default size for most use cases</li>
-          <li><strong>Large</strong> — Expanded dialog for forms and complex content</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Open</td><td>Dialog visible, background blocked</td></tr>
+        <tr><td>Closing</td><td>Exit animation in progress</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="dialog-box" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="dialog-box" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (

@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-pill--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="pills interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Wrapping element with rounded styling for the pill shape</td></tr>
+        <tr><td>Label</td><td>Text content describing the pill value</td></tr>
+        <tr><td>Leading Icon</td><td>Optional icon before the label for visual context</td></tr>
+        <tr><td>Close Button</td><td>Optional action to remove or dismiss the pill</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-pill--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="pills example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Pills component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Pills component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>32px height for prominent pill placements</td></tr>
+        <tr><td>Medium</td><td>28px height for standard use cases</td></tr>
+        <tr><td>Small</td><td>24px height for compact or inline usage</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
         <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Selected</td><td>Pill is actively selected with visual highlight</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the pill</td></tr>
         <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Removable</td><td>Close button visible allowing dismissal</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="pills" />
     </>
   );

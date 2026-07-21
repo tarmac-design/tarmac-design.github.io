@@ -24,28 +24,33 @@ function OverviewTab() {
 function SpecsTab() {
   return (
     <>
-
-      {/* Interactive component example */}
-      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
-        <iframe
-          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-searchdropdown--playground&viewMode=story&shortcuts=false`}
-          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
-          title="search interactive example"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-        />
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Input Field</td><td>Text input where the user types their query</td></tr>
+        <tr><td>Search Icon</td><td>Magnifying glass icon indicating search functionality</td></tr>
+        <tr><td>Clear Button</td><td>Action to clear the current search input</td></tr>
+        <tr><td>Dropdown Results</td><td>List of matching results displayed below the input</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-searchdropdown--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="search example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
-      <h2>Anatomy</h2>
-      <p>Refer to the Figma design file for detailed anatomy breakdown of the Search component.</p>
-      <h2>Variants</h2>
-      <p>See the playground below for all available variants of the Search component.</p>
+
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Larger input for prominent search placements</td></tr>
+        <tr><td>Medium</td><td>Standard size for most search contexts</td></tr>
+        <tr><td>Small</td><td>Compact size for toolbars or constrained spaces</td></tr>
+      </tbody></table>
+
       <h2>States</h2>
       <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
-        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
-        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
-        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
-        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+        <tr><td>Empty</td><td>No input, placeholder text visible</td></tr>
+        <tr><td>Typing</td><td>User is actively entering a search query</td></tr>
+        <tr><td>Results Shown</td><td>Dropdown open with matching results</td></tr>
+        <tr><td>No Results</td><td>Dropdown open with empty state message</td></tr>
+        <tr><td>Loading</td><td>Spinner visible while fetching results</td></tr>
       </tbody></table>
+
       <StorybookVariantViewer slug="search" />
     </>
   );

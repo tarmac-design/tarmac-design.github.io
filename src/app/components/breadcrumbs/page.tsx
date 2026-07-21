@@ -53,45 +53,36 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Breadcrumbs component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Horizontal wrapper for breadcrumb items</li>
-          <li><strong>Breadcrumb Item</strong> — Individual navigable link</li>
-          <li><strong>Separator</strong> — Visual divider (/ or &gt;) between items</li>
-          <li><strong>Current Item</strong> — Non-linked item representing current page</li>
-          <li><strong>Overflow Menu (...)</strong> — Collapsed middle items on long trails</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Breadcrumb Item</td><td>Linked page name in the trail</td></tr>
+        <tr><td>Separator</td><td>Divider between items (/ or >)</td></tr>
+        <tr><td>Current Item</td><td>Non-linked text for current page</td></tr>
+        <tr><td>Overflow</td><td>Collapsed items shown as "..."</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-breadcrumbs--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="breadcrumbs example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Text-only breadcrumb links</li>
-          <li><strong>With Icons</strong> — Icons preceding each breadcrumb item</li>
-          <li><strong>Truncated</strong> — Middle items collapsed into overflow menu</li>
-          <li><strong>Custom Separator</strong> — User-defined separator character</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (14px)</td><td>Page headers and prominent navigation</td></tr>
+        <tr><td>Small (12px)</td><td>Compact layouts and secondary nav</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 14px font, used for prominent navigation</li>
-          <li><strong>Small</strong> — 12px font, used for compact contexts</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Full breadcrumb trail visible</td></tr>
+        <tr><td>Truncated</td><td>Middle items collapsed into overflow menu</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading state</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="breadcrumbs" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="breadcrumbs" />
+    </>
   );
 }
+
 
 function GuidelinesTab() {
   return (
