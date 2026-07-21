@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function TypographyImplementationPage() {
   return (
-    <PageShell title="Typography Implementation" description="How to use TARMAC typography tokens in code.">
+    <PageShell hideVersion title="Typography Implementation" description="How to use TARMAC typography tokens in code.">
       <h2>CSS Custom Properties</h2>
       <pre><code>{`:root {
   --font-family-primary: 'Noto Sans', system-ui, sans-serif;

@@ -1,185 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-popups--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Popups component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-popups--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="popups interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Popups component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Popups component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="popups" />
     </>
   );
 }
 
-/* ── TAB 2 — Code ── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-      <h2>Import</h2>
-      <pre><code>{`import { Popup, Tooltip, Popover, Menu, ConfirmPopup } from '@tarmac/design-system';`}</code></pre>
-      <h2>Component API</h2>
-      <pre><code>{`interface PopupProps {
-  variant?: 'tooltip' | 'popover' | 'menu' | 'confirmation';
-  position?: 'top' | 'bottom' | 'left' | 'right';
-  trigger: ReactNode;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  arrow?: boolean;
-  offset?: number;
-  children: ReactNode;
-}
-
-interface MenuProps extends PopupProps {
-  items: { label: string; onClick: () => void; destructive?: boolean }[];
-}
-
-interface ConfirmPopupProps extends PopupProps {
-  title: string;
-  description?: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-  confirmLabel?: string;
-  cancelLabel?: string;
-}`}</code></pre>
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Tooltip
-<Tooltip content="Helpful hint" position="top">
-  <Button>Hover me</Button>
-</Tooltip>
-
-// Popover
-<Popover title="Details" position="bottom">
-  <p>Additional context here.</p>
-</Popover>
-
-// Menu
-<Menu items={[
-  { label: 'Edit', onClick: handleEdit },
-  { label: 'Delete', onClick: handleDelete, destructive: true },
-]} />
-
-// Confirmation
-<ConfirmPopup
-  title="Delete item?"
-  description="This cannot be undone."
-  onConfirm={handleDelete}
-  onCancel={handleCancel}
-/>`}</code></pre>
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>popup-border-radius</td><td>8px</td></tr>
-          <tr><td>popup-shadow</td><td>0 4px 16px rgba(0,0,0,0.12)</td></tr>
-          <tr><td>popup-arrow-size</td><td>6px</td></tr>
-          <tr><td>popup-offset</td><td>8px</td></tr>
-          <tr><td>popup-z-index</td><td>1000</td></tr>
-          <tr><td>popup-min-width</td><td>180px</td></tr>
-        </tbody>
-      </table>
-      <h2>Storybook</h2>
-      <p>
-        Explore all popup variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-popup--playground" target="_blank" rel="noopener noreferrer">TARMAC Storybook →</a>
-      </p>
-    </>
-  );
-}
-
-/* ── TAB 3 — Usage ── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Trigger</td><td>The element that activates the popup (button, icon, text)</td></tr>
-          <tr><td>2</td><td>Overlay</td><td>The floating container with content</td></tr>
-          <tr><td>3</td><td>Arrow</td><td>Directional indicator pointing to the trigger</td></tr>
-          <tr><td>4</td><td>Content</td><td>Text, actions, or rich content inside the overlay</td></tr>
-          <tr><td>5</td><td>Backdrop</td><td>Optional click-away area to dismiss (popovers, menus)</td></tr>
-        </tbody>
-      </table>
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Popups" slug="popups" section="when-to-use" />
       <ul>
-        <li>Tooltips for icon-only buttons or truncated text</li>
-        <li>Popovers for supplementary details without leaving context</li>
-        <li>Menus for contextual actions on list items or cards</li>
-        <li>Confirmation popups for destructive actions</li>
+        <li>Use the Popups component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="popups"
-        doItems={[
-          'Use tooltips for short, non-essential helper text',
-          'Position popups to avoid viewport overflow',
-          'Dismiss menus when an action is selected',
-          'Use confirmation popups for irreversible actions',
-          'Keep popup content concise and scannable',
-        ]}
-        dontItems={[
-          'Don\'t nest popups inside other popups',
-          'Don\'t use tooltips for essential information',
-          'Don\'t put complex forms inside popovers',
-          'Don\'t use menus with more than 7–8 items',
-          'Don\'t block the trigger element with the popup',
-        ]}
-      />
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>tooltip / dialog / menu</td><td>Semantic role based on variant</td></tr>
-          <tr><td>aria-haspopup</td><td>true</td><td>Indicates trigger opens a popup</td></tr>
-          <tr><td>aria-expanded</td><td>boolean</td><td>Reflects open/closed state</td></tr>
-          <tr><td>Escape</td><td>Dismiss</td><td>Close popup on Escape key</td></tr>
-          <tr><td>Focus trap</td><td>Confirmation</td><td>Trap focus within confirmation dialogs</td></tr>
-        </tbody>
-      </table>
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Popups" slug="popups" section="when-not-to-use" />
       <ul>
-        <li><strong>Dialog Box</strong> — Full modal overlay for complex interactions</li>
-        <li><strong>Dropdown</strong> — Form select with popup option list</li>
-        <li><strong>Bottom Sheet</strong> — Mobile-friendly popup from bottom edge</li>
-        <li><strong>Snackbar</strong> — Temporary notification without trigger</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="popups" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ── TAB 4 — Changelog ── */
-const popupsChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Added empty state variant & updated configuration'] }] },
-  { version: '1.1.0', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component with Tabs & Snackbar'] }] },
-  { version: '1.0.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Slot updated with autolayouts'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={popupsChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ── Page Export ── */
 export default function PopupsPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
   return (
-    <PageShell title="Popups" description="Overlay elements that appear near a trigger — tooltips, popovers, menus, and confirmation dialogs." tabs={tabs}>
-      <ExamplesTab />
+    <PageShell title="Popups" description="Popups is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

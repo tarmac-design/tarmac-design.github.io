@@ -4,163 +4,122 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-rating--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Rating component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-rating--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-rating--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="rating interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Rating component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Rating component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="rating" />
     </>
   );
 }
 
-/* ── TAB 2 — Code ── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-      <h2>Import</h2>
-      <pre><code>{`import { Rating } from '@tarmac/design-system';`}</code></pre>
-      <h2>Component API</h2>
-      <pre><code>{`interface RatingProps {
-  value?: number;
-  defaultValue?: number;
-  max?: number;
-  size?: 'sm' | 'md' | 'lg';
-  readOnly?: boolean;
-  precision?: 0.5 | 1;
-  showValue?: boolean;
-  showCount?: boolean;
-  count?: number;
-  onChange?: (value: number) => void;
-  onHover?: (value: number) => void;
-  disabled?: boolean;
-  color?: string;
-}`}</code></pre>
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Interactive rating
-<Rating defaultValue={0} onChange={val => console.log(val)} />
-
-// Read-only
-<Rating value={4.5} readOnly />
-
-// Half-star precision
-<Rating value={3.5} precision={0.5} readOnly showValue />
-
-// With review count
-<Rating value={4.2} readOnly showValue showCount count={128} />
-
-// Custom size
-<Rating size="lg" defaultValue={3} />`}</code></pre>
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>rating-star-size-sm</td><td>16px</td></tr>
-          <tr><td>rating-star-size-md</td><td>24px</td></tr>
-          <tr><td>rating-star-size-lg</td><td>32px</td></tr>
-          <tr><td>rating-color-filled</td><td>#F5A623</td></tr>
-          <tr><td>rating-color-empty</td><td>#CCCCCC</td></tr>
-          <tr><td>rating-gap</td><td>2px</td></tr>
-        </tbody>
-      </table>
-      <h2>Storybook</h2>
-      <p>
-        Explore all rating variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-rating--playground" target="_blank" rel="noopener noreferrer">TARMAC Storybook →</a>
-      </p>
-    </>
-  );
-}
-
-/* ── TAB 3 — Usage ── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Star Container</td><td>Row of star icons representing the rating scale</td></tr>
-          <tr><td>2</td><td>Filled Star</td><td>Colored star indicating the current rating value</td></tr>
-          <tr><td>3</td><td>Empty Star</td><td>Unfilled star for remaining scale</td></tr>
-          <tr><td>4</td><td>Half Star</td><td>Partially filled star for fractional values</td></tr>
-          <tr><td>5</td><td>Value Label</td><td>Optional numeric display of the rating</td></tr>
-          <tr><td>6</td><td>Count Label</td><td>Optional review count text</td></tr>
-        </tbody>
-      </table>
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Rating" slug="rating" section="when-to-use" />
       <ul>
-        <li>Product or service reviews and feedback</li>
-        <li>User satisfaction surveys</li>
-        <li>Content quality indicators</li>
-        <li>Displaying aggregate scores from multiple reviews</li>
+        <li>Use the Rating component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="rating"
-        doItems={[
-          'Use 5 stars as the default scale for familiarity',
-          'Show the numeric value alongside stars for precision',
-          'Use half-star precision for read-only aggregate ratings',
-          'Provide hover feedback for interactive ratings',
-          'Include review count for credibility',
-        ]}
-        dontItems={[
-          'Don\'t use ratings for binary yes/no feedback',
-          'Don\'t allow fractional input — only display fractional values',
-          'Don\'t use custom scales (e.g., 10 stars) without clear labels',
-          'Don\'t hide the rating scale from screen readers',
-          'Don\'t auto-submit on rating selection without confirmation',
-        ]}
-      />
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>radiogroup</td><td>Groups stars as selectable options</td></tr>
-          <tr><td>aria-label</td><td>&quot;Rating&quot;</td><td>Describes the rating component</td></tr>
-          <tr><td>aria-valuenow</td><td>number</td><td>Current rating value</td></tr>
-          <tr><td>aria-valuemin</td><td>0</td><td>Minimum rating</td></tr>
-          <tr><td>aria-valuemax</td><td>5</td><td>Maximum rating</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys</td><td>Navigate and set rating with arrow keys</td></tr>
-        </tbody>
-      </table>
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Rating" slug="rating" section="when-not-to-use" />
       <ul>
-        <li><strong>Slider</strong> — Continuous value selection on a track</li>
-        <li><strong>Progress Bar</strong> — Visual representation of completion</li>
-        <li><strong>Input</strong> — Numeric input for precise value entry</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="rating" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ── TAB 4 — Changelog ── */
-const ratingChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={ratingChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ── Page Export ── */
 export default function RatingPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
   return (
-    <PageShell title="Rating" description="Star-based rating component for collecting and displaying user feedback scores." tabs={tabs}>
-      <ExamplesTab />
+    <PageShell title="Rating" description="Rating is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

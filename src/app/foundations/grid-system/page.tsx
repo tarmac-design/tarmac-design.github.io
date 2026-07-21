@@ -754,14 +754,14 @@ const gridChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function GridSystemPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={gridChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Grid System"
       description="TARMAC's responsive grid framework — a 12-column desktop system and 4-column mobile system with support for side navigation, top navigation, and side drawer contexts across all breakpoints."
       tabs={tabs}

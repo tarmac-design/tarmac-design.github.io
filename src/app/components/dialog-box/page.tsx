@@ -4,233 +4,223 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="dialog-box" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Dialog } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface DialogProps {
-  open: boolean;
-  onClose: () => void;
-  variant?: 'confirmation' | 'alert' | 'form' | 'fullscreen';
-  size?: 'sm' | 'md' | 'lg';
-  title: string;
-  description?: string;
-  icon?: ReactNode;
-  showOverlay?: boolean;
-  closeOnOverlayClick?: boolean;
-  closeOnEscape?: boolean;
-  primaryAction?: { label: string; onClick: () => void; destructive?: boolean };
-  secondaryAction?: { label: string; onClick: () => void };
-  children?: ReactNode;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Confirmation dialog
-<Dialog
-  open={showConfirm}
-  variant="confirmation"
-  title="Delete Item?"
-  description="This action cannot be undone."
-  primaryAction={{ label: 'Delete', onClick: handleDelete, destructive: true }}
-  secondaryAction={{ label: 'Cancel', onClick: () => setShowConfirm(false) }}
-  onClose={() => setShowConfirm(false)}
-/>
-
-// Alert dialog
-<Dialog
-  open={showAlert}
-  variant="alert"
-  title="Session Expired"
-  description="Please log in again."
-  icon={<WarningIcon />}
-  primaryAction={{ label: 'Log In', onClick: handleLogin }}
-  onClose={() => setShowAlert(false)}
-/>
-
-// Form dialog
-<Dialog open={showForm} variant="form" title="Create Item" size="md" onClose={() => setShowForm(false)}>
-  <Input label="Name" />
-  <Input label="Description" />
-</Dialog>
-
-// Full screen dialog
-<Dialog open={showFull} variant="fullscreen" title="Edit Details" onClose={() => setShowFull(false)}>
-  <FormContent />
-</Dialog>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>dialog-width-sm</td><td>400px</td></tr>
-          <tr><td>dialog-width-md</td><td>560px</td></tr>
-          <tr><td>dialog-width-lg</td><td>720px</td></tr>
-          <tr><td>dialog-border-radius</td><td>14px</td></tr>
-          <tr><td>dialog-overlay-light</td><td>rgba(0,0,0,0.4)</td></tr>
-          <tr><td>dialog-overlay-dark</td><td>rgba(0,0,0,0.7)</td></tr>
-          <tr><td>dialog-shadow</td><td>0 8px 32px rgba(0,0,0,0.2)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all dialog variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-dialog--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Overlay</td><td>Semi-transparent backdrop behind the dialog</td></tr>
-          <tr><td>2</td><td>Container</td><td>Centered card with rounded corners and shadow</td></tr>
-          <tr><td>3</td><td>Icon</td><td>Optional status icon (alert variant)</td></tr>
-          <tr><td>4</td><td>Title</td><td>Bold heading describing the dialog purpose</td></tr>
-          <tr><td>5</td><td>Description</td><td>Supporting text explaining the context</td></tr>
-          <tr><td>6</td><td>Content Area</td><td>Form fields or custom content (form/fullscreen)</td></tr>
-          <tr><td>7</td><td>Primary Action</td><td>Main action button (confirm, submit, etc.)</td></tr>
-          <tr><td>8</td><td>Secondary Action</td><td>Cancel or dismiss button</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>For destructive actions that need explicit confirmation</li>
-        <li>For important alerts that require acknowledgment</li>
-        <li>For short forms that don&apos;t warrant a full page</li>
-        <li>For full-screen editing on mobile devices</li>
-        <li>When user attention must be focused on a single task</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="dialog-box"
-        doItems={[
-          'Use clear, action-oriented button labels (e.g., "Delete" not "OK")',
-          'Keep dialog content concise and focused on one task',
-          'Use destructive styling for dangerous actions',
-          'Allow dismissal via overlay click and Escape key',
-          'Trap focus within the dialog while open',
-        ]}
-        dontItems={[
-          'Don\'t stack multiple dialogs on top of each other',
-          'Don\'t use dialogs for non-critical information — use snackbars',
-          'Don\'t put long scrollable content in small dialogs',
-          'Don\'t remove the cancel/dismiss option for non-alert dialogs',
-          'Don\'t auto-close dialogs with timers',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>dialog / alertdialog</td><td>Identifies the component as a dialog</td></tr>
-          <tr><td>aria-modal</td><td>true</td><td>Indicates content behind is inert</td></tr>
-          <tr><td>aria-labelledby</td><td>title id</td><td>Links dialog to its title</td></tr>
-          <tr><td>aria-describedby</td><td>description id</td><td>Links dialog to its description</td></tr>
-          <tr><td>Focus trap</td><td>—</td><td>Tab cycles within dialog elements</td></tr>
-          <tr><td>Escape key</td><td>—</td><td>Closes the dialog</td></tr>
-          <tr><td>Auto-focus</td><td>—</td><td>Focus moves to first interactive element</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Bottom Sheet</strong> — Mobile-first alternative to centered dialogs</li>
-        <li><strong>Side Drawer</strong> — Slide-in panel for complex content</li>
-        <li><strong>Snackbar</strong> — Non-blocking notifications for less critical info</li>
-        <li><strong>Alert</strong> — Inline alert banners for page-level messages</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-const dialogBoxChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component with new configuration'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Removed', items: ['Removed 2 variants (which was not necessary)'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component autolayouts in Slots'] }],
+    date: 'June 2026',
+    changes: [
+      'Added Custom Content variant for flexible layouts',
+      'Improved backdrop click behavior with configurable dismiss',
+      'Fixed focus trap edge case with nested interactive elements',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Dialog Box component',
+      'Confirmation, Alert, and Form variants',
+      'Small, Medium, and Large size options',
+      'Overlay backdrop with focus trapping',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={dialogBoxChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Dialog Box is a modal overlay for critical decisions requiring immediate user
+          attention. It blocks interaction with background content, ensuring users
+          acknowledge or respond to the dialog before continuing their workflow.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Confirming destructive actions (delete, discard changes)</li>
+          <li>Displaying critical alerts requiring acknowledgment</li>
+          <li>Collecting focused input through embedded forms</li>
+          <li>Presenting important information that cannot be ignored</li>
+          <li>Requesting authentication or permission confirmations</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Dialog Box component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Overlay Backdrop</strong> — Semi-transparent layer blocking background</li>
+          <li><strong>Container</strong> — Centered dialog surface</li>
+          <li><strong>Header</strong> — Title and optional close button</li>
+          <li><strong>Body Content</strong> — Message text, form, or custom content</li>
+          <li><strong>Footer</strong> — Primary CTA and optional Secondary CTA</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Confirmation</strong> — Asks user to confirm or cancel an action</li>
+          <li><strong>Alert</strong> — Displays important information requiring acknowledgment</li>
+          <li><strong>Form</strong> — Contains form fields for focused input collection</li>
+          <li><strong>Custom Content</strong> — Flexible layout for any content type</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Small</strong> — Compact dialog for simple confirmations</li>
+          <li><strong>Medium</strong> — Default size for most use cases</li>
+          <li><strong>Large</strong> — Expanded dialog for forms and complex content</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="dialog-box" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Dialogs interrupt the user flow, so use them sparingly and only for actions
+          that require explicit user decision. Keep dialog content focused and provide
+          clear action labels.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For irreversible actions that need explicit confirmation</li>
+          <li>When displaying critical information users must acknowledge</li>
+          <li>For focused form inputs that benefit from isolation</li>
+          <li>When blocking the background context is intentional</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For non-critical information — use Alert or Snackbar</li>
+          <li>For simple messages — use inline alerts instead</li>
+          <li>For content browsing — use Drawer or page navigation</li>
+          <li>When the action is easily reversible (e.g., undo available)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/dialog-box-usage.png"
+          alt="Dialog box usage guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Use clear, specific action labels (e.g., "Delete" not "OK")',
+              'Keep dialog content concise and focused',
+              'Provide a non-destructive way to dismiss (Cancel, X)',
+              'Use the appropriate size for the content amount',
+            ]}
+            dontItems={[
+              'Stack dialogs on top of other dialogs',
+              'Use generic labels like "OK" / "Cancel" for all actions',
+              'Put excessive content requiring scrolling in a dialog',
+              'Use dialogs for routine, non-critical notifications',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="dialog"</code> on the dialog container</li>
+          <li><code>aria-modal="true"</code> to indicate modal behavior</li>
+          <li><code>aria-labelledby</code> pointing to the dialog title</li>
+          <li><code>aria-describedby</code> pointing to the body content</li>
+          <li><code>aria-label="Close"</code> on the close button</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Escape</kbd> — Closes the dialog (unless prevent-close is set)</li>
+          <li><kbd>Tab</kbd> — Cycles focus within the dialog (focus trap)</li>
+          <li><kbd>Shift+Tab</kbd> — Cycles focus backwards within dialog</li>
+          <li>Focus moves to first focusable element on open</li>
+          <li>Focus returns to trigger element on close</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces dialog title when opened</li>
+          <li>Background content is marked as inert</li>
+          <li>Action buttons clearly describe their outcomes</li>
+          <li>Close button announces its purpose</li>
+          <li>Alert variant uses <code>role="alertdialog"</code> for urgency</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function DialogBoxPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Dialog Box"
-      description="Dialog boxes are modal overlays that require user attention for confirmations, alerts, forms, and focused editing tasks."
+      description="Modal overlay for critical decisions requiring immediate user attention. Blocks interaction with background content."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

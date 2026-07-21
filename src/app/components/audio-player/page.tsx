@@ -4,226 +4,111 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-audio-player--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Audio Player component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-audio-player--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Audio Player component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Audio Player component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="audio-player" />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { AudioPlayer } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface AudioPlayerProps {
-  src: string;
-  variant?: 'default' | 'compact' | 'playlist' | 'waveform';
-  size?: 'sm' | 'md' | 'lg';
-  title?: string;
-  artist?: string;
-  playlist?: Array<{ src: string; title: string; duration: string }>;
-  autoPlay?: boolean;
-  loop?: boolean;
-  showVolume?: boolean;
-  onPlay?: () => void;
-  onPause?: () => void;
-  onEnded?: () => void;
-  onTimeUpdate?: (currentTime: number) => void;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Default player
-<AudioPlayer src="/audio/notification.mp3" title="Notification" />
-
-// Compact inline player
-<AudioPlayer src="/audio/alert.mp3" variant="compact" size="sm" />
-
-// With playlist
-<AudioPlayer
-  variant="playlist"
-  playlist={[
-    { src: '/audio/track1.mp3', title: 'Track 1', duration: '3:30' },
-    { src: '/audio/track2.mp3', title: 'Track 2', duration: '2:45' },
-  ]}
-/>
-
-// Waveform visualization
-<AudioPlayer src="/audio/voice.mp3" variant="waveform" />
-
-// Size variants
-<AudioPlayer src="/audio/clip.mp3" size="sm" />
-<AudioPlayer src="/audio/clip.mp3" size="md" />
-<AudioPlayer src="/audio/clip.mp3" size="lg" />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>audio-player-height-sm</td><td>32px</td></tr>
-          <tr><td>audio-player-height-md</td><td>48px</td></tr>
-          <tr><td>audio-player-height-lg</td><td>64px</td></tr>
-          <tr><td>audio-player-border-radius</td><td>12px</td></tr>
-          <tr><td>audio-player-track-height</td><td>4px</td></tr>
-          <tr><td>audio-player-thumb-size</td><td>12px</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Colors</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Light</th><th>Dark</th></tr></thead>
-        <tbody>
-          <tr><td>audio-player-bg</td><td>#FFFFFF</td><td>#2A2A2A</td></tr>
-          <tr><td>audio-player-accent</td><td>#2396FB</td><td>#60A5FA</td></tr>
-          <tr><td>audio-player-track</td><td>#DDD</td><td>#444</td></tr>
-          <tr><td>audio-player-text</td><td>#1A1A1A</td><td>#E0E0E0</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all audio player variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-audioplayer--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Rounded card wrapper with background and border</td></tr>
-          <tr><td>2</td><td>Track Info</td><td>Title and artist/source metadata</td></tr>
-          <tr><td>3</td><td>Progress Bar</td><td>Seekable track showing playback position</td></tr>
-          <tr><td>4</td><td>Time Display</td><td>Current time and total duration labels</td></tr>
-          <tr><td>5</td><td>Play/Pause Button</td><td>Primary playback toggle control</td></tr>
-          <tr><td>6</td><td>Skip Controls</td><td>Previous/Next track navigation buttons</td></tr>
-          <tr><td>7</td><td>Volume Control</td><td>Volume slider with mute toggle</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Audio Player" slug="audio-player" section="when-to-use" />
       <ul>
-        <li>To play audio clips, podcasts, or voice messages inline</li>
-        <li>For music or sound effect previews in content pages</li>
-        <li>In messaging apps for voice note playback</li>
-        <li>For accessibility — providing audio alternatives to text content</li>
-        <li>In media galleries alongside video and image content</li>
+        <li>Use the Audio Player component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="audio-player"
-        doItems={[
-          'Show track title and duration for context',
-          'Provide visible progress indication during playback',
-          'Include volume controls for user comfort',
-          'Use compact variant for inline or list contexts',
-          'Pause other players when a new one starts',
-        ]}
-        dontItems={[
-          'Don\'t autoplay audio without user consent',
-          'Don\'t hide playback controls during playback',
-          'Don\'t use the full player variant in tight spaces',
-          'Don\'t omit time display — users need progress context',
-          'Don\'t play multiple audio sources simultaneously',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>region</td><td>Identifies the player as a distinct region</td></tr>
-          <tr><td>aria-label</td><td>&quot;Audio player&quot;</td><td>Descriptive label for the player region</td></tr>
-          <tr><td>aria-valuenow</td><td>number</td><td>Current playback position on progress bar</td></tr>
-          <tr><td>aria-valuemin/max</td><td>0 / duration</td><td>Range bounds for the progress slider</td></tr>
-          <tr><td>Keyboard</td><td>Space, ←/→</td><td>Play/pause and seek controls</td></tr>
-          <tr><td>Focus</td><td>Visible ring</td><td>All interactive elements show focus indicator</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Audio Player" slug="audio-player" section="when-not-to-use" />
       <ul>
-        <li><strong>Progress Bar</strong> — Standalone progress indicator used within the player</li>
-        <li><strong>Slider</strong> — Volume and seek controls use slider internally</li>
-        <li><strong>Button</strong> — Play/pause and skip controls</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="audio-player" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const audioPlayerChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June 10, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated Icons & colors'] }],
-  },
-  {
-    version: '1.0.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
-  },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={audioPlayerChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
 export default function AudioPlayerPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Audio Player"
-      description="Audio players provide playback controls for audio content with progress tracking, volume control, and multiple layout variants."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Audio Player" description="Audio Player is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

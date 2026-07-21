@@ -826,14 +826,14 @@ const iconChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function IconographyPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={iconChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Iconography"
       description="TARMAC uses Google Material Icons — a comprehensive library of 500+ icons organized into 16 categories, available in filled and outlined styles at 6 standard sizes (12–32px)."
       tabs={tabs}

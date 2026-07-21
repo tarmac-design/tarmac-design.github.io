@@ -5,7 +5,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function InstallationPage() {
   return (
-    <PageShell title="Installation" description="Get TARMAC installed and configured in your project in under 5 minutes.">
+    <PageShell hideVersion title="Installation" description="Get TARMAC installed and configured in your project in under 5 minutes.">
       <h2>Overview</h2>
       <p>Get TARMAC installed and configured in your project in under 5 minutes. The system supports npm, yarn, and pnpm.</p>
 

@@ -1,241 +1,240 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="bottom-sheet" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { BottomSheet } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface BottomSheetProps {
-  open: boolean;
-  onClose: () => void;
-  variant?: 'standard' | 'expandable' | 'fullscreen' | 'action-sheet';
-  snapPoints?: number[];
-  initialSnap?: number;
-  showOverlay?: boolean;
-  showDragHandle?: boolean;
-  dismissible?: boolean;
-  children: ReactNode;
-}
-
-interface ActionSheetProps extends BottomSheetProps {
-  actions: Array<{
-    label: string;
-    icon?: ReactNode;
-    destructive?: boolean;
-    onPress: () => void;
-  }>;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Standard bottom sheet
-<BottomSheet open={isOpen} onClose={() => setOpen(false)}>
-  <Text>Sheet content here</Text>
-</BottomSheet>
-
-// Expandable with snap points
-<BottomSheet
-  open={isOpen}
-  variant="expandable"
-  snapPoints={[0.25, 0.5, 0.92]}
-  initialSnap={1}
-  onClose={() => setOpen(false)}
->
-  <ScrollView>...</ScrollView>
-</BottomSheet>
-
-// Full screen sheet
-<BottomSheet open={isOpen} variant="fullscreen" onClose={() => setOpen(false)}>
-  <FullContent />
-</BottomSheet>
-
-// Action sheet
-<BottomSheet
-  open={isOpen}
-  variant="action-sheet"
-  actions={[
-    { label: 'Take Photo', icon: <CameraIcon />, onPress: handlePhoto },
-    { label: 'Choose from Library', icon: <GalleryIcon />, onPress: handleGallery },
-    { label: 'Cancel', destructive: true, onPress: () => setOpen(false) },
-  ]}
-  onClose={() => setOpen(false)}
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>bottom-sheet-border-radius</td><td>16px</td></tr>
-          <tr><td>bottom-sheet-handle-width</td><td>36px</td></tr>
-          <tr><td>bottom-sheet-handle-height</td><td>4px</td></tr>
-          <tr><td>bottom-sheet-overlay-opacity</td><td>0.3 (light) / 0.6 (dark)</td></tr>
-          <tr><td>bottom-sheet-snap-peek</td><td>25%</td></tr>
-          <tr><td>bottom-sheet-snap-half</td><td>50%</td></tr>
-          <tr><td>bottom-sheet-snap-full</td><td>92%</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all bottom sheet variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-bottomsheet--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Overlay</td><td>Semi-transparent backdrop behind the sheet</td></tr>
-          <tr><td>2</td><td>Container</td><td>Rounded surface panel sliding from bottom</td></tr>
-          <tr><td>3</td><td>Drag Handle</td><td>Visual indicator for drag-to-dismiss gesture</td></tr>
-          <tr><td>4</td><td>Content Area</td><td>Scrollable region for sheet content</td></tr>
-          <tr><td>5</td><td>Action Items</td><td>List of tappable actions (action sheet variant)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To present contextual actions without leaving the current screen</li>
-        <li>For mobile-first forms and input flows</li>
-        <li>To show supplementary content like filters or details</li>
-        <li>For share menus and file picker actions</li>
-        <li>When a full modal would be too disruptive</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="bottom-sheet"
-        doItems={[
-          'Always include a drag handle for gesture affordance',
-          'Use overlay to indicate the sheet is above the main content',
-          'Allow dismissal by tapping the overlay or swiping down',
-          'Use snap points for expandable sheets to guide user interaction',
-        ]}
-        dontItems={[
-          'Don\'t nest bottom sheets inside other bottom sheets',
-          'Don\'t use bottom sheets on desktop — prefer side drawers or modals',
-          'Don\'t put critical actions only in the sheet with no alternative',
-          'Don\'t disable the dismiss gesture without a clear close button',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>dialog</td><td>Identifies the sheet as a dialog surface</td></tr>
-          <tr><td>aria-modal</td><td>true</td><td>Indicates content behind is inert</td></tr>
-          <tr><td>aria-label</td><td>string</td><td>Descriptive label for the sheet purpose</td></tr>
-          <tr><td>Focus trap</td><td>—</td><td>Focus stays within the sheet while open</td></tr>
-          <tr><td>Escape key</td><td>—</td><td>Closes the sheet on Escape press</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Dialog Box</strong> — Centered modal for confirmations and alerts</li>
-        <li><strong>Side Drawer</strong> — Slide-in panel from left/right edge</li>
-        <li><strong>Popups</strong> — Lightweight overlays for tooltips and menus</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const bottomSheetChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component with latest configuration'] }],
-  },
-  {
-    version: '1.1.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated Slot auto layouts & Added empty state variant'] }],
-  },
-  {
-    version: '1.1.0',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated Component with additional variant (advanced)'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated with tabs inside bottom sheet'] }],
+    date: 'June 2026',
+    changes: [
+      'Added Advanced and Empty State variants',
+      'Improved drag handle gesture responsiveness',
+      'Fixed footer CTA alignment in vertical mode',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Bottom Sheet component',
+      'Standard, Slot Mini, Slot Dual, and Slot variants',
+      'Horizontal and Vertical CTA styles',
+      'Configurable boolean properties for header and content',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={bottomSheetChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Bottom Sheet is a modal surface that slides up from the bottom of the screen
+          for focused tasks on mobile. It supports informational content, slot-based
+          layouts, and flexible CTA arrangements to accommodate various interaction patterns.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Presenting contextual actions or options on mobile</li>
+          <li>Showing additional details without navigating away</li>
+          <li>Collecting quick input (filters, sort options)</li>
+          <li>Displaying informational content with CTA actions</li>
+          <li>Slot-based product or content previews</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Bottom Sheet component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Drag Handle</strong> — Visual indicator for swipe-to-dismiss gesture</li>
+          <li><strong>Header</strong> — Title, Close button, and optional Leading Icon</li>
+          <li><strong>Info Banner</strong> — Optional informational banner below header</li>
+          <li><strong>Divider</strong> — Visual separator between sections</li>
+          <li><strong>Snackbar</strong> — Optional inline notification area</li>
+          <li><strong>Tab Group</strong> — Optional tabbed content navigation</li>
+          <li><strong>Body Content</strong> — Main scrollable content area</li>
+          <li><strong>Slot Area</strong> — Configurable slot for custom content</li>
+          <li><strong>Footer CTA</strong> — Action buttons at the bottom</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Standard</strong> — Default bottom sheet with header and body</li>
+          <li><strong>Slot Mini</strong> — Compact slot-based layout</li>
+          <li><strong>Slot Dual</strong> — Two-slot layout side by side</li>
+          <li><strong>Slot</strong> — Single prominent slot layout</li>
+          <li><strong>Advanced</strong> — Full-featured with tabs and multiple sections</li>
+          <li><strong>Empty State</strong> — Placeholder for no-content scenarios</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">CTA Styles</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Horizontal</strong> — Inline buttons side by side</li>
+          <li><strong>Vertical</strong> — Stacked full-width buttons</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Boolean Properties</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>hasIcon</strong> — Shows leading icon in header</li>
+          <li><strong>hasClose</strong> — Shows close button in header</li>
+          <li><strong>hasBanner</strong> — Shows info banner section</li>
+          <li><strong>hasCheckbox</strong> — Includes checkbox in content</li>
+          <li><strong>hasSecondaryAction</strong> — Shows secondary CTA button</li>
+          <li><strong>hasSlot</strong> — Enables slot content area</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="bottom-sheet" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Bottom sheets are primarily for mobile interfaces. Use them for focused tasks
+          that don&apos;t require full-page navigation. Keep content concise and actions clear.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For contextual actions that don&apos;t need a full page</li>
+          <li>When showing additional details on mobile</li>
+          <li>For filter/sort options in mobile lists</li>
+          <li>Quick forms or confirmations on mobile</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>On desktop — use Dialog or Drawer instead</li>
+          <li>For complex multi-step flows — use full pages</li>
+          <li>For critical blocking decisions — use Dialog Box</li>
+          <li>When content exceeds 80% of viewport height</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/bottom-sheet-usage.png"
+          alt="Bottom sheet usage guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Keep content focused on a single task',
+              'Always provide a way to dismiss (drag, close button, backdrop tap)',
+              'Use appropriate CTA style based on action count',
+              'Limit content height to avoid full-screen overlap',
+            ]}
+            dontItems={[
+              'Nest bottom sheets within other bottom sheets',
+              'Use for content that requires extensive scrolling',
+              'Remove all dismiss mechanisms',
+              'Use on desktop when better alternatives exist',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="dialog"</code> on the bottom sheet container</li>
+          <li><code>aria-modal="true"</code> to indicate modal behavior</li>
+          <li><code>aria-labelledby</code> pointing to the header title</li>
+          <li><code>aria-describedby</code> pointing to body content if applicable</li>
+          <li><code>aria-label="Close"</code> on the close button</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Escape</kbd> — Dismisses the bottom sheet</li>
+          <li><kbd>Tab</kbd> — Cycles focus within the bottom sheet (trapped)</li>
+          <li>Focus is moved to the first focusable element on open</li>
+          <li>Focus returns to trigger element on close</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces dialog title when opened</li>
+          <li>Background content is inert and not navigable</li>
+          <li>Close button has descriptive accessible label</li>
+          <li>CTA buttons clearly describe their actions</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function BottomSheetPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Bottom Sheet"
-      description="Bottom sheets are surface panels that slide up from the bottom edge, used for contextual actions, forms, and supplementary content."
+      description="Modal surface sliding up from bottom for focused tasks on mobile. Supports informational, slot-based, and flexible CTA arrangements."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

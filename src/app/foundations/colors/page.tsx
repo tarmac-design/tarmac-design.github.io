@@ -685,14 +685,14 @@ const colorChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function ColorsPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={colorChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Colors"
       description="TARMAC's color system — a 3-layer architecture of Core, Semantic, and Usage tokens with 10 brand/accent families, 4 neutral families, alpha variants, and full light/dark semantic mappings."
       tabs={tabs}

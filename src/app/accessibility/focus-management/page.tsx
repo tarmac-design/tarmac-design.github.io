@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function FocusManagementPage() {
   return (
-    <PageShell title="Focus Management" description="Focus indicators, trapping, restoration, and skip links.">
+    <PageShell hideVersion title="Focus Management" description="Focus indicators, trapping, restoration, and skip links.">
       <h2>Focus Indicators</h2>
       <p>All interactive elements must have a visible focus indicator. TARMAC uses a 2px blue outline with a 2px offset.</p>
       <pre><code>{`:focus-visible {

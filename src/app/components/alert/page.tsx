@@ -1,253 +1,246 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="alert" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Alert } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface AlertProps {
-  variant?: 'black' | 'white' | 'coal' | 'success' | 'error' | 'info' | 'warning';
-  title?: string;
-  description?: string;
-  closable?: boolean;
-  size?: 'sm' | 'lg';
-  icon?: ReactNode;
-  actions?: ReactNode;
-  onClose?: () => void;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Info alert (default)
-<Alert variant="info" title="Heads up!" description="This is an informational alert." />
-
-// Success alert with close button
-<Alert variant="success" title="Saved" description="Your changes were saved." closable />
-
-// Error alert
-<Alert variant="error" title="Error" description="Something went wrong." closable />
-
-// Warning alert
-<Alert variant="warning" title="Warning" description="Proceed with caution." />
-
-// Small size
-<Alert variant="info" title="Compact" description="Small alert." size="sm" />
-
-// With action buttons
-<Alert
-  variant="info"
-  title="Update Available"
-  description="A new version is ready."
-  closable
-  actions={
-    <>
-      <Button size="sm" variant="primary">Update</Button>
-      <Button size="sm" variant="ghost">Later</Button>
-    </>
-  }
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>alert-padding-sm</td><td>10px 12px</td></tr>
-          <tr><td>alert-padding-lg</td><td>14px 16px</td></tr>
-          <tr><td>alert-border-radius</td><td>8px</td></tr>
-          <tr><td>alert-border-left-width</td><td>4px</td></tr>
-          <tr><td>alert-icon-size-sm</td><td>16px</td></tr>
-          <tr><td>alert-icon-size-lg</td><td>20px</td></tr>
-          <tr><td>alert-title-font-size-sm</td><td>13px</td></tr>
-          <tr><td>alert-title-font-size-lg</td><td>15px</td></tr>
-          <tr><td>alert-desc-font-size-sm</td><td>12px</td></tr>
-          <tr><td>alert-desc-font-size-lg</td><td>14px</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Variant Colors</h3>
-      <table>
-        <thead><tr><th>Variant</th><th>Background</th><th>Border</th><th>Icon</th></tr></thead>
-        <tbody>
-          <tr><td>black</td><td>#0D0D0D</td><td>#0D0D0D</td><td>#FFFFFF</td></tr>
-          <tr><td>white</td><td>#FFFFFF</td><td>#E0E0E0</td><td>#525252</td></tr>
-          <tr><td>coal</td><td>#525252</td><td>#525252</td><td>#FFFFFF</td></tr>
-          <tr><td>success</td><td>#E8F8F0</td><td>#1BA86E</td><td>#1BA86E</td></tr>
-          <tr><td>error</td><td>#FDE8EC</td><td>#DC143C</td><td>#DC143C</td></tr>
-          <tr><td>info</td><td>#E8F3FE</td><td>#2396FB</td><td>#2396FB</td></tr>
-          <tr><td>warning</td><td>#FEF6E0</td><td>#CF9F02</td><td>#CF9F02</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all alert variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-alert--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Rounded rectangle wrapper with left border accent</td></tr>
-          <tr><td>2</td><td>Left Border</td><td>4px colored accent indicating the alert variant</td></tr>
-          <tr><td>3</td><td>Leading Icon</td><td>Contextual icon matching the alert type</td></tr>
-          <tr><td>4</td><td>Title</td><td>Bold heading text summarizing the alert</td></tr>
-          <tr><td>5</td><td>Description</td><td>Supporting text with additional details</td></tr>
-          <tr><td>6</td><td>Close Button</td><td>Optional dismiss action (X icon)</td></tr>
-          <tr><td>7</td><td>Actions</td><td>Optional CTA buttons for contextual actions</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To confirm a successful action (e.g., form submission, save)</li>
-        <li>To display error messages requiring user attention</li>
-        <li>To warn users about potential issues or consequences</li>
-        <li>To provide informational context or tips</li>
-        <li>To prompt users with actionable next steps</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="alert"
-        doItems={[
-          'Use semantic variants — green for success, red for error, yellow for warning',
-          'Keep titles short and actionable (3–5 words)',
-          'Provide a clear description with context or next steps',
-          'Include a close button for non-critical alerts',
-          'Use action buttons when the user needs to take immediate action',
-        ]}
-        dontItems={[
-          'Don\'t stack more than 2–3 alerts at once',
-          'Don\'t use alerts for permanent content — use banners instead',
-          'Don\'t rely on color alone to convey the alert type',
-          'Don\'t use alerts for inline form validation — use field-level errors',
-          'Don\'t auto-dismiss error alerts — let users close them manually',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>alert</td><td>Identifies the element as an alert region</td></tr>
-          <tr><td>aria-live</td><td>assertive</td><td>Announces the alert to screen readers immediately</td></tr>
-          <tr><td>Close button</td><td>aria-label=&quot;Close alert&quot;</td><td>Accessible label for the dismiss action</td></tr>
-          <tr><td>Contrast</td><td>≥ 4.5:1</td><td>Text against background meets WCAG AA</td></tr>
-          <tr><td>Keyboard</td><td>Tab / Enter / Space</td><td>Focus and activate close button and CTAs</td></tr>
-          <tr><td>Focus order</td><td>Content → Actions → Close</td><td>Logical tab order within the alert</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Content Guidelines</h2>
-      <ul>
-        <li>Titles should be concise and describe the situation (e.g., &quot;Update Available&quot;)</li>
-        <li>Descriptions should explain what happened and what to do next</li>
-        <li>Action button labels should be specific (e.g., &quot;Retry&quot; not &quot;OK&quot;)</li>
-        <li>Use sentence case for titles and descriptions</li>
-      </ul>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Snackbar</strong> — Temporary, auto-dismissing notifications</li>
-        <li><strong>Dialog Box</strong> — Modal confirmations requiring user decision</li>
-        <li><strong>Badge</strong> — Compact status indicators</li>
-        <li><strong>Status Indicator</strong> — Inline status dots</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const alertChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Component configuration updated and version updated to V1.1.2'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Additional variant added (Outlined alerts)'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated buttons & texts'] }],
+    date: 'June 2026',
+    changes: [
+      'Added Coal and White variant options',
+      'Improved dismissible animation transition',
+      'Fixed icon alignment in small size variant',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Alert component',
+      'Support for Success, Error, Warning, Info, and Black variants',
+      'Default (filled) and Outlined types',
+      'Large, Medium, and Small sizes',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={alertChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Alerts are inline feedback messages used to communicate system status, confirm actions,
+          or display important information to users. They provide contextual feedback about
+          success, error, warning, or informational states without interrupting the user flow.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Confirming a successful form submission or action</li>
+          <li>Displaying error messages when an operation fails</li>
+          <li>Warning users about potential issues or required attention</li>
+          <li>Communicating informational messages about system state</li>
+          <li>Showing non-blocking notifications inline within page content</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Alert component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Wraps the entire alert with background color and border</li>
+          <li><strong>Icon</strong> — Leading status icon representing the alert type</li>
+          <li><strong>Title</strong> — Optional bold headline for the alert message</li>
+          <li><strong>Description</strong> — Body text conveying the alert information</li>
+          <li><strong>Action Button</strong> — Optional CTA for user action</li>
+          <li><strong>Close Button</strong> — Optional dismiss control to remove the alert</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <p className="text-gray-700 mb-4">
+          Alerts support the following color variants to communicate different states:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Success</strong> — Confirms a completed action or positive outcome</li>
+          <li><strong>Error</strong> — Indicates a failure or critical issue</li>
+          <li><strong>Warning</strong> — Draws attention to potential problems</li>
+          <li><strong>Info</strong> — Provides neutral informational context</li>
+          <li><strong>Black</strong> — High-contrast dark theme alert</li>
+          <li><strong>White</strong> — Light theme alert for dark backgrounds</li>
+          <li><strong>Coal</strong> — Subtle dark-toned alert</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Types</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default (Filled)</strong> — Solid background with contrasting text</li>
+          <li><strong>Outlined</strong> — Border-only style with transparent background</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Large</strong> — Full-width alert with prominent spacing</li>
+          <li><strong>Medium</strong> — Standard size for most use cases</li>
+          <li><strong>Small</strong> — Compact alert for tight layouts</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">States</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default</strong> — Standard static display</li>
+          <li><strong>With CTAs</strong> — Includes action buttons for user interaction</li>
+          <li><strong>Dismissible</strong> — Includes close button for removal</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="alert" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Alerts should be used to communicate important system information inline within the
+          page content. Choose the appropriate variant based on the severity and type of message.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When confirming that an action was completed successfully</li>
+          <li>When an error occurs that the user needs to be aware of</li>
+          <li>When there is a warning about a potential issue</li>
+          <li>When providing contextual system information</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For temporary toast-style notifications — use Snackbar instead</li>
+          <li>For form field-level validation — use inline error messages</li>
+          <li>For blocking user interaction — use Dialog Box instead</li>
+          <li>For non-critical, decorative messaging</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/alert-placement.png"
+          alt="Alert placement guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Use concise, actionable messaging',
+              'Place alerts near the relevant content',
+              'Use the appropriate variant for the message type',
+              'Include a dismiss action for non-critical alerts',
+            ]}
+            dontItems={[
+              'Stack multiple alerts of the same type',
+              'Use alerts for decorative purposes',
+              'Write overly long alert descriptions',
+              'Use error alerts for warnings or informational messages',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="alert"</code> for critical error/warning messages</li>
+          <li><code>role="status"</code> for informational or success messages</li>
+          <li><code>aria-live="polite"</code> for non-urgent alerts</li>
+          <li><code>aria-live="assertive"</code> for critical error alerts</li>
+          <li><code>aria-label</code> on close button for dismiss action</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus to action button or close button</li>
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Activates focused button</li>
+          <li><kbd>Escape</kbd> — Dismisses the alert if dismissible</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Alert content is announced automatically when using <code>role="alert"</code></li>
+          <li>Icon meaning is conveyed through accessible text, not relied upon visually</li>
+          <li>Close button has descriptive label (e.g., "Dismiss alert")</li>
+          <li>Action buttons clearly describe their purpose</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function AlertPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Alert"
-      description="Alerts are notification banners used to communicate feedback messages like success, error, warning, and informational notices."
+      description="Inline feedback messages for success, error, warning, or info states. Used to communicate system status, confirm actions, or display important information."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

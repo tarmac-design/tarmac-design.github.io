@@ -299,14 +299,14 @@ const typographyChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function TypographyPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={typographyChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Typography"
       description="TARMAC's type system is built on Noto Sans with a structured hierarchy of Headings (H1–H5), Body (B1–B2), and Caption (C1–C2) styles — each with defined sizes, weights, and spacing from Figma."
       tabs={tabs}

@@ -1,225 +1,212 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="header" />
-    </>
-  );
-}
-
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Header, HeaderNav, HeaderAction } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface HeaderProps {
-  variant?: 'default' | 'search' | 'breadcrumbs' | 'transparent' | 'sticky';
-  logo?: ReactNode;
-  navItems?: NavItem[];
-  actions?: ReactNode;
-  onSearch?: (query: string) => void;
-  breadcrumbs?: Breadcrumb[];
-  sticky?: boolean;
-  transparent?: boolean;
-}
-
-interface NavItem {
-  label: string;
-  href: string;
-  active?: boolean;
-}
-
-interface Breadcrumb {
-  label: string;
-  href?: string;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Default header
-<Header
-  logo={<Logo />}
-  navItems={[
-    { label: 'Home', href: '/', active: true },
-    { label: 'Components', href: '/components' },
-  ]}
-  actions={<Avatar />}
-/>
-
-// With search
-<Header variant="search" onSearch={handleSearch} />
-
-// Sticky header
-<Header variant="sticky" sticky />
-
-// With breadcrumbs
-<Header
-  variant="breadcrumbs"
-  breadcrumbs={[
-    { label: 'Home', href: '/' },
-    { label: 'Components', href: '/components' },
-    { label: 'Header' },
-  ]}
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>header-height</td><td>48px</td></tr>
-          <tr><td>header-padding-x</td><td>20px</td></tr>
-          <tr><td>header-border-bottom</td><td>1px solid var(--color-outline)</td></tr>
-          <tr><td>header-nav-font-size</td><td>13px</td></tr>
-          <tr><td>header-nav-font-weight</td><td>500</td></tr>
-          <tr><td>header-z-index</td><td>10</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all header variants in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-header--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Full-width bar with bottom border</td></tr>
-          <tr><td>2</td><td>Logo</td><td>Brand mark linking to home</td></tr>
-          <tr><td>3</td><td>Navigation</td><td>Horizontal link list with active indicator</td></tr>
-          <tr><td>4</td><td>Search</td><td>Optional expandable search input</td></tr>
-          <tr><td>5</td><td>User Avatar</td><td>Account access and profile menu trigger</td></tr>
-          <tr><td>6</td><td>Hamburger Menu</td><td>Mobile navigation toggle</td></tr>
-          <tr><td>7</td><td>Breadcrumbs</td><td>Optional secondary row showing page hierarchy</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>As the primary navigation bar on every page</li>
-        <li>To provide quick access to search functionality</li>
-        <li>To show the user&apos;s account status and avatar</li>
-        <li>With breadcrumbs for deep navigation hierarchies</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="header"
-        doItems={[
-          'Keep navigation items to 5–7 maximum',
-          'Highlight the active navigation item clearly',
-          'Provide a mobile-friendly hamburger menu',
-          'Use sticky variant for long-scrolling pages',
-          'Ensure the logo links back to the home page',
-        ]}
-        dontItems={[
-          'Don\'t overcrowd the header with too many actions',
-          'Don\'t hide primary navigation behind a hamburger on desktop',
-          'Don\'t use transparent variant over busy backgrounds without blur',
-          'Don\'t place critical actions only in the mobile menu',
-          'Don\'t use multiple header bars on the same page',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>banner</td><td>Landmark role for the header region</td></tr>
-          <tr><td>nav</td><td>aria-label=&quot;Main&quot;</td><td>Wraps navigation links</td></tr>
-          <tr><td>aria-expanded</td><td>boolean</td><td>Mobile menu open state</td></tr>
-          <tr><td>aria-current</td><td>&quot;page&quot;</td><td>Marks the active navigation item</td></tr>
-          <tr><td>Keyboard</td><td>Tab, Enter, Escape</td><td>Navigate and toggle menu</td></tr>
-          <tr><td>Skip link</td><td>—</td><td>Provide &quot;Skip to content&quot; link before header</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Footer</strong> — Bottom-of-page navigation</li>
-        <li><strong>Navigation</strong> — Sidebar and tab navigation</li>
-        <li><strong>Breadcrumbs</strong> — Standalone breadcrumb trail</li>
-        <li><strong>Search</strong> — Full search input component</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─── TAB 4 — Changelog ─── */
-
-const headerChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component'] }],
-  },
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component with Ghost Variant & updated stroke colors'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated Icon Button'] }],
+    date: 'June 2026',
+    changes: [
+      'Added support for custom action buttons in header',
+      'Improved close button hit area for touch targets',
+      'Fixed subtitle truncation on narrow viewports',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Header component',
+      'Support for Simple, With subtitle, and With actions variants',
+      'Close button and leading icon options',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={headerChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Header is the top section of popups, sheets, and dialog boxes that displays
+          the title, optional subtitle, and control actions like close. It provides
+          context about the overlay content and a consistent way to dismiss it.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Titling dialog boxes and confirmation modals</li>
+          <li>Providing context in side drawers</li>
+          <li>Displaying section titles in bottom sheets</li>
+          <li>Adding close and action controls to overlays</li>
+          <li>Showing back navigation in multi-step popups</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─── Page Export ─── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+          <iframe
+            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story&shortcuts=false"
+            style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+            title="Header interactive example"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Header component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Top-aligned wrapper with padding and background</li>
+          <li><strong>Title</strong> — Primary heading text for the overlay</li>
+          <li><strong>Subtitle</strong> — Optional secondary descriptive text</li>
+          <li><strong>Close Button</strong> — Action to dismiss the overlay</li>
+          <li><strong>Leading Icon</strong> — Optional icon before the title (e.g., back arrow)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Simple</strong> — Title and close button only</li>
+          <li><strong>With Subtitle</strong> — Title, subtitle, and close button</li>
+          <li><strong>With Actions</strong> — Title with additional action buttons</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="header" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/header-when-to-use.png"
+          alt="When to use Header"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When an overlay needs a clear title and dismiss action</li>
+          <li>When additional context (subtitle) helps user understanding</li>
+          <li>When the popup has actions beyond just close</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/header-when-not-to-use.png"
+          alt="When not to use Header"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For page-level headers — use a page layout header</li>
+          <li>For simple tooltips — no header is needed</li>
+          <li>For snackbar messages — they have their own structure</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Do&apos;s and Don&apos;ts</h2>
+        <DoDont
+          doItems={[
+            'Keep titles concise and descriptive',
+            'Always include a close button for dismissibility',
+            'Use subtitle for additional context when needed',
+            'Maintain consistent header height across overlays',
+          ]}
+          dontItems={[
+            'Use long titles that wrap to multiple lines',
+            'Omit the close button on dismissible overlays',
+            'Place too many actions in the header',
+            'Use header for decorative purposes without meaningful title',
+          ]}
+        />
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Title is referenced by parent dialog&apos;s <code>aria-labelledby</code></li>
+          <li>Subtitle is referenced by <code>aria-describedby</code> when present</li>
+          <li>Close button has <code>aria-label="Close"</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus to close button and action buttons</li>
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Activates close or action button</li>
+          <li><kbd>Escape</kbd> — Triggers close action (handled by parent dialog)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Title is announced when dialog opens</li>
+          <li>Close button clearly announces its dismiss action</li>
+          <li>Action buttons describe their specific purpose</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function HeaderPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Header"
-      description="Headers provide top-level navigation, branding, search, and user account access."
+      description="Top section of popups and sheets displaying title, subtitle, and control actions. Provides context and dismissibility for overlay content."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

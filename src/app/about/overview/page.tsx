@@ -5,7 +5,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function OverviewPage() {
   return (
-    <PageShell title="Introduction to TARMAC" description="The unified design system powering consistent, accessible, and scalable experiences across Delhivery's entire product ecosystem.">
+    <PageShell hideVersion title="Introduction to TARMAC" description="The unified design system powering consistent, accessible, and scalable experiences across Delhivery's entire product ecosystem.">
       <h2>About Delhivery</h2>
       <p>
         Delhivery is India's largest fully integrated logistics provider, building the operating system for commerce through world-class infrastructure, high-quality logistics operations, and cutting-edge engineering. Since 2011, the team has fulfilled over 4 billion orders across India — servicing 18,850+ pin codes through 50 automated sort centres, 123 gateways, 4,500+ direct delivery centres, and a team of 74,000+ people.

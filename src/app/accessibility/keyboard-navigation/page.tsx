@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function KeyboardNavigationPage() {
   return (
-    <PageShell title="Keyboard Navigation" description="Complete keyboard interaction patterns for all TARMAC components.">
+    <PageShell hideVersion title="Keyboard Navigation" description="Complete keyboard interaction patterns for all TARMAC components.">
       <h2>Global Keys</h2>
       <table>
         <thead><tr><th>Key</th><th>Action</th></tr></thead>

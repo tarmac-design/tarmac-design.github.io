@@ -4,207 +4,222 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="input-area" />
-    </>
-  );
-}
-
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { InputArea } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface InputAreaProps {
-  variant?: 'default' | 'counter' | 'autoresize' | 'toolbar';
-  size?: 'sm' | 'md' | 'lg';
-  value?: string;
-  onChange?: (value: string) => void;
-  placeholder?: string;
-  label?: string;
-  helperText?: string;
-  errorText?: string;
-  maxLength?: number;
-  disabled?: boolean;
-  readOnly?: boolean;
-  autoResize?: boolean;
-  toolbar?: boolean;
-  rows?: number;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Default
-<InputArea label="Description" placeholder="Enter text..." />
-
-// With character counter
-<InputArea variant="counter" maxLength={500} />
-
-// Auto-resize
-<InputArea variant="autoresize" autoResize />
-
-// With rich text toolbar
-<InputArea variant="toolbar" toolbar />
-
-// Error state
-<InputArea label="Bio" errorText="This field is required" />
-
-// Disabled
-<InputArea label="Notes" disabled />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>input-area-height-sm</td><td>80px</td></tr>
-          <tr><td>input-area-height-md</td><td>120px</td></tr>
-          <tr><td>input-area-height-lg</td><td>200px</td></tr>
-          <tr><td>input-area-border-radius</td><td>8px</td></tr>
-          <tr><td>input-area-padding</td><td>10px 12px</td></tr>
-          <tr><td>input-area-font-size</td><td>13px</td></tr>
-          <tr><td>input-area-border-width</td><td>1.5px</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all input area variants in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-inputarea--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Label</td><td>Text label above the input area</td></tr>
-          <tr><td>2</td><td>Toolbar</td><td>Optional rich text formatting bar</td></tr>
-          <tr><td>3</td><td>Text Area</td><td>Multi-line editable text field</td></tr>
-          <tr><td>4</td><td>Resize Handle</td><td>Draggable corner for manual resizing</td></tr>
-          <tr><td>5</td><td>Helper Text</td><td>Guidance or error message below the field</td></tr>
-          <tr><td>6</td><td>Character Count</td><td>Current / max character indicator</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>For multi-line text input like descriptions, comments, or notes</li>
-        <li>When the expected input is longer than a single line</li>
-        <li>For rich text editing with formatting controls</li>
-        <li>When character limits need to be communicated</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="input-area"
-        doItems={[
-          'Show a character counter when there is a max length',
-          'Use auto-resize for conversational inputs like chat',
-          'Provide clear error messages below the field',
-          'Set an appropriate default height for the expected content',
-          'Use the toolbar variant only when rich text is needed',
-        ]}
-        dontItems={[
-          'Don\'t use input area for single-line inputs — use Input instead',
-          'Don\'t set the height too small for the expected content',
-          'Don\'t disable resize when users may need to expand the field',
-          'Don\'t show the toolbar for plain text fields',
-          'Don\'t rely solely on color to indicate error state',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>label</td><td>htmlFor</td><td>Associates label with the textarea</td></tr>
-          <tr><td>aria-describedby</td><td>helper-id</td><td>Links helper/error text to the field</td></tr>
-          <tr><td>aria-invalid</td><td>boolean</td><td>Indicates error state</td></tr>
-          <tr><td>aria-disabled</td><td>boolean</td><td>Indicates disabled state</td></tr>
-          <tr><td>Keyboard</td><td>Tab, Shift+Tab</td><td>Focus navigation in and out</td></tr>
-          <tr><td>Contrast</td><td>≥ 4.5:1</td><td>Text and border meet WCAG AA</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Input</strong> — Single-line text input</li>
-        <li><strong>Search</strong> — Specialized search input</li>
-        <li><strong>File Upload</strong> — For file-based input</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─── TAB 4 — Changelog ─── */
-
-const textAreaChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component configuration'] }],
-  },
-  {
-    version: '1.1.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Added focused state & ghost variant'] }],
-  },
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Fixed', items: ['Autolayouts and stroke sizes fixed & updated tags within the component'] }],
+    date: 'June 2026',
+    changes: [
+      'Added auto-resize variant',
+      'Improved character count accessibility',
+      'Fixed scroll behavior on focus',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Input Area component',
+      'Support for Default, With counter, and Auto-resize variants',
+      'All interaction states supported',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={textAreaChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Input Area is a multi-line text input (textarea) for collecting longer-form user
+          content. It supports labels, character counts, helper text, and auto-resize
+          behavior. Use it when users need to enter text that may span multiple lines.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Writing descriptions or notes</li>
+          <li>Composing messages or comments</li>
+          <li>Entering addresses or multi-line data</li>
+          <li>Feedback or review text fields</li>
+          <li>Code or configuration input areas</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─── Page Export ─── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+          <iframe
+            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-textarea--playground&viewMode=story&shortcuts=false"
+            style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+            title="Input Area interactive example"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Input Area component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Wrapper with border, padding, and resize handle</li>
+          <li><strong>Label</strong> — Descriptive text above the textarea</li>
+          <li><strong>Textarea</strong> — The multi-line text entry area</li>
+          <li><strong>Helper Text</strong> — Additional guidance below the textarea</li>
+          <li><strong>Character Count</strong> — Current/max character indicator</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default</strong> — Fixed-height textarea with scroll</li>
+          <li><strong>With Counter</strong> — Shows character count and limit</li>
+          <li><strong>Auto-resize</strong> — Grows vertically as content expands</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">States</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default</strong> — Inactive, waiting for input</li>
+          <li><strong>Focused</strong> — Active with cursor and highlighted border</li>
+          <li><strong>Error</strong> — Validation failed with error message</li>
+          <li><strong>Disabled</strong> — Non-interactive, muted appearance</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="input-area" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/input-area-when-to-use.png"
+          alt="When to use Input Area"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When users need to enter multiple lines of text</li>
+          <li>When the expected content length varies significantly</li>
+          <li>When character limits need to be communicated</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/input-area-when-not-to-use.png"
+          alt="When not to use Input Area"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For single-line text — use Input component</li>
+          <li>For rich text editing — use a rich text editor</li>
+          <li>For code editing — use a code editor component</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Do&apos;s and Don&apos;ts</h2>
+        <DoDont
+          doItems={[
+            'Set appropriate initial height based on expected content',
+            'Show character count when limits apply',
+            'Use auto-resize for better content visibility',
+            'Provide clear placeholder text as guidance',
+          ]}
+          dontItems={[
+            'Make the textarea too small for expected content',
+            'Disable resize when users may need more space',
+            'Use textarea for single-line inputs',
+            'Hide character limit until it is exceeded',
+          ]}
+        />
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>aria-label</code> or <code>aria-labelledby</code> linking to the label</li>
+          <li><code>aria-describedby</code> linking to helper text and character count</li>
+          <li><code>aria-invalid="true"</code> when in error state</li>
+          <li><code>aria-required="true"</code> for mandatory fields</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus into/out of the textarea</li>
+          <li>Standard text editing keys and multi-line navigation work</li>
+          <li><kbd>Enter</kbd> — Inserts a new line (does not submit)</li>
+          <li>Focus ring is clearly visible on the container</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Label is announced when textarea receives focus</li>
+          <li>Character count updates are announced via live region</li>
+          <li>Error messages are announced when they appear</li>
+          <li>Required state is communicated on focus</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function InputAreaPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
-      title="Text Area"
-      description="Multi-line text input with character counting, auto-resize, and rich text toolbar support."
+      title="Input Area"
+      description="Multi-line text input (textarea) for longer-form content. Supports character counts, auto-resize, and validation states."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

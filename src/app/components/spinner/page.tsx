@@ -4,253 +4,122 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-spinner--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Spinner component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-spinner--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-spinner--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="spinner interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Spinner component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Spinner component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="spinner" />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Spinner } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Developer Handoff</h2>
-
-      <h3>TypeScript Interface</h3>
-      <pre><code>{`interface SpinnerProps {
-  /** Visual color variant */
-  variant?: 'dark' | 'light' | 'white' | 'dlv-red';
-  /** Size preset */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  /** Accessible label for screen readers */
-  'aria-label'?: string;
-  /** Additional CSS class name */
-  className?: string;
-}`}</code></pre>
-
-      <h3>Prop Descriptions</h3>
-      <table>
-        <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>variant</code></td><td><code>&apos;dark&apos; | &apos;light&apos; | &apos;white&apos; | &apos;dlv-red&apos;</code></td><td><code>&apos;dark&apos;</code></td><td>Controls the spinner border color. Use <code>dark</code> on light backgrounds, <code>light</code> or <code>white</code> on dark backgrounds, and <code>dlv-red</code> for brand emphasis.</td></tr>
-          <tr><td><code>size</code></td><td><code>&apos;sm&apos; | &apos;md&apos; | &apos;lg&apos; | &apos;xl&apos;</code></td><td><code>&apos;md&apos;</code></td><td>Spinner diameter — sm: 16px, md: 24px, lg: 32px, xl: 48px.</td></tr>
-          <tr><td><code>aria-label</code></td><td><code>string</code></td><td><code>&apos;Loading&apos;</code></td><td>Accessible label announced by screen readers.</td></tr>
-          <tr><td><code>className</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Additional CSS class for custom styling.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Integration Examples</h3>
-      <pre><code>{`// Basic spinner
-<Spinner />
-
-// Dark variant on a light surface
-<Spinner variant="dark" size="md" />
-
-// Light variant on a dark surface
-<Spinner variant="light" size="lg" />
-
-// DLV Red brand spinner
-<Spinner variant="dlv-red" size="xl" />
-
-// Inside a button loading state
-<Button disabled={isLoading}>
-  {isLoading ? <Spinner variant="white" size="sm" /> : 'Submit'}
-</Button>
-
-// Centered in a container
-<div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
-  <Spinner variant="dark" size="lg" />
-</div>
-
-// With custom aria-label
-<Spinner variant="dark" size="md" aria-label="Fetching results" />`}</code></pre>
-
-      <h2>CSS Animation</h2>
-      <pre><code>{`/* Required keyframes — included automatically by the component */
-@keyframes tds-spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Spinner element styles */
-.tds-spinner {
-  border-radius: 50%;
-  border: 2.5px solid currentColor;
-  border-top-color: transparent;
-  animation: tds-spin 0.8s linear infinite;
-}`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>spinner-size-sm</td><td>16px</td></tr>
-          <tr><td>spinner-size-md</td><td>24px</td></tr>
-          <tr><td>spinner-size-lg</td><td>32px</td></tr>
-          <tr><td>spinner-size-xl</td><td>48px</td></tr>
-          <tr><td>spinner-border-width-sm</td><td>2px</td></tr>
-          <tr><td>spinner-border-width-md</td><td>2.5px</td></tr>
-          <tr><td>spinner-border-width-lg</td><td>3px</td></tr>
-          <tr><td>spinner-border-width-xl</td><td>4px</td></tr>
-          <tr><td>spinner-speed</td><td>0.8s</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Variant Colors</h3>
-      <table>
-        <thead><tr><th>Variant</th><th>Border Color</th><th>Background</th></tr></thead>
-        <tbody>
-          <tr><td>dark</td><td>#0D0D0D</td><td>transparent</td></tr>
-          <tr><td>light</td><td>#FFFFFF</td><td>transparent</td></tr>
-          <tr><td>white</td><td>#FFFFFF</td><td>transparent</td></tr>
-          <tr><td>dlv-red</td><td>#ED1B36</td><td>transparent</td></tr>
-        </tbody>
-      </table>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Spinner Ring</td><td>Circular border with one transparent side, creating the visual arc</td></tr>
-          <tr><td>2</td><td>Rotation</td><td>CSS animation rotating the ring 360° every 0.8 seconds</td></tr>
-          <tr><td>3</td><td>Color</td><td>Border color determined by the variant prop</td></tr>
-          <tr><td>4</td><td>Gap</td><td>Transparent top border creates the spinning arc effect</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Spinner" slug="spinner" section="when-to-use" />
       <ul>
-        <li>To indicate an indeterminate loading state where duration is unknown</li>
-        <li>Inside buttons to show an action is processing</li>
-        <li>As a placeholder while content is being fetched</li>
-        <li>For short waits — typically under 10 seconds</li>
+        <li>Use the Spinner component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
       <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Spinner" slug="spinner" section="when-not-to-use" />
       <ul>
-        <li>For determinate progress — use a Progress Bar instead</li>
-        <li>For content-area loading — use Shimmer placeholders</li>
-        <li>For very long operations — provide a progress indicator with percentage</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
       </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="spinner" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
 
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="spinner"
-        doItems={[
-          'Use the correct variant for the background context (dark on light, light on dark)',
-          'Add a text label for loading states longer than 2 seconds',
-          'Use small spinners for inline or button contexts',
-          'Center spinners within the loading area',
-          'Provide an aria-label for screen reader users',
-        ]}
-        dontItems={[
-          'Don\'t use spinners for content loading — use shimmer instead',
-          'Don\'t show multiple spinners on the same screen simultaneously',
-          'Don\'t use spinners without any surrounding context',
-          'Don\'t use the light variant on light backgrounds — it will be invisible',
-          'Don\'t block the entire page with a spinner unless absolutely necessary',
-        ]}
-      />
-
-      <h2>Variant Selection Guide</h2>
-      <table>
-        <thead><tr><th>Variant</th><th>Use On</th><th>Example Context</th></tr></thead>
-        <tbody>
-          <tr><td>dark</td><td>Light backgrounds</td><td>White cards, light modals, default pages</td></tr>
-          <tr><td>light</td><td>Dark backgrounds</td><td>Dark cards, dark modals, overlays</td></tr>
-          <tr><td>white</td><td>Colored / dark backgrounds</td><td>Inside colored buttons, dark overlays</td></tr>
-          <tr><td>dlv-red</td><td>Light backgrounds</td><td>Brand-specific loading, Delhivery-themed areas</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Size Selection Guide</h2>
-      <table>
-        <thead><tr><th>Size</th><th>Pixels</th><th>Use Case</th></tr></thead>
-        <tbody>
-          <tr><td>sm</td><td>16px</td><td>Inline text, inside buttons, compact UI</td></tr>
-          <tr><td>md</td><td>24px</td><td>Default — cards, sections, general loading</td></tr>
-          <tr><td>lg</td><td>32px</td><td>Prominent section loading, empty states</td></tr>
-          <tr><td>xl</td><td>48px</td><td>Full-page loading, hero areas</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>status</td><td>Identifies the spinner as a live status region</td></tr>
-          <tr><td>aria-label</td><td>&quot;Loading&quot;</td><td>Descriptive text for screen readers</td></tr>
-          <tr><td>aria-live</td><td>polite</td><td>Announces loading state without interrupting</td></tr>
-          <tr><td>prefers-reduced-motion</td><td>Pause or slow animation</td><td>Respects user motion preferences</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
       <ul>
-        <li><strong>Progress Bar</strong> — For determinate loading with known progress</li>
-        <li><strong>Shimmer</strong> — Content placeholder for layout-aware loading</li>
-        <li><strong>Button</strong> — Spinners can be embedded in buttons during async actions</li>
-        <li><strong>Snackbar</strong> — Pair with spinners to announce loading completion</li>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-const spinnerChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={spinnerChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
 export default function SpinnerPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Spinner"
-      description="Spinners are animated circular indicators used to communicate an indeterminate loading state."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Spinner" description="Spinner is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

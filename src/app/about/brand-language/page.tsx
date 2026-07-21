@@ -5,7 +5,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function BrandLanguagePage() {
   return (
-    <PageShell title="Brand Language" description="How we communicate is as important as what we communicate. TARMAC's brand language reflects our values and connects with our audience.">
+    <PageShell hideVersion title="Brand Language" description="How we communicate is as important as what we communicate. TARMAC's brand language reflects our values and connects with our audience.">
       <h2>Overview</h2>
       <p>
         TARMAC's brand language reflects our values and connects with our audience — across documentation, UI copy, error messages, and marketing. It's the verbal expression of the same principles that drive our visual design: clarity, consistency, and human connection.

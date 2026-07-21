@@ -1,214 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-navigation--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Navigation component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-navigation--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-sidenavigation--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="navigation interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Navigation component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Navigation component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="navigation" />
     </>
   );
 }
 
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Navigation, NavItem, SideNav, BottomNav, Breadcrumbs } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface NavigationProps {
-  variant?: 'sidebar' | 'bottom' | 'breadcrumb' | 'tabs';
-  items: NavItem[];
-  activeIndex?: number;
-  onChange?: (index: number) => void;
-  collapsed?: boolean;
-}
-
-interface NavItem {
-  label: string;
-  icon?: ReactNode;
-  href?: string;
-  badge?: number;
-  disabled?: boolean;
-}
-
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Sidebar navigation
-<SideNav
-  items={[
-    { label: 'Home', icon: <HomeIcon /> },
-    { label: 'Dashboard', icon: <GridIcon /> },
-    { label: 'Settings', icon: <SettingsIcon /> },
-  ]}
-  activeIndex={0}
-  onChange={setActiveIndex}
-/>
-
-// Bottom tab bar
-<BottomNav items={navItems} activeIndex={active} onChange={setActive} />
-
-// Breadcrumb trail
-<Breadcrumbs items={[
-  { label: 'Home', href: '/' },
-  { label: 'Components', href: '/components' },
-  { label: 'Navigation' },
-]} />
-
-// Top tabs
-<Navigation variant="tabs" items={tabItems} />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>nav-sidebar-width</td><td>180px</td></tr>
-          <tr><td>nav-item-padding</td><td>8px 12px</td></tr>
-          <tr><td>nav-item-radius</td><td>6px</td></tr>
-          <tr><td>nav-item-font-size</td><td>13px</td></tr>
-          <tr><td>nav-icon-size</td><td>18px</td></tr>
-          <tr><td>nav-bottom-height</td><td>56px</td></tr>
-          <tr><td>nav-active-bg</td><td>var(--color-primary-container)</td></tr>
-          <tr><td>nav-active-color</td><td>var(--color-primary)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all navigation variants in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-navigation--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Wrapper for the navigation region</td></tr>
-          <tr><td>2</td><td>Nav Item</td><td>Individual clickable navigation entry</td></tr>
-          <tr><td>3</td><td>Icon</td><td>Leading visual for each item</td></tr>
-          <tr><td>4</td><td>Label</td><td>Text name of the destination</td></tr>
-          <tr><td>5</td><td>Active Indicator</td><td>Background highlight or underline for active item</td></tr>
-          <tr><td>6</td><td>Badge</td><td>Optional notification count on an item</td></tr>
-          <tr><td>7</td><td>Divider</td><td>Separator between breadcrumb segments</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Navigation" slug="navigation" section="when-to-use" />
       <ul>
-        <li>Sidebar for desktop apps with 5+ top-level sections</li>
-        <li>Bottom tab bar for mobile apps with 3–5 primary destinations</li>
-        <li>Breadcrumbs for deep hierarchical navigation</li>
-        <li>Top tabs for switching between related content views</li>
+        <li>Use the Navigation component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="navigation"
-        doItems={[
-          'Limit bottom nav to 3–5 items maximum',
-          'Use icons with labels for better recognition',
-          'Highlight the active item clearly',
-          'Keep sidebar navigation items scannable',
-          'Use breadcrumbs for 3+ level hierarchies',
-        ]}
-        dontItems={[
-          'Don\'t use more than one navigation pattern on the same page',
-          'Don\'t hide primary navigation behind gestures',
-          'Don\'t use icon-only navigation without tooltips',
-          'Don\'t mix sidebar and bottom nav in the same app',
-          'Don\'t use tabs for more than 6 items — use a dropdown instead',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>nav</td><td>aria-label</td><td>Describes the navigation purpose</td></tr>
-          <tr><td>aria-current</td><td>&quot;page&quot;</td><td>Marks the active navigation item</td></tr>
-          <tr><td>role</td><td>navigation / tablist</td><td>Semantic role based on variant</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys, Tab, Enter</td><td>Navigate between items</td></tr>
-          <tr><td>Focus</td><td>visible ring</td><td>Clear focus indicator on each item</td></tr>
-          <tr><td>Breadcrumbs</td><td>aria-label=&quot;Breadcrumb&quot;</td><td>Identifies the breadcrumb trail</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Navigation" slug="navigation" section="when-not-to-use" />
       <ul>
-        <li><strong>Header</strong> — Top-level app header with navigation</li>
-        <li><strong>Tabs</strong> — Content-level tab switching</li>
-        <li><strong>Breadcrumbs</strong> — Standalone breadcrumb component</li>
-        <li><strong>Side Drawer</strong> — Overlay navigation panel</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
       </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="navigation" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
     </>
   );
 }
 
-/* ─── TAB 4 — Changelog ─── */
-function ChangelogTab() {
+function AccessibilityTab() {
   return (
     <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
       <ul>
-        <li>Added bottom tab bar variant</li>
-        <li>Added breadcrumb trail variant</li>
-        <li>Added top tabs variant</li>
-        <li>Added badge support on nav items</li>
-        <li>Added collapsed sidebar mode</li>
-        <li>Improved keyboard navigation and focus management</li>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
       </ul>
-      <h3>v1.0.0</h3>
+      <h2>Color and Contrast</h2>
       <ul>
-        <li>Initial release with sidebar navigation</li>
-        <li>Icon and label support</li>
-        <li>Active state indicator</li>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─── Page Export ─── */
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
+function ChangelogTab() { return <Changelog entries={changelog} />; }
+
 export default function NavigationPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Navigation"
-      description="Navigation components provide wayfinding through sidebars, bottom tabs, breadcrumbs, and top tabs."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Navigation" description="Navigation is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

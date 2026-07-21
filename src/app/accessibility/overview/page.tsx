@@ -4,7 +4,7 @@ import { CardGroup, Card } from '@/components/mdx';
 
 export default function AccessibilityOverviewPage() {
   return (
-    <PageShell title="Accessibility" description="Accessibility is a core value of TARMAC, not an afterthought.">
+    <PageShell hideVersion title="Accessibility" description="Accessibility is a core value of TARMAC, not an afterthought.">
       <h2>Our Commitment</h2>
       <p>Every component is designed and tested to meet WCAG 2.1 Level AA standards, ensuring all users can interact with your applications regardless of ability, device, or context.</p>
 

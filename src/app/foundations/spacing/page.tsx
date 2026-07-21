@@ -349,14 +349,14 @@ const spacingChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function SpacingPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={spacingChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Spacing"
       description="TARMAC's spacing system — built on an 8px base unit with 14 tokens across Small (0–8px), Medium (12–32px), and Large (40–80px) ranges for consistent visual rhythm."
       tabs={tabs}

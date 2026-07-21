@@ -4,190 +4,122 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-slider--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Slider component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-slider--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-slider--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="slider interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Slider component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Slider component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="slider" />
     </>
   );
 }
 
-/* ── Code Tab ── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Slider } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface SliderProps {
-  value?: number;
-  min?: number;
-  max?: number;
-  step?: number;
-  onChange?: (value: number) => void;
-  variant?: 'black' | 'coal' | 'blue' | 'dlv-red';
-  disabled?: boolean;
-  showValue?: boolean;
-  label?: string;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Single slider
-<Slider
-  label="Volume"
-  min={0}
-  max={100}
-  value={volume}
-  onChange={setVolume}
-  variant="black"
-  showValue
-/>
-
-// With step increments
-<Slider
-  label="Brightness"
-  min={0}
-  max={100}
-  step={10}
-  value={brightness}
-  onChange={setBrightness}
-  variant="blue"
-  showValue
-/>
-
-// Disabled slider
-<Slider
-  label="Locked"
-  value={50}
-  disabled
-  variant="coal"
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>slider-track-height</td><td>4px</td><td>Track thickness</td></tr>
-          <tr><td>slider-track-radius</td><td>2px</td><td>Track border radius</td></tr>
-          <tr><td>slider-thumb-size</td><td>16px</td><td>Thumb diameter (default)</td></tr>
-          <tr><td>slider-thumb-size-hover</td><td>20px</td><td>Thumb diameter (hover)</td></tr>
-          <tr><td>slider-thumb-border</td><td>2px solid</td><td>Thumb border</td></tr>
-          <tr><td>slider-track-bg-light</td><td>#D9D9D9</td><td>Track background (light)</td></tr>
-          <tr><td>slider-track-bg-dark</td><td>#3A3A3A</td><td>Track background (dark)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Variant Colors</h2>
-      <table>
-        <thead><tr><th>Variant</th><th>Hex</th><th>Usage</th></tr></thead>
-        <tbody>
-          <tr><td>Black</td><td>#0D0D0D</td><td>Default / neutral actions</td></tr>
-          <tr><td>Coal</td><td>#525252</td><td>Subtle / secondary controls</td></tr>
-          <tr><td>Blue</td><td>#2396FB</td><td>Primary / informational</td></tr>
-          <tr><td>DLV Red</td><td>#ED1B36</td><td>Brand accent / alerts</td></tr>
-        </tbody>
-      </table>
-    </>
-  );
-}
-
-/* ── Usage Tab ── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Track</td><td>Background rail showing the full range</td></tr>
-          <tr><td>2</td><td>Fill</td><td>Colored portion indicating selected value</td></tr>
-          <tr><td>3</td><td>Thumb</td><td>Draggable handle for value selection</td></tr>
-          <tr><td>4</td><td>Label</td><td>Text describing the slider purpose</td></tr>
-          <tr><td>5</td><td>Value Display</td><td>Current value shown beside the label</td></tr>
-          <tr><td>6</td><td>Min/Max Labels</td><td>Labels at the ends of the track</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
-      <table>
-        <thead><tr><th>Context</th><th>Variant</th><th>Example</th></tr></thead>
-        <tbody>
-          <tr><td>Volume / brightness</td><td>Black</td><td>Media player controls</td></tr>
-          <tr><td>Filter ranges</td><td>Blue</td><td>Price range on e-commerce</td></tr>
-          <tr><td>Priority / rating</td><td>DLV Red</td><td>Task priority selector</td></tr>
-          <tr><td>Subtle adjustments</td><td>Coal</td><td>Opacity or weight controls</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Best Practices</h2>
-      <DoDont slug="slider" doItems={[
-        'Show the current value clearly near the slider',
-        'Use appropriate step increments for the data type',
-        'Provide min and max labels for context',
-        'Use range sliders for price or date filtering',
-        'Ensure thumb is large enough for touch targets (44px min)',
-      ]} dontItems={[
-        'Don\'t use sliders for precise numeric input — pair with an input field',
-        'Don\'t use sliders for fewer than 5 possible values — use radio buttons',
-        'Don\'t hide the current value from the user',
-        'Don\'t use vertical sliders without strong justification',
-        'Don\'t remove min/max labels when the range is non-obvious',
-      ]} />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Semantic HTML</td><td>&lt;input type=&quot;range&quot;&gt;</td><td>Native slider element</td></tr>
-          <tr><td>role</td><td>slider</td><td>Implicit from input[type=range]</td></tr>
-          <tr><td>aria-valuenow</td><td>number</td><td>Current value</td></tr>
-          <tr><td>aria-valuemin</td><td>number</td><td>Minimum value</td></tr>
-          <tr><td>aria-valuemax</td><td>number</td><td>Maximum value</td></tr>
-          <tr><td>aria-label</td><td>string</td><td>Accessible name for the slider</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys</td><td>Increment / decrement value</td></tr>
-          <tr><td>Keyboard</td><td>Home / End</td><td>Jump to min or max</td></tr>
-        </tbody>
-      </table>
+      <GuidelineImage title="When to Use \u2014 Slider" slug="slider" section="when-to-use" />
+      <ul>
+        <li>Use the Slider component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
+      </ul>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Slider" slug="slider" section="when-not-to-use" />
+      <ul>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="slider" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
     </>
   );
 }
 
-/* ── Changelog Tab ── */
-const sliderChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
-  { version: '1.0.1', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Slider knob updated, and surface colors updated'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
+      </ul>
+    </>
+  );
+}
+
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={sliderChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ── Page Export ── */
 export default function SliderPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Slider"
-      description="Sliders allow users to select a value or range from a continuous scale."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Slider" description="Slider is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

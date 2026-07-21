@@ -4,280 +4,229 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="checkbox" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Checkbox, CheckboxGroup } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface CheckboxProps {
-  checked?: boolean;
-  indeterminate?: boolean;
-  onChange?: (checked: boolean) => void;
-  label?: string;
-  description?: string;
-  disabled?: boolean;
-  error?: string;
-  variant?: 'standard' | 'blue' | 'green' | 'dlv-red';
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Standard checkbox
-<Checkbox label="Accept terms" />
-
-// Controlled checkbox
-<Checkbox
-  label="Subscribe to newsletter"
-  checked={isChecked}
-  onChange={setIsChecked}
-/>
-
-// With description
-<Checkbox
-  label="Email notifications"
-  description="Receive updates about your account"
-  variant="blue"
-/>
-
-// Indeterminate state
-<Checkbox
-  label="Select all"
-  checked={allSelected}
-  indeterminate={someSelected && !allSelected}
-  onChange={handleSelectAll}
-/>
-
-// Disabled
-<Checkbox label="Unavailable option" disabled />
-
-// Error state
-<Checkbox label="Required field" error="This field is required" />
-
-// Color variants
-<Checkbox label="Standard" variant="standard" />
-<Checkbox label="Blue" variant="blue" />
-<Checkbox label="Green" variant="green" />
-<Checkbox label="DLV Red" variant="dlv-red" />`}</code></pre>
-
-      <h2>Checkbox Group</h2>
-      <pre><code>{`<CheckboxGroup label="Select toppings">
-  <Checkbox label="Cheese" value="cheese" />
-  <Checkbox label="Pepperoni" value="pepperoni" />
-  <Checkbox label="Mushrooms" value="mushrooms" />
-</CheckboxGroup>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>checkbox-size</td><td>20px</td></tr>
-          <tr><td>checkbox-border-radius</td><td>4px</td></tr>
-          <tr><td>checkbox-focus-ring</td><td>3px offset</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Variant Colors</h3>
-      <table>
-        <thead><tr><th>Variant</th><th>Accent Color</th><th>Checkmark</th></tr></thead>
-        <tbody>
-          <tr><td>standard</td><td>#0D0D0D</td><td>#FFFFFF</td></tr>
-          <tr><td>blue</td><td>#2396FB</td><td>#FFFFFF</td></tr>
-          <tr><td>green</td><td>#1BA86E</td><td>#FFFFFF</td></tr>
-          <tr><td>dlv-red</td><td>#ED1B36</td><td>#FFFFFF</td></tr>
-        </tbody>
-      </table>
-
-      <h3>State Tokens</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>checkbox-border-color</td><td>#B0B0B0</td><td>Default unchecked border</td></tr>
-          <tr><td>checkbox-border-hover</td><td>#666</td><td>Border on hover</td></tr>
-          <tr><td>checkbox-disabled-opacity</td><td>0.4</td><td>Opacity when disabled</td></tr>
-          <tr><td>checkbox-error-border</td><td>#ED1B36</td><td>Border color in error state</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all checkbox variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-checkbox--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Wrapper holding the checkbox control and label area</td></tr>
-          <tr><td>2</td><td>Control</td><td>The 20×20px square box that shows checked state</td></tr>
-          <tr><td>3</td><td>Checkmark / Dash</td><td>SVG icon indicating checked or indeterminate state</td></tr>
-          <tr><td>4</td><td>Label</td><td>Primary text describing the option</td></tr>
-          <tr><td>5</td><td>Description</td><td>Optional helper text below the label</td></tr>
-          <tr><td>6</td><td>Error Message</td><td>Validation error text shown below the control</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>When users can select multiple options from a list</li>
-        <li>For binary choices with a visible label (e.g., &quot;Accept terms&quot;)</li>
-        <li>For &quot;select all&quot; patterns with indeterminate state</li>
-        <li>In forms where multiple selections are valid</li>
-        <li>In settings panels for toggling feature flags</li>
-      </ul>
-
-      <h2>When Not to Use</h2>
-      <ul>
-        <li>For mutually exclusive options — use Radio instead</li>
-        <li>For instant on/off toggles — use Switch/Toggle instead</li>
-        <li>For single-select dropdowns — use Select instead</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="checkbox"
-        doItems={[
-          'Use when users can select multiple options from a set',
-          'Always provide a visible label for accessibility',
-          'Use indeterminate state for "select all" parent checkboxes',
-          'Group related checkboxes inside a fieldset with a legend',
-          'Ensure touch targets are at least 44×44px on mobile',
-        ]}
-        dontItems={[
-          'Don\'t use for binary on/off — use a toggle instead',
-          'Don\'t use without labels — screen readers need them',
-          'Don\'t pre-check options that benefit the business, not the user',
-          'Don\'t nest checkbox groups more than 2 levels deep',
-          'Don\'t use checkboxes for mutually exclusive choices',
-        ]}
-      />
-
-      <h2>Content Guidelines</h2>
-      <ul>
-        <li>Labels should be concise and clearly describe the option</li>
-        <li>Use sentence case for labels</li>
-        <li>Phrase labels positively (e.g., &quot;Show notifications&quot; not &quot;Don&apos;t hide notifications&quot;)</li>
-        <li>Description text should add context, not repeat the label</li>
-        <li>Error messages should explain how to fix the issue</li>
-      </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>checkbox</td><td>Native input type=&quot;checkbox&quot; provides this implicitly</td></tr>
-          <tr><td>aria-checked</td><td>true | false | mixed</td><td>Reflects current state including indeterminate</td></tr>
-          <tr><td>aria-labelledby</td><td>ID reference</td><td>Associates visible label with the control</td></tr>
-          <tr><td>aria-describedby</td><td>ID reference</td><td>Links to description or error text</td></tr>
-          <tr><td>aria-invalid</td><td>true | false</td><td>Indicates validation error state</td></tr>
-          <tr><td>Keyboard: Space</td><td>—</td><td>Toggles the checked state</td></tr>
-          <tr><td>Keyboard: Tab</td><td>—</td><td>Moves focus to the next focusable element</td></tr>
-          <tr><td>Focus ring</td><td>3px accent color</td><td>Visible focus indicator around the control</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Radio</strong> — For mutually exclusive single-select options</li>
-        <li><strong>Toggle / Switch</strong> — For instant on/off binary controls</li>
-        <li><strong>Pills</strong> — For selectable filter chips</li>
-        <li><strong>Dropdown</strong> — For single-select from a long list</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const checkboxChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated configuration and version changed to latest'] }],
-  },
-  {
-    version: '1.0.3',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with Focus state'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with Ghost variant'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Fixed', items: ['Updated Border colors'] }],
+    date: 'June 2026',
+    changes: [
+      'Added Ghost (skeleton) loading state',
+      'Improved indeterminate state visual clarity',
+      'Fixed label alignment at Small size',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Checkbox component',
+      'Support for Checked, Unchecked, and Indeterminate states',
+      'Default and With Label variants',
+      'Three size options: Large, Medium, Small',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={checkboxChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Checkbox is a selection control for toggling binary choices or multi-select
+          options. It supports checked, unchecked, and indeterminate states, making it
+          suitable for individual toggles, group selections, and parent-child relationships.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Toggling a single setting on/off (e.g., "Remember me")</li>
+          <li>Multi-select lists with multiple options</li>
+          <li>Accepting terms and conditions</li>
+          <li>Select-all/parent checkbox in data tables</li>
+          <li>Filter selections in search interfaces</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Checkbox component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Clickable hit area wrapping box and label</li>
+          <li><strong>Check Box</strong> — Square visual indicator</li>
+          <li><strong>Checkmark Icon</strong> — Tick or dash icon inside the box</li>
+          <li><strong>Label</strong> — Optional text describing the option</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default</strong> — Checkbox without label text</li>
+          <li><strong>With Label</strong> — Checkbox with accompanying text label</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Large</strong> — Prominent checkbox for touch targets</li>
+          <li><strong>Medium</strong> — Default size for forms and lists</li>
+          <li><strong>Small</strong> — Compact checkbox for dense layouts</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">States</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Unchecked</strong> — Empty checkbox, option not selected</li>
+          <li><strong>Checked</strong> — Checkmark visible, option selected</li>
+          <li><strong>Indeterminate</strong> — Dash icon, partial selection (parent)</li>
+          <li><strong>Disabled</strong> — Non-interactive, reduced opacity</li>
+          <li><strong>Ghost</strong> — Loading skeleton placeholder</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="checkbox" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Checkboxes are for non-exclusive selections where multiple options can be
+          active simultaneously. For mutually exclusive choices, use Radio buttons.
+          For simple on/off toggles, consider a Switch component.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When users can select multiple options from a list</li>
+          <li>For binary yes/no toggles (e.g., "I agree")</li>
+          <li>For select-all functionality in tables</li>
+          <li>In forms where multiple selections are valid</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For mutually exclusive choices — use Radio buttons</li>
+          <li>For instant on/off toggles — use Switch component</li>
+          <li>For actions — use Button component</li>
+          <li>For navigation — use links or menu items</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/checkbox-usage.png"
+          alt="Checkbox usage guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Always include a visible label (or aria-label for unlabeled)',
+              'Make the label clickable (not just the box)',
+              'Use indeterminate state for parent checkboxes only',
+              'List options in logical order',
+            ]}
+            dontItems={[
+              'Use a checkbox when only one selection is allowed',
+              'Use negative language (avoid "Don\'t send me emails")',
+              'Pre-check options that have legal implications',
+              'Hide the checkbox without an alternative visual',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Uses native <code>&lt;input type=&quot;checkbox&quot;&gt;</code> for semantics</li>
+          <li><code>aria-checked="mixed"</code> for indeterminate state</li>
+          <li><code>aria-disabled="true"</code> when disabled</li>
+          <li><code>aria-labelledby</code> or associated <code>&lt;label&gt;</code></li>
+          <li><code>aria-describedby</code> for helper/error text</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus to the checkbox</li>
+          <li><kbd>Space</kbd> — Toggles the checkbox state</li>
+          <li>Focus ring is clearly visible around the checkbox</li>
+          <li>Disabled checkboxes remain discoverable via Tab</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces label, role (checkbox), and state (checked/unchecked)</li>
+          <li>Indeterminate state announced as &ldquo;mixed&rdquo;</li>
+          <li>State changes are announced on toggle</li>
+          <li>Group labels announced when checkbox is part of a fieldset</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function CheckboxPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Checkbox"
-      description="Checkboxes allow users to select one or more items from a set of options."
+      description="Selection control for toggling binary choices or multi-select options. Supports checked, unchecked, and indeterminate states."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }
