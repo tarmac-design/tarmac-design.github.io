@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Elevated variant with shadow tokens',
-      'Improved responsive padding at smaller breakpoints',
-      'Fixed border rendering in dark mode',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Elevated variant with shadow tokens', 'Improved responsive padding at smaller breakpoints', 'Fixed border rendering in dark mode'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Card Block component',
-      'Default and Outlined variants',
-      'Support for optional header and footer sections',
-      'Configurable padding and border radius',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Card Block component', 'Default and Outlined variants', 'Support for optional header and footer sections', 'Configurable padding and border radius'] }],
   },
 ];
 
@@ -123,10 +114,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/card-block-layout.png"
-          alt="Card block layout guidelines"
-        />
+        <GuidelineImage title="Card block layout guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Selection Card variant with checkbox',
-      'Improved media area aspect ratio handling',
-      'Fixed focus ring on Action Card variant',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Selection Card variant with checkbox', 'Improved media area aspect ratio handling', 'Fixed focus ring on Action Card variant'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Cards component',
-      'Default, Media Card, and Action Card variants',
-      'Support for badge slot and action area',
-      'Responsive layout support',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Cards component', 'Default, Media Card, and Action Card variants', 'Support for badge slot and action area', 'Responsive layout support'] }],
   },
 ];
 
@@ -127,10 +118,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/cards-layout.png"
-          alt="Cards layout guidelines"
-        />
+        <GuidelineImage title="Cards layout guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

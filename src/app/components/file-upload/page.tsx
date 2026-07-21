@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added file preview thumbnails for image uploads',
-      'Improved drag-and-drop visual feedback',
-      'Fixed progress bar accuracy for large files',
-    ],
+    changes: [{ category: 'Changed', items: ['Added file preview thumbnails for image uploads', 'Improved drag-and-drop visual feedback', 'Fixed progress bar accuracy for large files'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of File Upload component',
-      'Support for Single file, Multiple files, and With preview variants',
-      'Drag-and-drop and click-to-browse interactions',
-      'Upload progress and status states',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of File Upload component', 'Support for Single file, Multiple files, and With preview variants', 'Drag-and-drop and click-to-browse interactions', 'Upload progress and status states'] }],
   },
 ];
 
@@ -122,10 +113,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/file-upload-when-to-use.png"
-          alt="When to use File Upload"
-        />
+        <GuidelineImage title="When to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to upload documents or images as part of a form</li>
           <li>When batch file upload is required</li>
@@ -136,10 +124,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/file-upload-when-not-to-use.png"
-          alt="When not to use File Upload"
-        />
+        <GuidelineImage title="When not to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For simple text input — use Input component</li>
           <li>For capturing photos — use a camera/capture interface</li>

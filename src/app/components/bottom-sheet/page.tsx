@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Advanced and Empty State variants',
-      'Improved drag handle gesture responsiveness',
-      'Fixed footer CTA alignment in vertical mode',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Advanced and Empty State variants', 'Improved drag handle gesture responsiveness', 'Fixed footer CTA alignment in vertical mode'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Bottom Sheet component',
-      'Standard, Slot Mini, Slot Dual, and Slot variants',
-      'Horizontal and Vertical CTA styles',
-      'Configurable boolean properties for header and content',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Bottom Sheet component', 'Standard, Slot Mini, Slot Dual, and Slot variants', 'Horizontal and Vertical CTA styles', 'Configurable boolean properties for header and content'] }],
   },
 ];
 
@@ -153,10 +144,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/bottom-sheet-usage.png"
-          alt="Bottom sheet usage guidelines"
-        />
+        <GuidelineImage title="Bottom sheet usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

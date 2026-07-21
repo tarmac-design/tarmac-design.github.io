@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Cyan and Orange variant options',
-      'Added status dot boolean property',
-      'Improved ghost state animation',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Cyan and Orange variant options', 'Added status dot boolean property', 'Improved ghost state animation'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Badge component',
-      'Support for Solid, Subtle, Outlined, Ghost, and Disabled types',
-      'Three size options: Large, Medium, Small',
-      'Leading and trailing icon support',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Badge component', 'Support for Solid, Subtle, Outlined, Ghost, and Disabled types', 'Three size options: Large, Medium, Small', 'Leading and trailing icon support'] }],
   },
 ];
 
@@ -163,10 +154,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/badge-usage.png"
-          alt="Badge usage guidelines"
-        />
+        <GuidelineImage title="Badge usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

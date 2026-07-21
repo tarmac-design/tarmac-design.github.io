@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Ghost and Loading states',
-      'Improved focus ring visibility across all variants',
-      'Fixed icon alignment in XSmall size',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Ghost and Loading states', 'Improved focus ring visibility across all variants', 'Fixed icon alignment in XSmall size'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Button component',
-      'Support for 8 color variants',
-      'Standard, Outlined, and Text types',
-      'Five size options from XSmall to XLarge',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Button component', 'Support for 8 color variants', 'Standard, Outlined, and Text types', 'Five size options from XSmall to XLarge'] }],
   },
 ];
 
@@ -165,10 +156,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/button-hierarchy.png"
-          alt="Button hierarchy guidelines"
-        />
+        <GuidelineImage title="Button hierarchy guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

@@ -11,20 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added stacked CTA variant for mobile viewports',
-      'Improved divider styling consistency',
-      'Fixed button alignment in RTL layouts',
-    ],
+    changes: [{ category: 'Changed', items: ['Added stacked CTA variant for mobile viewports', 'Improved divider styling consistency', 'Fixed button alignment in RTL layouts'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Footer component',
-      'Support for Single CTA, Dual CTA, and Stacked variants',
-      'Divider and container styling options',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Footer component', 'Support for Single CTA, Dual CTA, and Stacked variants', 'Divider and container styling options'] }],
   },
 ];
 
@@ -109,10 +101,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/footer-when-to-use.png"
-          alt="When to use Footer"
-        />
+        <GuidelineImage title="When to use Footer" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When a popup or sheet requires user action to proceed</li>
           <li>When both confirm and dismiss actions are needed</li>
@@ -122,10 +111,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/footer-when-not-to-use.png"
-          alt="When not to use Footer"
-        />
+        <GuidelineImage title="When not to use Footer" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For page-level footers — use a page layout footer</li>
           <li>For inline form actions — place buttons within the form</li>

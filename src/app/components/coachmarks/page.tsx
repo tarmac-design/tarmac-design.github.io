@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added dismissible variant with skip-all option',
-      'Improved highlight cutout positioning accuracy',
-      'Fixed step indicator animation between steps',
-    ],
+    changes: [{ category: 'Changed', items: ['Added dismissible variant with skip-all option', 'Improved highlight cutout positioning accuracy', 'Fixed step indicator animation between steps'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Coachmarks component',
-      'Single step and Multi-step variants',
-      'Highlight area with tooltip bubble',
-      'Step indicator and navigation controls',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Coachmarks component', 'Single step and Multi-step variants', 'Highlight area with tooltip bubble', 'Step indicator and navigation controls'] }],
   },
 ];
 
@@ -128,10 +119,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/coachmarks-usage.png"
-          alt="Coachmarks usage guidelines"
-        />
+        <GuidelineImage title="Coachmarks usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

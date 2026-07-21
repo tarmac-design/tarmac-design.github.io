@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Range picker variant for date ranges',
-      'Improved month/year navigation keyboard support',
-      'Fixed time selector scroll behavior on mobile',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Range picker variant for date ranges', 'Improved month/year navigation keyboard support', 'Fixed time selector scroll behavior on mobile'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Date Time Picker component',
-      'Date only, Time only, and Date + Time variants',
-      'Calendar grid with month/year navigation',
-      'Footer actions for confirm/cancel',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Date Time Picker component', 'Date only, Time only, and Date + Time variants', 'Calendar grid with month/year navigation', 'Footer actions for confirm/cancel'] }],
   },
 ];
 
@@ -128,10 +119,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/date-time-picker-usage.png"
-          alt="Date time picker usage guidelines"
-        />
+        <GuidelineImage title="Date time picker usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

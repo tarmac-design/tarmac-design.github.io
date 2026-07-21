@@ -11,20 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added auto-resize variant',
-      'Improved character count accessibility',
-      'Fixed scroll behavior on focus',
-    ],
+    changes: [{ category: 'Changed', items: ['Added auto-resize variant', 'Improved character count accessibility', 'Fixed scroll behavior on focus'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Input Area component',
-      'Support for Default, With counter, and Auto-resize variants',
-      'All interaction states supported',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Input Area component', 'Support for Default, With counter, and Auto-resize variants', 'All interaction states supported'] }],
   },
 ];
 
@@ -119,10 +111,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-area-when-to-use.png"
-          alt="When to use Input Area"
-        />
+        <GuidelineImage title="When to use Input Area" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to enter multiple lines of text</li>
           <li>When the expected content length varies significantly</li>
@@ -132,10 +121,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-area-when-not-to-use.png"
-          alt="When not to use Input Area"
-        />
+        <GuidelineImage title="When not to use Input Area" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For single-line text — use Input component</li>
           <li>For rich text editing — use a rich text editor</li>

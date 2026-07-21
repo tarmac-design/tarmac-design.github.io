@@ -11,20 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added multi-filter combination support',
-      'Improved reset behavior for nested filters',
-      'Fixed keyboard navigation within filter options',
-    ],
+    changes: [{ category: 'Changed', items: ['Added multi-filter combination support', 'Improved reset behavior for nested filters', 'Fixed keyboard navigation within filter options'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Filter component',
-      'Support for Single filter, Multi filter, and With search variants',
-      'Apply and Reset button actions',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Filter component', 'Support for Single filter, Multi filter, and With search variants', 'Apply and Reset button actions'] }],
   },
 ];
 
@@ -107,10 +99,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/filter-when-to-use.png"
-          alt="When to use Filter"
-        />
+        <GuidelineImage title="When to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to narrow large datasets by criteria</li>
           <li>When multiple filter dimensions are available</li>
@@ -120,10 +109,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/filter-when-not-to-use.png"
-          alt="When not to use Filter"
-        />
+        <GuidelineImage title="When not to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For sorting content — use a Sort control instead</li>
           <li>For searching by text — use Search component</li>

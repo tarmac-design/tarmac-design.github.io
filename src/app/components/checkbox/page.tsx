@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Ghost (skeleton) loading state',
-      'Improved indeterminate state visual clarity',
-      'Fixed label alignment at Small size',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Ghost (skeleton) loading state', 'Improved indeterminate state visual clarity', 'Fixed label alignment at Small size'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Checkbox component',
-      'Support for Checked, Unchecked, and Indeterminate states',
-      'Default and With Label variants',
-      'Three size options: Large, Medium, Small',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Checkbox component', 'Support for Checked, Unchecked, and Indeterminate states', 'Default and With Label variants', 'Three size options: Large, Medium, Small'] }],
   },
 ];
 
@@ -145,10 +136,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/checkbox-usage.png"
-          alt="Checkbox usage guidelines"
-        />
+        <GuidelineImage title="Checkbox usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

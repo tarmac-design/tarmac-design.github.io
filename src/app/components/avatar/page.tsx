@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Square variant option',
-      'Improved fallback initials rendering for long names',
-      'Fixed status dot positioning at XSmall size',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Square variant option', 'Improved fallback initials rendering for long names', 'Fixed status dot positioning at XSmall size'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Avatar component',
-      'Support for Image, Initials, Numeric, and Icon variants',
-      'Five size options from XSmall to XLarge',
-      'Status dot and disabled states',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Avatar component', 'Support for Image, Initials, Numeric, and Icon variants', 'Five size options from XSmall to XLarge', 'Status dot and disabled states'] }],
   },
 ];
 
@@ -147,10 +138,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/avatar-sizing.png"
-          alt="Avatar sizing guidelines"
-        />
+        <GuidelineImage title="Avatar sizing guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

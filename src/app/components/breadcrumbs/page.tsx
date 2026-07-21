@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added custom separator support',
-      'Improved truncation with overflow menu',
-      'Fixed focus ring styling on breadcrumb links',
-    ],
+    changes: [{ category: 'Changed', items: ['Added custom separator support', 'Improved truncation with overflow menu', 'Fixed focus ring styling on breadcrumb links'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Breadcrumbs component',
-      'Default and With Icons variants',
-      'Large and Small size options',
-      'Truncated variant with overflow menu',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Breadcrumbs component', 'Default and With Icons variants', 'Large and Small size options', 'Truncated variant with overflow menu'] }],
   },
 ];
 
@@ -135,10 +126,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/breadcrumbs-usage.png"
-          alt="Breadcrumbs usage guidelines"
-        />
+        <GuidelineImage title="Breadcrumbs usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

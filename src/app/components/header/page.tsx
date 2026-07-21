@@ -11,20 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added support for custom action buttons in header',
-      'Improved close button hit area for touch targets',
-      'Fixed subtitle truncation on narrow viewports',
-    ],
+    changes: [{ category: 'Changed', items: ['Added support for custom action buttons in header', 'Improved close button hit area for touch targets', 'Fixed subtitle truncation on narrow viewports'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Header component',
-      'Support for Simple, With subtitle, and With actions variants',
-      'Close button and leading icon options',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Header component', 'Support for Simple, With subtitle, and With actions variants', 'Close button and leading icon options'] }],
   },
 ];
 
@@ -109,10 +101,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/header-when-to-use.png"
-          alt="When to use Header"
-        />
+        <GuidelineImage title="When to use Header" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When an overlay needs a clear title and dismiss action</li>
           <li>When additional context (subtitle) helps user understanding</li>
@@ -122,10 +111,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/header-when-not-to-use.png"
-          alt="When not to use Header"
-        />
+        <GuidelineImage title="When not to use Header" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For page-level headers — use a page layout header</li>
           <li>For simple tooltips — no header is needed</li>

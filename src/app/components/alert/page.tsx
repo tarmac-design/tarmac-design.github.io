@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Coal and White variant options',
-      'Improved dismissible animation transition',
-      'Fixed icon alignment in small size variant',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Coal and White variant options', 'Improved dismissible animation transition', 'Fixed icon alignment in small size variant'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Alert component',
-      'Support for Success, Error, Warning, Info, and Black variants',
-      'Default (filled) and Outlined types',
-      'Large, Medium, and Small sizes',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Alert component', 'Support for Success, Error, Warning, Info, and Black variants', 'Default (filled) and Outlined types', 'Large, Medium, and Small sizes'] }],
   },
 ];
 
@@ -160,10 +151,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/alert-placement.png"
-          alt="Alert placement guidelines"
-        />
+        <GuidelineImage title="Alert placement guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

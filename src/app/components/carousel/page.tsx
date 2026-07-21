@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added With Thumbnails variant',
-      'Improved auto-play pause on hover and focus',
-      'Fixed pagination dot active state animation',
-    ],
+    changes: [{ category: 'Changed', items: ['Added With Thumbnails variant', 'Improved auto-play pause on hover and focus', 'Fixed pagination dot active state animation'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Carousel component',
-      'Default and Auto-play variants',
-      'Navigation arrows and pagination dots',
-      'Touch swipe support for mobile',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Carousel component', 'Default and Auto-play variants', 'Navigation arrows and pagination dots', 'Touch swipe support for mobile'] }],
   },
 ];
 
@@ -127,10 +118,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/carousel-usage.png"
-          alt="Carousel usage guidelines"
-        />
+        <GuidelineImage title="Carousel usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

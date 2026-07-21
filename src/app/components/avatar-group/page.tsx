@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added square shape support for individual avatars',
-      'Improved overflow counter styling',
-      'Fixed border ring overlap at small sizes',
-    ],
+    changes: [{ category: 'Changed', items: ['Added square shape support for individual avatars', 'Improved overflow counter styling', 'Fixed border ring overlap at small sizes'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Avatar Group component',
-      'Support for configurable max visible count',
-      'Three size options: Large, Medium, Small',
-      'Overflow counter with +N indicator',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Avatar Group component', 'Support for configurable max visible count', 'Three size options: Large, Medium, Small', 'Overflow counter with +N indicator'] }],
   },
 ];
 
@@ -132,10 +123,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/avatar-group-layout.png"
-          alt="Avatar group layout guidelines"
-        />
+        <GuidelineImage title="Avatar group layout guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[

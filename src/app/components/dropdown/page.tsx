@@ -11,20 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.2.0',
     date: 'June 2026',
-    changes: [
-      'Added grouped options support',
-      'Improved search performance for large datasets',
-      'Fixed focus trap behavior when dropdown closes',
-    ],
+    changes: [{ category: 'Changed', items: ['Added grouped options support', 'Improved search performance for large datasets', 'Fixed focus trap behavior when dropdown closes'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Dropdown component',
-      'Support for Single select, Multi select, With search, and Grouped variants',
-      'Open, Closed, Focused, and Disabled states',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Dropdown component', 'Support for Single select, Multi select, With search, and Grouped variants', 'Open, Closed, Focused, and Disabled states'] }],
   },
 ];
 
@@ -121,10 +113,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dropdown-when-to-use.png"
-          alt="When to use Dropdown"
-        />
+        <GuidelineImage title="When to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When there are more than 5 options to choose from</li>
           <li>When screen space is limited and inline options are impractical</li>
@@ -135,10 +124,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dropdown-when-not-to-use.png"
-          alt="When not to use Dropdown"
-        />
+        <GuidelineImage title="When not to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For fewer than 5 options — use Radio buttons or Checkboxes instead</li>
           <li>For navigation menus — use Navigation component</li>

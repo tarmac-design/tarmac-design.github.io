@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.2.0',
     date: 'June 2026',
-    changes: [
-      'Added character counter variant',
-      'Improved clear button visibility',
-      'Fixed label animation on autofill',
-    ],
+    changes: [{ category: 'Changed', items: ['Added character counter variant', 'Improved clear button visibility', 'Fixed label animation on autofill'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Input component',
-      'Support for Default, With icons, and With counter variants',
-      'Large, Medium, and Small sizes',
-      'All interaction states supported',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Input component', 'Support for Default, With icons, and With counter variants', 'Large, Medium, and Small sizes', 'All interaction states supported'] }],
   },
 ];
 
@@ -133,10 +124,7 @@ function GuidelinesTab() {
     <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-when-to-use.png"
-          alt="When to use Input"
-        />
+        <GuidelineImage title="When to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When collecting single-line text data from users</li>
           <li>When the expected input is short (name, email, number)</li>
@@ -147,10 +135,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-when-not-to-use.png"
-          alt="When not to use Input"
-        />
+        <GuidelineImage title="When not to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For multi-line text — use Input Area (textarea) instead</li>
           <li>For selecting from predefined options — use Dropdown</li>

@@ -11,21 +11,12 @@ const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Custom Content variant for flexible layouts',
-      'Improved backdrop click behavior with configurable dismiss',
-      'Fixed focus trap edge case with nested interactive elements',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Custom Content variant for flexible layouts', 'Improved backdrop click behavior with configurable dismiss', 'Fixed focus trap edge case with nested interactive elements'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Dialog Box component',
-      'Confirmation, Alert, and Form variants',
-      'Small, Medium, and Large size options',
-      'Overlay backdrop with focus trapping',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Dialog Box component', 'Confirmation, Alert, and Form variants', 'Small, Medium, and Large size options', 'Overlay backdrop with focus trapping'] }],
   },
 ];
 
@@ -137,10 +128,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dialog-box-usage.png"
-          alt="Dialog box usage guidelines"
-        />
+        <GuidelineImage title="Dialog box usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
