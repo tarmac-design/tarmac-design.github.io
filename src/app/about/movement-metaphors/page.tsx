@@ -4,7 +4,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function MovementMetaphorsPage() {
   return (
-    <PageShell title="Movement Metaphors" description="TARMAC is Reliable, Fast, Precise, and Confident. This is the feeling users should have every time they interact with a product built on TARMAC.">
+    <PageShell hideVersion title="Movement Metaphors" description="TARMAC is Reliable, Fast, Precise, and Confident. This is the feeling users should have every time they interact with a product built on TARMAC.">
       <h2>Overview</h2>
       <p>
         Motion in TARMAC is a functional tool that guides users, provides feedback, and creates a sense of quality. Every animation serves a purpose — it's never decorative. The movement metaphors are drawn directly from the physical world of logistics — road markings, junctions, signage, and the kinetic energy of delivery itself.

@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function ScreenReadersPage() {
   return (
-    <PageShell title="Screen Readers" description="Guidelines for screen reader compatibility and ARIA usage.">
+    <PageShell hideVersion title="Screen Readers" description="Guidelines for screen reader compatibility and ARIA usage.">
       <h2>ARIA Roles</h2>
       <table>
         <thead><tr><th>Role</th><th>Usage</th></tr></thead>

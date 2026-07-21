@@ -4,7 +4,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function LogoPage() {
   return (
-    <PageShell title="TARMAC Logo" description="The TARMAC logo is visualized as a Moving Red Dot — a parcel's certainty on the map, a vehicle's streak of light on the highway, and the vital pulse of our entire network.">
+    <PageShell hideVersion title="TARMAC Logo" description="The TARMAC logo is visualized as a Moving Red Dot — a parcel's certainty on the map, a vehicle's streak of light on the highway, and the vital pulse of our entire network.">
       <h2>What is Tarmac?</h2>
       <p>
         Tarmac is a durable paving material made from crushed stone bound with tar, creating a hard surface for roads, driveways, and airport runways. It provides a smooth, resilient ground surface for heavy use — the perfect metaphor for a design system that provides the reliable foundation for all digital products.

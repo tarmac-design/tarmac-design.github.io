@@ -4,7 +4,7 @@ import { DoDont } from '@/components/mdx';
 
 export default function TypographyStylesPage() {
   return (
-    <PageShell title="Typography Styles" description="Visual examples of all TARMAC typography styles.">
+    <PageShell hideVersion title="Typography Styles" description="Visual examples of all TARMAC typography styles.">
       <h2>Display</h2>
       <div className="p-6 rounded-xl border border-neutral-200 mb-6">
         <p style={{ fontSize: '36px', fontWeight: 700, lineHeight: '44px' }}>The quick brown fox jumps over the lazy dog</p>

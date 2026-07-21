@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function GuidelinesPage() {
   return (
-    <PageShell title="Accessibility Guidelines" description="Practical rules for designers and developers building with TARMAC.">
+    <PageShell hideVersion title="Accessibility Guidelines" description="Practical rules for designers and developers building with TARMAC.">
       <h2>For Designers</h2>
       <ul>
         <li>Use semantic color tokens — never rely on color alone to convey meaning</li>

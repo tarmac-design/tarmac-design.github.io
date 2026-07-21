@@ -4,214 +4,210 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="filter" />
-    </>
-  );
-}
-
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Filter, FilterOption, ChipFilter } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface FilterProps {
-  variant?: 'single' | 'multi' | 'search' | 'date' | 'chip';
-  size?: 'sm' | 'md' | 'lg';
-  options: FilterOption[];
-  selected?: string[];
-  onChange?: (selected: string[]) => void;
-  onClear?: () => void;
-  placeholder?: string;
-  searchable?: boolean;
-  disabled?: boolean;
-}
-
-interface FilterOption {
-  label: string;
-  value: string;
-  count?: number;
-  disabled?: boolean;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Multi-select filter
-<Filter
-  variant="multi"
-  options={categories}
-  selected={selected}
-  onChange={setSelected}
-  placeholder="Category"
-/>
-
-// Single select
-<Filter variant="single" options={statusOptions} />
-
-// With search
-<Filter variant="search" searchable options={longList} />
-
-// Chip filters
-<ChipFilter options={tags} selected={activeTags} onChange={setActiveTags} />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>filter-trigger-height-sm</td><td>32px</td></tr>
-          <tr><td>filter-trigger-height-md</td><td>36px</td></tr>
-          <tr><td>filter-trigger-height-lg</td><td>44px</td></tr>
-          <tr><td>filter-dropdown-radius</td><td>8px</td></tr>
-          <tr><td>filter-chip-radius</td><td>16px</td></tr>
-          <tr><td>filter-dropdown-shadow</td><td>0 4px 12px rgba(0,0,0,0.1)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all filter variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-filter--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Trigger</td><td>Button that opens the filter dropdown</td></tr>
-          <tr><td>2</td><td>Count Badge</td><td>Shows number of active selections</td></tr>
-          <tr><td>3</td><td>Dropdown Panel</td><td>Container for filter options</td></tr>
-          <tr><td>4</td><td>Search Input</td><td>Optional text field to filter options</td></tr>
-          <tr><td>5</td><td>Option Row</td><td>Checkbox/radio with label for each option</td></tr>
-          <tr><td>6</td><td>Clear Action</td><td>Button to reset all selections</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To narrow down large data sets by category, status, or date</li>
-        <li>In table headers for column-level filtering</li>
-        <li>As faceted search controls in e-commerce or dashboards</li>
-        <li>For quick inline filtering with chip-based controls</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="filter"
-        doItems={[
-          'Show the count of active filters on the trigger',
-          'Provide a clear all action when filters are active',
-          'Use single select for mutually exclusive options',
-          'Add search for lists with more than 10 options',
-          'Persist filter state across page navigation',
-        ]}
-        dontItems={[
-          'Don\'t nest filters more than one level deep',
-          'Don\'t auto-close the dropdown on each selection in multi-select',
-          'Don\'t use filters for fewer than 3 options — use radio buttons instead',
-          'Don\'t hide the active filter count from users',
-          'Don\'t mix chip filters and dropdown filters for the same data set',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>listbox / group</td><td>Identifies the filter list semantically</td></tr>
-          <tr><td>aria-expanded</td><td>boolean</td><td>Indicates dropdown open state</td></tr>
-          <tr><td>aria-selected</td><td>boolean</td><td>Marks selected options</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys, Space, Enter, Escape</td><td>Navigate and select options</td></tr>
-          <tr><td>Focus trap</td><td>—</td><td>Focus stays within open dropdown</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Dropdown</strong> — Generic select control for single values</li>
-        <li><strong>Checkbox</strong> — Standalone multi-select control</li>
-        <li><strong>Pills</strong> — Toggleable chip elements</li>
-        <li><strong>Search</strong> — Full-text search input</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─── TAB 4 — Changelog ─── */
-
-const filterChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June 10, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component'] }],
-  },
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with additional variant 3 types (Default, Success, Error)'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component with focus mode & Ghost mode'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Fixed', items: ['Updated Stroke colors with coal'] }],
+    date: 'June 2026',
+    changes: [
+      'Added multi-filter combination support',
+      'Improved reset behavior for nested filters',
+      'Fixed keyboard navigation within filter options',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Filter component',
+      'Support for Single filter, Multi filter, and With search variants',
+      'Apply and Reset button actions',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={filterChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Filters provide a UI for narrowing content by applying selection criteria. They
+          allow users to refine lists, tables, or search results by selecting from predefined
+          filter options. Filters can be combined for complex data narrowing.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Narrowing table data by status, date, or category</li>
+          <li>Filtering search results by multiple criteria</li>
+          <li>Refining product listings by attributes</li>
+          <li>Combining multiple filter conditions for complex queries</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─── Page Export ─── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+          <iframe
+            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-filterdropdown--playground&viewMode=story&shortcuts=false"
+            style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+            title="Filter interactive example"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Filter component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Filter Trigger</strong> — Button that opens the filter dropdown panel</li>
+          <li><strong>Dropdown Panel</strong> — Container holding filter options</li>
+          <li><strong>Filter Options</strong> — Selectable criteria items</li>
+          <li><strong>Apply/Reset Buttons</strong> — Actions to confirm or clear selections</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Single Filter</strong> — One filter criterion at a time</li>
+          <li><strong>Multi Filter</strong> — Multiple criteria applied simultaneously</li>
+          <li><strong>With Search</strong> — Includes search to find filter options quickly</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="filter" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/filter-when-to-use.png"
+          alt="When to use Filter"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When users need to narrow large datasets by criteria</li>
+          <li>When multiple filter dimensions are available</li>
+          <li>When filters need to be applied/reset explicitly</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/filter-when-not-to-use.png"
+          alt="When not to use Filter"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For sorting content — use a Sort control instead</li>
+          <li>For searching by text — use Search component</li>
+          <li>For navigation between views — use Tabs or Navigation</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Do&apos;s and Don&apos;ts</h2>
+        <DoDont
+          doItems={[
+            'Show active filter count on the trigger',
+            'Provide a clear way to reset all filters',
+            'Keep filter options concise and scannable',
+            'Allow combining multiple filter types',
+          ]}
+          dontItems={[
+            'Apply filters automatically without user confirmation',
+            'Hide the reset action when filters are active',
+            'Use vague or overlapping filter labels',
+            'Show empty states without suggesting filter removal',
+          ]}
+        />
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>aria-expanded</code> on filter trigger indicating panel state</li>
+          <li><code>aria-controls</code> linking trigger to the filter panel</li>
+          <li><code>role="group"</code> on filter option groups</li>
+          <li><code>aria-checked</code> on individual filter options</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Opens filter panel or toggles option</li>
+          <li><kbd>Arrow Down/Up</kbd> — Navigates between filter options</li>
+          <li><kbd>Escape</kbd> — Closes the filter panel</li>
+          <li><kbd>Tab</kbd> — Moves focus between filter sections and buttons</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Trigger announces active filter count</li>
+          <li>Options announce their checked/unchecked state</li>
+          <li>Apply and Reset buttons are clearly labeled</li>
+          <li>Results count updates are announced via live regions</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function FilterPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Filter"
-      description="Filters let users narrow content by selecting criteria from dropdowns, checkboxes, or chips."
+      description="UI for narrowing content by applying selection criteria. Supports single and multi-filter combinations with search capability."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

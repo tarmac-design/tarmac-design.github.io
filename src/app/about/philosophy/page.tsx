@@ -4,7 +4,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function PhilosophyPage() {
   return (
-    <PageShell title="Philosophy" description="The principles and values that guide every design and development decision in TARMAC.">
+    <PageShell hideVersion title="Philosophy" description="The principles and values that guide every design and development decision in TARMAC.">
       <h2>Designing for Tomorrow</h2>
       <p>
         TARMAC is built at the intersection of two forces: <strong>machine precision</strong> and <strong>human touch</strong>. Delhivery's design vision recognizes that logistics — often seen as cold and mechanical — is ultimately powered by people. Every interface we build must honor both the efficiency of technology and the warmth of human connection.

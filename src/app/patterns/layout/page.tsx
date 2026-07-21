@@ -4,7 +4,7 @@ import { Tabs, Tab, CardGroup, Card } from '@/components/mdx';
 
 export default function LayoutPage() {
   return (
-    <PageShell title="Layout Patterns" description="Layout patterns define how content is organized and structured across screens.">
+    <PageShell hideVersion title="Layout Patterns" description="Layout patterns define how content is organized and structured across screens.">
       <CardGroup cols={3}>
         <Card title="Responsive Grid" icon="📐">12-column grid system with breakpoint-aware layouts</Card>
         <Card title="Content Regions" icon="📊">Header, sidebar, main, footer patterns</Card>

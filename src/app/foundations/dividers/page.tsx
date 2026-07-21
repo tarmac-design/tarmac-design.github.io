@@ -268,14 +268,14 @@ const dividerChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function DividersPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={dividerChangelog} /> },
   ];
 
   return (
-    <PageShell title="Dividers"
+    <PageShell hideVersion title="Dividers"
       description="TARMAC's divider system — 2 styles (Line, Dash) × 3 sizes (0.5px, 1px, 1.5px) for horizontal and vertical separation across layouts."
       tabs={tabs}>
       <ExamplesTab />

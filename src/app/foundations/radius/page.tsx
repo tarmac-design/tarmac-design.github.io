@@ -323,14 +323,14 @@ const radiusChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function RadiusPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={radiusChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Radius"
       description="TARMAC's corner rounding system — 7 tokens from sharp (0px) to circular (999px), defining shape hierarchy across all components."
       tabs={tabs}

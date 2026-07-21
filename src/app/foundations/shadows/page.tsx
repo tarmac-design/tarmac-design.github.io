@@ -256,14 +256,14 @@ const shadowChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function ShadowsPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={shadowChangelog} /> },
   ];
 
   return (
-    <PageShell title="Shadows"
+    <PageShell hideVersion title="Shadows"
       description="TARMAC's shadow system — 3 elevation types (Default, Raised, Inner) with Primary and Secondary levels, adapting across light and dark modes."
       tabs={tabs}>
       <ExamplesTab />

@@ -279,14 +279,14 @@ const borderChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function BordersPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={borderChangelog} /> },
   ];
 
   return (
-    <PageShell
+    <PageShell hideVersion
       title="Borders"
       description="TARMAC's border system — 5 stroke widths (0.5–4px) with semantic types for success, error, warning, and info, supporting default, hovered, pressed, and disabled states."
       tabs={tabs}

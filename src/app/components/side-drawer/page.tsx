@@ -1,185 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-side-drawer--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Side Drawer component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-side-drawer--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-sidedrawer--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="side-drawer interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Side Drawer component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Side Drawer component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="side-drawer" />
     </>
   );
 }
 
-/* ── TAB 2 — Code ── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-      <h2>Import</h2>
-      <pre><code>{`import { SideDrawer } from '@tarmac/design-system';`}</code></pre>
-      <h2>Component API</h2>
-      <pre><code>{`interface SideDrawerProps {
-  open: boolean;
-  onClose: () => void;
-  position?: 'left' | 'right';
-  persistent?: boolean;
-  width?: string | number;
-  overlay?: boolean;
-  header?: ReactNode;
-  footer?: ReactNode;
-  children: ReactNode;
-}
-
-interface DrawerItemProps {
-  icon?: ReactNode;
-  label: string;
-  active?: boolean;
-  onClick?: () => void;
-  destructive?: boolean;
-}`}</code></pre>
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Basic left drawer
-<SideDrawer open={isOpen} onClose={() => setIsOpen(false)}>
-  <DrawerItem icon={<HomeIcon />} label="Home" onClick={goHome} />
-  <DrawerItem icon={<SettingsIcon />} label="Settings" />
-</SideDrawer>
-
-// Right drawer
-<SideDrawer open={isOpen} onClose={close} position="right">
-  <DetailPanel />
-</SideDrawer>
-
-// With header and footer
-<SideDrawer
-  open={isOpen}
-  onClose={close}
-  header={<UserProfile />}
-  footer={<DrawerItem label="Sign Out" destructive />}
->
-  <Navigation />
-</SideDrawer>
-
-// Persistent sidebar
-<SideDrawer open persistent>
-  <Navigation />
-</SideDrawer>`}</code></pre>
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>drawer-width</td><td>280px</td></tr>
-          <tr><td>drawer-z-index</td><td>1200</td></tr>
-          <tr><td>drawer-shadow</td><td>4px 0 16px rgba(0,0,0,0.15)</td></tr>
-          <tr><td>drawer-overlay-color</td><td>rgba(0,0,0,0.4)</td></tr>
-          <tr><td>drawer-transition</td><td>transform 0.25s ease</td></tr>
-          <tr><td>drawer-item-radius</td><td>6px</td></tr>
-        </tbody>
-      </table>
-      <h2>Storybook</h2>
-      <p>
-        Explore all side drawer variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-side-drawer--playground" target="_blank" rel="noopener noreferrer">TARMAC Storybook →</a>
-      </p>
-    </>
-  );
-}
-
-/* ── TAB 3 — Usage ── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Overlay</td><td>Semi-transparent backdrop behind the drawer</td></tr>
-          <tr><td>2</td><td>Drawer Panel</td><td>Slide-in container from left or right edge</td></tr>
-          <tr><td>3</td><td>Header</td><td>Optional top section for branding or user info</td></tr>
-          <tr><td>4</td><td>Navigation Items</td><td>Clickable menu items with icons and labels</td></tr>
-          <tr><td>5</td><td>Footer</td><td>Optional bottom section for secondary actions</td></tr>
-          <tr><td>6</td><td>Trigger</td><td>Hamburger icon or button that opens the drawer</td></tr>
-        </tbody>
-      </table>
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Side Drawer" slug="side-drawer" section="when-to-use" />
       <ul>
-        <li>Primary navigation on mobile or tablet layouts</li>
-        <li>Settings or configuration panels</li>
-        <li>Detail views that slide in from the side</li>
-        <li>Persistent sidebar navigation on desktop</li>
+        <li>Use the Side Drawer component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="side-drawer"
-        doItems={[
-          'Use overlay drawers on mobile, persistent on desktop',
-          'Close the drawer when a navigation item is selected',
-          'Include a visible close affordance (X button or backdrop tap)',
-          'Keep navigation items to 5–8 for scannability',
-          'Use icons alongside labels for quick recognition',
-        ]}
-        dontItems={[
-          'Don\'t nest drawers inside other drawers',
-          'Don\'t use drawers for primary content — they\'re for navigation',
-          'Don\'t auto-open drawers without user action',
-          'Don\'t put complex forms inside drawers',
-          'Don\'t block the close action during loading states',
-        ]}
-      />
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>navigation / complementary</td><td>Semantic role based on drawer content</td></tr>
-          <tr><td>aria-label</td><td>&quot;Navigation drawer&quot;</td><td>Accessible name for the drawer</td></tr>
-          <tr><td>aria-hidden</td><td>boolean</td><td>Hidden when closed (overlay variant)</td></tr>
-          <tr><td>Focus trap</td><td>Overlay mode</td><td>Trap focus within open overlay drawer</td></tr>
-          <tr><td>Escape</td><td>Close</td><td>Dismiss drawer on Escape key</td></tr>
-          <tr><td>Focus restore</td><td>Trigger element</td><td>Return focus to trigger on close</td></tr>
-        </tbody>
-      </table>
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Side Drawer" slug="side-drawer" section="when-not-to-use" />
       <ul>
-        <li><strong>Navigation</strong> — Top navigation bar for primary links</li>
-        <li><strong>Bottom Sheet</strong> — Mobile-friendly panel from bottom edge</li>
-        <li><strong>Dialog Box</strong> — Centered modal for focused interactions</li>
-        <li><strong>Tabs</strong> — Alternative navigation for content sections</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="side-drawer" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ── TAB 4 — Changelog ── */
-const sideDrawerChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component configuration'] }] },
-  { version: '1.1.1', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated Slot autolayouts'] }] },
-  { version: '1.1.0', date: 'April, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated corner radius & Min Max width set, and added Tabs into the Component'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={sideDrawerChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ── Page Export ── */
 export default function SideDrawerPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
   return (
-    <PageShell title="Side Drawer" description="Slide-in navigation panels from the left or right edge with overlay backdrop and persistent mode." tabs={tabs}>
-      <ExamplesTab />
+    <PageShell title="Side Drawer" description="Side Drawer is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

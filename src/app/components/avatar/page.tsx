@@ -1,270 +1,232 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="avatar" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Avatar, AvatarGroup } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface AvatarProps {
-  src?: string;
-  alt?: string;
-  initials?: string;
-  icon?: string;
-  numeric?: string;
-  size?: 's' | 'm' | 'l' | 'xl' | 'xxl';
-  shape?: 'circle' | 'square';
-  status?: 'active' | 'inactive' | 'idle' | 'orange' | 'cyan' | 'purple' | 'pink';
-  state?: 'default' | 'hover' | 'focused' | 'disabled' | 'ghost';
-  onClick?: () => void;
-  loading?: boolean;
-}
-
-interface AvatarGroupProps {
-  children: ReactNode;
-  max?: number;
-  size?: 's' | 'm' | 'l' | 'xl' | 'xxl';
-  shape?: 'circle' | 'square';
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Image avatar
-<Avatar
-  src="/photos/john-doe.jpg"
-  alt="John Doe"
-  size="l"
-  status="active"
-/>
-
-// Initials fallback
-<Avatar initials="JD" size="m" />
-
-// Icon fallback
-<Avatar icon="user" size="m" />
-
-// Avatar Group with overflow
-<AvatarGroup max={3} size="m">
-  <Avatar src="/photos/john.jpg" alt="John" />
-  <Avatar src="/photos/jane.jpg" alt="Jane" />
-  <Avatar initials="AB" />
-  <Avatar initials="CD" />
-</AvatarGroup>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>avatar-size-s</td><td>24px</td></tr>
-          <tr><td>avatar-size-m</td><td>28px</td></tr>
-          <tr><td>avatar-size-l</td><td>36px</td></tr>
-          <tr><td>avatar-size-xl</td><td>40px</td></tr>
-          <tr><td>avatar-size-xxl</td><td>48px</td></tr>
-        </tbody>
-      </table>
-      <h3>Status Indicator Sizes</h3>
-      <table>
-        <thead><tr><th>Avatar Size</th><th>Indicator Size</th></tr></thead>
-        <tbody>
-          <tr><td>S</td><td>8px</td></tr>
-          <tr><td>M</td><td>10px</td></tr>
-          <tr><td>L / XL / XXL</td><td>12px</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all avatar variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-avatar--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="https://mintcdn.com/delhivery-c9432998/doIU2Z4FdwFszuPW/assets/components/avatar/avatar-anatomy.png?w=1650&fit=max&auto=format&n=doIU2Z4FdwFszuPW&q=85&s=879a98fa83c9f6dcf4f9f853c0b06516" alt="Avatar anatomy" style={{ width: '100%', borderRadius: 8, marginBottom: 16, border: '1px solid var(--color-outline)' }} />
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Circular or square wrapper defining the avatar boundary</td></tr>
-          <tr><td>2</td><td>Background</td><td>Color fill when image is not available — auto-assigned from palette</td></tr>
-          <tr><td>3</td><td>Content</td><td>Image, initials (1–2 chars), icon, or numeric overflow indicator</td></tr>
-          <tr><td>4</td><td>Status Indicator</td><td>Optional colored dot — 8px (S), 10px (M), 12px (L/XL/XXL)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To visually represent a user, team, or entity in the interface</li>
-        <li>In headers, comments, activity feeds, and profile sections</li>
-        <li>To show participant lists with Avatar Groups</li>
-        <li>As visual anchors in data-heavy tables and lists</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="avatar"
-        doItems={[
-          'Provide meaningful alt text — use the person\'s name, not "avatar"',
-          'Use the fallback chain: Image → Initials → Icon',
-          'Keep the same size and shape within a given context',
-        ]}
-        dontItems={[
-          'Don\'t use avatars for decorative images unrelated to identity',
-          'Don\'t mix circle and square shapes in the same list',
-          'Don\'t use low-resolution or stretched images',
-        ]}
-      />
-
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Circular or square wrapper defining the avatar boundary</td></tr>
-          <tr><td>2</td><td>Background</td><td>Visual fill when image is not available</td></tr>
-          <tr><td>3</td><td>Content</td><td>Image, initials, icon, or numeric indicator</td></tr>
-          <tr><td>4</td><td>Status Indicator</td><td>Optional presence dot (online, idle, offline)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Content Guidelines</h2>
-      <ul>
-        <li>Alt text should be descriptive — include the person&apos;s name</li>
-        <li>For initials, use first and last name initials (max 2 characters)</li>
-        <li>Status indicators should supplement, not replace, text-based status</li>
-        <li>In Avatar Groups, show the most relevant participants first</li>
-      </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>alt</td><td>Person&apos;s name</td><td>Descriptive text for image avatars</td></tr>
-          <tr><td>aria-label</td><td>Person&apos;s name</td><td>For initials/icon variants without visible text</td></tr>
-          <tr><td>Keyboard</td><td>Tab / Enter / Space</td><td>Focus and activate interactive avatars</td></tr>
-          <tr><td>Focus ring</td><td>2px outline</td><td>Visible focus indicator with high contrast</td></tr>
-          <tr><td>Status</td><td>aria-label includes status</td><td>e.g. &quot;John Doe (online)&quot;</td></tr>
-          <tr><td>Contrast</td><td>≥ 4.5:1</td><td>Initials text against background</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Badge</strong> — For numeric indicators on other elements</li>
-        <li><strong>Tooltip</strong> — Show full name on hover for small avatars</li>
-        <li><strong>Status Indicator</strong> — Standalone status dots</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const avatarChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
+    date: 'June 2026',
     changes: [
-      {
-        category: 'Changed',
-        items: ['Updated component configuration & version updated'],
-      },
-    ],
-  },
-  {
-    version: '1.0.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [
-      {
-        category: 'Changed',
-        items: ['Updated ghost variant of Avatar'],
-      },
-    ],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [
-      {
-        category: 'Fixed',
-        items: ['Updated Stroke colors'],
-      },
+      'Added Square variant option',
+      'Improved fallback initials rendering for long names',
+      'Fixed status dot positioning at XSmall size',
     ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
+    date: 'March 2026',
     changes: [
-      {
-        category: 'Added',
-        items: ['Component Published'],
-      },
+      'Initial release of Avatar component',
+      'Support for Image, Initials, Numeric, and Icon variants',
+      'Five size options from XSmall to XLarge',
+      'Status dot and disabled states',
     ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={avatarChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Avatar is a circular (or square) user representation that displays an image, initials,
+          icon, or numeric value. It visually identifies users in profiles, comments, lists,
+          and navigation elements throughout the application.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>User profile representation in headers and menus</li>
+          <li>Comment and activity feed author identification</li>
+          <li>Contact lists and participant indicators</li>
+          <li>Navigation elements showing logged-in user</li>
+          <li>Placeholder when user image is unavailable</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Avatar component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Circular or square frame holding the avatar content</li>
+          <li><strong>Image/Initials/Icon</strong> — Primary visual content of the avatar</li>
+          <li><strong>Status Dot</strong> — Optional indicator showing online/offline/busy state</li>
+          <li><strong>Border Ring</strong> — Optional border ring for emphasis or grouping context</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Image</strong> — Displays a user photo or uploaded image</li>
+          <li><strong>Initials</strong> — Shows first/last name initials as text</li>
+          <li><strong>Numeric</strong> — Displays a number (e.g., for overflow counts)</li>
+          <li><strong>Icon</strong> — Shows a generic user or custom icon</li>
+          <li><strong>Square</strong> — Square-shaped variant for non-user entities</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>XLarge</strong> — 64px, used for profile pages and hero sections</li>
+          <li><strong>Large</strong> — 48px, used for cards and detail views</li>
+          <li><strong>Medium</strong> — 40px, default size for most contexts</li>
+          <li><strong>Small</strong> — 32px, used in lists and compact layouts</li>
+          <li><strong>XSmall</strong> — 24px, used in inline text and tight spaces</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">States</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Default</strong> — Standard display state</li>
+          <li><strong>With Status Dot</strong> — Shows online/offline/busy indicator</li>
+          <li><strong>Disabled</strong> — Reduced opacity, non-interactive</li>
+          <li><strong>Ghost</strong> — Loading/skeleton placeholder</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="avatar" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Use avatars to visually represent users and entities. Always provide fallback content
+          (initials or icon) for when images fail to load.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>To identify users in lists, comments, or profiles</li>
+          <li>To show participants in collaborative contexts</li>
+          <li>As a visual anchor for user-related content</li>
+          <li>In navigation to indicate the logged-in user</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For decorative images — use Image component instead</li>
+          <li>For brand logos — use Logo component instead</li>
+          <li>For icons without user context — use Icon component</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/avatar-sizing.png"
+          alt="Avatar sizing guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Always provide a fallback (initials or icon) for missing images',
+              'Use consistent sizes within the same context',
+              'Use the appropriate size for the surrounding layout',
+              'Include alt text describing the user for accessibility',
+            ]}
+            dontItems={[
+              'Use avatars for decorative purposes without user context',
+              'Mix different avatar sizes in the same row or list',
+              'Rely solely on the image without a fallback',
+              'Use extremely large avatars in compact layouts',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="img"</code> on the avatar container</li>
+          <li><code>aria-label</code> with the user&apos;s name or descriptive text</li>
+          <li><code>alt</code> attribute on image avatars with meaningful description</li>
+          <li><code>aria-hidden="true"</code> on decorative avatar icons</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Avatar is not focusable by default (non-interactive)</li>
+          <li>When used as a button (e.g., profile menu trigger), receives focus via <kbd>Tab</kbd></li>
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> activates interactive avatars</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces the user&apos;s name or descriptive label</li>
+          <li>Status dot state is conveyed through sr-only text</li>
+          <li>Initials-based avatars include full name in accessible label</li>
+          <li>Decorative avatars are hidden from assistive technology</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function AvatarPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Avatar"
-      description="An avatar is a visual representation of a user or entity."
+      description="Circular user representation showing image, initials, icon, or numeric value. Used in user profiles, comments, lists, and navigation."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

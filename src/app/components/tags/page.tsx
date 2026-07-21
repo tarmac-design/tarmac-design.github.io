@@ -1,274 +1,125 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-tags--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Tags component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-tags--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-chip--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="tags interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Tags component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Tags component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="tags" />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Tag } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface TagProps {
-  variant?: 'black' | 'white' | 'coal' | 'blue' | 'success' | 'error'
-           | 'warning' | 'dlv-red' | 'legacy-blue';
-  label: string;
-  icon?: ReactNode;
-  closable?: boolean;
-  statusDot?: boolean;
-  disabled?: boolean;
-  size?: 'sm' | 'md';
-  onClick?: () => void;
-  onClose?: () => void;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Simple tag
-<Tag label="React" />
-
-// Variant colors
-<Tag variant="success" label="Active" />
-<Tag variant="error" label="Deprecated" />
-<Tag variant="dlv-red" label="Urgent" />
-
-// With leading icon
-<Tag variant="blue" label="Tagged" icon={<TagIcon />} />
-
-// Closable tag
-<Tag variant="coal" label="Filter" closable onClose={() => handleRemove()} />
-
-// With status dot
-<Tag variant="black" label="Online" statusDot />
-
-// Disabled state
-<Tag variant="blue" label="Archived" disabled />
-
-// Size variants
-<Tag variant="blue" size="sm" label="Small" />
-<Tag variant="blue" size="md" label="Medium" />`}</code></pre>
-
-      <h2>Closable Tag List</h2>
-      <pre><code>{`function TagList() {
-  const [tags, setTags] = useState(['React', 'TypeScript', 'CSS']);
-
-  const removeTag = (tag: string) => {
-    setTags(prev => prev.filter(t => t !== tag));
-  };
-
-  return (
-    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-      {tags.map(tag => (
-        <Tag
-          key={tag}
-          label={tag}
-          closable
-          onClose={() => removeTag(tag)}
-        />
-      ))}
-    </div>
-  );
-}`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>tag-height-sm</td><td>24px</td></tr>
-          <tr><td>tag-height-md</td><td>32px</td></tr>
-          <tr><td>tag-border-radius</td><td>9999px (pill)</td></tr>
-          <tr><td>tag-font-size-sm</td><td>11px</td></tr>
-          <tr><td>tag-font-size-md</td><td>13px</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Variant Colors</h3>
-      <table>
-        <thead><tr><th>Variant</th><th>Background</th><th>Text</th></tr></thead>
-        <tbody>
-          <tr><td>black</td><td>#0D0D0D</td><td>#FFFFFF</td></tr>
-          <tr><td>white</td><td>#FFFFFF</td><td>#0D0D0D</td></tr>
-          <tr><td>coal</td><td>#525252</td><td>#FFFFFF</td></tr>
-          <tr><td>blue</td><td>#2396FB</td><td>#FFFFFF</td></tr>
-          <tr><td>success</td><td>#1BA86E</td><td>#FFFFFF</td></tr>
-          <tr><td>error</td><td>#DC143C</td><td>#FFFFFF</td></tr>
-          <tr><td>warning</td><td>#CF9F02</td><td>#FFFFFF</td></tr>
-          <tr><td>dlv-red</td><td>#ED1B36</td><td>#FFFFFF</td></tr>
-          <tr><td>legacy-blue</td><td>#1A73E8</td><td>#FFFFFF</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all tag variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-tag--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Fully rounded pill wrapper defining the tag boundary</td></tr>
-          <tr><td>2</td><td>Background</td><td>Color fill determined by variant</td></tr>
-          <tr><td>3</td><td>Label</td><td>Keyword text — category, topic, or filter name</td></tr>
-          <tr><td>4</td><td>Leading Icon</td><td>Optional icon before the label for visual context</td></tr>
-          <tr><td>5</td><td>Status Dot</td><td>Optional colored dot indicating live status</td></tr>
-          <tr><td>6</td><td>Close Button</td><td>Optional × button for removable tags</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Tags" slug="tags" section="when-to-use" />
       <ul>
-        <li>To label content with keywords or categories</li>
-        <li>As removable filter chips in search or filter interfaces</li>
-        <li>To display technology stacks, skills, or topic labels</li>
-        <li>To show applied filters that users can dismiss</li>
-        <li>For content tagging in articles, products, or listings</li>
+        <li>Use the Tags component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
-      <h2>Tags vs Badges</h2>
-      <table>
-        <thead><tr><th>Aspect</th><th>Tags</th><th>Badges</th></tr></thead>
-        <tbody>
-          <tr><td>Shape</td><td>Fully rounded pill (border-radius: 9999px)</td><td>Slightly rounded (border-radius: 4px)</td></tr>
-          <tr><td>Purpose</td><td>Content categorization and keywords</td><td>Status indicators and counts</td></tr>
-          <tr><td>Interaction</td><td>Often closable/removable</td><td>Typically static</td></tr>
-          <tr><td>Semantics</td><td>User-applied or content-derived labels</td><td>System-generated status</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="tags"
-        doItems={[
-          'Use tags for content categorization and keyword labeling',
-          'Keep tag labels short — 1 to 3 words maximum',
-          'Provide a close button when tags are user-removable',
-          'Use consistent variant colors within the same context',
-          'Include aria-label for screen readers on interactive tags',
-        ]}
-        dontItems={[
-          'Don\'t use tags for status indicators — use badges instead',
-          'Don\'t use tags for long text or full sentences',
-          'Don\'t mix too many color variants in a single group',
-          'Don\'t use tags as primary action buttons',
-          'Don\'t disable tags without clear visual indication',
-        ]}
-      />
-
-      <h2>Content Guidelines</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Tags" slug="tags" section="when-not-to-use" />
       <ul>
-        <li>Labels should be 1–3 words maximum</li>
-        <li>Use sentence case for keyword tags (e.g., &quot;Design system&quot;)</li>
-        <li>Use title case for proper nouns (e.g., &quot;TypeScript&quot;, &quot;React&quot;)</li>
-        <li>Icons should reinforce the label meaning, not replace it</li>
-        <li>Status dots should only appear when live status is relevant</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
       </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>listitem</td><td>Identifies the tag within a list of tags</td></tr>
-          <tr><td>aria-label</td><td>string</td><td>Descriptive text for the tag content</td></tr>
-          <tr><td>aria-disabled</td><td>boolean</td><td>Indicates disabled state to assistive tech</td></tr>
-          <tr><td>Close button</td><td>aria-label=&quot;Remove [label]&quot;</td><td>Accessible label for the dismiss action</td></tr>
-          <tr><td>Contrast</td><td>≥ 4.5:1</td><td>Text against background meets WCAG AA</td></tr>
-          <tr><td>Keyboard</td><td>Tab / Enter / Space</td><td>Focus and activate closable tags</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Badge</strong> — Compact status labels with counts and indicators</li>
-        <li><strong>Pills</strong> — Interactive selectable chips with toggle behavior</li>
-        <li><strong>Filter</strong> — Filter controls for narrowing content</li>
-        <li><strong>Status Indicator</strong> — Standalone colored dots for presence</li>
-      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="tags" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-function ChangelogTab() {
+function AccessibilityTab() {
   return (
     <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
       <ul>
-        <li>Added <code>statusDot</code> prop for live status indication</li>
-        <li>Added <code>closable</code> prop with accessible close button</li>
-        <li>Added <code>disabled</code> state support</li>
-        <li>Added leading icon support via <code>icon</code> prop</li>
-        <li>New variants: Legacy Blue, DLV Red</li>
-        <li>Two sizes: Small (24px) and Medium (32px)</li>
-        <li>Pill shape (border-radius: 9999px) for visual distinction from badges</li>
-        <li>Hover scale and press scale interaction states</li>
-        <li>Improved accessibility with aria-disabled and descriptive close labels</li>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
       </ul>
-      <h3>v1.0.0</h3>
+      <h2>Color and Contrast</h2>
       <ul>
-        <li>Initial release with basic keyword tag support</li>
-        <li>5 color variants: Black, White, Blue, Success, Error</li>
-        <li>Single size (28px)</li>
-        <li>Static display only — no close or icon support</li>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
+function ChangelogTab() { return <Changelog entries={changelog} />; }
+
 export default function TagsPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Tags"
-      description="Tags are keyword labels used for content categorization and tagging."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Tags" description="Tags is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

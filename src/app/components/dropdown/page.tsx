@@ -4,250 +4,240 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="dropdown" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Dropdown } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface DropdownProps {
-  options: { label: string; value: string }[];
-  value?: string;
-  onChange?: (value: string) => void;
-  placeholder?: string;
-  disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  searchable?: boolean;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Default single-select
-<Dropdown
-  options={[
-    { label: 'Apple', value: 'apple' },
-    { label: 'Banana', value: 'banana' },
-    { label: 'Cherry', value: 'cherry' },
-  ]}
-  value={selected}
-  onChange={setSelected}
-  placeholder="Select a fruit"
-/>
-
-// Searchable dropdown
-<Dropdown
-  options={countries}
-  value={country}
-  onChange={setCountry}
-  searchable
-  placeholder="Search countries..."
-/>
-
-// Multi-select
-<Dropdown
-  options={tags}
-  multiSelect
-  selectedValues={selectedTags}
-  onMultiChange={setSelectedTags}
-  placeholder="Select tags"
-/>
-
-// Disabled
-<Dropdown
-  options={options}
-  disabled
-  placeholder="Not available"
-/>
-
-// Size variants
-<Dropdown options={options} size="sm" placeholder="Small" />
-<Dropdown options={options} size="md" placeholder="Medium" />
-<Dropdown options={options} size="lg" placeholder="Large" />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>dropdown-trigger-height-sm</td><td>32px</td></tr>
-          <tr><td>dropdown-trigger-height-md</td><td>40px</td></tr>
-          <tr><td>dropdown-trigger-height-lg</td><td>48px</td></tr>
-          <tr><td>dropdown-border-radius</td><td>8px</td></tr>
-          <tr><td>dropdown-menu-max-height</td><td>260px</td></tr>
-          <tr><td>dropdown-option-padding</td><td>8px 12px</td></tr>
-          <tr><td>dropdown-z-index</td><td>1000</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all dropdown variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-dropdown--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Trigger</td><td>Button that opens the dropdown menu</td></tr>
-          <tr><td>2</td><td>Selected Value</td><td>Display of current selection in the trigger</td></tr>
-          <tr><td>3</td><td>Chevron</td><td>Arrow icon indicating expandability, rotates when open</td></tr>
-          <tr><td>4</td><td>Menu</td><td>Floating panel containing the option list</td></tr>
-          <tr><td>5</td><td>Option</td><td>Individual selectable item with hover highlight</td></tr>
-          <tr><td>6</td><td>Search Input</td><td>Optional filter field at top of menu</td></tr>
-          <tr><td>7</td><td>Group Header</td><td>Label for grouped option sections</td></tr>
-          <tr><td>8</td><td>Checkbox</td><td>Selection indicator in multi-select mode</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To select from a list of 5 or more options</li>
-        <li>When screen space is limited and a full list would be too large</li>
-        <li>For form fields requiring a single or multiple selection</li>
-        <li>When options need to be searchable or grouped</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="dropdown"
-        doItems={[
-          'Use for selecting from 5+ options',
-          'Show a clear placeholder or default value',
-          'Add search for lists with 10+ options',
-          'Group related options with section headers',
-          'Support keyboard navigation (arrow keys, Enter, Escape)',
-        ]}
-        dontItems={[
-          'Don\'t use for fewer than 5 options — use radio buttons instead',
-          'Don\'t nest dropdowns inside other dropdowns',
-          'Don\'t use for navigation — use a menu component instead',
-          'Don\'t truncate option labels — keep them concise',
-          'Don\'t use without a visible label or placeholder',
-        ]}
-      />
-
-      <h2>Content Guidelines</h2>
-      <ul>
-        <li>Keep option labels concise and scannable</li>
-        <li>Use sentence case for option text</li>
-        <li>Placeholder text should describe the expected selection</li>
-        <li>Group headers should be short uppercase labels</li>
-      </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>listbox</td><td>ARIA listbox pattern for the option list</td></tr>
-          <tr><td>aria-expanded</td><td>true | false</td><td>Indicates menu open state on trigger</td></tr>
-          <tr><td>aria-haspopup</td><td>listbox</td><td>Declares popup type on trigger</td></tr>
-          <tr><td>aria-selected</td><td>true | false</td><td>Marks the currently selected option</td></tr>
-          <tr><td>Keyboard</td><td>Enter / Space</td><td>Opens menu or selects option</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys</td><td>Navigate between options</td></tr>
-          <tr><td>Keyboard</td><td>Escape</td><td>Closes the menu</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Radio</strong> — Use for fewer than 5 mutually exclusive options</li>
-        <li><strong>Checkbox</strong> — Use for independent boolean selections</li>
-        <li><strong>Search</strong> — Standalone search input for filtering content</li>
-        <li><strong>Filter</strong> — Compound filter controls with multiple criteria</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-const dropdownChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
-    version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated dropdown list, added success and error and updated configuration'] }],
-  },
-  {
-    version: '1.1.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with Active state variant'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component gap between List and input fields'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Fixed', items: ['Updated Stroke colors'] }],
+    version: '1.2.0',
+    date: 'June 2026',
+    changes: [
+      'Added grouped options support',
+      'Improved search performance for large datasets',
+      'Fixed focus trap behavior when dropdown closes',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Dropdown component',
+      'Support for Single select, Multi select, With search, and Grouped variants',
+      'Open, Closed, Focused, and Disabled states',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={dropdownChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Dropdowns are selection menus triggered by a button or input field. They present
+          a list of options in a floating panel, allowing users to choose one or more items
+          from a predefined set. Dropdowns are ideal when screen space is limited and the
+          option list is too long for inline radio buttons or checkboxes.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Selecting a single option from a list (e.g., country, status)</li>
+          <li>Multi-selecting tags or categories for filtering</li>
+          <li>Choosing from a large set of options with search capability</li>
+          <li>Grouped selections with logical categorization</li>
+          <li>Form fields requiring predefined value selection</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+          <iframe
+            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-dropdown--playground&viewMode=story&shortcuts=false"
+            style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+            title="Dropdown interactive example"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Dropdown component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Trigger</strong> — Button or input that opens the dropdown panel</li>
+          <li><strong>Dropdown Panel</strong> — Floating container holding the option list</li>
+          <li><strong>Option Items</strong> — Individual selectable items within the panel</li>
+          <li><strong>Search Field</strong> — Optional text input for filtering options</li>
+          <li><strong>Dividers</strong> — Visual separators between option groups</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Single Select</strong> — Allows selecting one option at a time</li>
+          <li><strong>Multi Select</strong> — Allows selecting multiple options with checkboxes</li>
+          <li><strong>With Search</strong> — Includes a search field for filtering options</li>
+          <li><strong>Grouped</strong> — Options organized into labeled groups</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">States</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Open</strong> — Panel is visible and interactive</li>
+          <li><strong>Closed</strong> — Panel is hidden, only trigger is visible</li>
+          <li><strong>Focused</strong> — Trigger has keyboard focus</li>
+          <li><strong>Disabled</strong> — Interaction is prevented</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="dropdown" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/dropdown-when-to-use.png"
+          alt="When to use Dropdown"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When there are more than 5 options to choose from</li>
+          <li>When screen space is limited and inline options are impractical</li>
+          <li>When the user needs to select from a predefined set of values</li>
+          <li>When options need to be searchable or grouped</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/dropdown-when-not-to-use.png"
+          alt="When not to use Dropdown"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For fewer than 5 options — use Radio buttons or Checkboxes instead</li>
+          <li>For navigation menus — use Navigation component</li>
+          <li>For actions — use Menu or Button component</li>
+          <li>For free-text input — use Input or Input Area</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Do&apos;s and Don&apos;ts</h2>
+        <DoDont
+          doItems={[
+            'Provide a clear placeholder or label for the trigger',
+            'Use search for lists with more than 10 options',
+            'Group related options logically',
+            'Show selected state clearly in the trigger',
+          ]}
+          dontItems={[
+            'Nest dropdowns inside other dropdowns',
+            'Use dropdown for binary yes/no choices',
+            'Include more than 3 levels of grouping',
+            'Allow the panel to overflow the viewport without scrolling',
+          ]}
+        />
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="listbox"</code> on the dropdown panel</li>
+          <li><code>role="option"</code> on each option item</li>
+          <li><code>aria-expanded</code> on the trigger indicating open/closed state</li>
+          <li><code>aria-haspopup="listbox"</code> on the trigger</li>
+          <li><code>aria-selected</code> on selected option(s)</li>
+          <li><code>aria-activedescendant</code> for tracking focused option</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Opens/closes the dropdown</li>
+          <li><kbd>Arrow Down</kbd> — Moves focus to next option</li>
+          <li><kbd>Arrow Up</kbd> — Moves focus to previous option</li>
+          <li><kbd>Home</kbd> — Moves focus to first option</li>
+          <li><kbd>End</kbd> — Moves focus to last option</li>
+          <li><kbd>Escape</kbd> — Closes the dropdown and returns focus to trigger</li>
+          <li><kbd>Tab</kbd> — Moves focus out of the dropdown</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Trigger announces its label, role, and expanded state</li>
+          <li>Options announce their label and selected state</li>
+          <li>Multi-select communicates number of selected items</li>
+          <li>Search field announces filtered results count</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Color Contrast</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>All text meets 4.5:1 contrast ratio against background</li>
+          <li>Focus indicators meet 3:1 contrast against adjacent colors</li>
+          <li>Selected state is visually distinguishable beyond color alone</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function DropdownPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Dropdown"
-      description="Dropdowns allow users to select from a list of options in a collapsible menu."
+      description="Selection menu triggered by a button or input field. Presents a list of options in a floating panel for single or multi-select interactions."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

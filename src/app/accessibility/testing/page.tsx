@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function TestingPage() {
   return (
-    <PageShell title="Accessibility Testing" description="How to test your application for accessibility compliance.">
+    <PageShell hideVersion title="Accessibility Testing" description="How to test your application for accessibility compliance.">
       <h2>Automated Testing</h2>
       <table>
         <thead><tr><th>Tool</th><th>Type</th><th>Coverage</th></tr></thead>

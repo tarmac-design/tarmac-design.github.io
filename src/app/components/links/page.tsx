@@ -1,236 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-links--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Links component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-links--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-link--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="links interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Links component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Links component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="links" />
     </>
   );
 }
 
-/* ── Code Tab ── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Link } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Developer Handoff</h2>
-
-      <h3>TypeScript Interface</h3>
-      <pre><code>{`interface LinkProps {
-  /** Target URL for the link */
-  href: string;
-  /** Color variant of the link */
-  variant?: 'blue' | 'black' | 'white';
-  /** Link content — text, icons, or mixed */
-  children: ReactNode;
-  /** Renders an external arrow icon and opens in new tab */
-  external?: boolean;
-  /** Disables interaction and reduces opacity */
-  disabled?: boolean;
-  /** Optional icon element */
-  icon?: ReactNode;
-  /** Position of the icon relative to text */
-  iconPosition?: 'left' | 'right';
-}`}</code></pre>
-
-      <h3>Prop Descriptions</h3>
-      <table>
-        <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>href</code></td><td><code>string</code></td><td>—</td><td>Required. The destination URL for the link.</td></tr>
-          <tr><td><code>variant</code></td><td><code>&apos;blue&apos; | &apos;black&apos; | &apos;white&apos;</code></td><td><code>&apos;blue&apos;</code></td><td>Color variant. Blue (#2396FB) for default, Black (#0D0D0D) for subtle, White (#FFF) for dark backgrounds.</td></tr>
-          <tr><td><code>children</code></td><td><code>ReactNode</code></td><td>—</td><td>Required. The link content — typically text.</td></tr>
-          <tr><td><code>external</code></td><td><code>boolean</code></td><td><code>false</code></td><td>When true, appends an external arrow icon and sets <code>target=&quot;_blank&quot;</code> with <code>rel=&quot;noopener noreferrer&quot;</code>.</td></tr>
-          <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the link. Reduces opacity to 50% and shows not-allowed cursor.</td></tr>
-          <tr><td><code>icon</code></td><td><code>ReactNode</code></td><td><code>undefined</code></td><td>Optional icon element rendered alongside the text.</td></tr>
-          <tr><td><code>iconPosition</code></td><td><code>&apos;left&apos; | &apos;right&apos;</code></td><td><code>&apos;left&apos;</code></td><td>Controls whether the icon appears before or after the link text.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Integration Examples</h3>
-
-      <h4>Basic Link</h4>
-      <pre><code>{`<Link href="/about">About Us</Link>`}</code></pre>
-
-      <h4>External Link</h4>
-      <pre><code>{`<Link href="https://example.com" external>
-  Visit Example
-</Link>`}</code></pre>
-
-      <h4>With Leading Icon</h4>
-      <pre><code>{`<Link href="/favorites" icon={<StarIcon />} iconPosition="left">
-  Favorites
-</Link>`}</code></pre>
-
-      <h4>With Trailing Icon</h4>
-      <pre><code>{`<Link href="/rate" icon={<StarIcon />} iconPosition="right">
-  Rate this
-</Link>`}</code></pre>
-
-      <h4>Inline in Paragraph</h4>
-      <pre><code>{`<p>
-  Read our <Link href="/terms">Terms of Service</Link> and
-  <Link href="/privacy">Privacy Policy</Link>.
-</p>`}</code></pre>
-
-      <h4>Disabled Link</h4>
-      <pre><code>{`<Link href="/locked" disabled>
-  Premium Content
-</Link>`}</code></pre>
-
-      <h4>White Variant on Dark Background</h4>
-      <pre><code>{`<div style={{ background: '#0D0D0D', padding: 24 }}>
-  <Link href="/docs" variant="white" external>
-    Documentation
-  </Link>
-</div>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>link-color-blue</td><td>#2396FB</td><td>Default blue link color</td></tr>
-          <tr><td>link-color-black</td><td>#0D0D0D</td><td>Black link color</td></tr>
-          <tr><td>link-color-white</td><td>#FFFFFF</td><td>White link color (dark bg)</td></tr>
-          <tr><td>link-visited-blue</td><td>#7B61FF</td><td>Visited state for blue variant</td></tr>
-          <tr><td>link-visited-black</td><td>#525252</td><td>Visited state for black variant</td></tr>
-          <tr><td>link-disabled-opacity</td><td>0.5</td><td>Opacity when disabled</td></tr>
-          <tr><td>link-font-weight</td><td>500</td><td>Medium weight for link text</td></tr>
-          <tr><td>link-icon-gap</td><td>4px</td><td>Gap between icon and text</td></tr>
-        </tbody>
-      </table>
+      <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Links" slug="links" section="when-to-use" />
+      <ul>
+        <li>Use the Links component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
+      </ul>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Links" slug="links" section="when-not-to-use" />
+      <ul>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="links" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
     </>
   );
 }
 
-/* ── Usage Tab ── */
-function UsageTab() {
+function AccessibilityTab() {
   return (
     <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Leading Icon</td><td>Optional icon before the link text</td></tr>
-          <tr><td>2</td><td>Link Text</td><td>Clickable text content — inherits parent font size</td></tr>
-          <tr><td>3</td><td>Trailing Icon</td><td>Optional icon after text, or external arrow for external links</td></tr>
-          <tr><td>4</td><td>Underline</td><td>Appears on hover to indicate interactivity</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Usage Decision Guide</h2>
-      <table>
-        <thead><tr><th>Context</th><th>Variant</th><th>External</th><th>Example</th></tr></thead>
-        <tbody>
-          <tr><td>Primary navigation</td><td>Blue</td><td>No</td><td>&quot;View all products&quot;</td></tr>
-          <tr><td>Inline in body text</td><td>Blue</td><td>No</td><td>&quot;Terms of Service&quot;</td></tr>
-          <tr><td>Footer / secondary nav</td><td>Black</td><td>No</td><td>&quot;Contact Us&quot;</td></tr>
-          <tr><td>External resource</td><td>Blue</td><td>Yes</td><td>&quot;GitHub Repository ↗&quot;</td></tr>
-          <tr><td>Dark background / hero</td><td>White</td><td>No</td><td>&quot;Get Started&quot;</td></tr>
-          <tr><td>Disabled / locked</td><td>Any</td><td>No</td><td>&quot;Premium Content&quot;</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="links"
-        doItems={[
-          'Use descriptive link text that makes sense out of context',
-          'Show an external icon for links that leave the site',
-          'Use underline on hover to signal interactivity',
-          'Ensure visited links have a distinct color shift',
-          'Use the blue variant as the default for most contexts',
-        ]}
-        dontItems={[
-          'Don\'t use "click here" or "read more" as link text',
-          'Don\'t style links to look like buttons or vice versa',
-          'Don\'t remove hover underline — it\'s the primary affordance',
-          'Don\'t use white variant on light backgrounds',
-          'Don\'t disable links without explaining why nearby',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Semantic HTML</td><td>&lt;a&gt;</td><td>Always use native anchor element in production</td></tr>
-          <tr><td>Keyboard</td><td>Tab / Enter</td><td>Focus and activate the link</td></tr>
-          <tr><td>Focus ring</td><td>2px outline</td><td>Visible focus indicator for keyboard users</td></tr>
-          <tr><td>Text contrast</td><td>≥ 4.5:1</td><td>Against background (WCAG AA)</td></tr>
-          <tr><td>External links</td><td>target=&quot;_blank&quot;</td><td>With rel=&quot;noopener noreferrer&quot; for security</td></tr>
-          <tr><td>aria-disabled</td><td>true</td><td>Set on disabled links, with tabIndex=-1</td></tr>
-          <tr><td>aria-label</td><td>string</td><td>When link text alone is not descriptive enough</td></tr>
-        </tbody>
-      </table>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
+      </ul>
     </>
   );
 }
 
-/* ── Changelog Tab ── */
-
-const linksChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component'] }],
-  },
-  {
-    version: '1.0.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated with ghost mode and updated component configuration'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component with Focus mode'] }],
-  },
-  {
-    version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
-  },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={linksChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ── Page Export ── */
 export default function LinksPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Links"
-      description="Text hyperlinks for navigating users to other pages, sections, or external resources."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Links" description="Links is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

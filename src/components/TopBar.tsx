@@ -161,7 +161,8 @@ export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick
           </button>
         )}
 
-        <nav className="hidden lg:flex items-center gap-1 ml-auto mr-4">
+        <div className="flex items-center gap-2 shrink-0 ml-auto">
+          <nav className="hidden lg:flex items-center gap-1 mr-3">
           {topNav.map((item) => {
             const active = isActive(item.section);
             return (
@@ -170,8 +171,12 @@ export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick
                 style={{
                   color: onHero
                     ? heroTextColor
-                    : active ? 'var(--color-primary)' : 'var(--color-on-surface-variant)',
-                  background: !onHero && active ? 'var(--color-primary-container)' : 'transparent',
+                    : active ? 'var(--color-on-surface)' : 'var(--color-on-surface-variant)',
+                  background: 'transparent',
+                  fontWeight: active ? 700 : 500,
+                  borderBottom: active && !onHero ? '2px solid var(--color-on-surface)' : '2px solid transparent',
+                  borderRadius: 0,
+                  paddingBottom: '4px',
                 }}
               >
                 {item.label}
@@ -180,7 +185,6 @@ export function TopBar({ onMenuClick, searchOpen, setSearchOpen }: { onMenuClick
           })}
         </nav>
 
-        <div className="flex items-center gap-2 shrink-0">
           <button onClick={() => toggleSearch(true)} className="p-2 rounded-lg transition-colors" style={{ color: heroTextColor }} aria-label="Search">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>

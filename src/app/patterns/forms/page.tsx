@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function FormsPage() {
   return (
-    <PageShell title="Form Patterns" description="Common form layouts and validation patterns for consistent user input experiences.">
+    <PageShell hideVersion title="Form Patterns" description="Common form layouts and validation patterns for consistent user input experiences.">
       <h2>Form Layout</h2>
       <ul>
         <li>Stack form fields vertically for best readability</li>

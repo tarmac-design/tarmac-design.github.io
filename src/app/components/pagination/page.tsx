@@ -1,282 +1,125 @@
 'use client';
 
-import { useState } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-pagination--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Pagination component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-pagination--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-pagination--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="pagination interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Pagination component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Pagination component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="pagination" />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Pagination } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`<Pagination
-  totalPages={20}
-  currentPage={1}
-  onChange={(page) => console.log(page)}
-/>
-
-// With variant and size
-<Pagination
-  totalPages={50}
-  currentPage={5}
-  variant="blue"
-  size="sm"
-  onChange={setPage}
-/>
-
-// Without prev/next buttons
-<Pagination
-  totalPages={10}
-  currentPage={3}
-  showPrevNext={false}
-  onChange={setPage}
-/>`}</code></pre>
-
-      <h2>Developer Handoff</h2>
-
-      <h3>TypeScript Interface</h3>
-      <pre><code>{`interface PaginationProps {
-  /** Total number of pages */
-  totalPages: number;
-  /** Currently active page (1-indexed). Defaults to 1 */
-  currentPage?: number;
-  /** Callback fired when a page is selected */
-  onChange?: (page: number) => void;
-  /** Color variant for the active page indicator */
-  variant?: 'black' | 'blue' | 'dlv-red';
-  /** Size of the pagination cells */
-  size?: 'sm' | 'md';
-  /** Whether to show Prev/Next text buttons */
-  showPrevNext?: boolean;
-}`}</code></pre>
-
-      <h3>Prop Descriptions</h3>
-      <table>
-        <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td><code>totalPages</code></td><td><code>number</code></td><td>—</td><td>Total number of pages. Required.</td></tr>
-          <tr><td><code>currentPage</code></td><td><code>number</code></td><td><code>1</code></td><td>The currently active page (1-indexed).</td></tr>
-          <tr><td><code>onChange</code></td><td><code>(page: number) =&gt; void</code></td><td>—</td><td>Callback when a page button is clicked. Receives the new page number.</td></tr>
-          <tr><td><code>variant</code></td><td><code>&apos;black&apos; | &apos;blue&apos; | &apos;dlv-red&apos;</code></td><td><code>&apos;black&apos;</code></td><td>Color variant for the active page highlight.</td></tr>
-          <tr><td><code>size</code></td><td><code>&apos;sm&apos; | &apos;md&apos;</code></td><td><code>&apos;md&apos;</code></td><td>Cell size. Small (28px) or Medium (36px).</td></tr>
-          <tr><td><code>showPrevNext</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show or hide the Prev/Next text navigation buttons.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Integration Examples</h3>
-      <pre><code>{`// Controlled pagination with React state
-function ProductList() {
-  const [page, setPage] = useState(1);
-  const { data } = useFetchProducts({ page, pageSize: 20 });
-
-  return (
-    <>
-      <ProductGrid items={data.items} />
-      <Pagination
-        totalPages={data.totalPages}
-        currentPage={page}
-        onChange={setPage}
-        variant="blue"
-        size="md"
-        showPrevNext
-      />
-    </>
-  );
-}`}</code></pre>
-
-      <pre><code>{`// URL-driven pagination with Next.js
-'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
-
-function PaginatedTable() {
-  const router = useRouter();
-  const params = useSearchParams();
-  const page = Number(params.get('page')) || 1;
-
-  return (
-    <Pagination
-      totalPages={100}
-      currentPage={page}
-      onChange={(p) => router.push(\`?page=\${p}\`)}
-      variant="dlv-red"
-      size="sm"
-    />
-  );
-}`}</code></pre>
-
-      <pre><code>{`// Compact pagination without prev/next
-<Pagination
-  totalPages={5}
-  currentPage={2}
-  onChange={handleChange}
-  showPrevNext={false}
-  size="sm"
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>pagination-cell-sm</td><td>28px</td></tr>
-          <tr><td>pagination-cell-md</td><td>36px</td></tr>
-          <tr><td>pagination-border-radius</td><td>6px</td></tr>
-          <tr><td>pagination-gap</td><td>4px</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Variant Colors</h3>
-      <table>
-        <thead><tr><th>Variant</th><th>Active BG</th><th>Active Text</th></tr></thead>
-        <tbody>
-          <tr><td>black</td><td>#0D0D0D</td><td>#FFFFFF</td></tr>
-          <tr><td>blue</td><td>#2396FB</td><td>#FFFFFF</td></tr>
-          <tr><td>dlv-red</td><td>#ED1B36</td><td>#FFFFFF</td></tr>
-        </tbody>
-      </table>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Navigation wrapper for the pagination controls</td></tr>
-          <tr><td>2</td><td>Previous Button</td><td>Text cell with left chevron to go back one page</td></tr>
-          <tr><td>3</td><td>Page Numbers</td><td>Number cells — clickable buttons for each page</td></tr>
-          <tr><td>4</td><td>Active Page</td><td>Highlighted number cell indicating the current page</td></tr>
-          <tr><td>5</td><td>Ellipsis</td><td>Truncation indicator for skipped page ranges</td></tr>
-          <tr><td>6</td><td>Next Button</td><td>Text cell with right chevron to advance one page</td></tr>
-          <tr><td>7</td><td>Divider</td><td>Optional vertical separator between nav buttons and page numbers</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Pagination" slug="pagination" section="when-to-use" />
       <ul>
-        <li>To navigate through paginated data tables or lists</li>
-        <li>To break long content into discrete, numbered pages</li>
-        <li>When users need to jump to specific pages in a dataset</li>
-        <li>For search results or product catalogs with many items</li>
+        <li>Use the Pagination component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
       <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Pagination" slug="pagination" section="when-not-to-use" />
       <ul>
-        <li>For content that benefits from infinite scroll (feeds, timelines)</li>
-        <li>When the total number of pages is unknown or dynamic</li>
-        <li>For fewer than 2 pages of content</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
       </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="pagination" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
 
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="pagination"
-        doItems={[
-          'Clearly highlight the current active page',
-          'Disable Prev on the first page and Next on the last page',
-          'Use ellipsis for large page counts to keep the UI compact',
-          'Place pagination at the bottom of the paginated content',
-          'Use consistent variant colors within the same interface',
-        ]}
-        dontItems={[
-          'Don\'t show pagination for fewer than 2 pages',
-          'Don\'t use different variants for the same pagination instance',
-          'Don\'t hide the current page number',
-          'Don\'t make page buttons too small to tap on mobile',
-          'Don\'t use pagination when infinite scroll is more appropriate',
-        ]}
-      />
-
-      <h2>Content Guidelines</h2>
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
       <ul>
-        <li>Prev/Next labels should be concise — &quot;Prev&quot; and &quot;Next&quot; are preferred</li>
-        <li>Page numbers should always be 1-indexed</li>
-        <li>Ellipsis should appear when there are more than 7 pages</li>
-        <li>Always show the first and last page numbers for context</li>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
       </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>navigation</td><td>Landmark for the pagination region</td></tr>
-          <tr><td>aria-label</td><td>&quot;Pagination&quot;</td><td>Accessible name for the navigation</td></tr>
-          <tr><td>aria-current</td><td>&quot;page&quot;</td><td>Marks the active page button</td></tr>
-          <tr><td>aria-disabled</td><td>&quot;true&quot;</td><td>Applied to disabled Prev/Next buttons</td></tr>
-          <tr><td>aria-label</td><td>&quot;Page N&quot;</td><td>Each page button has a descriptive label</td></tr>
-          <tr><td>Keyboard</td><td>Tab / Enter</td><td>Navigate and activate page buttons</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
+      <h2>Color and Contrast</h2>
       <ul>
-        <li><strong>Stepper</strong> — Sequential step navigation for multi-step flows</li>
-        <li><strong>Tabs</strong> — Switch between content views without page reloads</li>
-        <li><strong>Breadcrumbs</strong> — Hierarchical navigation showing the current location</li>
-        <li><strong>Button</strong> — Standalone action triggers</li>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-const paginationChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated coal color and selection color, and version updated to V1.1.2'] }] },
-  { version: '1.1.0', date: 'May, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated Prototype & component configuration & added ghost variant'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={paginationChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
 export default function PaginationPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Pagination"
-      description="Page navigation controls for paginated content with numbered pages, prev/next arrows, and ellipsis for large ranges."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Pagination" description="Pagination is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

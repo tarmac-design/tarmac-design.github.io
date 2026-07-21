@@ -4,235 +4,212 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="coachmarks" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Coachmark, CoachmarkTour } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface CoachmarkProps {
-  targetRef: React.RefObject<HTMLElement>;
-  title: string;
-  description: string;
-  position?: 'top' | 'bottom' | 'left' | 'right';
-  variant?: 'single' | 'multi-step' | 'spotlight' | 'dismissible';
-  visible: boolean;
-  onDismiss?: () => void;
-  onNext?: () => void;
-  onPrevious?: () => void;
-  currentStep?: number;
-  totalSteps?: number;
-  spotlight?: boolean;
-}
-
-interface CoachmarkTourProps {
-  steps: Array<{
-    targetRef: React.RefObject<HTMLElement>;
-    title: string;
-    description: string;
-    position?: 'top' | 'bottom' | 'left' | 'right';
-  }>;
-  active: boolean;
-  onComplete: () => void;
-  onSkip?: () => void;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Single coachmark
-<Coachmark
-  targetRef={buttonRef}
-  title="Quick Tip"
-  description="Click here to create a new item."
-  position="bottom"
-  visible={showTip}
-  onDismiss={() => setShowTip(false)}
-/>
-
-// Multi-step tour
-<CoachmarkTour
-  active={showTour}
-  steps={[
-    { targetRef: createRef, title: 'Create', description: 'Start here', position: 'bottom' },
-    { targetRef: searchRef, title: 'Search', description: 'Find items', position: 'bottom' },
-    { targetRef: profileRef, title: 'Profile', description: 'Your settings', position: 'left' },
-  ]}
-  onComplete={() => setShowTour(false)}
-  onSkip={() => setShowTour(false)}
-/>
-
-// With spotlight
-<Coachmark
-  targetRef={featureRef}
-  title="New Feature"
-  description="Try our latest addition."
-  spotlight
-  visible={showSpotlight}
-  onDismiss={() => setShowSpotlight(false)}
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>coachmark-bg-light</td><td>#E8F4FD</td></tr>
-          <tr><td>coachmark-bg-dark</td><td>#1E3A5F</td></tr>
-          <tr><td>coachmark-border-light</td><td>#B3D9F7</td></tr>
-          <tr><td>coachmark-border-dark</td><td>#2D5A8E</td></tr>
-          <tr><td>coachmark-border-radius</td><td>10px</td></tr>
-          <tr><td>coachmark-arrow-size</td><td>8px</td></tr>
-          <tr><td>coachmark-spotlight-opacity</td><td>0.4 (light) / 0.7 (dark)</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all coachmark variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-coachmark--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Tooltip Container</td><td>Rounded card with background and border</td></tr>
-          <tr><td>2</td><td>Arrow</td><td>Directional pointer toward the target element</td></tr>
-          <tr><td>3</td><td>Title</td><td>Bold heading describing the tip or step</td></tr>
-          <tr><td>4</td><td>Description</td><td>Explanatory text for the feature or action</td></tr>
-          <tr><td>5</td><td>Step Indicator</td><td>Dots or counter showing progress (multi-step)</td></tr>
-          <tr><td>6</td><td>Navigation Buttons</td><td>Previous/Next for multi-step tours</td></tr>
-          <tr><td>7</td><td>Dismiss Button</td><td>Close icon for dismissible variant</td></tr>
-          <tr><td>8</td><td>Spotlight Mask</td><td>Dark overlay with cutout around target</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>To onboard new users with feature discovery tours</li>
-        <li>To highlight new or updated features after a release</li>
-        <li>To provide contextual help for complex UI elements</li>
-        <li>To guide users through multi-step workflows</li>
-        <li>To draw attention to underused features</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="coachmarks"
-        doItems={[
-          'Keep coachmark text short and actionable',
-          'Show coachmarks only once per user (persist dismissal)',
-          'Use spotlight to focus attention on the target element',
-          'Provide a way to skip or dismiss the entire tour',
-          'Position coachmarks to avoid covering important content',
-        ]}
-        dontItems={[
-          'Don\'t show more than 5 steps in a single tour',
-          'Don\'t trigger coachmarks on every page load',
-          'Don\'t cover the target element with the tooltip',
-          'Don\'t use coachmarks for critical error messages',
-          'Don\'t block user interaction with the rest of the page (except spotlight)',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>tooltip</td><td>Identifies the coachmark as a tooltip</td></tr>
-          <tr><td>aria-describedby</td><td>string</td><td>Links target element to coachmark content</td></tr>
-          <tr><td>aria-live</td><td>polite</td><td>Announces step changes to screen readers</td></tr>
-          <tr><td>Escape key</td><td>—</td><td>Dismisses the coachmark or tour</td></tr>
-          <tr><td>Tab</td><td>—</td><td>Navigates between action buttons</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Popups</strong> — General-purpose tooltip and popover overlays</li>
-        <li><strong>Dialog Box</strong> — For more complex onboarding content</li>
-        <li><strong>Snackbar</strong> — For brief, non-blocking notifications</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-
-const coachmarksChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated configuration and version changed to latest'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated Borders & Added badge inside component'] }],
+    date: 'June 2026',
+    changes: [
+      'Added dismissible variant with skip-all option',
+      'Improved highlight cutout positioning accuracy',
+      'Fixed step indicator animation between steps',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Coachmarks component',
+      'Single step and Multi-step variants',
+      'Highlight area with tooltip bubble',
+      'Step indicator and navigation controls',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={coachmarksChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Coachmarks are guided onboarding overlays that highlight UI features step-by-step.
+          They are used to introduce new features or guide first-time users through
+          an interface, drawing attention to specific elements with explanatory tooltips.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Onboarding new users to key application features</li>
+          <li>Introducing newly released functionality</li>
+          <li>Guiding users through complex workflows</li>
+          <li>Highlighting hidden or non-obvious UI elements</li>
+          <li>Feature discovery for advanced capabilities</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Coachmarks component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Highlight Area</strong> — Cutout region exposing the target element</li>
+          <li><strong>Tooltip Bubble</strong> — Floating container with guidance content</li>
+          <li><strong>Title</strong> — Brief headline describing the feature</li>
+          <li><strong>Description</strong> — Explanatory text about the highlighted element</li>
+          <li><strong>Step Indicator</strong> — Dots or text showing progress (e.g., 2/5)</li>
+          <li><strong>Navigation</strong> — Next, Previous, and Skip buttons</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Single Step</strong> — One-off highlight with no navigation</li>
+          <li><strong>Multi-step</strong> — Sequential tour with navigation controls</li>
+          <li><strong>Dismissible</strong> — Includes skip-all option to exit the tour</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="coachmarks" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Coachmarks should be used sparingly for genuinely helpful onboarding.
+          Keep tours short (3-5 steps max), provide clear skip options, and
+          never block critical user flows.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For first-time user onboarding to key features</li>
+          <li>When introducing significant UI changes</li>
+          <li>For complex workflows that benefit from guidance</li>
+          <li>To highlight non-obvious but valuable features</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For obvious UI elements that don&apos;t need explanation</li>
+          <li>As a substitute for good UX design</li>
+          <li>For marketing or promotional content</li>
+          <li>When users have already completed onboarding</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/coachmarks-usage.png"
+          alt="Coachmarks usage guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Keep tours to 3-5 steps maximum',
+              'Always provide a skip/dismiss option',
+              'Show coachmarks only once per user (remember dismissal)',
+              'Point to visible, on-screen elements only',
+            ]}
+            dontItems={[
+              'Create long tours with 10+ steps',
+              'Block users from skipping the tour',
+              'Show coachmarks on every visit',
+              'Point to elements that are off-screen or hidden',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="dialog"</code> on the tooltip bubble</li>
+          <li><code>aria-modal="false"</code> (non-modal overlay)</li>
+          <li><code>aria-labelledby</code> pointing to the tooltip title</li>
+          <li><code>aria-describedby</code> pointing to the description</li>
+          <li>Navigation buttons have descriptive <code>aria-label</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus between navigation buttons</li>
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Activates Next/Previous/Skip</li>
+          <li><kbd>Escape</kbd> — Dismisses the coachmark tour</li>
+          <li>Focus is managed to the tooltip on each step</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces tooltip title and description on each step</li>
+          <li>Step progress is announced (e.g., "Step 2 of 5")</li>
+          <li>Navigation buttons clearly describe their actions</li>
+          <li>Dismissal is confirmed through announcement</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function CoachmarksPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Coachmarks"
-      description="Coachmarks are contextual tooltip overlays that guide users through features and workflows with step-by-step instructions."
+      description="Guided onboarding overlays that highlight UI features step-by-step. Used to introduce new features or guide first-time users."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

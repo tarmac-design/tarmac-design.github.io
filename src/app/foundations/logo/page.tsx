@@ -466,14 +466,14 @@ const logoChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function LogoPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={logoChangelog} /> },
   ];
 
   return (
-    <PageShell title="Logos"
+    <PageShell hideVersion title="Logos"
       description="A logo is a visual representation of a brand or app (product). It can be a word or an image, or a combination of both. 3 variants (Wordmark, Logomark, Pictorial) × 2 styles (Light, Dark) × 6 sizes (14–48px)."
       tabs={tabs}>
       <ExamplesTab />

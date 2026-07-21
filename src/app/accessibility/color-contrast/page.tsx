@@ -3,7 +3,7 @@ import { PageShell } from '@/components/PageShell';
 
 export default function ColorContrastPage() {
   return (
-    <PageShell title="Color Contrast" description="Contrast requirements, testing tools, and color blindness support.">
+    <PageShell hideVersion title="Color Contrast" description="Contrast requirements, testing tools, and color blindness support.">
       <h2>WCAG Requirements</h2>
       <table>
         <thead><tr><th>Element</th><th>Minimum Ratio</th><th>Level</th></tr></thead>

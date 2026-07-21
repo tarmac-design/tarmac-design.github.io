@@ -5,7 +5,7 @@ import { ImagePlaceholder } from '@/components/ImagePlaceholder';
 
 export default function QuickStartPage() {
   return (
-    <PageShell title="Quick Start" description="After installing TARMAC, you're ready to build.">
+    <PageShell hideVersion title="Quick Start" description="After installing TARMAC, you're ready to build.">
       <h2>Overview</h2>
       <p>After installing TARMAC, you're ready to build. This guide walks you through your first component and a simple form.</p>
 

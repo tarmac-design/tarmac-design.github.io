@@ -1,205 +1,212 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="footer" />
-    </>
-  );
-}
-
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { Footer, FooterColumn, FooterLink } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface FooterProps {
-  variant?: 'simple' | 'multi-column' | 'newsletter' | 'compact';
-  logo?: ReactNode;
-  columns?: FooterColumn[];
-  socialLinks?: SocialLink[];
-  copyright?: string;
-  newsletter?: boolean;
-  onSubscribe?: (email: string) => void;
-}
-
-interface FooterColumn {
-  title: string;
-  links: FooterLink[];
-}
-
-interface FooterLink {
-  label: string;
-  href: string;
-  external?: boolean;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Simple footer
-<Footer variant="simple" copyright="© 2024 Tarmac" />
-
-// Multi-column
-<Footer
-  variant="multi-column"
-  logo={<Logo />}
-  columns={[
-    { title: 'Product', links: [{ label: 'Features', href: '/features' }] },
-    { title: 'Company', links: [{ label: 'About', href: '/about' }] },
-  ]}
-  socialLinks={[{ type: 'twitter', href: '#' }]}
-/>
-
-// With newsletter
-<Footer variant="newsletter" newsletter onSubscribe={handleSubscribe} />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>footer-padding-y</td><td>24px</td></tr>
-          <tr><td>footer-padding-x</td><td>24px</td></tr>
-          <tr><td>footer-border-top</td><td>1px solid var(--color-outline)</td></tr>
-          <tr><td>footer-link-font-size</td><td>13px</td></tr>
-          <tr><td>footer-copyright-font-size</td><td>12px</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all footer variants in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-footer--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Full-width wrapper with top border</td></tr>
-          <tr><td>2</td><td>Logo</td><td>Brand mark or wordmark</td></tr>
-          <tr><td>3</td><td>Link Columns</td><td>Grouped navigation links by category</td></tr>
-          <tr><td>4</td><td>Social Icons</td><td>Links to social media profiles</td></tr>
-          <tr><td>5</td><td>Copyright</td><td>Legal text at the bottom</td></tr>
-          <tr><td>6</td><td>Newsletter</td><td>Optional email subscription form</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>At the bottom of every page for consistent navigation</li>
-        <li>To provide legal links (Privacy, Terms of Service)</li>
-        <li>To display social media and contact information</li>
-        <li>For secondary navigation that doesn&apos;t fit in the header</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="footer"
-        doItems={[
-          'Keep footer content consistent across all pages',
-          'Group links into logical categories',
-          'Include essential legal links (Privacy, Terms)',
-          'Use the compact variant for simple landing pages',
-          'Ensure social icons have accessible labels',
-        ]}
-        dontItems={[
-          'Don\'t overload the footer with too many link columns',
-          'Don\'t duplicate primary navigation in the footer',
-          'Don\'t use the footer for critical user actions',
-          'Don\'t hide the copyright notice',
-          'Don\'t use different footer variants on the same site',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>contentinfo</td><td>Landmark role for the footer region</td></tr>
-          <tr><td>aria-label</td><td>&quot;Footer navigation&quot;</td><td>Describes the footer purpose</td></tr>
-          <tr><td>Links</td><td>descriptive text</td><td>All links have meaningful labels</td></tr>
-          <tr><td>Social icons</td><td>aria-label</td><td>Each icon has an accessible name</td></tr>
-          <tr><td>Keyboard</td><td>Tab navigation</td><td>All links are focusable and reachable</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Header</strong> — Top-level navigation bar</li>
-        <li><strong>Navigation</strong> — Sidebar and tab navigation</li>
-        <li><strong>Links</strong> — Standalone link component</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─── TAB 4 — Changelog ─── */
-
-const footerChangelog: ChangelogEntry[] = [
-  {
-    version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Latest component'] }],
-  },
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with additional Add-ons'] }],
+    date: 'June 2026',
+    changes: [
+      'Added stacked CTA variant for mobile viewports',
+      'Improved divider styling consistency',
+      'Fixed button alignment in RTL layouts',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'May, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Footer component',
+      'Support for Single CTA, Dual CTA, and Stacked variants',
+      'Divider and container styling options',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={footerChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Footer is the bottom section of popups, sheets, and dialog boxes that contains
+          action buttons. It provides a consistent placement for primary and secondary
+          actions, helping users understand what actions are available to complete or
+          dismiss a workflow.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Confirm/Cancel actions in dialog boxes</li>
+          <li>Submit/Reset actions in form sheets</li>
+          <li>Navigation actions in multi-step flows</li>
+          <li>Single action confirmations in popups</li>
+          <li>Stacked actions on mobile bottom sheets</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─── Page Export ─── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+          <iframe
+            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-popup--playground&viewMode=story&shortcuts=false"
+            style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+            title="Footer interactive example"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Footer component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Container</strong> — Bottom-aligned wrapper with padding and background</li>
+          <li><strong>Primary Action</strong> — Main CTA button (e.g., Save, Confirm)</li>
+          <li><strong>Secondary Action</strong> — Optional secondary button (e.g., Cancel)</li>
+          <li><strong>Divider</strong> — Top border separating footer from body content</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Single CTA</strong> — One primary action button</li>
+          <li><strong>Dual CTA</strong> — Primary and secondary buttons side by side</li>
+          <li><strong>Stacked</strong> — Buttons stacked vertically for narrow viewports</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="footer" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/footer-when-to-use.png"
+          alt="When to use Footer"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When a popup or sheet requires user action to proceed</li>
+          <li>When both confirm and dismiss actions are needed</li>
+          <li>When actions need clear visual separation from content</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <GuidelineImage
+          src="/assets/guidelines/footer-when-not-to-use.png"
+          alt="When not to use Footer"
+        />
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For page-level footers — use a page layout footer</li>
+          <li>For inline form actions — place buttons within the form</li>
+          <li>For read-only content — a close button in header suffices</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Do&apos;s and Don&apos;ts</h2>
+        <DoDont
+          doItems={[
+            'Place primary action on the right (LTR) or left (RTL)',
+            'Use clear, action-oriented button labels',
+            'Keep footer actions to a maximum of two buttons',
+            'Use stacked layout on mobile when buttons are long',
+          ]}
+          dontItems={[
+            'Add more than two action buttons',
+            'Use vague labels like "OK" or "Click Here"',
+            'Place destructive actions as the primary CTA without warning',
+            'Hide the footer behind scrollable content',
+          ]}
+        />
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Footer buttons inherit dialog&apos;s ARIA context</li>
+          <li>Primary action has appropriate <code>aria-label</code> if icon-only</li>
+          <li>Destructive actions include <code>aria-describedby</code> linking to warning text</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Tab</kbd> — Moves focus between footer buttons</li>
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Activates focused button</li>
+          <li>Focus is trapped within the parent dialog/sheet</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Button labels clearly describe the action outcome</li>
+          <li>Buttons announce their role and state</li>
+          <li>Footer context is understood within the parent container</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function FooterPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Footer"
-      description="Footers provide page-level navigation, branding, legal links, and optional newsletter signup."
+      description="Bottom section of popups and sheets containing action buttons. Provides consistent placement for primary and secondary actions."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }

@@ -1,318 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
+import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-status-indicator--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The Status Indicator component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-status-indicator--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-statusindicator--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="status-indicator interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the Status Indicator component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the Status Indicator component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="status-indicator" />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { StatusIndicator } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Default with label
-<StatusIndicator status="success" label="Active" />
-
-// Without label (dot only)
-<StatusIndicator status="failed" />
-
-// With animation
-<StatusIndicator status="play" label="Playing" animated />
-
-// Custom size
-<StatusIndicator status="warning" label="Warning" size="lg" />
-
-// With custom icon
-<StatusIndicator status="success" label="Verified" icon={<CheckIcon />} />`}</code></pre>
-
-      <h2>Developer Handoff</h2>
-
-      <h3>TypeScript Interface</h3>
-      <pre><code>{`import { ReactNode } from 'react';
-
-type StatusType =
-  | 'success'      // #1BA86E — completed, active, online
-  | 'failed'       // #DC143C — error, rejected, offline
-  | 'warning'      // #CF9F02 — needs attention, caution
-  | 'information'  // #2396FB — informational, in progress
-  | 'synced'       // #1BA86E — data synchronized
-  | 'scheduled'    // #CF9F02 — planned, upcoming
-  | 'unknown'      // #A3A3A3 — indeterminate state
-  | 'pause'        // #CF9F02 — paused process
-  | 'play'         // #1BA86E — actively running
-  | 'downloading'  // #2396FB — transfer in progress
-  | 'pending';     // #A3A3A3 — awaiting action
-
-interface StatusIndicatorProps {
-  /** The status type determining the indicator color */
-  status: StatusType;
-
-  /** Optional text label displayed next to the dot */
-  label?: string;
-
-  /** Size of the indicator dot
-   *  'xs' = 6px | 'sm' = 8px | 'md' = 10px | 'lg' = 12px
-   *  @default 'md'
-   */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-
-  /** Enable pulse animation for active states
-   *  Only pulses for: success, play, synced, downloading
-   *  @default false
-   */
-  animated?: boolean;
-
-  /** Custom icon to replace the default dot */
-  icon?: ReactNode;
-}`}</code></pre>
-
-      <h3>Props Description</h3>
-      <table>
-        <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>status</td><td>StatusType</td><td>—</td><td>Yes</td><td>Determines the indicator color. One of: success, failed, warning, information, synced, scheduled, unknown, pause, play, downloading, pending.</td></tr>
-          <tr><td>label</td><td>string</td><td>undefined</td><td>No</td><td>Text label displayed adjacent to the colored dot. When omitted, renders dot only.</td></tr>
-          <tr><td>size</td><td>{`'xs' | 'sm' | 'md' | 'lg'`}</td><td>{`'md'`}</td><td>No</td><td>Controls the dot diameter: xs=6px, sm=8px, md=10px, lg=12px. Font size scales proportionally.</td></tr>
-          <tr><td>animated</td><td>boolean</td><td>false</td><td>No</td><td>Enables pulse animation. Only active states (success, play, synced, downloading) will pulse.</td></tr>
-          <tr><td>icon</td><td>ReactNode</td><td>undefined</td><td>No</td><td>Custom icon element to replace the default colored dot. Inherits the status color.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Status Color Reference</h3>
-      <table>
-        <thead><tr><th>Status</th><th>Color</th><th>Hex</th><th>Pulse</th></tr></thead>
-        <tbody>
-          <tr><td>success</td><td>Green</td><td>#1BA86E</td><td>Yes</td></tr>
-          <tr><td>failed</td><td>Red</td><td>#DC143C</td><td>No</td></tr>
-          <tr><td>warning</td><td>Amber</td><td>#CF9F02</td><td>No</td></tr>
-          <tr><td>information</td><td>Blue</td><td>#2396FB</td><td>No</td></tr>
-          <tr><td>synced</td><td>Green</td><td>#1BA86E</td><td>Yes</td></tr>
-          <tr><td>scheduled</td><td>Amber</td><td>#CF9F02</td><td>No</td></tr>
-          <tr><td>unknown</td><td>Gray</td><td>#A3A3A3</td><td>No</td></tr>
-          <tr><td>pause</td><td>Amber</td><td>#CF9F02</td><td>No</td></tr>
-          <tr><td>play</td><td>Green</td><td>#1BA86E</td><td>Yes</td></tr>
-          <tr><td>downloading</td><td>Blue</td><td>#2396FB</td><td>Yes</td></tr>
-          <tr><td>pending</td><td>Gray</td><td>#A3A3A3</td><td>No</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Integration Examples</h3>
-      <pre><code>{`// In a table row
-<tr>
-  <td><StatusIndicator status="success" label="Delivered" size="sm" /></td>
-  <td>Order #12345</td>
-</tr>
-
-// In a card header
-<div className="card-header">
-  <h3>Server Status</h3>
-  <StatusIndicator status="play" label="Running" animated />
-</div>
-
-// Compact list with dot only
-<ul>
-  {items.map(item => (
-    <li key={item.id}>
-      <StatusIndicator status={item.status} size="xs" />
-      <span>{item.name}</span>
-    </li>
-  ))}
-</ul>
-
-// With custom icon
-import { CheckCircle } from 'lucide-react';
-
-<StatusIndicator
-  status="success"
-  label="Verified"
-  icon={<CheckCircle size={12} />}
-/>
-
-// Conditional animation
-<StatusIndicator
-  status={isLive ? 'play' : 'pause'}
-  label={isLive ? 'Live' : 'Paused'}
-  animated={isLive}
-  size="lg"
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <h3>Sizing</h3>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>status-dot-size-xs</td><td>6px</td></tr>
-          <tr><td>status-dot-size-sm</td><td>8px</td></tr>
-          <tr><td>status-dot-size-md</td><td>10px</td></tr>
-          <tr><td>status-dot-size-lg</td><td>12px</td></tr>
-          <tr><td>status-label-gap</td><td>4–6px (scales with size)</td></tr>
-          <tr><td>status-pulse-duration</td><td>2s</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all status indicator variants and props interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-status-indicator--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Dot / Icon</td><td>Colored circle or custom icon representing the status</td></tr>
-          <tr><td>2</td><td>Label</td><td>Optional text describing the status in words</td></tr>
-          <tr><td>3</td><td>Pulse Ring</td><td>Animated expanding ring for active states</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 Status Indicator" slug="status-indicator" section="when-to-use" />
       <ul>
-        <li>To display system or process status (online, offline, syncing)</li>
-        <li>To show order or shipment tracking states</li>
-        <li>To indicate real-time activity (downloading, playing)</li>
-        <li>In tables, lists, or cards alongside related content</li>
-        <li>As compact presence indicators in user profiles</li>
+        <li>Use the Status Indicator component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="status-indicator"
-        doItems={[
-          'Use consistent colors for the same status across the application',
-          'Include a text label alongside the color for accessibility',
-          'Use pulse animation only for genuinely active/live states',
-          'Keep status labels concise — 1 to 2 words',
-          'Place the indicator near the content it describes',
-        ]}
-        dontItems={[
-          'Don\'t rely on color alone to convey status meaning',
-          'Don\'t use pulse animation on every indicator — reserve for active states',
-          'Don\'t use more than 4–5 different statuses in a single view',
-          'Don\'t change status color meanings between different contexts',
-          'Don\'t use status indicators as interactive buttons',
-        ]}
-      />
-
-      <h2>Color Semantics</h2>
-      <table>
-        <thead><tr><th>Color Group</th><th>Statuses</th><th>Meaning</th></tr></thead>
-        <tbody>
-          <tr><td>Green (#1BA86E)</td><td>Success, Synced, Play</td><td>Positive, active, completed</td></tr>
-          <tr><td>Red (#DC143C)</td><td>Failed</td><td>Error, critical, stopped</td></tr>
-          <tr><td>Amber (#CF9F02)</td><td>Warning, Scheduled, Pause</td><td>Caution, pending action, paused</td></tr>
-          <tr><td>Blue (#2396FB)</td><td>Information, Downloading</td><td>Informational, in progress</td></tr>
-          <tr><td>Gray (#A3A3A3)</td><td>Unknown, Pending</td><td>Indeterminate, awaiting</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Content Guidelines</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 Status Indicator" slug="status-indicator" section="when-not-to-use" />
       <ul>
-        <li>Labels should be 1–2 words maximum</li>
-        <li>Use title case for status labels (e.g., &quot;In Progress&quot;)</li>
-        <li>When used without a label, provide a tooltip or aria-label</li>
-        <li>Icons should reinforce the status meaning, not replace the color</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
       </ul>
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>status</td><td>Identifies the element as a status indicator</td></tr>
-          <tr><td>aria-label</td><td>string</td><td>Full status description for screen readers</td></tr>
-          <tr><td>aria-live</td><td>polite</td><td>Announces status changes to assistive technology</td></tr>
-          <tr><td>Color + Text</td><td>Required</td><td>Never use color alone to convey meaning</td></tr>
-          <tr><td>Contrast</td><td>≥ 3:1</td><td>Dot color against background meets WCAG AA for non-text</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Badge</strong> — Compact labels for status, counts, and categories</li>
-        <li><strong>Pills</strong> — Interactive selectable chips with toggle behavior</li>
-        <li><strong>Spinner</strong> — Loading indicator for indeterminate progress</li>
-        <li><strong>Progress Bar</strong> — Determinate progress visualization</li>
-      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="status-indicator" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-function ChangelogTab() {
+function AccessibilityTab() {
   return (
     <>
-      <h2>Changelog</h2>
-      <h3>v2.0.0</h3>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
       <ul>
-        <li>Added 11 status types: Success, Failed, Warning, Information, Synced, Scheduled, Unknown, Pause, Play, Downloading, Pending</li>
-        <li>Added 4 size options: XSmall (6px), Small (8px), Medium (10px), Large (12px)</li>
-        <li>Added pulse animation for active states (success, play, synced, downloading)</li>
-        <li>Added custom icon support via <code>icon</code> prop</li>
-        <li>Added <code>animated</code> prop to control pulse behavior</li>
-        <li>Improved accessibility with <code>role=&quot;status&quot;</code> and <code>aria-label</code></li>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
       </ul>
-      <h3>v1.0.0</h3>
+      <h2>Color and Contrast</h2>
       <ul>
-        <li>Initial release with dot and badge variants</li>
-        <li>Basic status types: Online, Offline, Busy, Away</li>
-        <li>Single size (8px dot)</li>
-        <li>Tooltip support on hover</li>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
+];
+
+function ChangelogTab() { return <Changelog entries={changelog} />; }
+
 export default function StatusIndicatorPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="Status Indicator"
-      description="Status indicators display the current state of a system, process, or item using colored dots and optional labels."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="Status Indicator" description="Status Indicator is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

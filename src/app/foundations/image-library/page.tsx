@@ -338,7 +338,7 @@ export default function ImageLibraryPage() {
   ];
 
   return (
-    <PageShell title="Image Library"
+    <PageShell hideVersion title="Image Library"
       description="Photorealistic, AI-generated imagery for the Delhivery ecosystem — vehicles, people, warehouses, riders, and illustrative compositions. All generated with Google Gemini."
       tabs={tabs}>
       <GalleryTab />

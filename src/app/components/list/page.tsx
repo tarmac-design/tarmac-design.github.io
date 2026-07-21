@@ -1,197 +1,125 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
+function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-list--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook \u2192</a>
+      </p>
+      <h2>Description</h2>
+      <p>The List component is part of the TARMAC Design System. It provides a consistent, accessible, and reusable UI element for building interfaces across Delhivery products.</p>
+      <h2>Availability</h2>
+      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-list--playground" />
+    </>
+  );
+}
+
+function SpecsTab() {
+  return (
+    <>
+
+      {/* Interactive component example */}
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
+        <iframe
+          src={`https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-listset--playground&viewMode=story&shortcuts=false`}
+          style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
+          title="list interactive example"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+        />
+      </div>
+      <h2>Anatomy</h2>
+      <p>Refer to the Figma design file for detailed anatomy breakdown of the List component.</p>
+      <h2>Variants</h2>
+      <p>See the playground below for all available variants of the List component.</p>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Resting state with no interaction</td></tr>
+        <tr><td>Hover</td><td>Cursor hovering over the component</td></tr>
+        <tr><td>Focused</td><td>Keyboard focus is on the component</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, visually muted</td></tr>
+      </tbody></table>
       <StorybookVariantViewer slug="list" />
     </>
   );
 }
 
-/* ─── TAB 2 — Code ─── */
-function CodeTab() {
+function GuidelinesTab() {
   return (
     <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { List, ListItem, ListGroup } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface ListProps {
-  variant?: 'simple' | 'avatar' | 'actions' | 'selectable' | 'grouped';
-  items: ListItemData[];
-  selected?: string[];
-  onSelect?: (ids: string[]) => void;
-  groups?: ListGroup[];
-  divider?: boolean;
-}
-
-interface ListItemData {
-  id: string;
-  title: string;
-  subtitle?: string;
-  avatar?: ReactNode;
-  trailing?: ReactNode;
-  disabled?: boolean;
-}
-
-interface ListGroup {
-  label: string;
-  items: ListItemData[];
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Simple list
-<List items={users} />
-
-// With avatars
-<List variant="avatar" items={users} />
-
-// With trailing actions
-<List variant="actions" items={users} />
-
-// Selectable
-<List variant="selectable" items={users} selected={selected} onSelect={setSelected} />
-
-// Grouped
-<List variant="grouped" groups={[
-  { label: 'Design', items: designers },
-  { label: 'Engineering', items: engineers },
-]} />`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>list-item-padding</td><td>10px 14px</td></tr>
-          <tr><td>list-item-gap</td><td>12px</td></tr>
-          <tr><td>list-avatar-size</td><td>32px</td></tr>
-          <tr><td>list-title-font-size</td><td>13px</td></tr>
-          <tr><td>list-subtitle-font-size</td><td>12px</td></tr>
-          <tr><td>list-divider</td><td>1px solid var(--color-outline)</td></tr>
-          <tr><td>list-group-header-font-size</td><td>11px</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all list variants in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-list--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─── TAB 3 — Usage ─── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Container</td><td>Bordered wrapper for the list</td></tr>
-          <tr><td>2</td><td>Group Header</td><td>Optional section label for grouped lists</td></tr>
-          <tr><td>3</td><td>Avatar</td><td>Optional leading visual (image or initials)</td></tr>
-          <tr><td>4</td><td>Title</td><td>Primary text label</td></tr>
-          <tr><td>5</td><td>Subtitle</td><td>Secondary descriptive text</td></tr>
-          <tr><td>6</td><td>Trailing Action</td><td>Optional action button or chevron</td></tr>
-          <tr><td>7</td><td>Selection Indicator</td><td>Check circle for selectable items</td></tr>
-          <tr><td>8</td><td>Divider</td><td>Separator between items</td></tr>
-        </tbody>
-      </table>
-
       <h2>When to Use</h2>
+      <GuidelineImage title="When to Use \u2014 List" slug="list" section="when-to-use" />
       <ul>
-        <li>To display collections of related items vertically</li>
-        <li>For contact lists, settings menus, or navigation drawers</li>
-        <li>When items need selection or multi-select behavior</li>
-        <li>To group items by category with section headers</li>
+        <li>Use the List component when appropriate for your interface context</li>
+        <li>Follow the design guidelines established in the TARMAC Design System</li>
       </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="list"
-        doItems={[
-          'Use consistent item heights within the same list',
-          'Show hover states to indicate interactivity',
-          'Use group headers to organize long lists',
-          'Provide visual feedback for selected items',
-          'Truncate long text with ellipsis rather than wrapping',
-        ]}
-        dontItems={[
-          'Don\'t mix different list variants in the same container',
-          'Don\'t use lists for fewer than 3 items — consider cards instead',
-          'Don\'t nest lists more than one level deep',
-          'Don\'t hide critical actions behind overflow menus',
-          'Don\'t use selectable lists without clear selection indicators',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>list / listbox</td><td>Semantic role based on variant</td></tr>
-          <tr><td>role (item)</td><td>listitem / option</td><td>Individual item role</td></tr>
-          <tr><td>aria-selected</td><td>boolean</td><td>Selection state for selectable items</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys, Space, Enter</td><td>Navigate and select items</td></tr>
-          <tr><td>Focus</td><td>visible ring</td><td>Clear focus indicator on each item</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
+      <h2>When Not to Use</h2>
+      <GuidelineImage title="When Not to Use \u2014 List" slug="list" section="when-not-to-use" />
       <ul>
-        <li><strong>Cards</strong> — For richer content layouts</li>
-        <li><strong>Dropdown</strong> — Single-value selection from a list</li>
-        <li><strong>Navigation</strong> — Sidebar navigation lists</li>
-        <li><strong>Avatar Group</strong> — Compact avatar display</li>
+        <li>Avoid using this component outside its intended context</li>
+        <li>Consider alternative components if the use case does not match</li>
+      </ul>
+      <h2>Do\u0027s and Don\u0027ts</h2>
+      <DoDont slug="list" doItems={['Follow the design system guidelines', 'Use consistent sizing and spacing', 'Ensure proper accessibility attributes', 'Test across different viewports']} dontItems={["Don't modify the component outside its API", "Don't use inconsistent styling", "Don't ignore accessibility requirements", "Don't override design tokens without approval"]} />
+    </>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <>
+      <h2>ARIA Attributes</h2>
+      <table><thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead><tbody>
+        <tr><td>role</td><td>varies</td><td>Appropriate semantic role for the component</td></tr>
+        <tr><td>aria-label</td><td>string</td><td>Accessible name when visual label is insufficient</td></tr>
+      </tbody></table>
+      <h2>Keyboard Navigation</h2>
+      <table><thead><tr><th>Key</th><th>Action</th></tr></thead><tbody>
+        <tr><td>Tab</td><td>Move focus to the component</td></tr>
+        <tr><td>Enter / Space</td><td>Activate the component</td></tr>
+        <tr><td>Escape</td><td>Dismiss or cancel (if applicable)</td></tr>
+      </tbody></table>
+      <h2>Screen Reader Support</h2>
+      <ul>
+        <li>Component state is announced to assistive technologies</li>
+        <li>Labels and descriptions are properly associated</li>
+        <li>Dynamic changes are communicated via live regions where appropriate</li>
+      </ul>
+      <h2>Color and Contrast</h2>
+      <ul>
+        <li>Text meets minimum 4.5:1 contrast ratio (WCAG AA)</li>
+        <li>Interactive elements have visible focus indicators</li>
+        <li>State changes are not communicated by color alone</li>
       </ul>
     </>
   );
 }
 
-/* ─── TAB 4 — Changelog ─── */
-const listChangelog: ChangelogEntry[] = [
-  { version: '1.1.2', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
-  { version: '1.1.0', date: 'June, 2026', author: 'Rohan', changes: [{ category: 'Changed', items: ['Updated component with updated list cell & Ghost mode'] }] },
-  { version: '1.0.0', date: 'March, 2026', author: 'Rohan', changes: [{ category: 'Added', items: ['Component published'] }] },
+const changelog: ChangelogEntry[] = [
+  { version: '1.1.2', date: 'June, 2026', changes: [{ category: 'Changed', items: ['Component configuration updated'] }] },
+  { version: '1.0.0', date: 'March, 2026', changes: [{ category: 'Added', items: ['Component published'] }] },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={listChangelog} />;
-}
+function ChangelogTab() { return <Changelog entries={changelog} />; }
 
-/* ─── Page Export ─── */
 export default function ListPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
-
   return (
-    <PageShell
-      title="List"
-      description="Lists display vertical collections of items with avatars, subtitles, actions, and selection support."
-      tabs={tabs}
-    >
-      <ExamplesTab />
+    <PageShell title="List" description="List is a reusable component in the TARMAC Design System." tabs={tabs}>
+      <OverviewTab />
     </PageShell>
   );
 }

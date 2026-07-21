@@ -377,14 +377,14 @@ const illustrationChangelog: ChangelogEntry[] = [
 /* ─── Main Page ─── */
 export default function IllustrationPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
+    { label: 'Overview', content: <ExamplesTab /> },
+    { label: 'Specs', content: <UsageTab /> },
+    { label: 'Guidelines', content: <CodeTab /> },
     { label: 'Changelog', content: <Changelog entries={illustrationChangelog} /> },
   ];
 
   return (
-    <PageShell title="Illustration"
+    <PageShell hideVersion title="Illustration"
       description="Purpose-built visual assets for the Delhivery ecosystem — vehicles, scenes, icons, profiles, and packages across Light and Dark themes."
       tabs={tabs}>
       <ExamplesTab />

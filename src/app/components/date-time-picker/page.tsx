@@ -4,231 +4,214 @@ import { PageShell } from '@/components/PageShell';
 import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
+import { AvailabilityTable } from '@/components/AvailabilityTable';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
-/* ─────────────────────────────────────────────── */
-/*  TAB 1 — Examples                               */
-/* ─────────────────────────────────────────────── */
-function ExamplesTab() {
-  return (
-    <>
-      <StorybookVariantViewer slug="date-time-picker" />
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 2 — Code                                   */
-/* ─────────────────────────────────────────────── */
-function CodeTab() {
-  return (
-    <>
-      <h2>Installation</h2>
-      <pre><code>{`npm install @tarmac/design-system`}</code></pre>
-
-      <h2>Import</h2>
-      <pre><code>{`import { DateTimePicker } from '@tarmac/design-system';`}</code></pre>
-
-      <h2>Component API</h2>
-      <pre><code>{`interface DateTimePickerProps {
-  variant?: 'date' | 'time' | 'datetime' | 'range';
-  value?: Date | null;
-  rangeValue?: { start: Date | null; end: Date | null };
-  minDate?: Date;
-  maxDate?: Date;
-  disabledDates?: Date[];
-  locale?: string;
-  firstDayOfWeek?: 0 | 1;
-  showTodayButton?: boolean;
-  onChange?: (date: Date | null) => void;
-  onRangeChange?: (range: { start: Date | null; end: Date | null }) => void;
-  onCancel?: () => void;
-  onApply?: () => void;
-}`}</code></pre>
-
-      <h2>Basic Usage</h2>
-      <pre><code>{`// Date picker
-<DateTimePicker
-  variant="date"
-  value={selectedDate}
-  onChange={setSelectedDate}
-/>
-
-// Time picker
-<DateTimePicker variant="time" value={selectedTime} onChange={setSelectedTime} />
-
-// Date & Time combined
-<DateTimePicker variant="datetime" value={selectedDateTime} onChange={setSelectedDateTime} />
-
-// Range picker
-<DateTimePicker
-  variant="range"
-  rangeValue={{ start: startDate, end: endDate }}
-  onRangeChange={({ start, end }) => {
-    setStartDate(start);
-    setEndDate(end);
-  }}
-/>
-
-// With constraints
-<DateTimePicker
-  variant="date"
-  minDate={new Date('2024-01-01')}
-  maxDate={new Date('2024-12-31')}
-  disabledDates={holidays}
-  onChange={setDate}
-/>`}</code></pre>
-
-      <h2>Design Tokens</h2>
-      <table>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          <tr><td>picker-border-radius</td><td>12px</td></tr>
-          <tr><td>picker-cell-size</td><td>36px</td></tr>
-          <tr><td>picker-accent-light</td><td>#2396FB</td></tr>
-          <tr><td>picker-accent-dark</td><td>#60A5FA</td></tr>
-          <tr><td>picker-range-bg-light</td><td>#E8F4FD</td></tr>
-          <tr><td>picker-range-bg-dark</td><td>#1E3A5F</td></tr>
-          <tr><td>picker-today-border</td><td>2px solid accent</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Storybook</h2>
-      <p>
-        Explore all date time picker variants interactively in{' '}
-        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-datetimepicker--playground" target="_blank" rel="noopener noreferrer">
-          TARMAC Storybook →
-        </a>
-      </p>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 3 — Usage                                  */
-/* ─────────────────────────────────────────────── */
-function UsageTab() {
-  return (
-    <>
-      <h2>Anatomy</h2>
-      <table>
-        <thead><tr><th>#</th><th>Element</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Header</td><td>Month/year label with navigation arrows</td></tr>
-          <tr><td>2</td><td>Day Headers</td><td>Weekday abbreviation labels (Su–Sa)</td></tr>
-          <tr><td>3</td><td>Calendar Grid</td><td>7×6 grid of selectable day cells</td></tr>
-          <tr><td>4</td><td>Today Indicator</td><td>Border highlight on the current date</td></tr>
-          <tr><td>5</td><td>Selected Indicator</td><td>Filled accent background on selected date</td></tr>
-          <tr><td>6</td><td>Range Highlight</td><td>Subtle background between start and end dates</td></tr>
-          <tr><td>7</td><td>Time Spinners</td><td>Hour and minute inputs with up/down controls</td></tr>
-          <tr><td>8</td><td>Footer Actions</td><td>Cancel and Apply buttons</td></tr>
-        </tbody>
-      </table>
-
-      <h2>When to Use</h2>
-      <ul>
-        <li>For scheduling events, appointments, or deadlines</li>
-        <li>For filtering data by date or date range</li>
-        <li>For setting delivery or pickup dates in e-commerce</li>
-        <li>For time-based form inputs (birth date, expiry date)</li>
-        <li>When users need to visually browse dates rather than type them</li>
-      </ul>
-
-      <h2>Best Practices</h2>
-      <DoDont
-        slug="date-time-picker"
-        doItems={[
-          'Highlight today\'s date for orientation',
-          'Show the selected date clearly with accent color',
-          'Disable dates outside the valid range',
-          'Allow keyboard navigation through the calendar grid',
-          'Provide Cancel and Apply actions for confirmation',
-        ]}
-        dontItems={[
-          'Don\'t use a calendar picker for known dates like birthdays — use a text input',
-          'Don\'t allow selection of disabled or out-of-range dates',
-          'Don\'t hide the month/year navigation controls',
-          'Don\'t auto-close the picker on date selection without confirmation',
-          'Don\'t use 12-hour format without an AM/PM toggle',
-        ]}
-      />
-
-      <h2>Accessibility</h2>
-      <table>
-        <thead><tr><th>Attribute</th><th>Value</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>role</td><td>grid</td><td>Calendar grid is identified as a data grid</td></tr>
-          <tr><td>aria-label</td><td>&quot;Calendar&quot;</td><td>Descriptive label for the calendar region</td></tr>
-          <tr><td>aria-selected</td><td>true/false</td><td>Indicates selected date cells</td></tr>
-          <tr><td>aria-disabled</td><td>true</td><td>Marks disabled/out-of-range dates</td></tr>
-          <tr><td>Keyboard</td><td>Arrow keys</td><td>Navigate between days in the grid</td></tr>
-          <tr><td>Enter/Space</td><td>—</td><td>Select the focused date</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Related Components</h2>
-      <ul>
-        <li><strong>Input</strong> — Text input trigger that opens the picker</li>
-        <li><strong>Dropdown</strong> — Month/year selection dropdowns</li>
-        <li><strong>Button</strong> — Navigation and action buttons</li>
-        <li><strong>Popups</strong> — Picker can appear as a popup overlay</li>
-      </ul>
-    </>
-  );
-}
-
-/* ─────────────────────────────────────────────── */
-/*  TAB 4 — Changelog                              */
-/* ─────────────────────────────────────────────── */
-const dateTimePickerChangelog: ChangelogEntry[] = [
+const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Component configuration and updated version'] }],
-  },
-  {
-    version: '1.1.0',
-    date: 'June, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Updated component with 2 extra variants (Success & error)'] }],
-  },
-  {
-    version: '1.0.1',
-    date: 'April, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Changed', items: ['Updated component with active stroke colors and expanded state'] }],
+    date: 'June 2026',
+    changes: [
+      'Added Range picker variant for date ranges',
+      'Improved month/year navigation keyboard support',
+      'Fixed time selector scroll behavior on mobile',
+    ],
   },
   {
     version: '1.0.0',
-    date: 'March, 2026',
-    author: 'Rohan',
-    changes: [{ category: 'Added', items: ['Component published'] }],
+    date: 'March 2026',
+    changes: [
+      'Initial release of Date Time Picker component',
+      'Date only, Time only, and Date + Time variants',
+      'Calendar grid with month/year navigation',
+      'Footer actions for confirm/cancel',
+    ],
   },
 ];
 
-function ChangelogTab() {
-  return <Changelog entries={dateTimePickerChangelog} />;
+function OverviewTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Description</h2>
+        <p className="text-base text-gray-700 leading-relaxed">
+          Date Time Picker is an input component for selecting dates and/or times.
+          It provides a calendar view for date selection and a time selector for
+          hour/minute input, supporting various picker modes for different use cases.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Use Cases</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Scheduling appointments or events</li>
+          <li>Setting deadlines or due dates</li>
+          <li>Filtering data by date ranges</li>
+          <li>Selecting birth dates or registration dates</li>
+          <li>Defining time windows for delivery or availability</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Availability</h2>
+        <AvailabilityTable />
+      </section>
+    </div>
+  );
 }
 
-/* ─────────────────────────────────────────────── */
-/*  Page Export                                     */
-/* ─────────────────────────────────────────────── */
+function SpecsTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
+        <p className="text-gray-700 mb-4">
+          The Date Time Picker component is composed of the following elements:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Input Field</strong> — Text input showing selected date/time</li>
+          <li><strong>Calendar Grid</strong> — Monthly grid of selectable day cells</li>
+          <li><strong>Month/Year Navigation</strong> — Controls to change visible month/year</li>
+          <li><strong>Time Selector</strong> — Hour and minute selection interface</li>
+          <li><strong>Footer Actions</strong> — Confirm/Cancel buttons for the selection</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><strong>Date Only</strong> — Calendar grid for date selection</li>
+          <li><strong>Time Only</strong> — Time selection without calendar</li>
+          <li><strong>Date + Time</strong> — Combined date and time selection</li>
+          <li><strong>Range Picker</strong> — Start and end date selection</li>
+        </ul>
+      </section>
+
+      <section>
+        <StorybookVariantViewer slug="date-time-picker" />
+      </section>
+    </div>
+  );
+}
+
+function GuidelinesTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+        <p className="text-gray-700 mb-4">
+          Use the appropriate variant based on what data you need. Date-only for
+          simple dates, Time-only for scheduling time slots, combined for full
+          datetime requirements, and Range for periods.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>When users need to select specific dates from a calendar</li>
+          <li>For time-specific scheduling inputs</li>
+          <li>When filtering by date ranges</li>
+          <li>For form inputs requiring structured date/time data</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>For known, specific dates — use a plain text input</li>
+          <li>For relative dates ("last 7 days") — use preset filter chips</li>
+          <li>For dates far in the past (birth year) — use a dropdown</li>
+          <li>When only month/year is needed — use a simpler selector</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+        <GuidelineImage
+          src="/assets/guidelines/date-time-picker-usage.png"
+          alt="Date time picker usage guidelines"
+        />
+        <div className="mt-6 space-y-4">
+          <DoDont
+            doItems={[
+              'Show the selected date format clearly in the input',
+              'Disable dates that are out of valid range',
+              'Provide Today/Now shortcuts when relevant',
+              'Support manual text input for keyboard users',
+            ]}
+            dontItems={[
+              'Force users to click through months for distant dates',
+              'Allow selecting invalid date combinations',
+              'Hide the selected value until confirmation',
+              'Use ambiguous date formats (MM/DD vs DD/MM)',
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AccessibilityTab() {
+  return (
+    <div className="space-y-10">
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">ARIA Attributes</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><code>role="dialog"</code> on the calendar popup</li>
+          <li><code>role="grid"</code> on the calendar date grid</li>
+          <li><code>aria-label</code> on month/year navigation buttons</li>
+          <li><code>aria-selected="true"</code> on the chosen date cell</li>
+          <li><code>aria-disabled="true"</code> on out-of-range dates</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Keyboard Navigation</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Opens the picker, selects a date</li>
+          <li><kbd>Arrow keys</kbd> — Navigate between days in the grid</li>
+          <li><kbd>Page Up/Down</kbd> — Navigate between months</li>
+          <li><kbd>Home/End</kbd> — Jump to first/last day of the month</li>
+          <li><kbd>Escape</kbd> — Closes the picker without selection</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Screen Reader</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Announces current month and year on navigation</li>
+          <li>Each date cell announces the full date</li>
+          <li>Selected state is communicated on date selection</li>
+          <li>Disabled dates announce as unavailable</li>
+          <li>Today&apos;s date is announced distinctly</li>
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+function ChangelogTab() {
+  return <Changelog entries={changelogEntries} />;
+}
+
 export default function DateTimePickerPage() {
   const tabs = [
-    { label: 'Examples', content: <ExamplesTab /> },
-    { label: 'Usage', content: <UsageTab /> },
-    { label: 'Code', content: <CodeTab /> },
-
+    { label: 'Overview', content: <OverviewTab /> },
+    { label: 'Specs', content: <SpecsTab /> },
+    { label: 'Guidelines', content: <GuidelinesTab /> },
+    { label: 'Accessibility', content: <AccessibilityTab /> },
     { label: 'Changelog', content: <ChangelogTab /> },
   ];
 
   return (
     <PageShell
       title="Date Time Picker"
-      description="Date Time Pickers allow users to select dates, times, or date ranges through an interactive calendar and time input interface."
+      description="Input component for selecting dates and/or times. Provides calendar view and time selection."
       tabs={tabs}
     >
-      <ExamplesTab />
+      <OverviewTab />
     </PageShell>
   );
 }
