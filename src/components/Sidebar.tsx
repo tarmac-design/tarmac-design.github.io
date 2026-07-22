@@ -15,6 +15,7 @@ const sidebarSections: NavGroup[] = [
     { label: 'Brand Language', href: '/about/brand-language' },
     { label: 'Movement Metaphors', href: '/about/movement-metaphors' },
     { label: 'TARMAC Logo', href: '/about/logo' },
+    { label: 'Life@Delhivery', href: '/about/life-at-delhivery' },
     { label: 'Installation', href: '/getting-started/installation' },
     { label: 'Quick Start', href: '/getting-started/quick-start' },
   ]},
