@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -90,55 +91,93 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Use avatars to visually represent users and entities. Always provide fallback content
-          (initials or icon) for when images fail to load.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Represent users with image, initials, or icon. Always provide a fallback.</p>
+          <GuidelineImage title="Avatar usage overview" slug="avatar" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>To identify users in lists, comments, or profiles</li>
-          <li>To show participants in collaborative contexts</li>
-          <li>As a visual anchor for user-related content</li>
-          <li>In navigation to indicate the logged-in user</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <ul>
+            <li>User profiles and account menus</li>
+            <li>Comment threads and activity feeds</li>
+            <li>Contact lists and participant indicators</li>
+            <li>Team displays and collaborative contexts</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For decorative images — use Image component instead</li>
-          <li>For brand logos — use Logo component instead</li>
-          <li>For icons without user context — use Icon component</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>Decorative images — use Image component instead</li>
+            <li>Product photos — use dedicated product imagery</li>
+            <li>Brand logos — use Logo component</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage title="Avatar sizing guidelines" slug="component" section="guideline" />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="avatar"
             doItems={[
-              'Always provide a fallback (initials or icon) for missing images',
               'Use consistent sizes within the same context',
-              'Use the appropriate size for the surrounding layout',
-              'Include alt text describing the user for accessibility',
+              'Always show a fallback (initials or icon) when image fails',
+              'Pair with the user name when possible for clarity',
+              'Use appropriate size for surrounding layout density',
             ]}
             dontItems={[
-              'Use avatars for decorative purposes without user context',
-              'Mix different avatar sizes in the same row or list',
-              'Rely solely on the image without a fallback',
-              'Use extremely large avatars in compact layouts',
+              "Don't use avatars for non-user content",
+              "Don't mix sizes in a group or row",
+              "Don't crop faces — ensure the image is properly centered",
+              "Don't rely solely on image without fallback",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Avatar } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Always provide <code>name</code> for accessible label and initials fallback</td></tr>
+              <tr><td>2</td><td>Handle image load failure with <code>onError</code> or <code>fallback</code></td></tr>
+              <tr><td>3</td><td>Use <code>AvatarGroup</code> wrapper for stacked displays</td></tr>
+              <tr><td>4</td><td>Icon-only avatars need explicit <code>aria-label</code></td></tr>
+              <tr><td>5</td><td>Status dot requires both <code>status</code> prop and visible legend in context</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>src</td><td>string</td><td>undefined</td><td>URL of the user image</td></tr>
+              <tr><td>name</td><td>string</td><td>required</td><td>User name — used for initials fallback and alt text</td></tr>
+              <tr><td>size</td><td>{`"xs" | "sm" | "md" | "lg" | "xl"`}</td><td>{`"md"`}</td><td>Avatar diameter</td></tr>
+              <tr><td>shape</td><td>{`"circle" | "square"`}</td><td>{`"circle"`}</td><td>Container shape</td></tr>
+              <tr><td>status</td><td>{`"online" | "offline" | "busy" | "away"`}</td><td>undefined</td><td>Status dot indicator</td></tr>
+              <tr><td>disabled</td><td>boolean</td><td>false</td><td>Greyed out, non-interactive</td></tr>
+              <tr><td>fallback</td><td>{`"initials" | "icon"`}</td><td>{`"initials"`}</td><td>Fallback display when image unavailable</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Avatar name="Jane Doe" src="/avatars/jane.jpg" />`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Avatar
+  name="Support"
+  fallback="icon"
+  size="lg"
+  status="online"
+>
+  <SupportIcon />
+</Avatar>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

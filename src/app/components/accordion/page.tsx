@@ -7,6 +7,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 function OverviewTab() {
   return (
@@ -86,55 +87,105 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <>
-      <h2>Usage</h2>
-      <p>Accordions progressively disclose content — a header row expands to reveal its body and collapses to hide it. They shorten long pages, reduce cognitive load, and let users focus on one thing at a time.</p>
-      <p>TDS ships the pattern as two systems: <strong>Accordion</strong>, a stacked list of one to five related sections, and <strong>Accordion V2</strong>, a stateful single container built for step-based flows.</p>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Progressively disclose content. Choose Accordion for stacked sections, V2 for step flows.</p>
+          <GuidelineImage title="Accordion usage overview" slug="accordion" section="usage" />
 
-      <GuidelineImage title="Collapsed — default resting state" slug="accordion" section="collapsed" height={200} />
-      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', marginBottom: '2rem' }}>Collapsed — the default resting state. Only the header is visible: title, optional subtext and pills, and the chevron.</p>
+          <h2>When to Use</h2>
+          <ul>
+            <li>FAQs and help content</li>
+            <li>Long forms — collapse optional or grouped field sets</li>
+            <li>Settings and filters — users act on one group at a time</li>
+            <li>Sequential flows — V2 with Completed state confirms finished steps</li>
+            <li>Dense mobile screens — reclaim vertical space</li>
+          </ul>
 
-      <GuidelineImage title="Expanded — body reveals content and footer CTA" slug="accordion" section="expanded" height={200} />
-      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', marginBottom: '2rem' }}>Expanded — the body reveals content and an optional footer CTA row. Slot-based content keeps custom layouts inside the system.</p>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>Critical content — errors, pricing, mandatory instructions must be visible</li>
+            <li>Short content — two or three lines need no disclosure</li>
+            <li>Comparison tasks — use Table or side-by-side Cards</li>
+            <li>Navigation — use Tabs, Side Nav, or Breadcrumbs</li>
+            <li>Nested disclosure — more than one level deep signals an IA problem</li>
+          </ul>
 
-      <h2>How to Use</h2>
-      <ol>
-        <li><strong>Choose the system</strong> — Accordion for stacked, related sections (FAQs, grouped settings); Accordion V2 for a single stateful container in task or step flows.</li>
-        <li><strong>Pick the size</strong> — Large / Small on Accordion, Web / Mobile on V2. Switch the variant property; never scale manually.</li>
-        <li><strong>Write the header first</strong> — sentence case, under six words, no punctuation. Add subtext only when it genuinely helps the expand decision.</li>
-        <li><strong>Configure the content</strong> — use slot variants for custom layouts inside the body or footer; keep token-bound padding intact.</li>
-        <li><strong>Set the resting state</strong> — default to all collapsed; expand the first section only when one topic clearly dominates.</li>
-        <li><strong>Apply V2 header styles with meaning</strong> — Green for success, Yellow for caution, DLV Red for critical, Coal for neutral emphasis.</li>
-        <li><strong>Never detach</strong> — swap variants through properties. Detaching breaks token bindings and the sync chain to Storybook.</li>
-      </ol>
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="accordion"
+            doItems={[
+              'Headers under 6 words, sentence case',
+              'Default all sections to collapsed',
+              'Use V2 header styles with meaning (Green success, Yellow caution, DLV Red critical)',
+              'Surface critical info flat — never hide behind a click',
+            ]}
+            dontItems={[
+              "Don't write sentences in headers — the chevron communicates the interaction",
+              "Don't hide critical info behind a collapsed section",
+              "Don't nest accordions — restructure instead",
+              "Don't use styles decoratively — they carry semantic meaning",
+            ]}
+          />
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
 
-      <h2>When to Use</h2>
-      <GuidelineImage title="Accordion stacked sections" slug="accordion" section="when-to-use" height={200} />
-      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', marginBottom: '1.5rem' }}>Accordion / Large stacks related sections — users scan headers and expand only what they need.</p>
-      <ul>
-        <li>FAQs and help content — the canonical accordion use case</li>
-        <li>Long forms — collapse optional or grouped field sets so the primary path stays short</li>
-        <li>Settings and filters — users act on one group at a time</li>
-        <li>Sequential flows — V2 with the Completed state confirms finished steps</li>
-        <li>Dense mobile screens — reclaim vertical space where it is scarcest</li>
-        <li>Secondary detail — specifications, terms summaries, shipment metadata</li>
-      </ul>
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Accordion, AccordionItem } from '@tarmac/design-system';`}</code></pre>
 
-      <h2>When Not to Use</h2>
-      <GuidelineImage title="Critical info should be shown flat — not hidden" slug="accordion" section="when-not-to-use" height={200} />
-      <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', marginBottom: '1.5rem' }}>Critical info like errors should be shown flat — never hidden behind a collapsed section.</p>
-      <ul>
-        <li><strong>Critical content</strong> — errors, pricing, mandatory instructions. If hiding it creates risk, show it flat.</li>
-        <li><strong>Content that already fits</strong> — two or three lines need no disclosure; the extra click only adds friction.</li>
-        <li><strong>Comparison tasks</strong> — users should not bounce between sections to compare; use a Table or side-by-side Cards.</li>
-        <li><strong>Navigation</strong> — accordions disclose content, they do not move users between pages. Use Tabs, Side Nav or Breadcrumbs.</li>
-        <li><strong>Row expansion inside tables</strong> — use Table List Accordion Rows instead.</li>
-        <li><strong>Nested disclosure</strong> — more than one level deep signals an IA problem. Restructure instead.</li>
-      </ul>
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Use <code>accordion</code> prop for single-open behavior</td></tr>
+              <tr><td>2</td><td>Set <code>defaultExpanded</code> for initial open item</td></tr>
+              <tr><td>3</td><td>Never nest accordions — restructure content instead</td></tr>
+              <tr><td>4</td><td>Header text under 6 words, sentence case</td></tr>
+              <tr><td>5</td><td>Use <code>onChange</code> for controlled expand state</td></tr>
+              <tr><td>6</td><td>Content slot accepts any React children</td></tr>
+            </tbody>
+          </table>
 
-      <h2>Do&apos;s and Don&apos;ts</h2>
-      <DoDont slug="accordion" doItems={['Headers are scannable summaries — sentence case, under six words, specific to the content they hide', 'Surface critical info flat — delivery failures, pricing, mandatory instructions must not be hidden behind a click', 'Use V2 header styles with meaning — Green success, Yellow caution, DLV Red critical', 'Default all sections to collapsed unless one clearly dominates']} dontItems={["Don't write instructions or full sentences in headers — the chevron already communicates the interaction", "Don't hide critical information behind a collapsed section — most users will never expand it", "Don't nest accordions — more than one level deep signals an architecture problem", "Don't use styles decoratively — they carry semantic meaning"]} />
-    </>
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td colSpan={4}><strong>Accordion</strong></td></tr>
+              <tr><td>size</td><td>{`"lg" | "sm"`}</td><td>{`"lg"`}</td><td>Controls row height density</td></tr>
+              <tr><td>accordion</td><td>boolean</td><td>false</td><td>Single-open mode — opening one closes others</td></tr>
+              <tr><td>children</td><td>ReactNode</td><td>required</td><td>AccordionItem children</td></tr>
+              <tr><td colSpan={4}><strong>AccordionItem</strong></td></tr>
+              <tr><td>title</td><td>string</td><td>required</td><td>Header text label</td></tr>
+              <tr><td>subtitle</td><td>string</td><td>undefined</td><td>Optional secondary text</td></tr>
+              <tr><td>expanded</td><td>boolean</td><td>undefined</td><td>Controlled expand state</td></tr>
+              <tr><td>disabled</td><td>boolean</td><td>false</td><td>Non-interactive, visually muted</td></tr>
+              <tr><td>onChange</td><td>callback</td><td>undefined</td><td>Fires when expand state changes</td></tr>
+              <tr><td>leadingIcon</td><td>ReactNode</td><td>undefined</td><td>Icon before title</td></tr>
+              <tr><td>badge</td><td>ReactNode</td><td>undefined</td><td>Badge element in header</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Accordion>
+  <AccordionItem title="FAQ 1">Answer</AccordionItem>
+</Accordion>`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Accordion size="sm" accordion>
+  <AccordionItem
+    title="Pickup Details"
+    leadingIcon={<TruckIcon />}
+    badge={<Badge label="Required" variant="warning" />}
+  >
+    Form fields here
+  </AccordionItem>
+</Accordion>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

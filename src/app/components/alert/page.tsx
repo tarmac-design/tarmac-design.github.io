@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -89,56 +90,96 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Alerts should be used to communicate important system information inline within the
-          page content. Choose the appropriate variant based on the severity and type of message.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Inline feedback for system status. Place prominently — never hide alerts behind interactions.</p>
+          <GuidelineImage title="Alert placement guidelines" slug="alert" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>When confirming that an action was completed successfully</li>
-          <li>When an error occurs that the user needs to be aware of</li>
-          <li>When there is a warning about a potential issue</li>
-          <li>When providing contextual system information</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <ul>
+            <li>Confirm actions completed successfully</li>
+            <li>Display errors when an operation fails</li>
+            <li>Warn users about potential issues</li>
+            <li>Provide contextual system information</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For temporary toast-style notifications — use Snackbar instead</li>
-          <li>For form field-level validation — use inline error messages</li>
-          <li>For blocking user interaction — use Dialog Box instead</li>
-          <li>For non-critical, decorative messaging</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>Decorative banners without semantic meaning</li>
+            <li>Transient notifications — use Snackbar instead</li>
+            <li>Navigation or routing</li>
+            <li>Form field-level validation — use inline error messages</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage title="Alert placement guidelines" slug="component" section="guideline" />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="alert"
             doItems={[
-              'Use concise, actionable messaging',
+              'Use semantic colors matching the message type',
+              'Keep the message concise and actionable',
+              'Include actions when the user can resolve the issue',
               'Place alerts near the relevant content',
-              'Use the appropriate variant for the message type',
-              'Include a dismiss action for non-critical alerts',
             ]}
             dontItems={[
-              'Stack multiple alerts of the same type',
-              'Use alerts for decorative purposes',
-              'Write overly long alert descriptions',
-              'Use error alerts for warnings or informational messages',
+              "Don't stack multiple alerts of the same type",
+              "Don't use alerts for non-critical decorative info",
+              "Don't auto-dismiss error alerts — users need time to read them",
+              "Don't write overly long descriptions",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Alert } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Always set <code>variant</code> matching message severity</td></tr>
+              <tr><td>2</td><td>Use <code>onClose</code> callback for dismissible alerts</td></tr>
+              <tr><td>3</td><td>Error alerts must NOT auto-dismiss</td></tr>
+              <tr><td>4</td><td>Use <code>aria-live=&quot;polite&quot;</code> for dynamically inserted alerts</td></tr>
+              <tr><td>5</td><td>Keep description under 2 lines — link out for details</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>variant</td><td>{`"success" | "error" | "warning" | "info" | "black" | "white" | "coal"`}</td><td>required</td><td>Semantic color variant</td></tr>
+              <tr><td>title</td><td>string</td><td>undefined</td><td>Optional bold heading text</td></tr>
+              <tr><td>children</td><td>ReactNode</td><td>required</td><td>Body message content</td></tr>
+              <tr><td>size</td><td>{`"lg" | "md" | "sm"`}</td><td>{`"md"`}</td><td>Controls padding and spacing</td></tr>
+              <tr><td>type</td><td>{`"default" | "outlined"`}</td><td>{`"default"`}</td><td>Fill style</td></tr>
+              <tr><td>dismissible</td><td>boolean</td><td>false</td><td>Shows close button</td></tr>
+              <tr><td>onClose</td><td>callback</td><td>undefined</td><td>Fires when dismiss button clicked</td></tr>
+              <tr><td>actions</td><td>ReactNode</td><td>undefined</td><td>Slot for CTA buttons</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Alert variant="success">Order confirmed</Alert>`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Alert
+  variant="error"
+  title="Payment failed"
+  dismissible
+  onClose={retry}
+  actions={<Button size="sm">Retry</Button>}
+>
+  Card was declined. Try another method.
+</Alert>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

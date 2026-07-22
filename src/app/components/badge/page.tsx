@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -89,57 +90,93 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Badges are for displaying metadata — they are non-interactive and should not
-          be used as buttons or links. Choose the variant and type that best matches
-          the semantic meaning and visual hierarchy.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Compact labels for status or category. Non-interactive — the row or card is the interaction target.</p>
+          <GuidelineImage title="Badge usage overview" slug="badge" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>To indicate status on table rows or list items</li>
-          <li>To label categories or types on cards</li>
-          <li>To show counts on navigation elements</li>
-          <li>To surface priority or urgency information</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <ul>
+            <li>Shipment status indicators on table rows</li>
+            <li>Table metadata and category labels</li>
+            <li>Card labels and priority indicators</li>
+            <li>Notification counts on navigation items</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For interactive elements — use Button or Chip instead</li>
-          <li>For large blocks of text — use Alert instead</li>
-          <li>For user-removable tags — use Tag/Chip component</li>
-          <li>For navigation — use links or buttons</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>As buttons or clickable elements — use Button or Chip</li>
+            <li>For long text — use Alert or inline text</li>
+            <li>As the only error signal — pair with text explanation</li>
+            <li>Decoratively without semantic meaning</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage title="Badge usage guidelines" slug="component" section="guideline" />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="badge"
             doItems={[
-              'Keep badge labels short and scannable (1-2 words)',
-              'Use consistent variant meanings across the application',
-              'Use Solid type for highest emphasis, Subtle for secondary',
-              'Pair with meaningful icons for quick recognition',
+              'One–two words max for label text',
+              'Match badge size to container density',
+              'Use semantic colors consistently across the app',
+              'Pair with meaningful icons to reinforce (never replace) the label',
             ]}
             dontItems={[
-              'Use badges as interactive buttons or links',
-              'Overload a single view with too many badge colors',
-              'Use long text that wraps to multiple lines',
-              'Apply badges without clear semantic meaning',
+              "Don't stack redundant badges on the same element",
+              "Don't make badges clickable — they are metadata, not actions",
+              "Don't rely on color alone — always include a text label",
+              "Don't use long text that wraps to multiple lines",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Badge } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Always provide <code>variant</code> for semantic color</td></tr>
+              <tr><td>2</td><td>Keep label 1-2 words — badges are scanned not read</td></tr>
+              <tr><td>3</td><td>Never make badges interactive — they are metadata</td></tr>
+              <tr><td>4</td><td>Use <code>type</code> to control emphasis hierarchy</td></tr>
+              <tr><td>5</td><td>Icons reinforce meaning but never replace label text</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>label</td><td>string</td><td>required</td><td>Badge text — keep to 1–2 words</td></tr>
+              <tr><td>variant</td><td>{`"black" | "white" | "coal" | "dlvRed" | "info" | "success" | "warning" | "error" | "cardbox"`}</td><td>{`"info"`}</td><td>Semantic color variant</td></tr>
+              <tr><td>type</td><td>{`"solid" | "subtle" | "outlined" | "ghost" | "disabled"`}</td><td>{`"solid"`}</td><td>Emphasis level</td></tr>
+              <tr><td>size</td><td>{`"lg" | "md" | "sm"`}</td><td>{`"md"`}</td><td>Badge height</td></tr>
+              <tr><td>leadingIcon</td><td>ReactNode</td><td>undefined</td><td>Optional icon before label</td></tr>
+              <tr><td>trailingIcon</td><td>ReactNode</td><td>undefined</td><td>Optional icon after label</td></tr>
+              <tr><td>status</td><td>boolean</td><td>false</td><td>Shows status dot indicator</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Badge label="Active" variant="success" />`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Badge
+  label="Priority"
+  variant="warning"
+  type="outlined"
+  size="sm"
+  leadingIcon={<AlertIcon />}
+/>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

@@ -290,12 +290,20 @@ export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onCl
 
   return (
     <>
-      {/* Unified sidebar — slides in from left on all screens */}
+      {/* Desktop sidebar — always visible */}
+      <aside
+        className="hidden lg:block fixed left-0 top-16 w-[var(--sidebar-width)] h-[calc(100vh-64px)] overflow-y-auto z-30 border-r sidebar-scroll"
+        style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
+      >
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile sidebar — overlay on hamburger click */}
       <AnimatePresence>
         {open && (
           <>
             <motion.div
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+              className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
               onClick={onClose}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -303,7 +311,7 @@ export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onCl
               transition={{ duration: 0.2 }}
             />
             <motion.aside
-              className="fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r sidebar-scroll"
+              className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r sidebar-scroll"
               style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}

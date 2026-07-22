@@ -47,7 +47,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
       <div className={`flex ${isHome ? '' : 'pt-16'}`}>
         {!isHome && <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onSearchClick={() => setSearchOpen(true)} />}
         <div
-          className={`flex-1 flex flex-col min-h-[calc(100vh-64px)]`}
+          className={`flex-1 flex flex-col min-h-[calc(100vh-64px)] ${!isHome ? 'lg:ml-[var(--sidebar-width)]' : ''}`}
         >
           <main className="flex-1">{children}</main>
           {!isHome && <PageFooter />}

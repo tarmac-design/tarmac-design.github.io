@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -86,56 +87,102 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Bottom sheets are primarily for mobile interfaces. Use them for focused tasks
-          that don&apos;t require full-page navigation. Keep content concise and actions clear.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Focused tasks on mobile without navigation change. Thumb-friendly, progressive disclosure.</p>
+          <GuidelineImage title="Bottom Sheet usage" slug="bottom-sheet" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For contextual actions that don&apos;t need a full page</li>
-          <li>When showing additional details on mobile</li>
-          <li>For filter/sort options in mobile lists</li>
-          <li>Quick forms or confirmations on mobile</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <ul>
+            <li>Short tasks and confirmations on mobile</li>
+            <li>Action sheets with contextual options</li>
+            <li>Form sections or filters on handheld devices</li>
+            <li>Quick previews without navigating away</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>On desktop — use Dialog or Drawer instead</li>
-          <li>For complex multi-step flows — use full pages</li>
-          <li>For critical blocking decisions — use Dialog Box</li>
-          <li>When content exceeds 80% of viewport height</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>On desktop — use Drawer or Modal instead</li>
+            <li>Complex multi-step flows — use full pages</li>
+            <li>Nested sheets — never nest one inside another</li>
+            <li>Full-screen for simple tasks — keep it minimal</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage title="Bottom sheet usage guidelines" slug="component" section="guideline" />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="bottom-sheet"
             doItems={[
-              'Keep content focused on a single task',
-              'Always provide a way to dismiss (drag, close button, backdrop tap)',
-              'Use appropriate CTA style based on action count',
-              'Limit content height to avoid full-screen overlap',
+              'Include a drag handle for swipe affordance',
+              'Use overlay/backdrop to indicate modality',
+              'Allow swipe dismiss in addition to close button',
+              'Keep action items under 5 for readability',
             ]}
             dontItems={[
-              'Nest bottom sheets within other bottom sheets',
-              'Use for content that requires extensive scrolling',
-              'Remove all dismiss mechanisms',
-              'Use on desktop when better alternatives exist',
+              "Don't nest sheets within sheets",
+              "Don't hide all dismiss gestures — always provide a way out",
+              "Don't use full-screen height for simple tasks",
+              "Don't use on desktop when Drawer/Modal works better",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { BottomSheet } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Render via portal — never inside scrollable containers</td></tr>
+              <tr><td>2</td><td>Trap focus inside when open</td></tr>
+              <tr><td>3</td><td>Implement ALL dismiss paths (swipe/overlay tap/close button/escape)</td></tr>
+              <tr><td>4</td><td>Set <code>aria-modal=&quot;true&quot;</code> and <code>aria-labelledby</code></td></tr>
+              <tr><td>5</td><td>Return focus to trigger element on close</td></tr>
+              <tr><td>6</td><td>Body content scrolls independently — header/footer stay fixed</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>open</td><td>boolean</td><td>required</td><td>Controls visibility</td></tr>
+              <tr><td>onDismiss</td><td>callback</td><td>required</td><td>Fires on any dismiss path</td></tr>
+              <tr><td>variant</td><td>{`"standard" | "slotMini" | "slotDual" | "slot"`}</td><td>{`"standard"`}</td><td>Layout variant</td></tr>
+              <tr><td>ctaLayout</td><td>{`"horizontal" | "vertical"`}</td><td>{`"horizontal"`}</td><td>CTA button arrangement</td></tr>
+              <tr><td>title</td><td>string</td><td>undefined</td><td>Header title text</td></tr>
+              <tr><td>hasClose</td><td>boolean</td><td>true</td><td>Show close icon in header</td></tr>
+              <tr><td>hasBanner</td><td>boolean</td><td>false</td><td>Show banner image area</td></tr>
+              <tr><td>hasCheckbox</td><td>boolean</td><td>false</td><td>Show checkbox in content</td></tr>
+              <tr><td>children</td><td>ReactNode</td><td>required</td><td>Body content</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<BottomSheet open={show} onDismiss={close} title="Confirm">
+  Are you sure?
+</BottomSheet>`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<BottomSheet
+  open={show}
+  onDismiss={close}
+  variant="slotDual"
+  ctaLayout="vertical"
+  title="Create Shipment"
+  hasClose
+  hasBanner
+>
+  <StepForm />
+</BottomSheet>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

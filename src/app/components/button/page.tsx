@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -93,57 +94,100 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Use buttons to trigger actions. Establish a clear visual hierarchy using
-          types: Filled for primary actions, Outlined for secondary, Text for tertiary.
-          Limit primary buttons to one per section.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Primary interaction trigger. One primary action per view, support with secondary.</p>
+          <GuidelineImage title="Button hierarchy" slug="button" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>To trigger an immediate action (submit, save, delete)</li>
-          <li>As the primary CTA in a form or dialog</li>
-          <li>For navigation that feels like an action</li>
-          <li>To open menus, dialogs, or other overlays</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <ul>
+            <li>Form submissions and save actions</li>
+            <li>Dialog action buttons (confirm/cancel)</li>
+            <li>Navigation triggers that feel like actions</li>
+            <li>Destructive confirmations (delete, remove)</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For navigation links — use Anchor/Link component</li>
-          <li>For toggling options — use Toggle or Checkbox</li>
-          <li>For non-interactive labels — use Badge</li>
-          <li>For inline text actions — use Link component</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <ul>
+            <li>Navigation links — use Link component</li>
+            <li>Toggles — use Toggle or Checkbox</li>
+            <li>Menu items — use Menu component</li>
+            <li>Non-interactive labels — use Badge</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage title="Button hierarchy guidelines" slug="component" section="guideline" />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="button"
             doItems={[
-              'Use action verbs for labels (Save, Submit, Delete)',
-              'Limit one primary (Filled) button per section',
-              'Use consistent sizing within the same context',
+              'Use action verbs (Save, Submit, Delete)',
+              'One primary (Filled) button per view',
+              'Consistent sizing within the same context',
               'Show loading state for async operations',
             ]}
             dontItems={[
-              'Use vague labels like "Click here" or "OK"',
-              'Place multiple primary buttons side by side',
-              'Disable without explaining why',
-              'Use icon-only buttons without a tooltip',
+              "Don't disable without explanation — show tooltip with reason",
+              "Don't use multiple primary buttons side by side",
+              "Don't truncate labels — rewrite if too long",
+              "Don't use vague labels like 'Click here' or 'OK'",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Button } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Always set HTML <code>type</code> in forms (submit/button/reset)</td></tr>
+              <tr><td>2</td><td>Show <code>loading</code> state for async — disables interaction automatically</td></tr>
+              <tr><td>3</td><td>Icon-only buttons MUST have <code>aria-label</code></td></tr>
+              <tr><td>4</td><td>One filled primary per view — use outlined/text for secondary</td></tr>
+              <tr><td>5</td><td>Disabled buttons should show tooltip explaining why</td></tr>
+              <tr><td>6</td><td>Never truncate labels — rewrite shorter</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>children</td><td>ReactNode</td><td>required</td><td>Button label content</td></tr>
+              <tr><td>variant</td><td>{`"black" | "white" | "coal" | "dlvRed" | "info" | "success" | "error" | "warning"`}</td><td>{`"black"`}</td><td>Color variant</td></tr>
+              <tr><td>buttonStyle</td><td>{`"filled" | "outlined" | "text"`}</td><td>{`"filled"`}</td><td>Emphasis level</td></tr>
+              <tr><td>size</td><td>{`"xs" | "sm" | "md" | "lg" | "xl"`}</td><td>{`"md"`}</td><td>Button height</td></tr>
+              <tr><td>loading</td><td>boolean</td><td>false</td><td>Shows spinner, disables interaction</td></tr>
+              <tr><td>disabled</td><td>boolean</td><td>false</td><td>Non-interactive state</td></tr>
+              <tr><td>leadingIcon</td><td>ReactNode</td><td>undefined</td><td>Icon before label</td></tr>
+              <tr><td>trailingIcon</td><td>ReactNode</td><td>undefined</td><td>Icon after label</td></tr>
+              <tr><td>type</td><td>{`"button" | "submit" | "reset"`}</td><td>{`"button"`}</td><td>HTML button type</td></tr>
+              <tr><td>onClick</td><td>callback</td><td>undefined</td><td>Click handler</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Button variant="dlvRed" buttonStyle="filled">Submit</Button>`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Button
+  variant="black"
+  buttonStyle="outlined"
+  size="lg"
+  loading={saving}
+  leadingIcon={<SaveIcon />}
+  onClick={handleSave}
+>
+  Save Changes
+</Button>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 
