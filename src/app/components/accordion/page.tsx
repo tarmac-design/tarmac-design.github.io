@@ -13,7 +13,7 @@ function OverviewTab() {
   return (
     <>
       <p style={{ marginBottom: '1.5rem' }}>
-        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
+        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
       </p>
       <h2>Description</h2>
       <p>Accordions are interactive disclosure components used to organize content into expandable sections. They help manage large amounts of information by allowing users to progressively reveal content when needed.</p>
@@ -27,7 +27,7 @@ function OverviewTab() {
         <li>Organizing configuration or settings panels</li>
       </ul>
       <h2>Availability</h2>
-      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion--playground" />
+      <AvailabilityTable storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion--playground" />
     </>
   );
 }
@@ -44,7 +44,7 @@ function SpecsTab() {
       </tbody></table>
       {/* Header Variants specimen */}
       <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
-        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--header-variants&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Header Variants" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--header-variants&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Header Variants" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
       <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Header variants — single text, dual text, with icons, badges, and status indicators.</p>
 
@@ -64,7 +64,7 @@ function SpecsTab() {
       </tbody></table>
       {/* Collapsed vs Expanded specimen */}
       <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
-        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--collapsed-vs-expanded&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Collapsed vs Expanded" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--collapsed-vs-expanded&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Collapsed vs Expanded" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
       <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Collapsed vs Expanded — clicking the header toggles the content section.</p>
 
@@ -76,7 +76,7 @@ function SpecsTab() {
       </tbody></table>
       {/* Accordion Mode specimen */}
       <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
-        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--accordion-mode&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Accordion Mode" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-accordion--accordion-mode&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="Accordion Mode" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
       <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Accordion mode — single open vs multiple open behavior.</p>
 
@@ -234,7 +234,7 @@ function V2OverviewTab() {
   return (
     <>
       <p style={{ marginBottom: '1.5rem' }}>
-        <a href="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion-v2--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
+        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion-v2--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
       </p>
       <h2>Description</h2>
       <p>Accordion V2 is a stateful single container built for step-based flows. Unlike Accordion V1 (stacked sections), V2 is designed for sequential task completion — each section represents a step that can be marked as completed.</p>
@@ -247,7 +247,7 @@ function V2OverviewTab() {
         <tr><td>Sizes</td><td>Large / Small</td><td>Web (724px) / Mobile (346px)</td></tr>
       </tbody></table>
       <h2>Availability</h2>
-      <AvailabilityTable storybookUrl="https://tarmac-storybook.delhivery.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion-v2--playground" />
+      <AvailabilityTable storybookUrl="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-accordion-v2--playground" />
     </>
   );
 }

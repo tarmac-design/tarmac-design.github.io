@@ -2,7 +2,7 @@
 
 import { storybookVariants, type StoryVariant } from '@/components/storybookVariants';
 
-const STORYBOOK_BASE = 'https://tarmac-storybook.delhivery.com/storybook/sb';
+const STORYBOOK_BASE = 'https://tarmac-storybook-dev.pntrzz.com/storybook/sb';
 
 export function StorybookVariantViewer({ slug }: { slug: string }) {
   const variants = storybookVariants[slug];

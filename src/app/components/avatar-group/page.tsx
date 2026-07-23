@@ -61,7 +61,7 @@ function SpecsTab() {
         <tr><td>Border Ring</td><td>White separator between overlapping items</td></tr>
       </tbody></table>
       <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
-        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-avatar-group--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="avatar-group example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-avatar-group--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="avatar-group example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
 
       <h2>Sizes</h2>

@@ -6,6 +6,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -62,7 +63,7 @@ function SpecsTab() {
         <tr><td>Footer Actions</td><td>Confirm and cancel buttons</td></tr>
       </tbody></table>
       <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
-        <iframe src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-daterangepicker--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="date-time-picker example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-daterangepicker--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="date-time-picker example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
       </div>
 
       <h2>Sizes</h2>
@@ -86,7 +87,9 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
         <p className="text-gray-700 mb-4">
@@ -137,6 +140,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { DateTimePicker } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<DateTimePicker />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 
