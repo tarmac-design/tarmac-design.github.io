@@ -92,6 +92,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Breadcrumbs usage overview" slug="breadcrumbs" section="usage" />
         <p className="text-gray-700 mb-4">
           Use breadcrumbs to reveal the structure of a site and allow users to quickly
           navigate up the hierarchy. Place them at the top of the page below the main navigation.
@@ -100,6 +101,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Breadcrumbs when to use" slug="breadcrumbs" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When the site has 3 or more levels of hierarchy</li>
           <li>When users need to quickly navigate between levels</li>
@@ -110,6 +112,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Breadcrumbs when not to use" slug="breadcrumbs" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For flat site architectures with only one level</li>
           <li>As the primary navigation method</li>

@@ -60,6 +60,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Status Indicator usage overview" slug="status-indicator" section="usage" />
       <GuidelineImage title="When to Use \u2014 Status Indicator" slug="status-indicator" section="when-to-use" />
       <ul>
         <li>Use the Status Indicator component when appropriate for your interface context</li>

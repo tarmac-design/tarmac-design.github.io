@@ -51,8 +51,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Ghost usage" slug="ghost" section="usage" />
           <p>Skeleton loading placeholder that mimics content layout while data loads.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Ghost when to use" slug="ghost" section="when-to-use" />
           <ul>
         <li>Content loading states</li>
         <li>Placeholder for async data</li>
@@ -60,6 +62,7 @@ function GuidelinesTab() {
         <li>Reducing perceived load time</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Ghost when not to use" slug="ghost" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -72,6 +75,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Ghost } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

@@ -127,6 +127,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Input usage overview" slug="input" section="usage" />
+          <GuidelineImage title="Input when to use" slug="input" section="when-to-use" />
         <GuidelineImage title="When to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When collecting single-line text data from users</li>
@@ -138,6 +140,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Input when not to use" slug="input" section="when-not-to-use" />
         <GuidelineImage title="When not to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For multi-line text — use Input Area (textarea) instead</li>

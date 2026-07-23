@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Top Navigation usage" slug="top-navigation" section="usage" />
           <p>A horizontal navigation bar for primary app-level navigation and actions.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Top Navigation when to use" slug="top-navigation" section="when-to-use" />
           <ul>
         <li>Application headers</li>
         <li>Page-level navigation</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Breadcrumb alternatives</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Top Navigation when not to use" slug="top-navigation" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { TopNavigation } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

@@ -63,6 +63,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Search usage overview" slug="search" section="usage" />
       <GuidelineImage title="When to Use \u2014 Search" slug="search" section="when-to-use" />
       <ul>
         <li>Use the Search component when appropriate for your interface context</li>

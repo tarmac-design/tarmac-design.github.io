@@ -95,6 +95,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Bottom Sheet usage" slug="bottom-sheet" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Bottom Sheet when to use" slug="bottom-sheet" section="when-to-use" />
           <ul>
             <li>Short tasks and confirmations on mobile</li>
             <li>Action sheets with contextual options</li>
@@ -103,6 +104,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Bottom Sheet when not to use" slug="bottom-sheet" section="when-not-to-use" />
           <ul>
             <li>On desktop — use Drawer or Modal instead</li>
             <li>Complex multi-step flows — use full pages</li>

@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Input Field Stepper usage" slug="input-field-stepper" section="usage" />
           <p>A numeric input with increment/decrement controls for precise value selection.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Input Field Stepper when to use" slug="input-field-stepper" section="when-to-use" />
           <ul>
         <li>Quantity selectors</li>
         <li>Numeric form inputs</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Cart quantity controls</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Input Field Stepper when not to use" slug="input-field-stepper" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { InputFieldStepper } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

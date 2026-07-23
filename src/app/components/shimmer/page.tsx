@@ -56,6 +56,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Shimmer usage overview" slug="shimmer" section="usage" />
       <GuidelineImage title="When to Use \u2014 Shimmer" slug="shimmer" section="when-to-use" />
       <ul>
         <li>Use the Shimmer component when appropriate for your interface context</li>

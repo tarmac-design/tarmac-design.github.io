@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Upload File usage" slug="upload-file" section="usage" />
           <p>A file upload component with drag-and-drop support, progress indicators, and file management.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Upload File when to use" slug="upload-file" section="when-to-use" />
           <ul>
         <li>Document uploads</li>
         <li>Image attachments</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Profile photo upload</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Upload File when not to use" slug="upload-file" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { UploadFile } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

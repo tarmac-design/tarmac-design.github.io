@@ -60,6 +60,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Stepper usage overview" slug="stepper" section="usage" />
       <GuidelineImage title="When to Use \u2014 Stepper" slug="stepper" section="when-to-use" />
       <ul>
         <li>Use the Stepper component when appropriate for your interface context</li>

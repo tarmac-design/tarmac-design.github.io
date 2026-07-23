@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Info Card usage" slug="info-card" section="usage" />
           <p>A card variant for displaying informational content with icon, title, and description.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Info Card when to use" slug="info-card" section="when-to-use" />
           <ul>
         <li>Feature highlights</li>
         <li>Status summaries</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Onboarding tips</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Info Card when not to use" slug="info-card" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { InfoCard } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

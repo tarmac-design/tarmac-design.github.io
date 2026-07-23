@@ -91,6 +91,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Card Block usage overview" slug="card-block" section="usage" />
         <p className="text-gray-700 mb-4">
           Use Card Block to create visually distinct sections of content. It acts as a
           generic container — the content within defines its purpose.
@@ -99,6 +100,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Card Block when to use" slug="card-block" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>To group related settings or form sections</li>
           <li>To create distinct content areas on a dashboard</li>
@@ -109,6 +111,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Card Block when not to use" slug="card-block" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For clickable product cards — use Cards component</li>
           <li>For simple spacing — use layout primitives instead</li>

@@ -62,6 +62,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Progress Bar usage overview" slug="progress-bar" section="usage" />
       <GuidelineImage title="When to Use \u2014 Progress Bar" slug="progress-bar" section="when-to-use" />
       <ul>
         <li>Use the Progress Bar component when appropriate for your interface context</li>

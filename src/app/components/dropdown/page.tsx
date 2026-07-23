@@ -116,6 +116,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Dropdown usage overview" slug="dropdown" section="usage" />
+          <GuidelineImage title="Dropdown when to use" slug="dropdown" section="when-to-use" />
         <GuidelineImage title="When to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When there are more than 5 options to choose from</li>
@@ -127,6 +129,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Dropdown when not to use" slug="dropdown" section="when-not-to-use" />
         <GuidelineImage title="When not to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For fewer than 5 options — use Radio buttons or Checkboxes instead</li>

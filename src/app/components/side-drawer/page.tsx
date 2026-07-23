@@ -63,6 +63,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Side Drawer usage overview" slug="side-drawer" section="usage" />
       <GuidelineImage title="When to Use \u2014 Side Drawer" slug="side-drawer" section="when-to-use" />
       <ul>
         <li>Use the Side Drawer component when appropriate for your interface context</li>

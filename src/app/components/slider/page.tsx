@@ -62,6 +62,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Slider usage overview" slug="slider" section="usage" />
       <GuidelineImage title="When to Use \u2014 Slider" slug="slider" section="when-to-use" />
       <ul>
         <li>Use the Slider component when appropriate for your interface context</li>

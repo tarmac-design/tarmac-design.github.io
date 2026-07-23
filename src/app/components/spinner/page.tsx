@@ -59,6 +59,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Spinner usage overview" slug="spinner" section="usage" />
       <GuidelineImage title="When to Use \u2014 Spinner" slug="spinner" section="when-to-use" />
       <ul>
         <li>Use the Spinner component when appropriate for your interface context</li>

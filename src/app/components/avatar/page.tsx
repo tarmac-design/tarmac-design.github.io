@@ -99,6 +99,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Avatar usage overview" slug="avatar" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Avatar when to use" slug="avatar" section="when-to-use" />
           <ul>
             <li>User profiles and account menus</li>
             <li>Comment threads and activity feeds</li>
@@ -107,6 +108,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Avatar when not to use" slug="avatar" section="when-not-to-use" />
           <ul>
             <li>Decorative images — use Image component instead</li>
             <li>Product photos — use dedicated product imagery</li>

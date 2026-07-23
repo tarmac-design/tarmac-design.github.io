@@ -94,6 +94,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Avatar Group layout" slug="avatar-group" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Avatar Group when to use" slug="avatar-group" section="when-to-use" />
           <ul>
             <li>Team displays on project cards</li>
             <li>Shared items showing co-owners</li>
@@ -101,6 +102,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Avatar Group when not to use" slug="avatar-group" section="when-not-to-use" />
           <ul>
             <li>Single user — use Avatar component directly</li>
             <li>When individual names matter more than visuals — use a list</li>

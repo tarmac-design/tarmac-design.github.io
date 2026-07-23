@@ -116,6 +116,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="File Upload usage overview" slug="file-upload" section="usage" />
+          <GuidelineImage title="File Upload when to use" slug="file-upload" section="when-to-use" />
         <GuidelineImage title="When to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to upload documents or images as part of a form</li>
@@ -127,6 +129,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="File Upload when not to use" slug="file-upload" section="when-not-to-use" />
         <GuidelineImage title="When not to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For simple text input — use Input component</li>

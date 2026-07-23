@@ -59,6 +59,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Scroll usage overview" slug="scroll" section="usage" />
       <GuidelineImage title="When to Use \u2014 Scroll" slug="scroll" section="when-to-use" />
       <ul>
         <li>Use the Scroll component when appropriate for your interface context</li>

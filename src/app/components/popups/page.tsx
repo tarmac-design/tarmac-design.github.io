@@ -63,6 +63,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Popups usage overview" slug="popups" section="usage" />
       <GuidelineImage title="When to Use \u2014 Popups" slug="popups" section="when-to-use" />
       <ul>
         <li>Use the Popups component when appropriate for your interface context</li>

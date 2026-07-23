@@ -51,8 +51,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Divider usage" slug="divider" section="usage" />
           <p>A visual separator used to create clear boundaries between content sections.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Divider when to use" slug="divider" section="when-to-use" />
           <ul>
         <li>Separating list items</li>
         <li>Dividing form sections</li>
@@ -60,6 +62,7 @@ function GuidelinesTab() {
         <li>Creating visual hierarchy</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Divider when not to use" slug="divider" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -72,6 +75,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Divider } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

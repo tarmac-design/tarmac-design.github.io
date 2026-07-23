@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Tooltip V2 usage" slug="tooltip-v2" section="usage" />
           <p>An enhanced tooltip with richer content support including titles, descriptions, and actions.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Tooltip V2 when to use" slug="tooltip-v2" section="when-to-use" />
           <ul>
         <li>Feature explanations</li>
         <li>Contextual help</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Action confirmations</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Tooltip V2 when not to use" slug="tooltip-v2" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { TooltipV2 } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

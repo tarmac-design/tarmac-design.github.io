@@ -104,6 +104,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Footer usage overview" slug="footer" section="usage" />
+          <GuidelineImage title="Footer when to use" slug="footer" section="when-to-use" />
         <GuidelineImage title="When to use Footer" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When a popup or sheet requires user action to proceed</li>
@@ -114,6 +116,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Footer when not to use" slug="footer" section="when-not-to-use" />
         <GuidelineImage title="When not to use Footer" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For page-level footers — use a page layout footer</li>

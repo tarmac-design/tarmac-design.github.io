@@ -98,6 +98,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Alert placement guidelines" slug="alert" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Alert when to use" slug="alert" section="when-to-use" />
           <ul>
             <li>Confirm actions completed successfully</li>
             <li>Display errors when an operation fails</li>
@@ -106,6 +107,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Alert when not to use" slug="alert" section="when-not-to-use" />
           <ul>
             <li>Decorative banners without semantic meaning</li>
             <li>Transient notifications — use Snackbar instead</li>

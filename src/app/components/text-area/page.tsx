@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Text Area usage" slug="text-area" section="usage" />
           <p>A multi-line text input for longer form content entry.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Text Area when to use" slug="text-area" section="when-to-use" />
           <ul>
         <li>Comments and feedback</li>
         <li>Message composition</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Notes and annotations</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Text Area when not to use" slug="text-area" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { TextArea } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

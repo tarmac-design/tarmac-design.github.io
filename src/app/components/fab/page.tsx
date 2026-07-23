@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Fab usage" slug="fab" section="usage" />
           <p>Floating Action Button for the primary action on a screen.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Fab when to use" slug="fab" section="when-to-use" />
           <ul>
         <li>Primary creation actions</li>
         <li>Quick-access shortcuts</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Context-specific main action</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Fab when not to use" slug="fab" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { FAB } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

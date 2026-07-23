@@ -91,40 +91,59 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
-          <p>Progressively disclose content. Choose Accordion for stacked sections, V2 for step flows.</p>
+          <GuidelineImage title="Accordion usage" slug="accordion" section="usage" />
+          <p>Accordions progressively disclose content — a header row expands to reveal its body and collapses to hide it. They shorten long pages, reduce cognitive load, and let users focus on one thing at a time.</p>
+          <p>TDS ships the pattern as two systems: <strong>Accordion</strong>, a stacked list of one to five related sections, and <strong>Accordion V2</strong>, a stateful single container built for step-based flows.</p>
           <GuidelineImage title="Accordion usage overview" slug="accordion" section="usage" />
 
+          <h2>How to Use</h2>
+          <ol>
+            <li><strong>Choose the system</strong> — Accordion for stacked, related sections (FAQs, grouped settings); Accordion V2 for a single stateful container in task or step flows.</li>
+            <li><strong>Pick the size for the platform</strong> — Large / Small on Accordion, Web / Mobile on V2. Switch the variant property; never scale manually.</li>
+            <li><strong>Write the header first</strong> — sentence case, under six words, no punctuation. Add subtext only when it genuinely helps the expand decision.</li>
+            <li><strong>Configure the content</strong> — use slot variants for custom layouts inside the body or footer; keep token-bound padding intact.</li>
+            <li><strong>Set the resting state</strong> — default to all collapsed; expand the first section only when one topic clearly dominates.</li>
+            <li><strong>Apply V2 header styles with meaning</strong> — Green success, Yellow caution, DLV Red critical, Coal neutral emphasis.</li>
+            <li><strong>Never detach</strong> — swap variants through properties. Detaching breaks token bindings and the sync chain to Storybook.</li>
+          </ol>
+
           <h2>When to Use</h2>
+          <GuidelineImage title="Accordion when to use" slug="accordion" section="when-to-use" />
           <ul>
-            <li>FAQs and help content</li>
-            <li>Long forms — collapse optional or grouped field sets</li>
+            <li>FAQs and help content — the canonical accordion use case</li>
+            <li>Long forms — collapse optional or grouped field sets so the primary path stays short</li>
             <li>Settings and filters — users act on one group at a time</li>
-            <li>Sequential flows — V2 with Completed state confirms finished steps</li>
-            <li>Dense mobile screens — reclaim vertical space</li>
+            <li>Sequential flows — V2 with the Completed state confirms finished steps</li>
+            <li>Dense mobile screens — reclaim vertical space where it is scarcest</li>
+            <li>Secondary detail — specifications, terms summaries, shipment metadata that supports the task without driving it</li>
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Accordion when not to use" slug="accordion" section="when-not-to-use" />
           <ul>
-            <li>Critical content — errors, pricing, mandatory instructions must be visible</li>
-            <li>Short content — two or three lines need no disclosure</li>
-            <li>Comparison tasks — use Table or side-by-side Cards</li>
-            <li>Navigation — use Tabs, Side Nav, or Breadcrumbs</li>
-            <li>Nested disclosure — more than one level deep signals an IA problem</li>
+            <li>Critical content — errors, pricing, mandatory instructions. If hiding it creates risk, show it flat</li>
+            <li>Content that already fits — two or three lines need no disclosure; the extra click only adds friction</li>
+            <li>Comparison tasks — users should not bounce between sections to compare; use a Table or side-by-side Cards</li>
+            <li>Navigation — accordions disclose content, they do not move users between pages. Use Tabs, Side Navigation or Breadcrumbs</li>
+            <li>Row expansion inside tables — use Table List Accordion Rows, purpose-built for that context</li>
+            <li>Nested disclosure — more than one level deep signals an information-architecture problem. Restructure instead</li>
           </ul>
 
           <h2>Do&apos;s and Don&apos;ts</h2>
           <DoDont slug="accordion"
             doItems={[
-              'Headers under 6 words, sentence case',
+              'Headers under 6 words, sentence case, no punctuation',
               'Default all sections to collapsed',
               'Use V2 header styles with meaning (Green success, Yellow caution, DLV Red critical)',
               'Surface critical info flat — never hide behind a click',
+              'Swap variants through properties, never detach',
             ]}
             dontItems={[
               "Don't write sentences in headers — the chevron communicates the interaction",
               "Don't hide critical info behind a collapsed section",
               "Don't nest accordions — restructure instead",
-              "Don't use styles decoratively — they carry semantic meaning",
+              "Don't use header styles decoratively — they carry semantic meaning",
+              "Don't scale components manually — use the size property",
             ]}
           />
         </>

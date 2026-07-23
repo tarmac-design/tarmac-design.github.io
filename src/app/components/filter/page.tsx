@@ -102,6 +102,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Filter usage overview" slug="filter" section="usage" />
+          <GuidelineImage title="Filter when to use" slug="filter" section="when-to-use" />
         <GuidelineImage title="When to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to narrow large datasets by criteria</li>
@@ -112,6 +114,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Filter when not to use" slug="filter" section="when-not-to-use" />
         <GuidelineImage title="When not to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For sorting content — use a Sort control instead</li>

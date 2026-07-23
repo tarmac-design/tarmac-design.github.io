@@ -91,6 +91,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Coachmarks usage overview" slug="coachmarks" section="usage" />
         <p className="text-gray-700 mb-4">
           Coachmarks should be used sparingly for genuinely helpful onboarding.
           Keep tours short (3-5 steps max), provide clear skip options, and
@@ -100,6 +101,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Coachmarks when to use" slug="coachmarks" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For first-time user onboarding to key features</li>
           <li>When introducing significant UI changes</li>
@@ -110,6 +112,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Coachmarks when not to use" slug="coachmarks" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For obvious UI elements that don&apos;t need explanation</li>
           <li>As a substitute for good UX design</li>

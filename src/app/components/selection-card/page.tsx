@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Selection Card usage" slug="selection-card" section="usage" />
           <p>A card-style selection element that acts as a radio or checkbox in a visual format.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Selection Card when to use" slug="selection-card" section="when-to-use" />
           <ul>
         <li>Plan selection</li>
         <li>Payment method chooser</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Multi-option forms</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Selection Card when not to use" slug="selection-card" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { SelectionCard } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

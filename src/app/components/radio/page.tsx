@@ -62,6 +62,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Radio usage overview" slug="radio" section="usage" />
       <GuidelineImage title="When to Use \u2014 Radio" slug="radio" section="when-to-use" />
       <ul>
         <li>Use the Radio component when appropriate for your interface context</li>

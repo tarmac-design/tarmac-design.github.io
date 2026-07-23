@@ -62,6 +62,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Rating usage overview" slug="rating" section="usage" />
       <GuidelineImage title="When to Use \u2014 Rating" slug="rating" section="when-to-use" />
       <ul>
         <li>Use the Rating component when appropriate for your interface context</li>

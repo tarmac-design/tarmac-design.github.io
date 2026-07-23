@@ -94,6 +94,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Cards usage overview" slug="cards" section="usage" />
         <p className="text-gray-700 mb-4">
           Cards contain self-sufficient content and actions. Each card should represent
           a single concept or item. Use consistent card layouts within the same context.
@@ -102,6 +103,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Cards when to use" slug="cards" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For displaying items in a browseable grid or list</li>
           <li>When content needs a self-contained visual boundary</li>
@@ -112,6 +114,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Cards when not to use" slug="cards" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For simple content grouping — use Card Block instead</li>
           <li>For single-item detail views — use page layouts</li>

@@ -92,6 +92,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Carousel usage overview" slug="carousel" section="usage" />
         <p className="text-gray-700 mb-4">
           Carousels should be used when horizontal space is limited but content
           needs to be browseable. Always provide visible navigation controls and
@@ -101,6 +102,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Carousel when to use" slug="carousel" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For image galleries where space is constrained</li>
           <li>For featured or promotional content rotation</li>
@@ -111,6 +113,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Carousel when not to use" slug="carousel" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For critical content that must be seen — users often miss carousel items</li>
           <li>When all items can fit on screen — use a grid instead</li>

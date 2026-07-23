@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Table usage" slug="table" section="usage" />
           <p>A structured data display component for rows and columns of related information.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Table when to use" slug="table" section="when-to-use" />
           <ul>
         <li>Data listings</li>
         <li>Order history</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Report views</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Table when not to use" slug="table" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Table } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

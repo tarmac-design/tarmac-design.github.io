@@ -102,6 +102,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Button hierarchy" slug="button" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Button when to use" slug="button" section="when-to-use" />
           <ul>
             <li>Form submissions and save actions</li>
             <li>Dialog action buttons (confirm/cancel)</li>
@@ -110,6 +111,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Button when not to use" slug="button" section="when-not-to-use" />
           <ul>
             <li>Navigation links — use Link component</li>
             <li>Toggles — use Toggle or Checkbox</li>

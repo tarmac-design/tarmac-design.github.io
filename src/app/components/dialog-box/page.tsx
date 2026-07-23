@@ -92,6 +92,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Dialog Box usage overview" slug="dialog-box" section="usage" />
         <p className="text-gray-700 mb-4">
           Dialogs interrupt the user flow, so use them sparingly and only for actions
           that require explicit user decision. Keep dialog content focused and provide
@@ -101,6 +102,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Dialog Box when to use" slug="dialog-box" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For irreversible actions that need explicit confirmation</li>
           <li>When displaying critical information users must acknowledge</li>
@@ -111,6 +113,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Dialog Box when not to use" slug="dialog-box" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For non-critical information — use Alert or Snackbar</li>
           <li>For simple messages — use inline alerts instead</li>

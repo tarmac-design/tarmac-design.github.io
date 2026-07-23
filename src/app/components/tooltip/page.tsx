@@ -59,6 +59,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Tooltip usage overview" slug="tooltip" section="usage" />
       <GuidelineImage title="When to Use \u2014 Tooltip" slug="tooltip" section="when-to-use" />
       <ul>
         <li>Use the Tooltip component when appropriate for your interface context</li>

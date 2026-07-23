@@ -104,6 +104,8 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Header usage overview" slug="header" section="usage" />
+          <GuidelineImage title="Header when to use" slug="header" section="when-to-use" />
         <GuidelineImage title="When to use Header" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When an overlay needs a clear title and dismiss action</li>
@@ -114,6 +116,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Header when not to use" slug="header" section="when-not-to-use" />
         <GuidelineImage title="When not to use Header" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For page-level headers — use a page layout header</li>

@@ -94,6 +94,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Checkbox usage overview" slug="checkbox" section="usage" />
         <p className="text-gray-700 mb-4">
           Checkboxes are for non-exclusive selections where multiple options can be
           active simultaneously. For mutually exclusive choices, use Radio buttons.
@@ -103,6 +104,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Checkbox when to use" slug="checkbox" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users can select multiple options from a list</li>
           <li>For binary yes/no toggles (e.g., "I agree")</li>
@@ -113,6 +115,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Checkbox when not to use" slug="checkbox" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For mutually exclusive choices — use Radio buttons</li>
           <li>For instant on/off toggles — use Switch component</li>

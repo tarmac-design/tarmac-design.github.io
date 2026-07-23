@@ -92,6 +92,7 @@ function GuidelinesTab() {
         <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Date Time Picker usage overview" slug="date-time-picker" section="usage" />
         <p className="text-gray-700 mb-4">
           Use the appropriate variant based on what data you need. Date-only for
           simple dates, Time-only for scheduling time slots, combined for full
@@ -101,6 +102,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Date Time Picker when to use" slug="date-time-picker" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to select specific dates from a calendar</li>
           <li>For time-specific scheduling inputs</li>
@@ -111,6 +113,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Date Time Picker when not to use" slug="date-time-picker" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For known, specific dates — use a plain text input</li>
           <li>For relative dates ("last 7 days") — use preset filter chips</li>

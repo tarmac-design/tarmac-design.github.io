@@ -63,6 +63,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Otp Fields usage overview" slug="otp-fields" section="usage" />
       <GuidelineImage title="When to Use \u2014 Otp Fields" slug="otp-fields" section="when-to-use" />
       <ul>
         <li>Use the Otp Fields component when appropriate for your interface context</li>

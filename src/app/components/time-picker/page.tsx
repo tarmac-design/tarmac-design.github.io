@@ -52,8 +52,10 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
+          <GuidelineImage title="Time Picker usage" slug="time-picker" section="usage" />
           <p>An input component for selecting time values with optional period (AM/PM) support.</p>
           <h2>When to Use</h2>
+          <GuidelineImage title="Time Picker when to use" slug="time-picker" section="when-to-use" />
           <ul>
         <li>Scheduling interfaces</li>
         <li>Appointment booking</li>
@@ -61,6 +63,7 @@ function GuidelinesTab() {
         <li>Event creation forms</li>
           </ul>
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Time Picker when not to use" slug="time-picker" section="when-not-to-use" />
           <ul>
             <li>When simpler alternatives serve the same purpose</li>
             <li>When the content doesn&apos;t warrant this level of complexity</li>
@@ -73,6 +76,7 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { TimePicker } from '@tarmac/design-system';`}</code></pre>
+import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>

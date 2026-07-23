@@ -61,6 +61,7 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
       <h2>When to Use</h2>
+          <GuidelineImage title="Audio Player usage overview" slug="audio-player" section="usage" />
       <GuidelineImage title="When to Use \u2014 Audio Player" slug="audio-player" section="when-to-use" />
       <ul>
         <li>Use the Audio Player component when appropriate for your interface context</li>

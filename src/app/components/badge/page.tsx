@@ -98,6 +98,7 @@ function GuidelinesTab() {
           <GuidelineImage title="Badge usage overview" slug="badge" section="usage" />
 
           <h2>When to Use</h2>
+          <GuidelineImage title="Badge when to use" slug="badge" section="when-to-use" />
           <ul>
             <li>Shipment status indicators on table rows</li>
             <li>Table metadata and category labels</li>
@@ -106,6 +107,7 @@ function GuidelinesTab() {
           </ul>
 
           <h2>When Not to Use</h2>
+          <GuidelineImage title="Badge when not to use" slug="badge" section="when-not-to-use" />
           <ul>
             <li>As buttons or clickable elements — use Button or Chip</li>
             <li>For long text — use Alert or inline text</li>
