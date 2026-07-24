@@ -6,8 +6,8 @@ export interface StoryVariant {
 }
 
 const BASE_URLS: Record<Framework, string> = {
-  react: 'https://tarmac-storybook.delhivery.com/storybook/sb',
-  angular: 'https://tarmac-storybook.delhivery.com/storybook-angular',
+  react: 'https://tarmac-storybook-dev.pntrzz.com/storybook/sb',
+  angular: 'https://tarmac-storybook-dev.pntrzz.com/storybook-angular',
 };
 
 export function getIframeUrl(storyId: string, framework: Framework = 'react'): string {

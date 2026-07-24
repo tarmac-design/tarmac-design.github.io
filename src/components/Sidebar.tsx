@@ -15,6 +15,7 @@ const sidebarSections: NavGroup[] = [
     { label: 'Brand Language', href: '/about/brand-language' },
     { label: 'Movement Metaphors', href: '/about/movement-metaphors' },
     { label: 'TARMAC Logo', href: '/about/logo' },
+    { label: 'Life@Delhivery', href: '/about/life-at-delhivery' },
     { label: 'Installation', href: '/getting-started/installation' },
     { label: 'Quick Start', href: '/getting-started/quick-start' },
   ]},
@@ -290,7 +291,7 @@ export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onCl
 
   return (
     <>
-      {/* Desktop sidebar */}
+      {/* Desktop sidebar — always visible */}
       <aside
         className="hidden lg:block fixed left-0 top-16 w-[var(--sidebar-width)] h-[calc(100vh-64px)] overflow-y-auto z-30 border-r sidebar-scroll"
         style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
@@ -298,7 +299,7 @@ export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onCl
         {sidebarContent}
       </aside>
 
-      {/* Mobile sidebar */}
+      {/* Mobile sidebar — overlay on hamburger click */}
       <AnimatePresence>
         {open && (
           <>
@@ -311,7 +312,7 @@ export function Sidebar({ open, onClose, onSearchClick }: { open?: boolean; onCl
               transition={{ duration: 0.2 }}
             />
             <motion.aside
-              className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r"
+              className="lg:hidden fixed left-0 top-16 w-[min(280px,85vw)] h-[calc(100vh-64px)] overflow-y-auto z-50 border-r sidebar-scroll"
               style={{ background: 'var(--color-surface)', borderColor: 'var(--color-outline)' }}
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}

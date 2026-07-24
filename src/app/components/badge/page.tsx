@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Cyan and Orange variant options',
-      'Added status dot boolean property',
-      'Improved ghost state animation',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Cyan and Orange variant options', 'Added status dot boolean property', 'Improved ghost state animation'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Badge component',
-      'Support for Solid, Subtle, Outlined, Ghost, and Disabled types',
-      'Three size options: Large, Medium, Small',
-      'Leading and trailing icon support',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Badge component', 'Support for Solid, Subtle, Outlined, Ghost, and Disabled types', 'Three size options: Large, Medium, Small', 'Leading and trailing icon support'] }],
   },
 ];
 
@@ -62,129 +54,131 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Badge component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Radius/Default 4px, Spacing/6 padding, Spacing/2 gap</li>
-          <li><strong>Leading Icon</strong> — Optional icon before label (12-14px)</li>
-          <li><strong>Label</strong> — Text content (Noto Sans Medium 12)</li>
-          <li><strong>Trailing Icon</strong> — Optional icon after label (12-14px)</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>4px radius, Spacing/6 padding — holds label and optional icons</td></tr>
+        <tr><td>Label</td><td>Noto Sans Medium 12 — one or two words max</td></tr>
+        <tr><td>Leading Icon</td><td>Optional 12-14px icon reinforcing meaning</td></tr>
+        <tr><td>Trailing Icon</td><td>Optional icon after the label</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-badge--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="badge example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Black</strong> — High-contrast dark badge</li>
-          <li><strong>White</strong> — Light badge for dark surfaces</li>
-          <li><strong>Coal</strong> — Subtle dark-toned badge</li>
-          <li><strong>DLV Red</strong> — Brand-colored badge</li>
-          <li><strong>Info</strong> — Blue informational badge</li>
-          <li><strong>Success</strong> — Green positive status badge</li>
-          <li><strong>Warning</strong> — Yellow/amber caution badge</li>
-          <li><strong>Error</strong> — Red critical status badge</li>
-          <li><strong>Cardbox</strong> — Muted cardbox-themed badge</li>
-          <li><strong>Cyan</strong> — Cyan accent badge</li>
-          <li><strong>Orange</strong> — Orange accent badge</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (28px)</td><td>Cards, banners, and headers</td></tr>
+        <tr><td>Medium (24px)</td><td>Default for most contexts</td></tr>
+        <tr><td>Small (20px)</td><td>Dense tables and metadata rows</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Types</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Solid</strong> — Loudest, filled background for primary emphasis</li>
-          <li><strong>Subtle</strong> — Secondary emphasis with lighter background</li>
-          <li><strong>Outlined</strong> — Border-only for use on tinted surfaces</li>
-          <li><strong>Ghost</strong> — Loading/skeleton placeholder state</li>
-          <li><strong>Disabled</strong> — Non-interactive muted state</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Solid</td><td>Filled — strongest emphasis for critical status</td></tr>
+        <tr><td>Subtle</td><td>Light background — secondary information</td></tr>
+        <tr><td>Outlined</td><td>Border only — minimal visual weight</td></tr>
+        <tr><td>Ghost</td><td>Extremely lightweight — loading placeholders</td></tr>
+        <tr><td>Disabled</td><td>Inactive, visually muted</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 28px height</li>
-          <li><strong>Medium</strong> — 24px height</li>
-          <li><strong>Small</strong> — 20px height</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Boolean Properties</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Leading Icon</strong> — Toggles icon before label</li>
-          <li><strong>Trailing Icon</strong> — Toggles icon after label</li>
-          <li><strong>Status Dot</strong> — Toggles colored status indicator dot</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="badge" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="badge" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Badges are for displaying metadata — they are non-interactive and should not
-          be used as buttons or links. Choose the variant and type that best matches
-          the semantic meaning and visual hierarchy.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Compact labels for status or category. Non-interactive — the row or card is the interaction target.</p>
+          <GuidelineImage title="Badge usage overview" slug="badge" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>To indicate status on table rows or list items</li>
-          <li>To label categories or types on cards</li>
-          <li>To show counts on navigation elements</li>
-          <li>To surface priority or urgency information</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <GuidelineImage title="Badge when to use" slug="badge" section="when-to-use" />
+          <ul>
+            <li>Shipment status indicators on table rows</li>
+            <li>Table metadata and category labels</li>
+            <li>Card labels and priority indicators</li>
+            <li>Notification counts on navigation items</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>For interactive elements — use Button or Chip instead</li>
-          <li>For large blocks of text — use Alert instead</li>
-          <li>For user-removable tags — use Tag/Chip component</li>
-          <li>For navigation — use links or buttons</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <GuidelineImage title="Badge when not to use" slug="badge" section="when-not-to-use" />
+          <ul>
+            <li>As buttons or clickable elements — use Button or Chip</li>
+            <li>For long text — use Alert or inline text</li>
+            <li>As the only error signal — pair with text explanation</li>
+            <li>Decoratively without semantic meaning</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/badge-usage.png"
-          alt="Badge usage guidelines"
-        />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="badge"
             doItems={[
-              'Keep badge labels short and scannable (1-2 words)',
-              'Use consistent variant meanings across the application',
-              'Use Solid type for highest emphasis, Subtle for secondary',
-              'Pair with meaningful icons for quick recognition',
+              'One–two words max for label text',
+              'Match badge size to container density',
+              'Use semantic colors consistently across the app',
+              'Pair with meaningful icons to reinforce (never replace) the label',
             ]}
             dontItems={[
-              'Use badges as interactive buttons or links',
-              'Overload a single view with too many badge colors',
-              'Use long text that wraps to multiple lines',
-              'Apply badges without clear semantic meaning',
+              "Don't stack redundant badges on the same element",
+              "Don't make badges clickable — they are metadata, not actions",
+              "Don't rely on color alone — always include a text label",
+              "Don't use long text that wraps to multiple lines",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Badge } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Always provide <code>variant</code> for semantic color</td></tr>
+              <tr><td>2</td><td>Keep label 1-2 words — badges are scanned not read</td></tr>
+              <tr><td>3</td><td>Never make badges interactive — they are metadata</td></tr>
+              <tr><td>4</td><td>Use <code>type</code> to control emphasis hierarchy</td></tr>
+              <tr><td>5</td><td>Icons reinforce meaning but never replace label text</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>label</td><td>string</td><td>required</td><td>Badge text — keep to 1–2 words</td></tr>
+              <tr><td>variant</td><td>{`"black" | "white" | "coal" | "dlvRed" | "info" | "success" | "warning" | "error" | "cardbox"`}</td><td>{`"info"`}</td><td>Semantic color variant</td></tr>
+              <tr><td>type</td><td>{`"solid" | "subtle" | "outlined" | "ghost" | "disabled"`}</td><td>{`"solid"`}</td><td>Emphasis level</td></tr>
+              <tr><td>size</td><td>{`"lg" | "md" | "sm"`}</td><td>{`"md"`}</td><td>Badge height</td></tr>
+              <tr><td>leadingIcon</td><td>ReactNode</td><td>undefined</td><td>Optional icon before label</td></tr>
+              <tr><td>trailingIcon</td><td>ReactNode</td><td>undefined</td><td>Optional icon after label</td></tr>
+              <tr><td>status</td><td>boolean</td><td>false</td><td>Shows status dot indicator</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Badge label="Active" variant="success" />`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Badge
+  label="Priority"
+  variant="warning"
+  type="outlined"
+  size="sm"
+  leadingIcon={<AlertIcon />}
+/>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

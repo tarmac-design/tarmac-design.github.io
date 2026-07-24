@@ -6,25 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.2.0',
     date: 'June 2026',
-    changes: [
-      'Added grouped options support',
-      'Improved search performance for large datasets',
-      'Fixed focus trap behavior when dropdown closes',
-    ],
+    changes: [{ category: 'Changed', items: ['Added grouped options support', 'Improved search performance for large datasets', 'Fixed focus trap behavior when dropdown closes'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Dropdown component',
-      'Support for Single select, Multi select, With search, and Grouped variants',
-      'Open, Closed, Focused, and Disabled states',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Dropdown component', 'Support for Single select, Multi select, With search, and Grouped variants', 'Open, Closed, Focused, and Disabled states'] }],
   },
 ];
 
@@ -66,7 +59,7 @@ function SpecsTab() {
       <section>
         <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
           <iframe
-            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-dropdown--playground&viewMode=story&shortcuts=false"
+            src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-dropdown--playground&viewMode=story&shortcuts=false"
             style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
             title="Dropdown interactive example"
             loading="lazy"
@@ -118,13 +111,14 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dropdown-when-to-use.png"
-          alt="When to use Dropdown"
-        />
+          <GuidelineImage title="Dropdown usage overview" slug="dropdown" section="usage" />
+          <GuidelineImage title="Dropdown when to use" slug="dropdown" section="when-to-use" />
+        <GuidelineImage title="When to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When there are more than 5 options to choose from</li>
           <li>When screen space is limited and inline options are impractical</li>
@@ -135,10 +129,8 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dropdown-when-not-to-use.png"
-          alt="When not to use Dropdown"
-        />
+          <GuidelineImage title="Dropdown when not to use" slug="dropdown" section="when-not-to-use" />
+        <GuidelineImage title="When not to use Dropdown" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For fewer than 5 options — use Radio buttons or Checkboxes instead</li>
           <li>For navigation menus — use Navigation component</li>
@@ -165,6 +157,30 @@ function GuidelinesTab() {
         />
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Dropdown } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Dropdown />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

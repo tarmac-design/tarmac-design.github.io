@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Ghost (skeleton) loading state',
-      'Improved indeterminate state visual clarity',
-      'Fixed label alignment at Small size',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Ghost (skeleton) loading state', 'Improved indeterminate state visual clarity', 'Fixed label alignment at Small size'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Checkbox component',
-      'Support for Checked, Unchecked, and Indeterminate states',
-      'Default and With Label variants',
-      'Three size options: Large, Medium, Small',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Checkbox component', 'Support for Checked, Unchecked, and Indeterminate states', 'Default and With Label variants', 'Three size options: Large, Medium, Small'] }],
   },
 ];
 
@@ -62,60 +54,47 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Checkbox component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Clickable hit area wrapping box and label</li>
-          <li><strong>Check Box</strong> — Square visual indicator</li>
-          <li><strong>Checkmark Icon</strong> — Tick or dash icon inside the box</li>
-          <li><strong>Label</strong> — Optional text describing the option</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Check Box</td><td>The square toggle control</td></tr>
+        <tr><td>Checkmark</td><td>Icon shown when checked</td></tr>
+        <tr><td>Label</td><td>Descriptive text beside the control</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-checkbox--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="checkbox example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Checkbox without label text</li>
-          <li><strong>With Label</strong> — Checkbox with accompanying text label</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large</td><td>Touch-friendly for mobile</td></tr>
+        <tr><td>Medium</td><td>Default for forms</td></tr>
+        <tr><td>Small</td><td>Dense settings panels</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — Prominent checkbox for touch targets</li>
-          <li><strong>Medium</strong> — Default size for forms and lists</li>
-          <li><strong>Small</strong> — Compact checkbox for dense layouts</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Unchecked</td><td>Empty — not selected</td></tr>
+        <tr><td>Checked</td><td>Filled with checkmark</td></tr>
+        <tr><td>Indeterminate</td><td>Partial selection (dash icon)</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, muted</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">States</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Unchecked</strong> — Empty checkbox, option not selected</li>
-          <li><strong>Checked</strong> — Checkmark visible, option selected</li>
-          <li><strong>Indeterminate</strong> — Dash icon, partial selection (parent)</li>
-          <li><strong>Disabled</strong> — Non-interactive, reduced opacity</li>
-          <li><strong>Ghost</strong> — Loading skeleton placeholder</li>
-        </ul>
-      </section>
-
-      <section>
-        <StorybookVariantViewer slug="checkbox" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="checkbox" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Checkbox usage overview" slug="checkbox" section="usage" />
         <p className="text-gray-700 mb-4">
           Checkboxes are for non-exclusive selections where multiple options can be
           active simultaneously. For mutually exclusive choices, use Radio buttons.
@@ -125,6 +104,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Checkbox when to use" slug="checkbox" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users can select multiple options from a list</li>
           <li>For binary yes/no toggles (e.g., "I agree")</li>
@@ -135,6 +115,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Checkbox when not to use" slug="checkbox" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For mutually exclusive choices — use Radio buttons</li>
           <li>For instant on/off toggles — use Switch component</li>
@@ -145,10 +126,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/checkbox-usage.png"
-          alt="Checkbox usage guidelines"
-        />
+        <GuidelineImage title="Checkbox usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -167,6 +145,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Checkbox } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Checkbox />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

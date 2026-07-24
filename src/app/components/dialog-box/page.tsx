@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Custom Content variant for flexible layouts',
-      'Improved backdrop click behavior with configurable dismiss',
-      'Fixed focus trap edge case with nested interactive elements',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Custom Content variant for flexible layouts', 'Improved backdrop click behavior with configurable dismiss', 'Fixed focus trap edge case with nested interactive elements'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Dialog Box component',
-      'Confirmation, Alert, and Form variants',
-      'Small, Medium, and Large size options',
-      'Overlay backdrop with focus trapping',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Dialog Box component', 'Confirmation, Alert, and Form variants', 'Small, Medium, and Large size options', 'Overlay backdrop with focus trapping'] }],
   },
 ];
 
@@ -62,52 +54,45 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Dialog Box component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Overlay Backdrop</strong> — Semi-transparent layer blocking background</li>
-          <li><strong>Container</strong> — Centered dialog surface</li>
-          <li><strong>Header</strong> — Title and optional close button</li>
-          <li><strong>Body Content</strong> — Message text, form, or custom content</li>
-          <li><strong>Footer</strong> — Primary CTA and optional Secondary CTA</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Overlay</td><td>Semi-transparent backdrop blocking background</td></tr>
+        <tr><td>Container</td><td>Modal surface with title, content, and actions</td></tr>
+        <tr><td>Header</td><td>Title and optional close button</td></tr>
+        <tr><td>Footer</td><td>Primary and secondary action buttons</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-dialogbox--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="dialog-box example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Confirmation</strong> — Asks user to confirm or cancel an action</li>
-          <li><strong>Alert</strong> — Displays important information requiring acknowledgment</li>
-          <li><strong>Form</strong> — Contains form fields for focused input collection</li>
-          <li><strong>Custom Content</strong> — Flexible layout for any content type</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Small</td><td>Confirmation dialogs</td></tr>
+        <tr><td>Medium</td><td>Default for most content</td></tr>
+        <tr><td>Large</td><td>Complex forms and content</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Small</strong> — Compact dialog for simple confirmations</li>
-          <li><strong>Medium</strong> — Default size for most use cases</li>
-          <li><strong>Large</strong> — Expanded dialog for forms and complex content</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Open</td><td>Dialog visible, background blocked</td></tr>
+        <tr><td>Closing</td><td>Exit animation in progress</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="dialog-box" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="dialog-box" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Dialog Box usage overview" slug="dialog-box" section="usage" />
         <p className="text-gray-700 mb-4">
           Dialogs interrupt the user flow, so use them sparingly and only for actions
           that require explicit user decision. Keep dialog content focused and provide
@@ -117,6 +102,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Dialog Box when to use" slug="dialog-box" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For irreversible actions that need explicit confirmation</li>
           <li>When displaying critical information users must acknowledge</li>
@@ -127,6 +113,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Dialog Box when not to use" slug="dialog-box" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For non-critical information — use Alert or Snackbar</li>
           <li>For simple messages — use inline alerts instead</li>
@@ -137,10 +124,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/dialog-box-usage.png"
-          alt="Dialog box usage guidelines"
-        />
+        <GuidelineImage title="Dialog box usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -159,6 +143,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { DialogBox } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<DialogBox />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

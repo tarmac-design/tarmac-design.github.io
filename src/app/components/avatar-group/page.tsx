@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added square shape support for individual avatars',
-      'Improved overflow counter styling',
-      'Fixed border ring overlap at small sizes',
-    ],
+    changes: [{ category: 'Changed', items: ['Added square shape support for individual avatars', 'Improved overflow counter styling', 'Fixed border ring overlap at small sizes'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Avatar Group component',
-      'Support for configurable max visible count',
-      'Three size options: Large, Medium, Small',
-      'Overflow counter with +N indicator',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Avatar Group component', 'Support for configurable max visible count', 'Three size options: Large, Medium, Small', 'Overflow counter with +N indicator'] }],
   },
 ];
 
@@ -61,99 +53,121 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Avatar Group component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Avatar Stack</strong> — Container holding overlapping avatars</li>
-          <li><strong>Individual Avatar</strong> — Each user avatar in the group</li>
-          <li><strong>Overflow Counter (+N)</strong> — Badge showing remaining count</li>
-          <li><strong>Border Ring</strong> — White ring separating overlapping avatars</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Avatar Stack</td><td>Horizontally overlapping avatar items</td></tr>
+        <tr><td>Overflow Counter</td><td>+N badge showing remaining hidden avatars</td></tr>
+        <tr><td>Border Ring</td><td>White separator between overlapping items</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-avatar-group--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="avatar-group example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 40px avatars, suitable for cards and headers</li>
-          <li><strong>Medium</strong> — 32px avatars, default for most contexts</li>
-          <li><strong>Small</strong> — 24px avatars, compact lists and tight spaces</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (40px)</td><td>Cards and headers</td></tr>
+        <tr><td>Medium (32px)</td><td>Default context</td></tr>
+        <tr><td>Small (24px)</td><td>Compact lists and metadata</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Properties</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>max</strong> — Maximum number of visible avatars before overflow</li>
-          <li><strong>size</strong> — Size of individual avatars (Large, Medium, Small)</li>
-          <li><strong>items</strong> — Array of avatar data (image, name, etc.)</li>
-          <li><strong>shapes</strong> — Circle or square shape for individual avatars</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Stacked avatars with overflow</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading state</td></tr>
+        <tr><td>Disabled</td><td>Non-interactive, muted</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="avatar-group" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="avatar-group" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
-        <p className="text-gray-700 mb-4">
-          Use Avatar Group to display multiple users in a compact, overlapping layout.
-          Set a reasonable max count to prevent visual clutter.
-        </p>
-      </section>
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <>
+          <h2>Usage</h2>
+          <p>Show multiple participants with overflow. Max 3–5 visible avatars.</p>
+          <GuidelineImage title="Avatar Group layout" slug="avatar-group" section="usage" />
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>Showing team members or participants in a compact space</li>
-          <li>Indicating shared ownership on cards or list items</li>
-          <li>Displaying collaborators in activity or document views</li>
-        </ul>
-      </section>
+          <h2>When to Use</h2>
+          <GuidelineImage title="Avatar Group when to use" slug="avatar-group" section="when-to-use" />
+          <ul>
+            <li>Team displays on project cards</li>
+            <li>Shared items showing co-owners</li>
+            <li>Participant lists in collaborative views</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li>When each user needs individual actions — use a list instead</li>
-          <li>For a single user — use Avatar component directly</li>
-          <li>When all users must be visible without overflow</li>
-        </ul>
-      </section>
+          <h2>When Not to Use</h2>
+          <GuidelineImage title="Avatar Group when not to use" slug="avatar-group" section="when-not-to-use" />
+          <ul>
+            <li>Single user — use Avatar component directly</li>
+            <li>When individual names matter more than visuals — use a list</li>
+            <li>When all users must be visible without overflow</li>
+          </ul>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/avatar-group-layout.png"
-          alt="Avatar group layout guidelines"
-        />
-        <div className="mt-6 space-y-4">
-          <DoDont
+          <h2>Do&apos;s and Don&apos;ts</h2>
+          <DoDont slug="avatar-group"
             doItems={[
-              'Set a reasonable max count (3-5) to keep the group compact',
-              'Use consistent avatar sizes within a group',
+              'Set a reasonable max (3–5) to keep the group compact',
+              'Show overflow count clearly (+N)',
+              'Use consistent sizing across all avatars in the group',
               'Provide a tooltip or expandable list for overflow users',
-              'Maintain consistent overlap spacing',
             ]}
             dontItems={[
-              'Display too many avatars without overflow',
-              'Mix different avatar sizes in the same group',
-              'Use avatar groups for non-user entities',
-              'Hide important user information behind overflow',
+              "Don't show more than 5–6 without overflow",
+              "Don't mix sizes within the same group",
+              "Don't use for non-user entities",
+              "Don't hide important user information behind overflow",
             ]}
           />
-        </div>
-      </section>
-    </div>
+        </>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { AvatarGroup } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Set <code>max</code> to control visible count — default 5</td></tr>
+              <tr><td>2</td><td>Provide <code>onOverflowClick</code> handler to show full list</td></tr>
+              <tr><td>3</td><td>Items array should include <code>name</code> for each entry</td></tr>
+              <tr><td>4</td><td>Use same <code>size</code> for all items — never mix</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Props</h2>
+          <table>
+            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>items</td><td>AvatarProps[]</td><td>required</td><td>Array of avatar data objects</td></tr>
+              <tr><td>max</td><td>number</td><td>5</td><td>Maximum visible avatars before overflow</td></tr>
+              <tr><td>size</td><td>{`"sm" | "md" | "lg"`}</td><td>{`"md"`}</td><td>Size of each avatar in the group</td></tr>
+              <tr><td>onOverflowClick</td><td>callback</td><td>undefined</td><td>Handler when +N overflow is clicked</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<AvatarGroup items={teamMembers} max={4} />`}</code></pre>
+
+          <h2>Advanced Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<AvatarGroup
+  items={participants}
+  max={3}
+  size="sm"
+  onOverflowClick={() => setShowAll(true)}
+/>`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

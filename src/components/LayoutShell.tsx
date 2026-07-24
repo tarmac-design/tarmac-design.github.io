@@ -43,7 +43,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <TopBar onMenuClick={() => setSidebarOpen(true)} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
+      <TopBar onMenuClick={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
       <div className={`flex ${isHome ? '' : 'pt-16'}`}>
         {!isHome && <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onSearchClick={() => setSearchOpen(true)} />}
         <div

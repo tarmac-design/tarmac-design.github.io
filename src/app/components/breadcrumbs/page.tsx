@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added custom separator support',
-      'Improved truncation with overflow menu',
-      'Fixed focus ring styling on breadcrumb links',
-    ],
+    changes: [{ category: 'Changed', items: ['Added custom separator support', 'Improved truncation with overflow menu', 'Fixed focus ring styling on breadcrumb links'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Breadcrumbs component',
-      'Default and With Icons variants',
-      'Large and Small size options',
-      'Truncated variant with overflow menu',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Breadcrumbs component', 'Default and With Icons variants', 'Large and Small size options', 'Truncated variant with overflow menu'] }],
   },
 ];
 
@@ -62,51 +54,45 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Breadcrumbs component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Horizontal wrapper for breadcrumb items</li>
-          <li><strong>Breadcrumb Item</strong> — Individual navigable link</li>
-          <li><strong>Separator</strong> — Visual divider (/ or &gt;) between items</li>
-          <li><strong>Current Item</strong> — Non-linked item representing current page</li>
-          <li><strong>Overflow Menu (...)</strong> — Collapsed middle items on long trails</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Breadcrumb Item</td><td>Linked page name in the trail</td></tr>
+        <tr><td>Separator</td><td>Divider between items (/ or >)</td></tr>
+        <tr><td>Current Item</td><td>Non-linked text for current page</td></tr>
+        <tr><td>Overflow</td><td>Collapsed items shown as "..."</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-breadcrumbs--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="breadcrumbs example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Text-only breadcrumb links</li>
-          <li><strong>With Icons</strong> — Icons preceding each breadcrumb item</li>
-          <li><strong>Truncated</strong> — Middle items collapsed into overflow menu</li>
-          <li><strong>Custom Separator</strong> — User-defined separator character</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Large (14px)</td><td>Page headers and prominent navigation</td></tr>
+        <tr><td>Small (12px)</td><td>Compact layouts and secondary nav</td></tr>
+      </tbody></table>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Sizes</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Large</strong> — 14px font, used for prominent navigation</li>
-          <li><strong>Small</strong> — 12px font, used for compact contexts</li>
-        </ul>
-      </section>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Full breadcrumb trail visible</td></tr>
+        <tr><td>Truncated</td><td>Middle items collapsed into overflow menu</td></tr>
+        <tr><td>Ghost</td><td>Skeleton loading state</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="breadcrumbs" />
-      </section>
-    </div>
+      <StorybookVariantViewer slug="breadcrumbs" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Breadcrumbs usage overview" slug="breadcrumbs" section="usage" />
         <p className="text-gray-700 mb-4">
           Use breadcrumbs to reveal the structure of a site and allow users to quickly
           navigate up the hierarchy. Place them at the top of the page below the main navigation.
@@ -115,6 +101,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Breadcrumbs when to use" slug="breadcrumbs" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When the site has 3 or more levels of hierarchy</li>
           <li>When users need to quickly navigate between levels</li>
@@ -125,6 +112,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Breadcrumbs when not to use" slug="breadcrumbs" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For flat site architectures with only one level</li>
           <li>As the primary navigation method</li>
@@ -135,10 +123,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/breadcrumbs-usage.png"
-          alt="Breadcrumbs usage guidelines"
-        />
+        <GuidelineImage title="Breadcrumbs usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -157,6 +142,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Breadcrumbs } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Breadcrumbs />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

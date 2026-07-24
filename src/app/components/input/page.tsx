@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.2.0',
     date: 'June 2026',
-    changes: [
-      'Added character counter variant',
-      'Improved clear button visibility',
-      'Fixed label animation on autofill',
-    ],
+    changes: [{ category: 'Changed', items: ['Added character counter variant', 'Improved clear button visibility', 'Fixed label animation on autofill'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Input component',
-      'Support for Default, With icons, and With counter variants',
-      'Large, Medium, and Small sizes',
-      'All interaction states supported',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Input component', 'Support for Default, With icons, and With counter variants', 'Large, Medium, and Small sizes', 'All interaction states supported'] }],
   },
 ];
 
@@ -66,7 +58,7 @@ function SpecsTab() {
       <section>
         <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
           <iframe
-            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-input--playground&viewMode=story&shortcuts=false"
+            src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-input--playground&viewMode=story&shortcuts=false"
             style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
             title="Input interactive example"
             loading="lazy"
@@ -130,13 +122,14 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-when-to-use.png"
-          alt="When to use Input"
-        />
+          <GuidelineImage title="Input usage overview" slug="input" section="usage" />
+          <GuidelineImage title="Input when to use" slug="input" section="when-to-use" />
+        <GuidelineImage title="When to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When collecting single-line text data from users</li>
           <li>When the expected input is short (name, email, number)</li>
@@ -147,10 +140,8 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/input-when-not-to-use.png"
-          alt="When not to use Input"
-        />
+          <GuidelineImage title="Input when not to use" slug="input" section="when-not-to-use" />
+        <GuidelineImage title="When not to use Input" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For multi-line text — use Input Area (textarea) instead</li>
           <li>For selecting from predefined options — use Dropdown</li>
@@ -177,6 +168,30 @@ function GuidelinesTab() {
         />
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Input } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Input />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

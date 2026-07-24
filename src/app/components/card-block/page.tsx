@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added Elevated variant with shadow tokens',
-      'Improved responsive padding at smaller breakpoints',
-      'Fixed border rendering in dark mode',
-    ],
+    changes: [{ category: 'Changed', items: ['Added Elevated variant with shadow tokens', 'Improved responsive padding at smaller breakpoints', 'Fixed border rendering in dark mode'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Card Block component',
-      'Default and Outlined variants',
-      'Support for optional header and footer sections',
-      'Configurable padding and border radius',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Card Block component', 'Default and Outlined variants', 'Support for optional header and footer sections', 'Configurable padding and border radius'] }],
   },
 ];
 
@@ -61,41 +53,45 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Card Block component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Outer wrapper with border, padding, and background</li>
-          <li><strong>Header</strong> — Optional title area with actions</li>
-          <li><strong>Body</strong> — Main content area supporting nested content</li>
-          <li><strong>Footer</strong> — Optional action area at the bottom</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Bordered surface with padding and radius</td></tr>
+        <tr><td>Content Area</td><td>Flexible slot for any content</td></tr>
+        <tr><td>Header</td><td>Optional title section</td></tr>
+        <tr><td>Footer</td><td>Optional action area</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-card-block--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="card-block example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Standard bordered card with white background</li>
-          <li><strong>Elevated</strong> — Card with box shadow for layered depth</li>
-          <li><strong>Outlined</strong> — Subtle border-only without shadow</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard card with comfortable padding</td></tr>
+        <tr><td>Compact</td><td>Reduced padding for dense layouts</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="card-block" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard appearance</td></tr>
+        <tr><td>Elevated</td><td>Shadow for visual hierarchy</td></tr>
+        <tr><td>Outlined</td><td>Border-only, no elevation</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="card-block" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Card Block usage overview" slug="card-block" section="usage" />
         <p className="text-gray-700 mb-4">
           Use Card Block to create visually distinct sections of content. It acts as a
           generic container — the content within defines its purpose.
@@ -104,6 +100,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Card Block when to use" slug="card-block" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>To group related settings or form sections</li>
           <li>To create distinct content areas on a dashboard</li>
@@ -114,6 +111,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Card Block when not to use" slug="card-block" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For clickable product cards — use Cards component</li>
           <li>For simple spacing — use layout primitives instead</li>
@@ -123,10 +121,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/card-block-layout.png"
-          alt="Card block layout guidelines"
-        />
+        <GuidelineImage title="Card block layout guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -145,6 +140,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { CardBlock } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<CardBlock />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

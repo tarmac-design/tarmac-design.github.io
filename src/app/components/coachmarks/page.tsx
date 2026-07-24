@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added dismissible variant with skip-all option',
-      'Improved highlight cutout positioning accuracy',
-      'Fixed step indicator animation between steps',
-    ],
+    changes: [{ category: 'Changed', items: ['Added dismissible variant with skip-all option', 'Improved highlight cutout positioning accuracy', 'Fixed step indicator animation between steps'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Coachmarks component',
-      'Single step and Multi-step variants',
-      'Highlight area with tooltip bubble',
-      'Step indicator and navigation controls',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Coachmarks component', 'Single step and Multi-step variants', 'Highlight area with tooltip bubble', 'Step indicator and navigation controls'] }],
   },
 ];
 
@@ -62,43 +54,44 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Coachmarks component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Highlight Area</strong> — Cutout region exposing the target element</li>
-          <li><strong>Tooltip Bubble</strong> — Floating container with guidance content</li>
-          <li><strong>Title</strong> — Brief headline describing the feature</li>
-          <li><strong>Description</strong> — Explanatory text about the highlighted element</li>
-          <li><strong>Step Indicator</strong> — Dots or text showing progress (e.g., 2/5)</li>
-          <li><strong>Navigation</strong> — Next, Previous, and Skip buttons</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Highlight Area</td><td>Focused region of the UI being explained</td></tr>
+        <tr><td>Tooltip Bubble</td><td>Content card with title and description</td></tr>
+        <tr><td>Step Indicator</td><td>Progress dots showing current step</td></tr>
+        <tr><td>Navigation</td><td>Next, Previous, Skip controls</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-coachmarks--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="coachmarks example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Single Step</strong> — One-off highlight with no navigation</li>
-          <li><strong>Multi-step</strong> — Sequential tour with navigation controls</li>
-          <li><strong>Dismissible</strong> — Includes skip-all option to exit the tour</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Standard tooltip sizing</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="coachmarks" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Active</td><td>Currently showing a step</td></tr>
+        <tr><td>Completed</td><td>Step has been viewed</td></tr>
+        <tr><td>Dismissed</td><td>User skipped the tour</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="coachmarks" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Coachmarks usage overview" slug="coachmarks" section="usage" />
         <p className="text-gray-700 mb-4">
           Coachmarks should be used sparingly for genuinely helpful onboarding.
           Keep tours short (3-5 steps max), provide clear skip options, and
@@ -108,6 +101,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Coachmarks when to use" slug="coachmarks" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For first-time user onboarding to key features</li>
           <li>When introducing significant UI changes</li>
@@ -118,6 +112,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Coachmarks when not to use" slug="coachmarks" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For obvious UI elements that don&apos;t need explanation</li>
           <li>As a substitute for good UX design</li>
@@ -128,10 +123,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/coachmarks-usage.png"
-          alt="Coachmarks usage guidelines"
-        />
+        <GuidelineImage title="Coachmarks usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -150,6 +142,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Coachmarks } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Coachmarks />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

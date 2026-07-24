@@ -6,25 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added multi-filter combination support',
-      'Improved reset behavior for nested filters',
-      'Fixed keyboard navigation within filter options',
-    ],
+    changes: [{ category: 'Changed', items: ['Added multi-filter combination support', 'Improved reset behavior for nested filters', 'Fixed keyboard navigation within filter options'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Filter component',
-      'Support for Single filter, Multi filter, and With search variants',
-      'Apply and Reset button actions',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Filter component', 'Support for Single filter, Multi filter, and With search variants', 'Apply and Reset button actions'] }],
   },
 ];
 
@@ -64,7 +57,7 @@ function SpecsTab() {
       <section>
         <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
           <iframe
-            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-filterdropdown--playground&viewMode=story&shortcuts=false"
+            src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-filterdropdown--playground&viewMode=story&shortcuts=false"
             style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
             title="Filter interactive example"
             loading="lazy"
@@ -104,13 +97,14 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/filter-when-to-use.png"
-          alt="When to use Filter"
-        />
+          <GuidelineImage title="Filter usage overview" slug="filter" section="usage" />
+          <GuidelineImage title="Filter when to use" slug="filter" section="when-to-use" />
+        <GuidelineImage title="When to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to narrow large datasets by criteria</li>
           <li>When multiple filter dimensions are available</li>
@@ -120,10 +114,8 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/filter-when-not-to-use.png"
-          alt="When not to use Filter"
-        />
+          <GuidelineImage title="Filter when not to use" slug="filter" section="when-not-to-use" />
+        <GuidelineImage title="When not to use Filter" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For sorting content — use a Sort control instead</li>
           <li>For searching by text — use Search component</li>
@@ -149,6 +141,30 @@ function GuidelinesTab() {
         />
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { FilterDropdown } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<FilterDropdown />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

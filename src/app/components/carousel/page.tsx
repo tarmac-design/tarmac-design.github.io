@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.2',
     date: 'June 2026',
-    changes: [
-      'Added With Thumbnails variant',
-      'Improved auto-play pause on hover and focus',
-      'Fixed pagination dot active state animation',
-    ],
+    changes: [{ category: 'Changed', items: ['Added With Thumbnails variant', 'Improved auto-play pause on hover and focus', 'Fixed pagination dot active state animation'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of Carousel component',
-      'Default and Auto-play variants',
-      'Navigation arrows and pagination dots',
-      'Touch swipe support for mobile',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of Carousel component', 'Default and Auto-play variants', 'Navigation arrows and pagination dots', 'Touch swipe support for mobile'] }],
   },
 ];
 
@@ -62,42 +54,45 @@ function OverviewTab() {
 
 function SpecsTab() {
   return (
-    <div className="space-y-10">
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Anatomy</h2>
-        <p className="text-gray-700 mb-4">
-          The Carousel component is composed of the following elements:
-        </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Container</strong> — Outer wrapper with overflow hidden</li>
-          <li><strong>Slide Items</strong> — Individual content slides</li>
-          <li><strong>Navigation Arrows</strong> — Previous/Next buttons</li>
-          <li><strong>Pagination Dots</strong> — Slide position indicators</li>
-          <li><strong>Scroll Track</strong> — Horizontal sliding track</li>
-        </ul>
-      </section>
+    <>
+      <h2>Component Structure</h2>
+      <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Container</td><td>Horizontal scroll viewport</td></tr>
+        <tr><td>Slide Items</td><td>Individual content cards or images</td></tr>
+        <tr><td>Navigation Arrows</td><td>Left/right controls</td></tr>
+        <tr><td>Pagination Dots</td><td>Current position indicators</td></tr>
+      </tbody></table>
+      <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginTop: '1.5rem', marginBottom: '0.5rem', background: '#fff' }}>
+        <iframe src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-carousel--playground&viewMode=story&shortcuts=false" style={{ width: '100%', height: '300px', border: 'none', display: 'block' }} title="carousel example" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+      </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Variants</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
-          <li><strong>Default</strong> — Manual navigation with arrows and dots</li>
-          <li><strong>Auto-play</strong> — Automatic slide progression with pause controls</li>
-          <li><strong>With Thumbnails</strong> — Thumbnail strip below for direct slide access</li>
-        </ul>
-      </section>
+      <h2>Sizes</h2>
+      <table><thead><tr><th>Size</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Full Width</td><td>Hero banners and featured content</td></tr>
+        <tr><td>Contained</td><td>Within a defined column width</td></tr>
+      </tbody></table>
 
-      <section>
-        <StorybookVariantViewer slug="carousel" />
-      </section>
-    </div>
+      <h2>States</h2>
+      <table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody>
+        <tr><td>Default</td><td>Manual navigation by user</td></tr>
+        <tr><td>Auto-play</td><td>Automatic slide rotation</td></tr>
+        <tr><td>Paused</td><td>Auto-play stopped on hover/focus</td></tr>
+      </tbody></table>
+
+      <StorybookVariantViewer slug="carousel" />
+    </>
   );
 }
 
+
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">Usage Guidelines</h2>
+          <GuidelineImage title="Carousel usage overview" slug="carousel" section="usage" />
         <p className="text-gray-700 mb-4">
           Carousels should be used when horizontal space is limited but content
           needs to be browseable. Always provide visible navigation controls and
@@ -107,6 +102,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
+          <GuidelineImage title="Carousel when to use" slug="carousel" section="when-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For image galleries where space is constrained</li>
           <li>For featured or promotional content rotation</li>
@@ -117,6 +113,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
+          <GuidelineImage title="Carousel when not to use" slug="carousel" section="when-not-to-use" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For critical content that must be seen — users often miss carousel items</li>
           <li>When all items can fit on screen — use a grid instead</li>
@@ -127,10 +124,7 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
-        <GuidelineImage
-          src="/assets/guidelines/carousel-usage.png"
-          alt="Carousel usage guidelines"
-        />
+        <GuidelineImage title="Carousel usage guidelines" slug="component" section="guideline" />
         <div className="mt-6 space-y-4">
           <DoDont
             doItems={[
@@ -149,6 +143,30 @@ function GuidelinesTab() {
         </div>
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Carousel } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<Carousel />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 

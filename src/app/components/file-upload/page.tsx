@@ -6,26 +6,18 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { RoleToggle } from '@/components/RoleToggle';
 
 const changelogEntries: ChangelogEntry[] = [
   {
     version: '1.1.0',
     date: 'June 2026',
-    changes: [
-      'Added file preview thumbnails for image uploads',
-      'Improved drag-and-drop visual feedback',
-      'Fixed progress bar accuracy for large files',
-    ],
+    changes: [{ category: 'Changed', items: ['Added file preview thumbnails for image uploads', 'Improved drag-and-drop visual feedback', 'Fixed progress bar accuracy for large files'] }],
   },
   {
     version: '1.0.0',
     date: 'March 2026',
-    changes: [
-      'Initial release of File Upload component',
-      'Support for Single file, Multiple files, and With preview variants',
-      'Drag-and-drop and click-to-browse interactions',
-      'Upload progress and status states',
-    ],
+    changes: [{ category: 'Changed', items: ['Initial release of File Upload component', 'Support for Single file, Multiple files, and With preview variants', 'Drag-and-drop and click-to-browse interactions', 'Upload progress and status states'] }],
   },
 ];
 
@@ -67,7 +59,7 @@ function SpecsTab() {
       <section>
         <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)', marginBottom: '2rem', background: '#fff' }}>
           <iframe
-            src="https://tarmac-storybook.delhivery.com/storybook/sb/iframe.html?id=tarmac-tds-fileupload--playground&viewMode=story&shortcuts=false"
+            src="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/iframe.html?id=tarmac-tds-fileupload--playground&viewMode=story&shortcuts=false"
             style={{ width: '100%', height: '300px', border: 'none', display: 'block' }}
             title="File Upload interactive example"
             loading="lazy"
@@ -119,13 +111,14 @@ function SpecsTab() {
 
 function GuidelinesTab() {
   return (
-    <div className="space-y-10">
+    <RoleToggle>
+      {(role) => role === 'designer' ? (
+        <div className="space-y-10">
       <section>
         <h2 className="text-2xl font-semibold mb-4">When to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/file-upload-when-to-use.png"
-          alt="When to use File Upload"
-        />
+          <GuidelineImage title="File Upload usage overview" slug="file-upload" section="usage" />
+          <GuidelineImage title="File Upload when to use" slug="file-upload" section="when-to-use" />
+        <GuidelineImage title="When to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>When users need to upload documents or images as part of a form</li>
           <li>When batch file upload is required</li>
@@ -136,10 +129,8 @@ function GuidelinesTab() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">When Not to Use</h2>
-        <GuidelineImage
-          src="/assets/guidelines/file-upload-when-not-to-use.png"
-          alt="When not to use File Upload"
-        />
+          <GuidelineImage title="File Upload when not to use" slug="file-upload" section="when-not-to-use" />
+        <GuidelineImage title="When not to use File Upload" slug="component" section="guideline" />
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>For simple text input — use Input component</li>
           <li>For capturing photos — use a camera/capture interface</li>
@@ -165,6 +156,30 @@ function GuidelinesTab() {
         />
       </section>
     </div>
+      ) : (
+        <>
+          <h2>Installation</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`npm install @tarmac/design-system`}</code></pre>
+
+          <h2>Import</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { FileUpload } from '@tarmac/design-system';`}</code></pre>
+
+          <h2>Rules</h2>
+          <table>
+            <thead><tr><th>#</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Follow the documented prop interface</td></tr>
+              <tr><td>2</td><td>Use design tokens for customization</td></tr>
+              <tr><td>3</td><td>Ensure accessibility requirements are met</td></tr>
+              <tr><td>4</td><td>Test across light and dark themes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Basic Usage</h2>
+          <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`<FileUpload />`}</code></pre>
+        </>
+      )}
+    </RoleToggle>
   );
 }
 
