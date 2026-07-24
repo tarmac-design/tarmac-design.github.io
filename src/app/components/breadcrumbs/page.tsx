@@ -5,8 +5,8 @@ import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
-import { GuidelineImage } from '@/components/GuidelineImage';
 import { RoleToggle } from '@/components/RoleToggle';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -58,7 +58,7 @@ function SpecsTab() {
       <h2>Component Structure</h2>
       <table><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody>
         <tr><td>Breadcrumb Item</td><td>Linked page name in the trail</td></tr>
-        <tr><td>Separator</td><td>Divider between items (/ or >)</td></tr>
+        <tr><td>Separator</td><td>Divider between items (/ or &gt;)</td></tr>
         <tr><td>Current Item</td><td>Non-linked text for current page</td></tr>
         <tr><td>Overflow</td><td>Collapsed items shown as "..."</td></tr>
       </tbody></table>
