@@ -6,8 +6,8 @@ import { DoDont } from '@/components/mdx';
 import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
-import { GuidelineImage } from '@/components/GuidelineImage';
 import { RoleToggle } from '@/components/RoleToggle';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
 function OverviewTab() {
   return (

@@ -5,6 +5,7 @@ import { StorybookVariantViewer } from '@/components/StorybookVariantViewer';
 import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
+import { GuidelineImage } from '@/components/GuidelineImage';
 
 function OverviewTab() {
   return (
@@ -75,7 +76,6 @@ function GuidelinesTab() {
 
           <h2>Import</h2>
           <pre style={{ background: 'var(--color-surface-dim)', padding: '16px', borderRadius: '8px', fontSize: '13px', overflow: 'auto' }}><code>{`import { Divider } from '@tarmac/design-system';`}</code></pre>
-import { GuidelineImage } from '@/components/GuidelineImage';
 
           <h2>Rules</h2>
           <table>
