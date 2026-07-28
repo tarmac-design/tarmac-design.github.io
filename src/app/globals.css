@@ -6,7 +6,6 @@
 
 :root {
   --sidebar-width: 240px;
-  --sidebar-active-bg: #E0E3EB;
   --topbar-height: 56px;
   --color-surface: #FFFFFF;
   --color-surface-dim: #FAFAFA;
@@ -32,7 +31,6 @@
 }
 
 [data-theme='dark'] {
-  --sidebar-active-bg: #1A1A1A;
   --color-surface: #0D0D0D;
   --color-surface-dim: #1A1A1A;
   --color-surface-container: #1A1A1A;
@@ -225,7 +223,7 @@ html, body { overflow-x: hidden; }
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
-.mdx-content { max-width: 100%; }
+.mdx-content { max-width: 100%; overflow-x: hidden; }
 .mdx-content img { max-width: 100%; height: auto; }
 
 @media (max-width: 640px) {
@@ -309,7 +307,7 @@ html, body { overflow-x: hidden; }
   font-size: 13px;
   font-weight: 700;
   color: var(--color-on-surface);
-  padding: 10px 12px 6px;
+  padding: 12px 12px;
   letter-spacing: -0.01em;
 }
 .sidebar-group-list {
@@ -425,22 +423,5 @@ html, body { overflow-x: hidden; }
   background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.5px);
 }
 
-
-
-
-/* Sidebar nav icons — adapt to theme */
-.sidebar-nav-icon {
-  opacity: 1;
-}
-[data-theme='light'] .sidebar-nav-icon {
-  filter: invert(1);
-  opacity: 0.8;
-}
-
-
-/* Mobile responsive layout fixes */
-@media (max-width: 1024px) {
-  :root {
-    --sidebar-width: 0px;
-  }
-}
+/* Custom cursor & button text selection */
+a, button, [role=button] { user-select: none; -webkit-user-select: none; }
