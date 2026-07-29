@@ -29,16 +29,15 @@ export function StorybookVariantViewer({ slug }: { slug: string }) {
       <div style={{ paddingTop: '1rem', borderTop: '1px solid var(--color-outline)' }}>
         <p style={{ fontSize: '11px', color: 'var(--color-on-surface-variant)', marginBottom: '8px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Available on</p>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          {[
-            { label: 'React', href: `${STORYBOOK_BASE}/index.html?path=/story/${playgroundId}` },
-            { label: 'Angular', href: '#' },
-            { label: 'Android', href: '#' },
-            { label: 'iOS', href: '#' },
-          ].map((p) => (
-            <a key={p.label} href={p.href} target="_blank" rel="noopener noreferrer"
-              style={{ padding: '3px 10px', fontSize: '11px', fontWeight: 500, borderRadius: '6px', border: '1px solid var(--color-outline)', color: 'var(--color-on-surface-variant)', textDecoration: 'none' }}>
-              {p.label}
-            </a>
+          <a href={`${STORYBOOK_BASE}/index.html?path=/story/${playgroundId}`} target="_blank" rel="noopener noreferrer"
+            style={{ padding: '3px 10px', fontSize: '11px', fontWeight: 500, borderRadius: '6px', border: '1px solid var(--color-outline)', color: 'var(--color-on-surface-variant)', textDecoration: 'none' }}>
+            React
+          </a>
+          {['Angular', 'Android', 'iOS'].map((p) => (
+            <span key={p}
+              style={{ padding: '3px 10px', fontSize: '11px', fontWeight: 500, borderRadius: '6px', border: '1px solid var(--color-outline)', color: 'var(--color-on-surface-variant)', opacity: 0.5, cursor: 'default' }}>
+              {p} <span style={{ fontSize: '9px', opacity: 0.7 }}>Coming soon</span>
+            </span>
           ))}
         </div>
       </div>

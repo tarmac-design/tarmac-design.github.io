@@ -133,9 +133,9 @@ export function PageShell({ title, description, tabs, children, version, hideVer
           {allTabs.length > 1 && (
             <div className="flex gap-0 border-b min-w-max" style={{ borderColor: 'var(--color-outline)' }}>
               {allTabs.map((tab, i) => (
-                <button key={tab.label} onClick={() => setActiveTab(i)} className="px-4 py-2.5 text-sm font-medium transition-colors relative whitespace-nowrap" style={{ color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)' }}>
+                <button key={tab.label} onClick={() => setActiveTab(i)} className="px-4 py-2.5 text-sm font-medium transition-all relative whitespace-nowrap rounded-t-md hover:bg-[var(--color-surface-container)]" style={{ color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)', marginBottom: '-1px' }}>
                   {tab.label}
-                  {activeTab === i && <span className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: 'var(--color-primary)' }} />}
+                  {activeTab === i && <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-t-sm" style={{ background: 'var(--color-primary)' }} />}
                 </button>
               ))}
             </div>
@@ -152,7 +152,10 @@ export function PageShell({ title, description, tabs, children, version, hideVer
           <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-[240px]">
             <div className="flex gap-0 min-w-max">
               {allTabs.map((tab, i) => (
-                <button key={tab.label} onClick={() => setActiveTab(i)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 500, color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)', background: 'none', border: 'none', borderBottom: activeTab === i ? '2px solid var(--color-primary)' : '2px solid transparent', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s' }}>
+                <button key={tab.label} onClick={() => setActiveTab(i)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 500, color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)', background: 'none', border: 'none', borderBottom: activeTab === i ? '2px solid var(--color-primary)' : '2px solid transparent', borderRadius: '6px 6px 0 0', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s, background 0.15s', marginBottom: '-1px' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-surface-container)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'none'; }}
+                >
                   {tab.label}
                 </button>
               ))}
@@ -174,7 +177,7 @@ export function PageShell({ title, description, tabs, children, version, hideVer
       </div>
 
       {/* ─── Right anchor nav (desktop) ─── */}
-      <div className="hidden xl:block" style={{ position: 'fixed', top: '45%', right: '32px', width: '170px', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', zIndex: 20 }}>
+      <div className="hidden xl:block" style={{ position: 'fixed', top: '50%', transform: 'translateY(-50%)', right: '32px', width: '170px', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', zIndex: 20 }}>
         <AnchorNav title={title} containerRef={contentRef} deps={activeTab} />
       </div>
     </div>
