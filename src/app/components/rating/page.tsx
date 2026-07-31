@@ -7,6 +7,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 function OverviewTab() {
   return (

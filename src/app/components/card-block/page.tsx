@@ -7,6 +7,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -218,6 +219,7 @@ export default function CardBlockPage() {
       title="Card Block"
       description="Container component for grouping related content with visual separation and optional actions."
       tabs={tabs}
+      subHeader={<ArchivedBanner />}
     >
       <OverviewTab />
     </PageShell>

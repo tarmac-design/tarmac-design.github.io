@@ -7,6 +7,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -246,6 +247,7 @@ export default function FileUploadPage() {
       title="File Upload"
       description="Drag-and-drop or click interface for selecting and uploading files. Supports single and multiple file selection with progress feedback."
       tabs={tabs}
+      subHeader={<ArchivedBanner />}
     >
       <OverviewTab />
     </PageShell>

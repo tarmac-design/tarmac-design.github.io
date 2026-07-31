@@ -196,8 +196,8 @@ export default function HomePage() {
           {/* Badge - removed */}
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight mb-6">
-            <span className="block">Build faster.</span>
-            <span className="block" style={{ color: '#ED1B36' }}>Ship consistent.</span>
+            <span className="block">Build faster</span>
+            <span className="block" style={{ color: '#ED1B36' }}>Ship consistent</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-white/50 max-w-xl mx-auto mb-10 leading-relaxed">

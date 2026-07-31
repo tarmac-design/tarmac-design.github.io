@@ -6,6 +6,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 function OverviewTab() {
   return (
@@ -128,6 +129,7 @@ export default function InfoCardPage() {
     <PageShell
       title="Info Card"
       description="A card variant for displaying informational content with icon, title, and description."
+      subHeader={<ArchivedBanner />}
       tabs={[
         { label: 'Overview', content: <OverviewTab /> },
         { label: 'Specs', content: <SpecsTab /> },

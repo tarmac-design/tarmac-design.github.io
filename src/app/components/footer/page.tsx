@@ -7,6 +7,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 const changelogEntries: ChangelogEntry[] = [
   {
@@ -221,6 +222,7 @@ export default function FooterPage() {
       title="Footer"
       description="Bottom section of popups and sheets containing action buttons. Provides consistent placement for primary and secondary actions."
       tabs={tabs}
+      subHeader={<ArchivedBanner />}
     >
       <OverviewTab />
     </PageShell>
