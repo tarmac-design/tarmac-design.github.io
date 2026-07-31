@@ -118,18 +118,18 @@ export function PageShell({ title, description, tabs, children, version, hideVer
         <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '60%', background: 'linear-gradient(to right, var(--color-surface-container-low) 25%, transparent 85%)', pointerEvents: 'none' }} />
 
         <div style={{ flex: 3 }} />
-        <div className="relative px-5 lg:pl-24 lg:pr-[240px]">
+        <div className="relative px-5 lg:pl-24 lg:pr-24">
           <motion.h1 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold tracking-tight mb-2 leading-tight" style={{ color: 'var(--color-on-surface)' }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
             {title}
             {!hideVersion && <span style={{ marginLeft: '12px', fontSize: '11px', fontWeight: 500, padding: '3px 10px', borderRadius: '14px', border: '1px solid #00A2BD', color: '#00A2BD', verticalAlign: 'middle', letterSpacing: '0.02em' }}>{version || 'v1.1.2'}</span>}
           </motion.h1>
-          {description && <motion.p className="text-sm sm:text-[15px] leading-relaxed mb-4" style={{ color: 'var(--color-on-surface-variant)' }} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>{description}</motion.p>}
+          {description && <motion.p className="text-sm sm:text-[15px] leading-relaxed mb-4" style={{ color: 'var(--color-on-surface-variant)', maxWidth: '600px' }} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>{description}</motion.p>}
           {subHeader && <div style={{ marginTop: '12px' }}>{subHeader}</div>}
         </div>
         <div style={{ flex: 2 }} />
 
         {/* Inline tabs */}
-        <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-[240px]">
+        <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-24">
           {allTabs.length > 1 && (
             <div className="flex gap-0 border-b min-w-max" style={{ borderColor: 'var(--color-outline)' }}>
               {allTabs.map((tab, i) => (
@@ -149,7 +149,7 @@ export function PageShell({ title, description, tabs, children, version, hideVer
       {/* ─── Sticky tabs ─── */}
       {isScrolled && allTabs.length > 1 && (
         <div className="fixed top-16 left-0 lg:left-[var(--sidebar-width)] right-0 z-[35]" style={{ backgroundColor: 'var(--color-surface, #1a1a1a)', borderBottom: '1px solid var(--color-outline)' }}>
-          <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-[240px]">
+          <div className="overflow-x-auto scrollbar-hide px-5 lg:pl-24 lg:pr-24">
             <div className="flex gap-0 min-w-max">
               {allTabs.map((tab, i) => (
                 <button key={tab.label} onClick={() => setActiveTab(i)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 500, color: activeTab === i ? 'var(--color-primary)' : 'var(--color-on-surface-variant)', background: 'none', border: 'none', borderBottom: activeTab === i ? '2px solid var(--color-primary)' : '2px solid transparent', borderRadius: '6px 6px 0 0', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s, background 0.15s', marginBottom: '-1px' }}
@@ -165,8 +165,8 @@ export function PageShell({ title, description, tabs, children, version, hideVer
       )}
 
       {/* ─── Content ─── */}
-      <div className="px-5 lg:pl-24 lg:pr-[240px] pt-6 pb-12">
-        <div className="mdx-content" ref={contentRef}>
+      <div className="px-5 lg:pl-24 lg:pr-24 pt-6 pb-12">
+        <div className="mdx-content max-w-full" ref={contentRef}>
           <AnimatePresence mode="wait">
             <motion.div key={activeTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
               <MdxProvider>{allTabs[activeTab].content}</MdxProvider>
@@ -177,7 +177,7 @@ export function PageShell({ title, description, tabs, children, version, hideVer
       </div>
 
       {/* ─── Right anchor nav (desktop) ─── */}
-      <div className="hidden xl:block" style={{ position: 'fixed', top: '340px', right: '32px', width: '170px', maxHeight: 'calc(100vh - 380px)', overflowY: 'auto', zIndex: 20 }}>
+      <div className="hidden xl:block" style={{ position: 'fixed', top: '100px', right: '32px', width: '170px', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', zIndex: 20 }}>
         <AnchorNav title={title} containerRef={contentRef} deps={activeTab} />
       </div>
     </div>
