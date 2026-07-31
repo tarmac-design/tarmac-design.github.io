@@ -98,27 +98,166 @@ function GuidelinesTab() {
       {(role) => role === 'designer' ? (
         <>
           <h2>Usage</h2>
-          <p>Primary interaction trigger. One primary action per view, support with secondary.</p>
-          <GuidelineImage title="Button hierarchy" slug="button" section="usage" />
+          <p>Buttons trigger actions. The three styles form an emphasis hierarchy — Primary for the single most important action on a view, Secondary for parallel or supporting actions, Tertiary for low-emphasis inline actions.</p>
+          <p>Nine color variants, three sizes, Button and Icon Button types, six interaction states, plus boolean leading / trailing icons and loading indicators.</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/images/guidelines/button-designer/1.png" alt="Emphasis hierarchy — Primary · Secondary · Tertiary" style={{ width: '100%', borderRadius: '12px', margin: '24px 0' }} />
+          <p><strong>Emphasis hierarchy — Primary · Secondary · Tertiary</strong></p>
+          <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Shown at 1.5×. One Primary per view. Secondary sits beside it for parallel actions; Tertiary handles inline, low-commitment actions.</p>
 
-          <h2>When to Use</h2>
-          <GuidelineImage title="Button when to use" slug="button" section="when-to-use" />
+          <h2 style={{ color: '#4CAF50' }}>Variants</h2>
+          {/* 2-column: Sizes + Types */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '24px 0' }}>
+            <div>
+              <div style={{ background: '#fff', borderRadius: '12px', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/2.png" alt="Sizes" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }} />
+              </div>
+              <p style={{ marginTop: '12px' }}><strong>Sizes — Large 44 · Medium 36 · Small 28</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Match surface density: Large for primary page actions, Medium for cards and toolbars, Small for tables and dense UI.</p>
+            </div>
+            <div>
+              <div style={{ background: '#fff', borderRadius: '12px', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/4.png" alt="Types" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }} />
+              </div>
+              <p style={{ marginTop: '12px' }}><strong>Types — Button · Icon Button</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Icon Button for compact, repeated actions with an unambiguous glyph. Always pair with a tooltip.</p>
+            </div>
+          </div>
+          {/* States full width */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/images/guidelines/button-designer/3.png" alt="States" style={{ width: '100%', borderRadius: '12px', margin: '24px 0' }} />
+          <p><strong>States — Default · Hover · Pressed · Focused · Disabled · Ghost</strong></p>
+          <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>States are variant properties — never simulate them with opacity or color overrides. Ghost is the skeleton loading placeholder.</p>
+
+          <h2>Specs</h2>
+          <p>Anatomy of Button (Primary, Black, Large, leading icon on) — shown at 3×. All values are token-bound.</p>
+          {/* 2-column: anatomy image + descriptions */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', margin: '24px 0' }}>
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/images/guidelines/button-designer/5.png" alt="Anatomy" style={{ width: '100%', borderRadius: '12px' }} />
+            </div>
+            <div>
+              <p><strong style={{ color: '#C9A96E' }}>1</strong> <strong>Container</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Radius/Default (4px), Spacing/12 padding, Spacing/4 gap. Heights: Large 44 · Medium 36 · Small 28. Fill bound to the variant color token.</p>
+              <p style={{ marginTop: '16px' }}><strong style={{ color: '#C9A96E' }}>2</strong> <strong>Leading / trailing icon</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>20px, boolean. Use one, not both. Loading spinners replace icons via the Loading booleans.</p>
+              <p style={{ marginTop: '16px' }}><strong style={{ color: '#C9A96E' }}>3</strong> <strong>Label</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Noto Sans Medium 14 (B2). A verb, three words or fewer, sentence case. Exposed as a text property — edit it there, never in the layer.</p>
+            </div>
+          </div>
+
+          <table><thead><tr><th style={{ color: 'var(--color-on-surface-variant)', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Element</th><th style={{ color: 'var(--color-on-surface-variant)', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Property</th><th style={{ color: 'var(--color-on-surface-variant)', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Value</th></tr></thead><tbody>
+            <tr><td>Container</td><td>Heights</td><td>Large 44 · Medium 36 · Small 28</td></tr>
+            <tr><td>Container</td><td>Padding · Gap</td><td>Spacing/12 (12px) · Spacing/4 (4px)</td></tr>
+            <tr><td>Container</td><td>Corner radius</td><td>Radius/Default · 4px</td></tr>
+            <tr><td>Label</td><td>Type</td><td>Noto Sans Medium 14 (B2) · exposed as text property</td></tr>
+            <tr><td>Icon</td><td>Size</td><td>20px · boolean leading / trailing (use one, not both)</td></tr>
+            <tr><td>Button</td><td>Styles</td><td>Primary · Secondary · Tertiary</td></tr>
+            <tr><td>Button</td><td>Variants</td><td>Black · White · Blue · Success · Error · Warning · DLV Red · Light Coal · Dark Coal</td></tr>
+            <tr><td>Button</td><td>Types</td><td>Button · Icon Button</td></tr>
+            <tr><td>Button</td><td>States</td><td>Default · Hover · Pressed · Focused · Disabled · Ghost</td></tr>
+            <tr><td>Loading</td><td>Booleans</td><td>Loading left · Loading right — replaces the icon, keeps width stable</td></tr>
+          </tbody></table>
+
+          <h2>How to use</h2>
+          <ol>
+            <li><strong>One Primary per view</strong> — it marks the single most important action. Everything else is Secondary or Tertiary.</li>
+            <li><strong>Label with a verb</strong> — three words or fewer, sentence case: &quot;Create shipment&quot;, &quot;Save&quot;, &quot;Retry&quot;. Edit via the Label text property.</li>
+            <li><strong>Semantic variants for semantic actions</strong> — Success to confirm, Error / DLV Red for destructive; Black and Blue are the neutral workhorses.</li>
+            <li><strong>Size by density</strong> — Large for page actions, Medium for cards and toolbars, Small for tables.</li>
+            <li><strong>One icon, if any</strong> — leading or trailing, never both. Icon Button needs a tooltip.</li>
+            <li><strong>Loading via booleans</strong> — Loading left / right keeps button width stable; never swap in a spinner manually.</li>
+            <li><strong>Never detach</strong> — states, colors and paddings are variant- and token-driven.</li>
+          </ol>
+          {/* Do/Don't pair — matching the DoDont component style with colored top border */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '24px 0' }}>
+            <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)' }}>
+              <div style={{ borderTop: '3px solid #4CAF50' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/7.png" alt="Do" style={{ width: '100%', background: '#fff' }} />
+              </div>
+              <div style={{ padding: '12px 16px' }}>
+                <p style={{ color: '#4CAF50', fontWeight: 600, margin: '0 0 4px' }}>✓ Do</p>
+                <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', margin: 0 }}>Pair one Primary with a Tertiary for the escape path — the hierarchy decides for the user.</p>
+              </div>
+            </div>
+            <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--color-outline)' }}>
+              <div style={{ borderTop: '3px solid #ED1B36' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/6.png" alt="Don't" style={{ width: '100%', background: '#fff' }} />
+              </div>
+              <div style={{ padding: '12px 16px' }}>
+                <p style={{ color: '#ED1B36', fontWeight: 600, margin: '0 0 4px' }}>✕ Don&apos;t</p>
+                <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', margin: 0 }}>Don&apos;t place two Primary buttons side by side — competing emphasis forces the user to read both and choose blind.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2>When to use</h2>
           <ul>
-            <li>Form submissions and save actions</li>
-            <li>Dialog action buttons (confirm/cancel)</li>
-            <li>Navigation triggers that feel like actions</li>
-            <li>Destructive confirmations (delete, remove)</li>
+            <li><span style={{ color: '#4CAF50' }}>✓</span> <strong>Committing an action</strong> — submit, save, create, confirm, retry.</li>
+            <li><span style={{ color: '#4CAF50' }}>✓</span> <strong>Advancing a flow</strong> — the Primary marks the expected next step on every screen.</li>
+            <li><span style={{ color: '#4CAF50' }}>✓</span> <strong>Destructive operations</strong> — Error / DLV Red variants with a confirming Dialog behind them.</li>
+            <li><span style={{ color: '#4CAF50' }}>✓</span> <strong>Compact repeated actions</strong> — Icon Button in toolbars and table rows, with a Tooltip.</li>
+            <li><span style={{ color: '#4CAF50' }}>✓</span> <strong>Two-line CTAs</strong> — the dedicated Two Line Button component, not a stretched Button.</li>
           </ul>
 
-          <h2>When Not to Use</h2>
-          <GuidelineImage title="Button when not to use" slug="button" section="when-not-to-use" />
+          <h3 style={{ color: '#B88B5C' }}>In product — Delhivery</h3>
+          {/* 2-column: in-product examples */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '24px 0' }}>
+            <div>
+              <div style={{ background: '#fff', borderRadius: '12px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/8.png" alt="Seller panel" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }} />
+              </div>
+              <p style={{ marginTop: '12px' }}><strong>Seller panel — form &amp; page actions</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>One Primary (&quot;Create shipment&quot;) closes the flow; Tertiary carries the escape path. Hierarchy decides, the user just acts.</p>
+            </div>
+            <div>
+              <div style={{ background: '#fff', borderRadius: '12px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/images/guidelines/button-designer/9.png" alt="Ops tables" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }} />
+              </div>
+              <p style={{ marginTop: '12px' }}><strong>Ops tables — row actions</strong></p>
+              <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>Small buttons keep 28px rows dense but tappable in NDR queues, manifests and dispatch tables.</p>
+            </div>
+          </div>
+
+          <h2>When not to use</h2>
           <ul>
-            <li>Navigation links — use Link component</li>
-            <li>Toggles — use Toggle or Checkbox</li>
-            <li>Menu items — use Menu component</li>
-            <li>Non-interactive labels — use Badge</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>Navigation</strong> — moving between pages or views is a Link, Tab or Breadcrumb, not a Button.</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>Toggling state</strong> — on/off belongs to Toggle / Switch or Segmented Buttons.</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>Filtering and selection</strong> — use Pills, Tags or Checkboxes; buttons commit, they don&apos;t select.</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>More than one Primary</strong> — if two actions feel primary, the flow needs redesign, not two loud buttons.</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>Icon-only without a tooltip</strong> — unlabeled glyphs fail both usability and accessibility.</li>
+            <li><span style={{ color: '#ED1B36' }}>✕</span> <strong>Custom one-off styles</strong> — nine variants and three styles cover every case; a new color is a system change, not an override.</li>
           </ul>
 
+          <h3 style={{ color: '#B88B5C' }}>Comparison — navigation</h3>
+          {/* 2-column: comparison with consistent card styling */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '24px 0' }}>
+            <div style={{ border: '1px solid var(--color-outline)', borderRadius: '12px', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/images/guidelines/button-designer/10.png" alt="Do — links navigate" style={{ width: '100%', borderBottom: '1px solid var(--color-outline)' }} />
+              <div style={{ padding: '12px 16px' }}>
+                <p style={{ color: '#4CAF50', fontWeight: 600, margin: '0 0 4px' }}>✓ Do — links navigate, one button acts</p>
+                <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', margin: 0 }}>Nav items are quiet links; the single Primary carries the page&apos;s one action.</p>
+              </div>
+            </div>
+            <div style={{ border: '1px solid var(--color-outline)', borderRadius: '12px', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/images/guidelines/button-designer/11.png" alt="Don't — nav as buttons" style={{ width: '100%', borderBottom: '1px solid var(--color-outline)' }} />
+              <div style={{ padding: '12px 16px' }}>
+                <p style={{ color: '#ED1B36', fontWeight: 600, margin: '0 0 4px' }}>✕ Don&apos;t — turn the nav into buttons</p>
+                <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)', margin: 0 }}>Every nav item styled as a button — emphasis everywhere is emphasis nowhere, and navigation now looks like four competing actions.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Do's and Don'ts at the end — 2-column layout */}
           <h2>Do&apos;s and Don&apos;ts</h2>
           <DoDont slug="button"
             doItems={[

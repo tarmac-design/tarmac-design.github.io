@@ -177,7 +177,7 @@ export function PageShell({ title, description, tabs, children, version, hideVer
       </div>
 
       {/* ─── Right anchor nav (desktop) ─── */}
-      <div className="hidden xl:block" style={{ position: 'fixed', top: '50%', transform: 'translateY(-50%)', right: '32px', width: '170px', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', zIndex: 20 }}>
+      <div className="hidden xl:block" style={{ position: 'fixed', top: '340px', right: '32px', width: '170px', maxHeight: 'calc(100vh - 380px)', overflowY: 'auto', zIndex: 20 }}>
         <AnchorNav title={title} containerRef={contentRef} deps={activeTab} />
       </div>
     </div>
