@@ -289,7 +289,7 @@ const ICON_CATEGORIES: IconCategory[] = [
   },
 ];
 
-const ALL_CATEGORIES = ICON_CATEGORIES.map((c) => c.name);
+const ALL_CATEGORIES = ICON_CATEGORIES.map((c) => c.name).filter((name) => name !== 'Notification' && name !== 'Outdoor' && name !== 'Social');
 
 const ICON_SIZES = [
   { label: '12', value: 12 },
@@ -493,7 +493,7 @@ function ExamplesTab() {
 
       {/* Search + style + size */}
       <div className="flex flex-wrap items-center gap-2 mb-6">
-        <div className="relative flex-1 min-w-0">
+        <div className="relative flex-1 min-w-0 max-w-md">
           <span
             className="material-icons absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
             style={{ fontSize: 18, color: 'var(--color-on-surface-variant)' }}
@@ -535,11 +535,14 @@ function ExamplesTab() {
         <select
           value={iconSize}
           onChange={(e) => setIconSize(Number(e.target.value))}
-          className="px-3 py-2 rounded-lg text-xs font-medium outline-none cursor-pointer"
+          className="px-3 py-2 rounded-lg text-xs font-medium outline-none cursor-pointer appearance-none pr-7"
           style={{
             background: 'var(--color-surface-container-low)',
             border: '1px solid var(--color-outline)',
             color: 'var(--color-on-surface)',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 8px center',
           }}
         >
           {ICON_SIZES.map((s) => (
