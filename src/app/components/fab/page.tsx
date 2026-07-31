@@ -6,6 +6,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 function OverviewTab() {
   return (
@@ -128,6 +129,7 @@ export default function FabPage() {
     <PageShell
       title="FAB"
       description="Floating Action Button for the primary action on a screen."
+      subHeader={<ArchivedBanner />}
       tabs={[
         { label: 'Overview', content: <OverviewTab /> },
         { label: 'Specs', content: <SpecsTab /> },

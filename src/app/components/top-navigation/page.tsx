@@ -6,6 +6,7 @@ import { Changelog, type ChangelogEntry } from '@/components/Changelog';
 import { AvailabilityTable } from '@/components/AvailabilityTable';
 import { RoleToggle } from '@/components/RoleToggle';
 import { GuidelineImage } from '@/components/GuidelineImage';
+import { ArchivedBanner } from '@/components/ArchivedBanner';
 
 function OverviewTab() {
   return (
@@ -128,6 +129,7 @@ export default function TopNavigationPage() {
     <PageShell
       title="Top Navigation"
       description="A horizontal navigation bar for primary app-level navigation and actions."
+      subHeader={<ArchivedBanner />}
       tabs={[
         { label: 'Overview', content: <OverviewTab /> },
         { label: 'Specs', content: <SpecsTab /> },
