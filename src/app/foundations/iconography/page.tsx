@@ -491,8 +491,8 @@ function ExamplesTab() {
         ))}
       </div>
 
-      {/* Search + style + size — single row */}
-      <div className="flex items-center gap-2 mb-6">
+      {/* Search + style + size */}
+      <div className="flex flex-wrap items-center gap-2 mb-6">
         <div className="relative flex-1 min-w-0">
           <span
             className="material-icons absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -571,7 +571,7 @@ function ExamplesTab() {
                 ({cat.icons.length})
               </span>
             </h3>
-            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-2">
               {cat.icons.map((icon) => (
                 <button
                   key={icon}
