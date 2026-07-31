@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 
-type NavLink = { label: string; href: string };
+type NavLink = { label: string; href: string; comingSoon?: boolean };
 type NavGroup = { title: string; icon?: string; items: NavLink[] };
 
 const sidebarSections: NavGroup[] = [
@@ -98,14 +98,6 @@ const sidebarSections: NavGroup[] = [
     { label: 'Upload File', href: '/components/upload-file' },
     { label: 'Web Header', href: '/components/web-header' },
   ]},
-  { title: 'Tools', icon: 'layout', items: [
-    { label: 'Design File Access', href: '/tools/design-file-access' },
-    { label: 'App Provider', href: '/tools/app-provider' },
-    { label: 'TDS Plugins', href: '/tools/tds-plugins' },
-    { label: 'Storybook Add-ons', href: '/tools/storybook-addons' },
-    { label: 'MCPs', href: '/tools/mcps' },
-    { label: 'UI Styling Standards', href: '/tools/ui-styling-standards' },
-  ]},
   { title: 'Accessibility', icon: 'eye', items: [
     { label: 'Overview', href: '/accessibility/overview' },
     { label: 'Guidelines', href: '/accessibility/guidelines' },
@@ -114,9 +106,6 @@ const sidebarSections: NavGroup[] = [
     { label: 'Color Contrast', href: '/accessibility/color-contrast' },
     { label: 'Focus Management', href: '/accessibility/focus-management' },
     { label: 'Testing', href: '/accessibility/testing' },
-  ]},
-  { title: 'Release Notes', icon: 'file', items: [
-    { label: 'Changelog', href: '/release-notes' },
   ]},
 ];
 
@@ -229,6 +218,35 @@ function SidebarGroup({ group, defaultOpen }: { group: NavGroup; defaultOpen?: b
             <ul style={{ listStyle: 'none', margin: 0, padding: '4px 0 8px 0' }}>
               {group.items.map((item) => {
                 const isActive = pathname === item.href;
+                if (item.comingSoon) {
+                  return (
+                    <li key={item.href}>
+                      <button
+                        onClick={() => alert('Coming Soon!')}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          width: '100%',
+                          padding: '5px 8px 5px 32px',
+                          fontSize: '12px',
+                          lineHeight: '18px',
+                          textDecoration: 'none',
+                          borderRadius: '6px',
+                          margin: '1px 8px',
+                          transition: 'all 0.12s ease',
+                          color: 'var(--color-on-surface-variant)',
+                          backgroundColor: 'transparent',
+                          fontWeight: 400,
+                          border: 'none',
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  );
+                }
                 return (
                   <li key={item.href}>
                     <Link

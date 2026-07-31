@@ -24,6 +24,9 @@ const changelogEntries: ChangelogEntry[] = [
 function OverviewTab() {
   return (
     <div className="space-y-10">
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/tarmac-tds-card--card-playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
+      </p>
       <section>
         <h2 className="text-2xl font-semibold mb-4">Description</h2>
         <p className="text-base text-gray-700 leading-relaxed">

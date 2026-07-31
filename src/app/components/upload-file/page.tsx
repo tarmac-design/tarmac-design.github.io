@@ -10,6 +10,9 @@ import { GuidelineImage } from '@/components/GuidelineImage';
 function OverviewTab() {
   return (
     <>
+      <p style={{ marginBottom: '1.5rem' }}>
+        <a href="https://tarmac-storybook-dev.pntrzz.com/storybook/sb/index.html?path=/story/atoms-upload--playground" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 500, fontSize: '14px' }}>Open in Storybook →</a>
+      </p>
       <h2>Overview</h2>
       <p>The File Upload component enables users to upload files through drag-and-drop or manual selection. It provides structured feedback across the upload lifecycle, including idle, uploading, success, and error states.</p>
       <p>It combines both:</p>

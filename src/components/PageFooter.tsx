@@ -93,7 +93,7 @@ export function PageFooter() {
 
   return (
     <footer className="pb-12">
-      <div className="px-5 lg:pl-24 lg:pr-[240px]">
+      <div className="px-5 lg:pl-24 lg:pr-24">
         {(prev || next) && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t" style={{ borderColor: 'var(--color-outline)' }}>
             {prev ? (

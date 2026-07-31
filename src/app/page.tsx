@@ -4,6 +4,10 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import ComponentReveal from '@/components/ComponentReveal';
+import TokenIcon from '@mui/icons-material/Token';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 /* ── Scroll-triggered fade-in ── */
 function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -261,7 +265,7 @@ export default function HomePage() {
           <FadeUp>
             <p className="text-sm font-medium text-red-400 mb-4 tracking-wide">THE SYSTEM</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 max-w-2xl">
-              One system.<br />Every surface.
+              One system<br />Every surface
             </h2>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed mb-16">
               A shared language between design and engineering — pre-built components, design tokens, accessibility standards, and guidelines that keep every Delhivery product consistent.
@@ -270,10 +274,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { icon: '🎯', title: 'Token First', desc: 'Every decision starts as a design token. Change once, update everywhere — colors, spacing, type.' },
-              { icon: '♿', title: 'Accessible by Default', desc: 'WCAG 2.1 AA baked into every component. Not an afterthought — the foundation.' },
-              { icon: '🔗', title: 'Figma ↔ Code', desc: '1:1 parity between Figma and production. What designers build is exactly what ships.' },
-              { icon: '⚙️', title: 'Framework Agnostic', desc: 'React and Angular from one source. Same tokens, same behavior, two implementations.' },
+              { icon: <TokenIcon />, title: 'Token First', desc: 'Every decision starts as a design token. Change once, update everywhere — colors, spacing, type.' },
+              { icon: <AccessibilityNewIcon />, title: 'Accessible by Default', desc: 'WCAG 2.1 AA baked into every component. Not an afterthought — the foundation.' },
+              { icon: <SyncAltIcon />, title: 'Figma ↔ Code', desc: '1:1 parity between Figma and production. What designers build is exactly what ships.' },
+              { icon: <SettingsIcon />, title: 'Framework Agnostic', desc: 'React and Angular from one source. Same tokens, same behavior, two implementations.' },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.1}>
                 <div
